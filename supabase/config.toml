@@ -18,3 +18,5 @@ verify_jwt = false
 [functions.sync-order]
 verify_jwt = false
 
+[functions.newsletter-signup]
+verify_jwt = false
