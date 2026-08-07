@@ -70,7 +70,11 @@ export function blingProductId(productId: string) {
   if (!Number.isInteger(value) || value <= 0) throw new PublicError(`Mapeamento do Bling pendente: ${product.blingEnv}.`, 503);
   return value;
 }
-
+export function catalogIdFromSku(sku: string) {
+  const entry = Object.values(CATALOG).find((product) => product.sku === sku);
+  if (!entry) throw new PublicError(`SKU do CRM sem mapeamento no checkout: ${sku}.`, 500);
+  return entry.id;
+}
 export function orderItemsSnapshot(items: CartItem[]) {
   return items.map((item) => ({ id: item.id, sku: CATALOG[item.id].sku, name: CATALOG[item.id].name, quantity: item.quantity, unitPrice: CATALOG[item.id].price }));
 }
