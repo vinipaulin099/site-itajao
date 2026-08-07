@@ -37,7 +37,7 @@ h1{font-family:'Playfair Display',serif;font-size:clamp(2.25rem,4vw,3.7rem);line
 .chips{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1.8rem}.chip{font-size:.57rem;letter-spacing:.12em;text-transform:uppercase;padding:.38rem .75rem;border:1px solid rgba(166,123,91,.25);background:#fff;border-radius:var(--rb);font-weight:700;color:var(--muted)}
 .pricebox{padding:1.4rem 0;border-top:1px solid rgba(111,78,55,.1);border-bottom:1px solid rgba(111,78,55,.1);margin-bottom:1.5rem}
 .old{font-size:.79rem;color:var(--muted);text-decoration:line-through;margin-bottom:.15rem}.price{font-family:var(--fonte-site);font-size:2.55rem;font-weight:800;line-height:1;color:var(--marrom);font-variant-numeric:lining-nums tabular-nums}
-.pix{font-size:.72rem;color:#427044;margin-top:.55rem;font-weight:600}.sold{color:#9c352f}.buy{width:100%;display:flex;align-items:center;justify-content:center;gap:.7rem;padding:1rem 1.4rem;background:var(--marrom);color:var(--bege);border:none;border-radius:var(--rb);font-size:.71rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;font-weight:700;transition:.3s;box-shadow:0 9px 24px rgba(111,78,55,.18)}.buy:hover{background:var(--dourado);color:var(--marrom);transform:translateY(-2px)}
+.pix{font-size:.72rem;color:#427044;margin-top:.55rem;font-weight:600}.sold{color:#9c352f}.buy{width:100%;display:flex;align-items:center;justify-content:center;gap:.7rem;padding:1rem 1.4rem;background:var(--marrom);color:var(--bege);border:none;border-radius:var(--rb);font-size:.71rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;font-weight:700;transition:.3s;box-shadow:0 9px 24px rgba(111,78,55,.18)}.buy:hover{background:var(--dourado);color:var(--marrom);transform:translateY(-2px)}.legacy-buy{display:block;text-align:center;margin:.72rem 0 0;color:var(--muted);font-size:.64rem;text-underline-offset:3px}.legacy-buy:hover{color:var(--marrom)}
 .ship{background:#fff;border:1px solid rgba(111,78,55,.08);border-radius:var(--r);padding:1.05rem 1.2rem;margin:1rem 0 2rem;font-size:.75rem;line-height:1.65;color:var(--muted)}.ship strong{color:var(--marrom)}
 .facts{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(111,78,55,.1);border-left:1px solid rgba(111,78,55,.1);margin-top:2rem}.fact{padding:1rem;border-right:1px solid rgba(111,78,55,.1);border-bottom:1px solid rgba(111,78,55,.1);background:rgba(255,255,255,.35)}.fact span{display:block;font-size:.55rem;text-transform:uppercase;letter-spacing:.14em;color:var(--dourado);font-weight:700;margin-bottom:.25rem}.fact strong{font-family:'Playfair Display',serif;font-size:1rem;color:var(--marrom)}
 .detail{max-width:1240px;margin:4.5rem auto 0;display:grid;grid-template-columns:1.05fr .95fr;gap:1.5rem}
@@ -128,6 +128,7 @@ body,body *,body *::before,body *::after{
         <div class="pix" id="pix">5% de desconto no Pix na Nuvemshop</div>
       </div>
       <a class="buy" id="buyLink" href="#" target="_blank" rel="noopener">Comprar na Nuvemshop →</a>
+      <a class="legacy-buy" id="legacyBuy" href="#" target="_blank" rel="noopener" hidden>Prefere a loja atual? Comprar pela Nuvemshop</a>
       <div class="ship"><strong>Frete e pagamento seguros:</strong> prazo, transportadora e valor do frete são calculados para o seu CEP na finalização da compra.</div>
       <div class="facts">
         <div class="fact"><span>Peso</span><strong id="weight">500g</strong></div>
@@ -171,6 +172,7 @@ body,body *,body *::before,body *::after{
   <span><a href="https://instagram.com/cafeitajao" target="_blank" rel="noopener">@cafeitajao</a> · <a href="https://wa.me/5535998087168" target="_blank" rel="noopener">WhatsApp</a></span>
 </footer>
 
+<script src="store-config.js"></script>
 <script>
 const PRODUCTS={
   graos500:{
@@ -222,12 +224,28 @@ document.getElementById('price').textContent=p.price;
 document.getElementById('weight').textContent=p.weight;
 document.getElementById('format').textContent=p.format;
 document.getElementById('description').textContent=p.description;
-document.getElementById('buyLink').href=p.url;
+const buyLink=document.getElementById('buyLink');
+const legacyBuy=document.getElementById('legacyBuy');
+const checkoutEnabled=Boolean(window.ITAJAO_STORE_CONFIG&&window.ITAJAO_STORE_CONFIG.commerceCheckoutEnabled);
+buyLink.href=p.url;
+legacyBuy.href=p.url;
+if(p.available&&checkoutEnabled){
+  buyLink.href='checkout.html?add='+encodeURIComponent(key);
+  buyLink.removeAttribute('target');
+  buyLink.removeAttribute('rel');
+  buyLink.textContent='Adicionar e finalizar compra →';
+  legacyBuy.hidden=false;
+  document.getElementById('pix').textContent='Pix, cartão e boleto no ambiente seguro do Mercado Pago';
+}
 if(!p.available){
   const pix=document.getElementById('pix');
   pix.textContent='Produto marcado como esgotado na Nuvemshop';
   pix.classList.add('sold');
-  document.getElementById('buyLink').textContent='Ver disponibilidade na Nuvemshop →';
+  buyLink.href=p.url;
+  buyLink.target='_blank';
+  buyLink.rel='noopener';
+  buyLink.textContent='Ver disponibilidade na Nuvemshop →';
+  legacyBuy.hidden=true;
 }
 
 const main=document.getElementById('mainImage');

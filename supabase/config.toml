@@ -1,0 +1,20 @@
+project_id = "site-itajao"
+
+[functions.shipping-quote]
+verify_jwt = false
+
+[functions.create-checkout]
+verify_jwt = false
+
+[functions.mercadopago-webhook]
+verify_jwt = false
+
+[functions.order-status]
+verify_jwt = false
+
+[functions.integration-oauth]
+verify_jwt = false
+
+[functions.sync-order]
+verify_jwt = false
+
