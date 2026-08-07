@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Produto | Itajaó Cafés Especiais</title>
 <meta name="description" content="Café especial Itajaó: 84 pontos SCA, 100% Arábica, Catuaí Amarelo, produzido no Sul de Minas.">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bege:#FED8B1;--marrom:#6F4E37;--dourado:#A67B5B;--dourado-c:#ECB176;--cafe:#3D2B1F;--creme:#FEECD8;--muted:#8C6A50;--r:14px;--rb:999px}
+:root{--bege:#FED8B1;--marrom:#6F4E37;--dourado:#A67B5B;--dourado-c:#ECB176;--cafe:#3D2B1F;--creme:#FEECD8;--muted:#8C6A50;--r:14px;--rb:999px;--fonte-site:'Montserrat',Arial,sans-serif}
 html{scroll-behavior:smooth}
-body{background:var(--creme);color:var(--marrom);font-family:'Manrope',sans-serif;-webkit-font-smoothing:antialiased}
+body{background:var(--creme);color:var(--marrom);font-family:var(--fonte-site);-webkit-font-smoothing:antialiased}
 
 /* TARJA SUPERIOR — MESMA DA PÁGINA INICIAL */
 .top-bar{position:fixed;top:0;left:0;width:100%;height:34px;background:#3D2B1F;overflow:hidden;z-index:9999;border-bottom:1px solid rgba(255,255,255,.08)}
@@ -36,7 +36,7 @@ h1{font-family:'Playfair Display',serif;font-size:clamp(2.25rem,4vw,3.7rem);line
 .short{color:var(--muted);font-size:.94rem;line-height:1.8;margin-bottom:1.4rem}
 .chips{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1.8rem}.chip{font-size:.57rem;letter-spacing:.12em;text-transform:uppercase;padding:.38rem .75rem;border:1px solid rgba(166,123,91,.25);background:#fff;border-radius:var(--rb);font-weight:700;color:var(--muted)}
 .pricebox{padding:1.4rem 0;border-top:1px solid rgba(111,78,55,.1);border-bottom:1px solid rgba(111,78,55,.1);margin-bottom:1.5rem}
-.old{font-size:.79rem;color:var(--muted);text-decoration:line-through;margin-bottom:.15rem}.price{font-family:'Playfair Display',serif;font-size:2.55rem;font-weight:800;line-height:1;color:var(--marrom)}
+.old{font-size:.79rem;color:var(--muted);text-decoration:line-through;margin-bottom:.15rem}.price{font-family:var(--fonte-site);font-size:2.55rem;font-weight:800;line-height:1;color:var(--marrom);font-variant-numeric:lining-nums tabular-nums}
 .pix{font-size:.72rem;color:#427044;margin-top:.55rem;font-weight:600}.sold{color:#9c352f}.buy{width:100%;display:flex;align-items:center;justify-content:center;gap:.7rem;padding:1rem 1.4rem;background:var(--marrom);color:var(--bege);border:none;border-radius:var(--rb);font-size:.71rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;font-weight:700;transition:.3s;box-shadow:0 9px 24px rgba(111,78,55,.18)}.buy:hover{background:var(--dourado);color:var(--marrom);transform:translateY(-2px)}
 .ship{background:#fff;border:1px solid rgba(111,78,55,.08);border-radius:var(--r);padding:1.05rem 1.2rem;margin:1rem 0 2rem;font-size:.75rem;line-height:1.65;color:var(--muted)}.ship strong{color:var(--marrom)}
 .facts{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(111,78,55,.1);border-left:1px solid rgba(111,78,55,.1);margin-top:2rem}.fact{padding:1rem;border-right:1px solid rgba(111,78,55,.1);border-bottom:1px solid rgba(111,78,55,.1);background:rgba(255,255,255,.35)}.fact span{display:block;font-size:.55rem;text-transform:uppercase;letter-spacing:.14em;color:var(--dourado);font-weight:700;margin-bottom:.25rem}.fact strong{font-family:'Playfair Display',serif;font-size:1rem;color:var(--marrom)}
@@ -44,6 +44,13 @@ h1{font-family:'Playfair Display',serif;font-size:clamp(2.25rem,4vw,3.7rem);line
 .panel{background:#fff;border:1px solid rgba(111,78,55,.07);border-radius:var(--r);padding:clamp(1.5rem,3vw,2.5rem)}.panel h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:1.1rem}.panel p{font-size:.87rem;line-height:1.9;color:var(--muted);margin-bottom:1rem}.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem;margin-top:1.4rem}.note{text-align:center;padding:1rem .5rem;background:var(--creme);border-radius:10px}.note i{font-size:1.55rem;font-style:normal;display:block;margin-bottom:.35rem}.note strong{font-family:'Playfair Display',serif;font-size:.95rem}.quality{list-style:none;display:flex;flex-direction:column;gap:.8rem}.quality li{font-size:.82rem;color:var(--muted);display:flex;gap:.7rem;align-items:flex-start}.quality li::before{content:'✓';color:var(--dourado);font-weight:700}
 .support{margin-top:1.5rem;font-size:.76rem;color:var(--muted)}.support a{color:var(--marrom);font-weight:700}
 footer{background:var(--cafe);color:rgba(254,216,177,.45);padding:2.2rem clamp(1.2rem,4vw,3.5rem);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.65rem}footer a{color:var(--dourado-c);text-decoration:none}
+
+/* Tipografia uniforme: algarismos alinhados e com largura consistente. */
+body,body *,body *::before,body *::after{
+  font-family:var(--fonte-site)!important;
+  font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:'lnum' 1,'tnum' 1;
+}
 @media(max-width:800px){.product{grid-template-columns:1fr}.gallery{position:static}.stage{height:430px;min-height:0}.detail{grid-template-columns:1fr}.logo img{height:46px}main{padding-top:2rem}}
 @media(max-width:480px){.stage{height:350px}.facts{grid-template-columns:1fr}.notes{grid-template-columns:1fr 1fr}h1{font-size:2.15rem}}
 </style>
