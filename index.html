@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Itajaó Cafés Especiais</title>
 <meta name="description" content="Café especial de altitude produzido pela família Itajaó no Sul de Minas Gerais. Catuaí Amarelo, 1.200m de altitude, 84 pontos SCA. Da roça à sua xícara.">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!--
 =============================================================
@@ -65,9 +65,10 @@
   --muted:#8C6A50;
   --r:12px;
   --rb:999px;
+  --fonte-site:'Montserrat',Arial,sans-serif;
 }
 html{scroll-behavior:smooth}
-body{background:var(--bege);color:var(--marrom);font-family:'Manrope',sans-serif;font-weight:400;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{background:var(--bege);color:var(--marrom);font-family:var(--fonte-site);font-weight:400;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
 /* ── NAV ── */
 nav{position:fixed;top:34px;left:0;right:0;z-index:200;height:68px;padding:0 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(254,216,177,.9);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(166,123,91,.13);transition:box-shadow .4s}
@@ -178,7 +179,7 @@ section{padding:7.5rem 3.5rem}
 .pill{font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;padding:.22rem .7rem;background:var(--creme);color:var(--muted);border:1px solid rgba(166,123,91,.22);border-radius:var(--rb);font-weight:600}
 .pmet{font-size:.7rem;color:var(--muted);margin-bottom:.75rem;font-weight:300}
 .pfooter{display:flex;align-items:center;justify-content:space-between;padding-top:.9rem;border-top:1px solid rgba(111,78,55,.07)}
-.ppreco{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--marrom)}
+.ppreco{font-family:var(--fonte-site);font-size:1.5rem;font-weight:700;color:var(--marrom);font-variant-numeric:lining-nums tabular-nums}
 .btn-buy{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.5rem 1.1rem;background:var(--marrom);color:var(--bege);border:none;cursor:pointer;border-radius:var(--rb);font-family:'Manrope',sans-serif;font-weight:700;transition:all .3s cubic-bezier(.23,1,.32,1);box-shadow:0 3px 12px rgba(111,78,55,.18);text-decoration:none;white-space:nowrap}
 .btn-buy:hover{background:var(--dourado);color:var(--marrom);transform:translateY(-2px)}
 .pold{font-family:'Manrope',sans-serif;font-size:.65rem;color:var(--muted);text-decoration:line-through;display:block;font-weight:400;margin-bottom:.12rem}
@@ -233,7 +234,7 @@ section{padding:7.5rem 3.5rem}
 .ccard{border:1.5px solid rgba(166,123,91,.2);padding:3rem;backdrop-filter:blur(8px);background:rgba(254,216,177,.03);transition:.3s;border-radius:var(--r)}
 .ccard:hover{border-color:rgba(166,123,91,.4)}
 .cbadge{font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:var(--dourado);display:block;margin-bottom:1.1rem;font-weight:700}
-.cpreco{font-family:'Playfair Display',serif;font-size:3.6rem;font-weight:800;color:var(--bege);line-height:1}
+.cpreco{font-family:var(--fonte-site);font-size:3.6rem;font-weight:800;color:var(--bege);line-height:1;font-variant-numeric:lining-nums tabular-nums}
 .cpnote{font-size:.68rem;color:rgba(254,216,177,.3);letter-spacing:.1em;margin-bottom:2rem;margin-top:.2rem;display:block;font-weight:600}
 .crows{border-top:1px solid rgba(254,216,177,.08);padding-top:1.4rem;margin-bottom:2.3rem;display:flex;flex-direction:column;gap:.7rem}
 .crow{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:rgba(254,216,177,.45)}
@@ -350,6 +351,13 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   .stats-bar{grid-template-columns:1fr 1fr}.hero h1{font-size:2.6rem}
   .erow{flex-direction:column;border-radius:12px;overflow:visible;background:transparent;gap:.7rem}
   .erow input,.erow button{border-radius:var(--rb);background:rgba(111,78,55,.12);width:100%}
+}
+
+/* Tipografia uniforme: algarismos alinhados e com largura consistente. */
+body,body *,body *::before,body *::after{
+  font-family:var(--fonte-site)!important;
+  font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:'lnum' 1,'tnum' 1;
 }
 
 /* TARJA SUPERIOR */
@@ -749,7 +757,7 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
     <div class="ccard rv d2">
       <span class="cbadge">Plano mensal · Mais popular</span>
       <!-- EDITE O PREÇO DA ASSINATURA -->
-      <div class="cpreco">R$&nbsp;62</div>
+      <div class="cpreco">R$&nbsp;62,90</div>
       <span class="cpnote">/mês · entrega mensal</span>
       <div class="crows">
         <div class="crow"><span>Frequência</span><strong>Mensal</strong></div>
