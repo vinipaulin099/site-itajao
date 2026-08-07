@@ -3,186 +3,205 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Produto · Itajaó Cafés Especiais</title>
-<meta name="description" content="Café especial Itajaó, 84 pontos SCA, 100% arábica, produzido no Sul de Minas Gerais.">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Produto | Itajaó Cafés Especiais</title>
+<meta name="description" content="Café especial Itajaó: 84 pontos SCA, 100% Arábica, Catuaí Amarelo, produzido no Sul de Minas.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bege:#FED8B1;--marrom:#6F4E37;--dourado:#A67B5B;--dourado-c:#ECB176;--cafe:#3D2B1F;--creme:#FEECD8;--muted:#8C6A50;--verde:#24462D;--r:16px;--rb:999px}
+:root{--bege:#FED8B1;--marrom:#6F4E37;--dourado:#A67B5B;--dourado-c:#ECB176;--cafe:#3D2B1F;--creme:#FEECD8;--muted:#8C6A50;--r:14px;--rb:999px}
 html{scroll-behavior:smooth}
 body{background:var(--creme);color:var(--marrom);font-family:'Manrope',sans-serif;-webkit-font-smoothing:antialiased}
-a{color:inherit}
-.topbar{height:34px;background:var(--cafe);display:flex;align-items:center;justify-content:center;padding:0 1rem;color:var(--bege);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;text-align:center}
-.topbar strong{color:var(--dourado-c)}
-nav{height:72px;background:rgba(254,236,216,.96);border-bottom:1px solid rgba(111,78,55,.1);display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;position:sticky;top:0;z-index:20;backdrop-filter:blur(16px)}
-.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;font-family:'Playfair Display',serif;font-weight:700;color:var(--marrom)}
-.brand img{height:50px;width:auto;display:block}
-.back{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;font-weight:700;color:var(--muted);display:flex;gap:.55rem;align-items:center;transition:.25s}
-.back:hover{color:var(--dourado);transform:translateX(-2px)}
-.page{max-width:1180px;margin:0 auto;padding:4rem 2rem 6rem}
-.crumbs{font-size:.66rem;color:var(--muted);margin-bottom:2rem;display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}
-.crumbs a{text-decoration:none}.crumbs a:hover{color:var(--dourado)}
-.product{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4.5rem;align-items:start}
-.visual{position:sticky;top:126px}
-.imagebox{height:600px;border-radius:var(--r);overflow:hidden;background:linear-gradient(145deg,#1C3A24,#0E1F12);position:relative;display:flex;align-items:center;justify-content:center;box-shadow:0 26px 70px rgba(61,43,31,.13)}
-.imagebox img{width:100%;height:100%;object-fit:cover;display:block}
-.image-fallback{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;color:var(--dourado-c)}
-.image-fallback strong{font-family:'Playfair Display',serif;font-size:4.8rem}.image-fallback span{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin-top:.7rem}
-.badge{position:absolute;top:18px;left:18px;z-index:2;border-radius:var(--rb);padding:.42rem .9rem;background:var(--dourado);color:var(--cafe);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800}
-.eyebrow{font-size:.61rem;letter-spacing:.25em;text-transform:uppercase;color:var(--dourado);font-weight:800;margin-bottom:1rem}
-h1{font-family:'Playfair Display',serif;font-size:clamp(2.1rem,4vw,3.7rem);line-height:1.03;color:var(--marrom);margin-bottom:1.25rem;letter-spacing:-.02em}
-.lead{font-size:.91rem;line-height:1.85;color:var(--muted);margin-bottom:1.6rem}
-.tags{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:1.8rem}.tag{font-size:.57rem;letter-spacing:.12em;text-transform:uppercase;padding:.32rem .72rem;background:white;border:1px solid rgba(166,123,91,.18);border-radius:var(--rb);color:var(--muted);font-weight:700}
-.pricebox{padding:1.5rem 0;border-top:1px solid rgba(111,78,55,.1);border-bottom:1px solid rgba(111,78,55,.1);margin-bottom:1.5rem}
-.oldprice{font-size:.82rem;text-decoration:line-through;color:rgba(140,106,80,.62);display:block;margin-bottom:.2rem;min-height:1.1rem}
-.price{font-family:'Playfair Display',serif;font-size:2.55rem;line-height:1;color:var(--marrom);font-weight:800}.installments{font-size:.72rem;color:var(--muted);margin-top:.55rem;line-height:1.6}.pix{color:#356642;font-weight:700}
-.status{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .78rem;background:#fff8ea;border:1px solid #ead4a2;border-radius:8px;color:#7a5a24;font-size:.68rem;font-weight:700;margin-bottom:1.2rem}
-.status.ok{background:#edf7ef;border-color:#cfe6d4;color:#356642}
-.buy{width:100%;display:flex;align-items:center;justify-content:center;gap:.7rem;padding:1rem 1.2rem;border:0;border-radius:var(--rb);background:var(--marrom);color:var(--bege);font-family:'Manrope',sans-serif;font-weight:800;font-size:.69rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;box-shadow:0 9px 26px rgba(111,78,55,.22);transition:.3s}.buy:hover{background:var(--dourado);color:var(--cafe);transform:translateY(-2px)}
-.note{font-size:.64rem;text-align:center;color:var(--muted);margin-top:.8rem;line-height:1.6}
-.facts{margin-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:.7rem}.fact{background:white;border:1px solid rgba(111,78,55,.07);border-radius:10px;padding:.9rem 1rem}.fact span{display:block;font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dourado);font-weight:800;margin-bottom:.2rem}.fact strong{font-family:'Playfair Display',serif;font-size:1rem;color:var(--marrom)}
-.details{margin-top:5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}.panel{background:white;border:1px solid rgba(111,78,55,.07);border-radius:var(--r);padding:2.2rem}.panel.wide{grid-column:1/-1}.panel h2{font-family:'Playfair Display',serif;font-size:1.55rem;margin-bottom:1rem;color:var(--marrom)}.panel p,.panel li{font-size:.82rem;line-height:1.8;color:var(--muted)}.panel ul{list-style:none;display:grid;gap:.45rem}.panel li::before{content:'—';color:var(--dourado);margin-right:.65rem}.sensory{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-top:1rem}.sens{background:var(--creme);padding:1rem;border-radius:10px;text-align:center}.sens b{font-family:'Playfair Display',serif;display:block;color:var(--marrom);font-size:1.05rem}.sens span{font-size:.59rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
-.related{margin-top:4rem}.related h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:1.2rem}.related-links{display:flex;flex-wrap:wrap;gap:.65rem}.related-links a{background:white;border:1px solid rgba(111,78,55,.1);border-radius:var(--rb);padding:.65rem 1rem;text-decoration:none;font-size:.66rem;font-weight:700;color:var(--muted);transition:.25s}.related-links a:hover{border-color:var(--dourado);color:var(--marrom)}
-footer{background:var(--cafe);color:rgba(254,216,177,.42);padding:2.3rem;text-align:center;font-size:.64rem;line-height:1.8}
-@media(max-width:850px){nav{padding:0 1.2rem}.page{padding:2.5rem 1.2rem 4rem}.product{grid-template-columns:1fr;gap:2.4rem}.visual{position:static}.imagebox{height:470px}.details{grid-template-columns:1fr;margin-top:3rem}.panel.wide{grid-column:auto}}
-@media(max-width:520px){.brand span{display:none}.imagebox{height:390px}.facts{grid-template-columns:1fr}.sensory{grid-template-columns:1fr}.topbar{font-size:.56rem}.page{padding-top:1.8rem}}
+
+/* TARJA SUPERIOR — MESMA DA PÁGINA INICIAL */
+.top-bar{position:fixed;top:0;left:0;width:100%;height:34px;background:#3D2B1F;overflow:hidden;z-index:9999;border-bottom:1px solid rgba(255,255,255,.08)}
+.top-bar-track{white-space:nowrap;display:flex;align-items:center;height:100%}
+.top-bar-track span{display:inline-block;color:#FED8B1;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;animation:marquee 28s linear infinite;padding-left:100%}
+.top-bar strong{color:#ECB176}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+
+nav{height:76px;padding:0 clamp(1.2rem,4vw,3.5rem);display:flex;align-items:center;justify-content:space-between;background:rgba(254,236,216,.94);border-bottom:1px solid rgba(111,78,55,.08);position:sticky;top:34px;z-index:20;backdrop-filter:blur(14px);margin-top:34px}
+.logo img{height:54px;width:auto;display:block}
+.back{display:inline-flex;align-items:center;gap:.55rem;color:var(--marrom);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;font-weight:700}
+.back:hover{color:var(--dourado)}
+main{max-width:1240px;margin:0 auto;padding:3.5rem clamp(1.2rem,4vw,3.5rem) 6rem}
+.crumb{font-size:.68rem;color:var(--muted);margin-bottom:2rem}.crumb a{color:var(--dourado);text-decoration:none}
+.product{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.9fr);gap:clamp(2.2rem,6vw,6rem);align-items:start}
+.gallery{position:sticky;top:142px}
+.stage{height:min(650px,66vw);min-height:460px;background:linear-gradient(145deg,#4b3322,#1e140e);border-radius:var(--r);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;box-shadow:0 24px 60px rgba(61,43,31,.13)}
+.stage::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 35%,rgba(236,177,118,.18),transparent 52%);pointer-events:none}
+.stage img{width:100%;height:100%;object-fit:contain;position:relative;z-index:2;filter:drop-shadow(0 18px 22px rgba(0,0,0,.25))}
+.thumbs{display:flex;gap:.7rem;margin-top:.85rem}.thumb{width:72px;height:72px;border:1px solid rgba(111,78,55,.15);background:#fff;border-radius:10px;overflow:hidden;cursor:pointer;padding:0}.thumb.active{border:2px solid var(--dourado)}.thumb img{width:100%;height:100%;object-fit:cover}
+.eyebrow{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--dourado);font-weight:700;margin-bottom:1rem}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2.25rem,4vw,3.7rem);line-height:1.06;color:var(--marrom);letter-spacing:-.02em;margin-bottom:1rem}
+.short{color:var(--muted);font-size:.94rem;line-height:1.8;margin-bottom:1.4rem}
+.chips{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1.8rem}.chip{font-size:.57rem;letter-spacing:.12em;text-transform:uppercase;padding:.38rem .75rem;border:1px solid rgba(166,123,91,.25);background:#fff;border-radius:var(--rb);font-weight:700;color:var(--muted)}
+.pricebox{padding:1.4rem 0;border-top:1px solid rgba(111,78,55,.1);border-bottom:1px solid rgba(111,78,55,.1);margin-bottom:1.5rem}
+.old{font-size:.79rem;color:var(--muted);text-decoration:line-through;margin-bottom:.15rem}.price{font-family:'Playfair Display',serif;font-size:2.55rem;font-weight:800;line-height:1;color:var(--marrom)}
+.pix{font-size:.72rem;color:#427044;margin-top:.55rem;font-weight:600}.sold{color:#9c352f}.buy{width:100%;display:flex;align-items:center;justify-content:center;gap:.7rem;padding:1rem 1.4rem;background:var(--marrom);color:var(--bege);border:none;border-radius:var(--rb);font-size:.71rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;font-weight:700;transition:.3s;box-shadow:0 9px 24px rgba(111,78,55,.18)}.buy:hover{background:var(--dourado);color:var(--marrom);transform:translateY(-2px)}
+.ship{background:#fff;border:1px solid rgba(111,78,55,.08);border-radius:var(--r);padding:1.05rem 1.2rem;margin:1rem 0 2rem;font-size:.75rem;line-height:1.65;color:var(--muted)}.ship strong{color:var(--marrom)}
+.facts{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(111,78,55,.1);border-left:1px solid rgba(111,78,55,.1);margin-top:2rem}.fact{padding:1rem;border-right:1px solid rgba(111,78,55,.1);border-bottom:1px solid rgba(111,78,55,.1);background:rgba(255,255,255,.35)}.fact span{display:block;font-size:.55rem;text-transform:uppercase;letter-spacing:.14em;color:var(--dourado);font-weight:700;margin-bottom:.25rem}.fact strong{font-family:'Playfair Display',serif;font-size:1rem;color:var(--marrom)}
+.detail{max-width:1240px;margin:4.5rem auto 0;display:grid;grid-template-columns:1.05fr .95fr;gap:1.5rem}
+.panel{background:#fff;border:1px solid rgba(111,78,55,.07);border-radius:var(--r);padding:clamp(1.5rem,3vw,2.5rem)}.panel h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:1.1rem}.panel p{font-size:.87rem;line-height:1.9;color:var(--muted);margin-bottom:1rem}.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem;margin-top:1.4rem}.note{text-align:center;padding:1rem .5rem;background:var(--creme);border-radius:10px}.note i{font-size:1.55rem;font-style:normal;display:block;margin-bottom:.35rem}.note strong{font-family:'Playfair Display',serif;font-size:.95rem}.quality{list-style:none;display:flex;flex-direction:column;gap:.8rem}.quality li{font-size:.82rem;color:var(--muted);display:flex;gap:.7rem;align-items:flex-start}.quality li::before{content:'✓';color:var(--dourado);font-weight:700}
+.support{margin-top:1.5rem;font-size:.76rem;color:var(--muted)}.support a{color:var(--marrom);font-weight:700}
+footer{background:var(--cafe);color:rgba(254,216,177,.45);padding:2.2rem clamp(1.2rem,4vw,3.5rem);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.65rem}footer a{color:var(--dourado-c);text-decoration:none}
+@media(max-width:800px){.product{grid-template-columns:1fr}.gallery{position:static}.stage{height:430px;min-height:0}.detail{grid-template-columns:1fr}.logo img{height:46px}main{padding-top:2rem}}
+@media(max-width:480px){.stage{height:350px}.facts{grid-template-columns:1fr}.notes{grid-template-columns:1fr 1fr}h1{font-size:2.15rem}}
 </style>
 </head>
 <body>
-<div class="topbar">☕ <strong>Itajaó Cafés Especiais</strong>&nbsp; · direto da Fazenda Itajaó</div>
+<div class="top-bar">
+  <div class="top-bar-track">
+    <span>
+🎁 <strong>BEMVINDO10</strong> • 10% OFF NA PRIMEIRA COMPRA •
+🚚 FRETE GRÁTIS: SUDESTE ACIMA DE R$249,90 • DEMAIS REGIÕES ACIMA DE R$399,90 •
+☕ TORRA FRESCA SOB DEMANDA •
+🌱 DIRETO DA FAZENDA ITAJAÓ •
+⭐ CAFÉ ESPECIAL PENEIRA 16+ •
+🎁 <strong>BEMVINDO10</strong> • 10% OFF NA PRIMEIRA COMPRA •
+🚚 FRETE GRÁTIS: SUDESTE ACIMA DE R$249,90 • DEMAIS REGIÕES ACIMA DE R$399,90 •
+☕ TORRA FRESCA SOB DEMANDA •
+🌱 DIRETO DA FAZENDA ITAJAÓ •
+⭐ CAFÉ ESPECIAL PENEIRA 16+ •
+    </span>
+  </div>
+</div>
 <nav>
-  <a href="index.html" class="brand"><img src="teste4.png" alt="Itajaó" onerror="this.style.display='none'"><span>ITAJAÓ Cafés</span></a>
+  <a class="logo" href="index.html" aria-label="Voltar para o início"><img src="teste4.png" alt="Itajaó Cafés Especiais" onerror="this.style.display='none'"></a>
   <a class="back" href="index.html#cafes">← Voltar aos cafés</a>
 </nav>
 
-<main class="page">
-  <div class="crumbs"><a href="index.html">Início</a><span>›</span><a href="index.html#cafes">Nossos cafés</a><span>›</span><span id="crumbName">Produto</span></div>
-  <div class="product">
-    <div class="visual">
-      <div class="imagebox" id="imageBox">
-        <span class="badge" id="badge">Itajaó</span>
-        <img id="productImage" alt="Café Itajaó">
-        <div class="image-fallback" id="imageFallback"><strong id="fallbackText">ITAJAÓ</strong><span>café especial</span></div>
-      </div>
+<main>
+  <div class="crumb"><a href="index.html">Início</a> / <a href="index.html#cafes">Cafés</a> / <span id="crumbName">Produto</span></div>
+  <section class="product">
+    <div class="gallery">
+      <div class="stage"><img id="mainImage" src="500graos.png" alt="Café Itajaó"></div>
+      <div class="thumbs" id="thumbs"></div>
     </div>
-
     <div class="info">
-      <div class="eyebrow">Café Especial · 84 pts SCA</div>
-      <h1 id="productTitle">Itajaó Especial</h1>
-      <p class="lead" id="productLead"></p>
-      <div class="tags"><span class="tag">100% Arábica</span><span class="tag">Catuaí Amarelo</span><span class="tag">Natural</span><span class="tag">Torra Média</span><span class="tag">Peneira 16+</span></div>
+      <div class="eyebrow" id="eyebrow">Café especial · 84 pontos SCA</div>
+      <h1 id="name">Itajaó Especial 500g em Grãos</h1>
+      <p class="short" id="short"></p>
+      <div class="chips"><span class="chip">100% Arábica</span><span class="chip">Catuaí Amarelo</span><span class="chip">Torra Média</span><span class="chip">Processo Natural</span></div>
       <div class="pricebox">
-        <span class="oldprice" id="oldPrice"></span>
+        <div class="old" id="oldPrice"></div>
         <div class="price" id="price"></div>
-        <p class="installments"><span id="installments"></span><br><span class="pix">5% de desconto no Pix na Nuvemshop</span></p>
+        <div class="pix" id="pix">5% de desconto no Pix na Nuvemshop</div>
       </div>
-      <div class="status" id="status"></div>
-      <a class="buy" id="buyLink" href="#" target="_blank" rel="noopener">Comprar na Nuvemshop <span>→</span></a>
-      <p class="note">Preço, estoque, frete e condições finais são confirmados na loja no momento da compra.</p>
+      <a class="buy" id="buyLink" href="#" target="_blank" rel="noopener">Comprar na Nuvemshop →</a>
+      <div class="ship"><strong>Frete e pagamento seguros:</strong> prazo, transportadora e valor do frete são calculados para o seu CEP na finalização da compra.</div>
       <div class="facts">
-        <div class="fact"><span>Peso</span><strong id="factWeight"></strong></div>
-        <div class="fact"><span>Tipo</span><strong id="factType"></strong></div>
+        <div class="fact"><span>Peso</span><strong id="weight">500g</strong></div>
+        <div class="fact"><span>Formato</span><strong id="format">Em Grãos</strong></div>
         <div class="fact"><span>Altitude</span><strong>1.200 m</strong></div>
-        <div class="fact"><span>Origem</span><strong>Alpinópolis · MG</strong></div>
+        <div class="fact"><span>Origem</span><strong>Sul de Minas</strong></div>
+        <div class="fact"><span>Seleção</span><strong>Peneira 16+</strong></div>
+        <div class="fact"><span>Pontuação</span><strong>84 pts SCA</strong></div>
       </div>
     </div>
-  </div>
-
-  <section class="details">
-    <article class="panel">
-      <h2>Qualidade que dá pra sentir</h2>
-      <ul>
-        <li>84 pontos SCA — café especial</li>
-        <li>Variedade Catuaí Amarelo</li>
-        <li>Processo Natural</li>
-        <li>Cultivado a 1.200 metros</li>
-        <li>Grãos selecionados, peneira 16+</li>
-      </ul>
-    </article>
-    <article class="panel">
-      <h2>Origem que faz diferença</h2>
-      <p>Produzido na Fazenda Itajaó, em Alpinópolis, no Sul de Minas. Produção própria e venda direta de quem acompanha o café desde a fazenda até chegar à sua xícara.</p>
-    </article>
-    <article class="panel wide">
-      <h2>Perfil sensorial</h2>
-      <p>Um café doce, equilibrado e encorpado, com acidez cítrica, corpo cremoso e alta doçura.</p>
-      <div class="sensory"><div class="sens"><b>Chocolate</b><span>Aroma</span></div><div class="sens"><b>Caramelo</b><span>Doçura</span></div><div class="sens"><b>Castanha</b><span>Corpo</span></div></div>
-    </article>
-    <article class="panel">
-      <h2>Embalagem e frescor</h2>
-      <ul><li>Embalagem pensada para proteger o café</li><li>Válvula desgaseificadora</li><li>Preserva melhor aroma e características do lote</li></ul>
-    </article>
-    <article class="panel">
-      <h2>Compra segura</h2>
-      <ul><li>Produto bem embalado</li><li>Envio rápido</li><li>Atendimento direto com o produtor</li><li>Frete calculado pelo CEP no checkout</li></ul>
-    </article>
   </section>
 
-  <section class="related">
-    <h2>Conheça também</h2>
-    <div class="related-links">
-      <a href="produto.html?p=500g-graos">500g em Grãos</a>
-      <a href="produto.html?p=500g-moido">500g Moído</a>
-      <a href="produto.html?p=250g-graos">250g em Grãos</a>
-      <a href="produto.html?p=250g-moido">250g Moído</a>
-      <a href="produto.html?p=kit-1kg">Kit 1kg</a>
+  <section class="detail">
+    <div class="panel">
+      <h2>Da Fazenda Itajaó para a sua xícara</h2>
+      <p id="description"></p>
+      <p>Um café doce e equilibrado, de corpo cremoso e acidez cítrica, produzido em Alpinópolis, no Sul de Minas, diretamente por quem cultiva.</p>
+      <div class="notes">
+        <div class="note"><i>🍫</i><strong>Chocolate</strong></div>
+        <div class="note"><i>🍯</i><strong>Caramelo</strong></div>
+        <div class="note"><i>🌰</i><strong>Castanha</strong></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>Qualidade que dá para sentir</h2>
+      <ul class="quality">
+        <li>84 pontos na escala SCA.</li>
+        <li>Variedade Catuaí Amarelo, 100% Arábica.</li>
+        <li>Processo natural e grãos selecionados peneira 16+.</li>
+        <li>Torra média para preservar doçura, corpo e aroma.</li>
+        <li>Produção própria na Fazenda Itajaó, Sul de Minas.</li>
+        <li>Atendimento direto com o produtor.</li>
+      </ul>
+      <p class="support">Dúvida sobre moagem ou preparo? <a href="https://wa.me/5535998087168?text=Olá! Tenho uma dúvida sobre o Café Itajaó" target="_blank" rel="noopener">Fale com a gente no WhatsApp.</a></p>
     </div>
   </section>
 </main>
 
-<footer>© 2026 Itajaó Cafés Especiais · Sul de Minas Gerais · <a href="https://wa.me/5535998087168" target="_blank" rel="noopener">Atendimento pelo WhatsApp</a></footer>
+<footer>
+  <span>© 2026 Itajaó Cafés Especiais LTDA · CNPJ 62.431.181/0001-68</span>
+  <span><a href="https://instagram.com/cafeitajao" target="_blank" rel="noopener">@cafeitajao</a> · <a href="https://wa.me/5535998087168" target="_blank" rel="noopener">WhatsApp</a></span>
+</footer>
 
 <script>
-const products={
-  '500g-graos':{
-    title:'Itajaó Especial 500g em Grãos',short:'500g em Grãos',weight:'500g',type:'Em Grãos',price:'R$ 62,90',old:'',installments:'12x de R$ 6,47',badge:'Em Grãos',image:'500graos.png',fallback:'500g',bg:'linear-gradient(145deg,#1C3A24,#0E1F12)',status:'Disponibilidade confirmada na Nuvemshop',available:true,
-    lead:'Café especial em grãos para quem quer preservar o máximo de aroma e ajustar a moagem para cada método.',
-    buy:'https://cafeitajao.lojavirtualnuvem.com.br/produtos/cafe-especial-84-pontos-sca-500g-graos-torra-media-100-arabica-sul-de-minas-itajao-copia-1jq5d/'
+const PRODUCTS={
+  graos500:{
+    name:'Itajaó Especial 500g em Grãos',weight:'500g',format:'Em Grãos',oldPrice:'R$ 62,90',price:'R$ 56,90',available:true,
+    images:['500graos.png'],
+    url:'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-500g-graos-torra-media-100-arabica-sul-de-minas-itajao/',
+    short:'Café especial em grãos para quem quer moer na hora e aproveitar o máximo de aroma e frescor.',
+    description:'Produzido na Fazenda Itajaó, este lote de 500g em grãos preserva o café inteiro até o momento do preparo e permite ajustar a moagem ao método que você preferir.'
   },
-  '500g-moido':{
-    title:'Itajaó Especial 500g Moído',short:'500g Moído',weight:'500g',type:'Moído',price:'R$ 54,90',old:'R$ 60,90',installments:'12x de R$ 5,65',badge:'10% OFF',image:'500moido.png',fallback:'500g',bg:'linear-gradient(145deg,#3D2010,#1A0D05)',status:'Atenção: última peça indicada na Nuvemshop',available:true,
-    lead:'Café especial já moído, prático para o dia a dia e com o mesmo lote de 84 pontos SCA produzido na Fazenda Itajaó.',
-    buy:'https://cafeitajao.lojavirtualnuvem.com.br/produtos/cafe-especial-84-pontos-sca-500g-moido-torra-media-100-arabica-sul-de-minas-itajao/'
+  moido500:{
+    name:'Itajaó Especial 500g Moído',weight:'500g',format:'Moído',oldPrice:'R$ 60,90',price:'R$ 54,90',available:true,
+    images:['500moido.png'],
+    url:'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-500g-moido-torra-media-100-arabica-sul-de-minas-itajao/',
+    short:'A praticidade do café já moído sem abrir mão do perfil especial do Itajaó.',
+    description:'A versão de 500g moída é pensada para o preparo prático do dia a dia, mantendo o perfil sensorial do lote: chocolate, caramelo e castanha, com doçura alta e corpo cremoso.'
   },
-  '250g-graos':{
-    title:'Itajaó Especial 250g em Grãos',short:'250g em Grãos',weight:'250g',type:'Em Grãos',price:'R$ 31,90',old:'R$ 38,90',installments:'7x de R$ 5,51',badge:'18% OFF',image:'250graos.png',fallback:'250g',bg:'linear-gradient(145deg,#1C3A24,#0E1F12)',status:'Esgotado na Nuvemshop na última consulta',available:false,
-    lead:'Formato de 250g em grãos, ideal para experimentar o lote ou manter café fresco em menores quantidades.',
-    buy:'https://cafeitajao.lojavirtualnuvem.com.br/produtos/cafe-especial-84-pontos-sca-250g-graos-torra-media-100-arabica-sul-de-minas-itajao/'
+  graos250:{
+    name:'Itajaó Especial 250g em Grãos',weight:'250g',format:'Em Grãos',oldPrice:'R$ 38,90',price:'R$ 31,90',available:false,
+    images:['250graos.png'],
+    url:'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-250g-graos-torra-media-100-arabica-sul-de-minas-itajao/',
+    short:'Formato compacto em grãos, ideal para experimentar o lote e moer cada dose na hora.',
+    description:'O pacote de 250g em grãos traz o mesmo lote especial Itajaó em uma quantidade menor, mantendo a flexibilidade de moagem para coados, prensa, espresso e outros métodos.'
   },
-  '250g-moido':{
-    title:'Itajaó Especial 250g Moído',short:'250g Moído',weight:'250g',type:'Moído',price:'R$ 29,90',old:'R$ 36,90',installments:'7x de R$ 5,16',badge:'19% OFF',image:'250moido.png',fallback:'250g',bg:'linear-gradient(145deg,#2A2010,#1A1408)',status:'Disponibilidade confirmada na Nuvemshop',available:true,
-    lead:'Formato compacto e prático, já moído para você preparar um café especial no dia a dia sem precisar de moedor.',
-    buy:'https://cafeitajao.lojavirtualnuvem.com.br/produtos/cafe-especial-84-pontos-sca-250g-moido-torra-media-100-arabica-sul-de-minas-itajao/'
+  moido250:{
+    name:'Itajaó Especial 250g Moído',weight:'250g',format:'Moído',oldPrice:'R$ 36,90',price:'R$ 29,90',available:true,
+    images:['250moido.png'],
+    url:'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-250g-moido-torra-media-100-arabica-sul-de-minas-itajao/',
+    short:'Uma porta de entrada prática para conhecer o Itajaó já moído e pronto para o seu ritual.',
+    description:'O pacote de 250g moído reúne praticidade e o perfil do café especial Itajaó, com notas naturais de chocolate, caramelo e castanha e torra média.'
   },
-  'kit-1kg':{
-    title:'Kit Itajaó Especial 1kg',short:'Kit 1kg',weight:'1kg',type:'Grãos ou Moído',price:'R$ 103,90',old:'R$ 104,90',installments:'12x de R$ 10,69',badge:'Kit 1kg',image:'',fallback:'1kg',bg:'linear-gradient(145deg,#6F4E37,#3D2B1F)',status:'Escolha entre grãos ou moído na Nuvemshop',available:true,
-    lead:'Mais café para a rotina: 1kg de Itajaó Especial com opção em grãos ou moído, mantendo o mesmo perfil de 84 pontos SCA.',
-    buy:'https://cafeitajao.lojavirtualnuvem.com.br/produtos/kit-1kg-cafe-especial-84-pontos-sca-torra-media-100-arabica-sul-de-minas-itajao/'
+  kit1kg:{
+    name:'Kit Itajaó Especial 1kg',weight:'1kg',format:'Kit · 2×500g',oldPrice:'R$ 104,90',price:'R$ 103,90',available:true,
+    images:['500graos.png','500moido.png'],
+    url:'https://cafeitajao.com.br/produtos/kit-1kg-cafe-especial-84-pontos-sca-torra-media-100-arabica-sul-de-minas-itajao/',
+    short:'Kit com 1kg de Café Itajaó em dois pacotes de 500g, com escolha da variedade disponível na loja.',
+    description:'O kit de 1kg reúne dois pacotes de 500g do Café Especial Itajaó. Consulte as opções de grãos e moído disponíveis na Nuvemshop antes de finalizar o pedido.'
   }
 };
-const key=new URLSearchParams(location.search).get('p')||'500g-graos';
-const p=products[key]||products['500g-graos'];
-document.title=p.title+' · Itajaó Cafés Especiais';
-document.getElementById('crumbName').textContent=p.short;
-document.getElementById('productTitle').textContent=p.title;
-document.getElementById('productLead').textContent=p.lead;
+
+const params=new URLSearchParams(location.search);
+const key=PRODUCTS[params.get('id')]?params.get('id'):'graos500';
+const p=PRODUCTS[key];
+document.title=p.name+' | Itajaó Cafés Especiais';
+document.getElementById('crumbName').textContent=p.name;
+document.getElementById('name').textContent=p.name;
+document.getElementById('short').textContent=p.short;
+document.getElementById('oldPrice').textContent=p.oldPrice;
 document.getElementById('price').textContent=p.price;
-document.getElementById('oldPrice').textContent=p.old;
-document.getElementById('installments').textContent=p.installments;
-document.getElementById('badge').textContent=p.badge;
-document.getElementById('status').textContent=p.status;
-document.getElementById('status').classList.toggle('ok',p.available);
-document.getElementById('factWeight').textContent=p.weight;
-document.getElementById('factType').textContent=p.type;
-document.getElementById('buyLink').href=p.buy;
-document.getElementById('imageBox').style.background=p.bg;
-document.getElementById('fallbackText').textContent=p.fallback;
-const img=document.getElementById('productImage');
-const fallback=document.getElementById('imageFallback');
-if(p.image){
-  img.src=p.image;img.alt=p.title;
-  img.onerror=function(){img.style.display='none';fallback.style.display='flex'};
-}else{img.style.display='none';fallback.style.display='flex'}
+document.getElementById('weight').textContent=p.weight;
+document.getElementById('format').textContent=p.format;
+document.getElementById('description').textContent=p.description;
+document.getElementById('buyLink').href=p.url;
+if(!p.available){
+  const pix=document.getElementById('pix');
+  pix.textContent='Produto marcado como esgotado na Nuvemshop';
+  pix.classList.add('sold');
+  document.getElementById('buyLink').textContent='Ver disponibilidade na Nuvemshop →';
+}
+
+const main=document.getElementById('mainImage');
+main.src=p.images[0];main.alt=p.name;
+main.onerror=function(){this.style.display='none'};
+const thumbs=document.getElementById('thumbs');
+if(p.images.length>1){
+  p.images.forEach((src,i)=>{
+    const b=document.createElement('button');b.className='thumb'+(i===0?' active':'');b.type='button';b.setAttribute('aria-label','Ver imagem '+(i+1));
+    const img=document.createElement('img');img.src=src;img.alt='Imagem '+(i+1)+' de '+p.name;b.appendChild(img);
+    b.addEventListener('click',()=>{main.style.display='block';main.src=src;document.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));b.classList.add('active')});
+    thumbs.appendChild(b);
+  });
+}
 </script>
 </body>
 </html>
