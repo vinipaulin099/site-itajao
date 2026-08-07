@@ -13,30 +13,14 @@
   Versão 1.0 — Maio 2024
 =============================================================
 
-  COMO TROCAR AS FOTOS:
-  Procure por src="FOTO_HERO_1.jpg" e substitua pelo
-  caminho da sua imagem. Veja o guia completo abaixo.
+  ORGANIZAÇÃO DAS IMAGENS:
+  • Home e Quem Somos: assets/images/home/
+  • Produtos: assets/images/products/
+  • Logo e identidade: assets/images/brand/
+  • Fotos de depoimentos: assets/images/testimonials/
 
-  ── FOTOS DO CARROSSEL (HERO) ──────────────────────────
-  Procure: src="FOTO_HERO_1.jpg"
-  Troque por: src="fotos/hero-graos.jpg"  (sua foto)
-
-  Procure: src="FOTO_HERO_2.jpg"
-  Troque por: src="fotos/hero-torra.jpg"
-
-  Procure: src="FOTO_HERO_3.jpg"
-  Troque por: src="fotos/hero-saco.jpg"
-
-  ── FOTO DA SEÇÃO QUEM SOMOS ───────────────────────────
-  Procure: src="FOTO_EMBALAGEM_ARTESANAL.jpg"
-  Troque pela foto da sua embalagem artesanal ou fazenda.
-
-  ── DICAS DE IMAGENS ───────────────────────────────────
-  • Tamanho ideal para o carrossel: 1920x1080px (paisagem)
-  • Tamanho ideal para Quem Somos: 800x1000px (retrato)
-  • Formato recomendado: .jpg ou .webp
-  • Coloque suas fotos numa pasta chamada "fotos" no
-    mesmo lugar que este arquivo HTML.
+  Para trocar uma imagem, mantenha o mesmo nome do arquivo
+  ou atualize o caminho no atributo src correspondente.
 
   ── COMO EDITAR TEXTOS ─────────────────────────────────
   Abra este arquivo no Notepad++ ou VS Code.
@@ -420,7 +404,7 @@ body,body *,body *::before,body *::after{
   <div class="nl-modal" role="dialog" aria-modal="true" aria-labelledby="newsletterTitle">
     <button class="nl-close" id="newsletterClose" type="button" aria-label="Fechar cadastro de newsletter">×</button>
     <div class="nl-form-side">
-      <img class="nl-logo" src="teste4.png" alt="Itajaó Cafés Especiais" onerror="this.style.display='none'">
+      <img class="nl-logo" src="assets/images/brand/teste4.png" alt="Itajaó Cafés Especiais" onerror="this.style.display='none'">
       <p class="nl-title" id="newsletterTitle">Vem tomar um café com a gente</p>
       <form class="nl-form" id="newsletterForm">
         <input class="nl-input" id="newsletterName" name="name" type="text" maxlength="120" autocomplete="name" placeholder="Nome completo" aria-label="Nome completo" required>
@@ -432,7 +416,7 @@ body,body *,body *::before,body *::after{
     </div>
     <div class="nl-art" aria-hidden="true">
       <div class="nl-art-copy"><span>Vem tomar</span><strong>um café</strong><span>com a gente</span><small>Inscreva-se e receba nossas promoções em primeira mão.</small></div>
-      <img class="nl-art-product" src="500graos.png" alt="">
+      <img class="nl-art-product" src="assets/images/products/500graos.png" alt="">
     </div>
   </div>
 </div>
@@ -460,7 +444,7 @@ body,body *,body *::before,body *::after{
 ═══════════════════════════════════════ -->
 <nav id="nav">
  <a href="#" class="nav-logo">
-    <img src="teste4.png" alt="Café Itajaó" class="logo-img">
+    <img src="assets/images/brand/teste4.png" alt="Café Itajaó" class="logo-img">
 </a>
   <ul class="nav-links">
     <li><a href="#quem">Origem</a></li>
@@ -476,36 +460,33 @@ body,body *,body *::before,body *::after{
 
 <!-- ═══════════════════════════════════════
      HERO — CARROSSEL
-     COMO TROCAR AS FOTOS:
-     Substitua FOTO_HERO_1.jpg, FOTO_HERO_2.jpg
-     e FOTO_HERO_3.jpg pelo caminho das suas imagens.
-     Exemplo: src="fotos/minha-foto.jpg"
+     As imagens deste carrossel ficam em assets/images/home/.
 ═══════════════════════════════════════ -->
 <section class="hero" id="hero">
   <div class="hero-slides" id="slides">
 
-    <!-- SLIDE 1 — troque FOTO_HERO_1.jpg pela sua foto -->
+    <!-- SLIDE 1 -->
     <div class="slide">
       <img class="slide-img"
-           src="image_inicio.jpg"
+           src="assets/images/home/image_inicio.jpg"
            alt="Grãos, chocolate, caramelo e castanha Itajaó"
            onerror="this.parentElement.style.background='linear-gradient(135deg,#3D2810,#1A0D05)';this.style.display='none'">
       <div class="slide-overlay"></div>
     </div>
 
-    <!-- SLIDE 2 — troque FOTO_HERO_2.jpg pela sua foto -->
+    <!-- SLIDE 2 -->
     <div class="slide">
       <img class="slide-img"
-           src="image_inicio1.jpg"
+           src="assets/images/home/image_inicio1.jpg"
            alt="Processo de torra artesanal Itajaó"
            onerror="this.parentElement.style.background='linear-gradient(135deg,#2C1A08,var(--cafe))';this.style.display='none'">
       <div class="slide-overlay"></div>
     </div>
 
-    <!-- SLIDE 3 — troque FOTO_HERO_3.jpg pela sua foto -->
+    <!-- SLIDE 3 -->
     <div class="slide">
       <img class="slide-img"
-           src="image_inicio2.jpg"
+           src="assets/images/home/image_inicio2.jpg"
            alt="Grãos especiais Itajaó em saco de juta"
            onerror="this.parentElement.style.background='linear-gradient(135deg,#1A1108,var(--cafe))';this.style.display='none'">
       <div class="slide-overlay"></div>
@@ -558,15 +539,12 @@ body,body *,body *::before,body *::after{
 
 <!-- ═══════════════════════════════════════
      QUEM SOMOS
-     COMO TROCAR A FOTO:
-     Substitua FOTO_QUEM_SOMOS.jpg pela sua imagem.
-     Sugestão: foto da embalagem, fazenda ou produto.
+     Imagem: assets/images/home/quem_somos.jpg
 ═══════════════════════════════════════ -->
 <section class="quem" id="quem">
   <div class="quem-frame rv">
     <div class="quem-img-wrap">
-      <!-- Troque FOTO_QUEM_SOMOS.jpg pela sua foto -->
-      <img src="quem_somos.jpg"
+      <img src="assets/images/home/quem_somos.jpg"
            alt="Embalagem artesanal Itajaó Cafés Especiais"
            onerror="this.style.display='none'">
     </div>
@@ -597,10 +575,7 @@ body,body *,body *::before,body *::after{
 
 <!-- ═══════════════════════════════════════
      PRODUTOS
-     COMO TROCAR AS FOTOS DOS PRODUTOS:
-     Substitua FOTO_PRODUTO_1.jpg até FOTO_PRODUTO_4.jpg
-     pelas fotos das suas embalagens.
-     Tamanho ideal: 600x700px (retrato)
+     Imagens: assets/images/products/
 ═══════════════════════════════════════ -->
 <section class="produtos" id="cafes">
   <div class="phdr rv">
@@ -617,7 +592,7 @@ body,body *,body *::before,body *::after{
     <a class="pcard rv d1" aria-label="Ver Café Itajaó 500g em Grãos" href="produto.html?id=graos500">
       <div class="pimg" style="background:linear-gradient(145deg,#1C3A24,#0E1F12)">
         <span class="pbadge">Nova Embalagem</span>
-        <img src="500graos.png"
+        <img src="assets/images/products/500graos.png"
              alt="Itajaó 500g em Grãos"
              onerror="this.style.display='none'">
         <div class="phovercta"><span>Ver produto</span></div>
@@ -642,8 +617,7 @@ body,body *,body *::before,body *::after{
     <a class="pcard rv d2" aria-label="Ver Café Itajaó 500g Moído" href="produto.html?id=moido500">
       <div class="pimg" style="background:linear-gradient(145deg,#3D2010,#1A0D05)">
         <span class="pbadge">Nova Embalagem</span>
-        <!-- Troque FOTO_PRODUTO_2.jpg pela foto real da embalagem -->
-        <img src="500moido.png"
+        <img src="assets/images/products/500moido.png"
              alt="Itajaó 500g Moído"
              onerror="this.style.display='none'">
         <div class="phovercta"><span>Ver produto</span></div>
@@ -668,8 +642,7 @@ body,body *,body *::before,body *::after{
     <a class="pcard rv d3" aria-label="Ver Café Itajaó 250g em Grãos" href="produto.html?id=graos250">
       <div class="pimg" style="background:linear-gradient(145deg,#1C3A24,#0E1F12)">
         <span class="pbadge pbadge-ltd">Lote Limitado</span>
-        <!-- Troque FOTO_PRODUTO_3.jpg pela foto real da embalagem -->
-        <img src="250graos.png"
+        <img src="assets/images/products/250graos.png"
              alt="Itajaó 250g em Grãos"
              onerror="this.style.display='none'">
         <div class="phovercta"><span>Ver produto</span></div>
@@ -693,8 +666,7 @@ body,body *,body *::before,body *::after{
     <!-- PRODUTO 4: 250g Moído (embalagem artesanal branca) -->
     <a class="pcard rv d4" aria-label="Ver Café Itajaó 250g Moído" href="produto.html?id=moido250">
       <div class="pimg" style="background:linear-gradient(145deg,#2A2010,#1A1408)">
-        <!-- Troque FOTO_PRODUTO_4.jpg pela foto real da embalagem -->
-        <img src="250moido.png"
+        <img src="assets/images/products/250moido.png"
              alt="Itajaó 250g Moído embalagem artesanal"
              onerror="this.style.display='none'">
         <div class="phovercta"><span>Ver produto</span></div>
@@ -719,8 +691,8 @@ body,body *,body *::before,body *::after{
     <a class="pcard rv d4" aria-label="Ver Kit Itajaó 1kg" href="produto.html?id=kit1kg">
       <div class="pimg pimg-kit" style="background:linear-gradient(145deg,#4A321F,#21150C)">
         <span class="pbadge">Kit 1kg</span>
-        <img src="500graos.png" alt="Pacote Itajaó 500g" onerror="this.style.display='none'">
-        <img src="500moido.png" alt="Pacote Itajaó 500g" onerror="this.style.display='none'">
+        <img src="assets/images/products/500graos.png" alt="Pacote Itajaó 500g" onerror="this.style.display='none'">
+        <img src="assets/images/products/500moido.png" alt="Pacote Itajaó 500g" onerror="this.style.display='none'">
         <div class="phovercta"><span>Ver produto</span></div>
       </div>
       <div class="pinfo">
@@ -852,7 +824,7 @@ body,body *,body *::before,body *::after{
   <div class="dgrid">
     <div class="dcard rv d1">
       <div class="dperson">
-        <img class="dphoto" src="depoimento1.jpg" alt="Foto de Ana Carolina" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img class="dphoto" src="assets/images/testimonials/depoimento1.jpg" alt="Foto de Ana Carolina" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <span class="dphoto-placeholder">AC</span>
       </div>
       <div class="ddots"><span></span><span></span><span></span><span></span><span></span></div>
@@ -861,7 +833,7 @@ body,body *,body *::before,body *::after{
     </div>
     <div class="dcard rv d2">
       <div class="dperson">
-        <img class="dphoto" src="depoimento2.jpg" alt="Foto de Marcos" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img class="dphoto" src="assets/images/testimonials/depoimento2.jpg" alt="Foto de Marcos" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <span class="dphoto-placeholder">MR</span>
       </div>
       <div class="ddots"><span></span><span></span><span></span><span></span><span></span></div>
@@ -870,7 +842,7 @@ body,body *,body *::before,body *::after{
     </div>
     <div class="dcard rv d3">
       <div class="dperson">
-        <img class="dphoto" src="depoimento3.jpg" alt="Foto de Juliana" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <img class="dphoto" src="assets/images/testimonials/depoimento3.jpg" alt="Foto de Juliana" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <span class="dphoto-placeholder">JF</span>
       </div>
       <div class="ddots"><span></span><span></span><span></span><span></span><span></span></div>
