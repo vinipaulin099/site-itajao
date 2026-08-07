@@ -10,7 +10,7 @@
 <!--
 =============================================================
   ITAJAÓ CAFÉS ESPECIAIS — SITE OFICIAL
-  Versão 1.0 — Maio 2024
+  Versão 1.1 — Agosto 2026
 =============================================================
 
   COMO TROCAR AS FOTOS:
@@ -155,7 +155,7 @@ section{padding:7.5rem 3.5rem}
 .produtos{background:var(--bege)}
 .phdr{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3.5rem;flex-wrap:wrap;gap:1.5rem}
 .phdr p{font-size:.87rem;line-height:1.85;color:var(--muted);max-width:360px;font-weight:300}
-.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
 .pcard{background:white;cursor:pointer;transition:all .45s cubic-bezier(.23,1,.32,1);position:relative;overflow:hidden;border:1px solid rgba(111,78,55,.06);border-radius:var(--r)}
 .pcard:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(111,78,55,.13),0 4px 14px rgba(111,78,55,.07);border-color:rgba(166,123,91,.22)}
 .pimg{height:300px;position:relative;overflow:hidden;border-radius:var(--r) var(--r) 0 0;display:flex;align-items:center;justify-content:center}
@@ -268,12 +268,8 @@ section{padding:7.5rem 3.5rem}
 .ctitle{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:800;color:var(--marrom);margin-bottom:.5rem;position:relative;z-index:2}
 .csub{font-size:.84rem;color:rgba(111,78,55,.6);margin-bottom:2rem;font-weight:300;position:relative;z-index:2}
 .ccode{display:inline-block;padding:.95rem 2.8rem;background:var(--marrom);color:var(--dourado-c);font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;letter-spacing:.3em;margin-bottom:2.3rem;border-radius:var(--rb);position:relative;z-index:2;box-shadow:0 8px 26px rgba(111,78,55,.25)}
-.erow{display:flex;max-width:420px;margin:0 auto;background:rgba(111,78,55,.1);border-radius:var(--rb);overflow:hidden;position:relative;z-index:2}
-.erow input{flex:1;padding:.85rem 1.3rem;border:none;background:transparent;color:var(--marrom);font-family:'Manrope',sans-serif;font-size:.82rem;outline:none;font-weight:400}
-.erow input::placeholder{color:rgba(111,78,55,.42)}
-.erow button{padding:.85rem 1.5rem;background:var(--marrom);color:var(--dourado-c);border:none;font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;font-family:'Manrope',sans-serif;cursor:pointer;font-weight:700;border-radius:var(--rb);transition:.3s}
-.erow button:hover{background:var(--cafe)}
-#eok{display:none;font-size:.8rem;color:rgba(111,78,55,.7);margin-top:.8rem;position:relative;z-index:2;font-weight:500}
+.newsletter-cta{display:inline-flex;align-items:center;justify-content:center;padding:.88rem 1.65rem;background:var(--marrom);color:var(--dourado-c);text-decoration:none;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;font-weight:700;border-radius:var(--rb);position:relative;z-index:2;transition:.3s;box-shadow:0 6px 18px rgba(111,78,55,.18)}
+.newsletter-cta:hover{background:var(--cafe);transform:translateY(-2px)}
 
 /* ── CONTATO ── */
 .contato{background:var(--marrom);padding:6rem 3.5rem;position:relative;overflow:hidden}
@@ -340,8 +336,7 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   .pgrid{grid-template-columns:1fr}.ntrio{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr;gap:2rem}.ftop{grid-template-columns:1fr;gap:1.8rem}
   .stats-bar{grid-template-columns:1fr 1fr}.hero h1{font-size:2.6rem}
-  .erow{flex-direction:column;border-radius:12px;overflow:visible;background:transparent;gap:.7rem}
-  .erow input,.erow button{border-radius:var(--rb);background:rgba(111,78,55,.12);width:100%}
+  .newsletter-cta{width:100%;max-width:360px}
 }
 
 /* TARJA SUPERIOR */
@@ -359,13 +354,13 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   <div class="top-bar-track">
     <span>
 🎁 <strong>BEMVINDO10</strong> • 10% OFF NA PRIMEIRA COMPRA •
-🚚 FRETE GRÁTIS ACIMA DE R$249,90 •
-☕ TORRA FRESCA SOB DEMANDA •
+🚚 FRETE GRÁTIS: SUDESTE A PARTIR DE R$249,90 • DEMAIS REGIÕES A PARTIR DE R$399,90 •
+☕ TORRA FRESCA •
 🌱 DIRETO DA FAZENDA ITAJAÓ •
 ⭐ CAFÉ ESPECIAL PENEIRA 16+ •
 🎁 <strong>BEMVINDO10</strong> • 10% OFF NA PRIMEIRA COMPRA •
-🚚 FRETE GRÁTIS ACIMA DE R$249,90 •
-☕ TORRA FRESCA SOB DEMANDA •
+🚚 FRETE GRÁTIS: SUDESTE A PARTIR DE R$249,90 • DEMAIS REGIÕES A PARTIR DE R$399,90 •
+☕ TORRA FRESCA •
 🌱 DIRETO DA FAZENDA ITAJAÓ •
 ⭐ CAFÉ ESPECIAL PENEIRA 16+ •
     </span>
@@ -377,18 +372,16 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
      NAV
 ═══════════════════════════════════════ -->
 <nav id="nav">
- <a href="#" class="nav-logo">
+ <a href="#hero" class="nav-logo">
     <img src="teste4.png" alt="Café Itajaó" class="logo-img">
 </a>
   <ul class="nav-links">
     <li><a href="#quem">Origem</a></li>
     <li><a href="#cafes">Cafés</a></li> 
 
-    <li><a href="#clube">Assinatura</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
-  <!-- EDITE O LINK DO BOTÃO COMPRAR -->
-  <a href="https://cafeitajao.lojavirtualnuvem.com.br/produtos/cafe-especial-84-pontos-sca-250g-graos-torra-media-100-arabica-sul-de-minas-itajao/" target="_blank"><button class="nav-cta">Comprar agora</button></a>
+  <a href="https://cafeitajao.lojavirtualnuvem.com.br/produtos/" target="_blank" rel="noopener"><button class="nav-cta">Comprar agora</button></a>
 </nav>
 
 
@@ -456,7 +449,7 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
     <h1>O sabor que<br><em>abraça</em><br>sua manhã.</h1>
     <p class="hero-sub">Café especial de altitude, produzido pela nossa família no sul de Minas Gerais. Da roça à sua xícara, com amor e tradição de gerações.</p>
     <div class="hero-btns">
-      <a href="#cafes" class="btn-p">Conheça nossos cafés <svg viewBox="0 0 20 20" stroke-width="2" stroke-linecap="round"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a>
+      <a href="#cafes" class="btn-p">Comprar meu Itajaó <svg viewBox="0 0 20 20" stroke-width="2" stroke-linecap="round"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a>
       <a href="#quem" class="btn-o">Nossa história</a>
     </div>
   </div>
@@ -552,9 +545,9 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
         <p class="pmet">Todos os métodos · Acidez Cítrica · Corpo Cremoso</p>
         <div class="pfooter">
           <!-- EDITE O PREÇO AQUI -->
-          <span class="ppreco">R$&nbsp;62.90</span>
+          <span class="ppreco">R$&nbsp;75</span>
           <!-- EDITE O LINK DO BOTÃO COMPRAR -->
-<button class="btn-buy" onclick="window.location.href='https://cafeitajao.lojavirtualnuvem.com.br/produtos/cafe-especial-84-pontos-sca-500g-graos-torra-media-100-arabica-sul-de-minas-itajao/'">
+<button class="btn-buy" onclick="window.open('https://cafeitajao.lojavirtualnuvem.com.br/produtos/','_blank')">
   Comprar
 </button>        </div>
       </div>
@@ -580,8 +573,8 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
         </div>
         <p class="pmet">V60 · Coado · Prensa Francesa</p>
         <div class="pfooter">
-          <span class="ppreco">R$&nbsp;60.90</span>
-          <button class="btn-buy" onclick="window.open('https://cafeitajao.lojavirtualnuvem.com.br/produtos/cafe-especial-84-pontos-sca-500g-moido-torra-media-100-arabica-sul-de-minas-itajao/')">Comprar</button>
+          <span class="ppreco">R$&nbsp;68</span>
+          <button class="btn-buy" onclick="window.open('https://cafeitajao.lojavirtualnuvem.com.br/produtos/','_blank')">Comprar</button>
         </div>
       </div>
     </div>
@@ -606,8 +599,8 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
         </div>
         <p class="pmet">Moagem ajustável · Todos os métodos</p>
         <div class="pfooter">
-          <span class="ppreco">R$&nbsp;38.90</span>
-          <button class="btn-buy" onclick="window.open('https://cafeitajao.lojavirtualnuvem.com.br/produtos/cafe-especial-84-pontos-sca-250g-graos-torra-media-100-arabica-sul-de-minas-itajao/">Comprar</button>
+          <span class="ppreco">R$&nbsp;42</span>
+          <button class="btn-buy" onclick="window.open('https://cafeitajao.lojavirtualnuvem.com.br/produtos/cafe-especial-84-pontos-sca-250g-graos-torra-media-100-arabica-sul-de-minas-itajao/','_blank')">Comprar</button>
         </div>
       </div>
     </div>
@@ -631,8 +624,46 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
         </div>
         <p class="pmet">V60 · Coado · Aeropress</p>
         <div class="pfooter">
-          <span class="ppreco">R$&nbsp;36.90</span>
-          <button class="btn-buy" onclick="window.open('https://cafeitajao.lojavirtualnuvem.com.br/produtos/cafe-especial-84-pontos-sca-250g-moido-torra-media-100-arabica-sul-de-minas-itajao/')">Comprar</button>
+          <span class="ppreco">R$&nbsp;38</span>
+          <button class="btn-buy" onclick="window.open('https://cafeitajao.lojavirtualnuvem.com.br/produtos/','_blank')">Comprar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pcard rv d1">
+      <div class="pimg" style="background:linear-gradient(145deg,#6F4E37,#3D2B1F)">
+        <div class="pimg-placeholder">
+          <span style="font-family:'Playfair Display',serif;font-size:4.6rem;color:var(--dourado-c);font-weight:800">1kg</span>
+          <span class="pimg-dica">Mais café para o seu dia a dia</span>
+        </div>
+      </div>
+      <div class="pinfo">
+        <span class="ptipo">Em grãos ou moído</span>
+        <div class="pnome">Itajaó Especial<br>1kg</div>
+        <div class="pills"><span class="pill">Chocolate</span><span class="pill">Caramelo</span><span class="pill">Castanha</span></div>
+        <p class="pmet">Consulte formatos e disponibilidade na loja</p>
+        <div class="pfooter">
+          <span class="ppreco" style="font-size:1.05rem">Ver opções</span>
+          <button class="btn-buy" onclick="window.open('https://cafeitajao.lojavirtualnuvem.com.br/produtos/','_blank')">Comprar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pcard rv d2">
+      <div class="pimg" style="background:linear-gradient(145deg,#A67B5B,#6F4E37)">
+        <div class="pimg-placeholder">
+          <span style="font-family:'Playfair Display',serif;font-size:3.6rem;color:var(--creme);font-weight:800">KITS</span>
+          <span class="pimg-dica" style="color:rgba(254,236,216,.65)">Para presentear ou abastecer a despensa</span>
+        </div>
+      </div>
+      <div class="pinfo">
+        <span class="ptipo">Combinações Itajaó</span>
+        <div class="pnome">Kits de<br>Cafés Especiais</div>
+        <div class="pills"><span class="pill">250g</span><span class="pill">500g</span><span class="pill">1kg</span></div>
+        <p class="pmet">Confira as combinações disponíveis na loja</p>
+        <div class="pfooter">
+          <span class="ppreco" style="font-size:1.05rem">Ver kits</span>
+          <button class="btn-buy" onclick="window.open('https://cafeitajao.lojavirtualnuvem.com.br/produtos/','_blank')">Comprar</button>
         </div>
       </div>
     </div>
@@ -644,7 +675,7 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
 <!-- ═══════════════════════════════════════
      EXPERIÊNCIA SENSORIAL
 ═══════════════════════════════════════ -->
-<section class="sensorial">
+<section class="sensorial" id="sensorial">
   <div class="slayout">
     <div class="sbody rv">
       <div class="stag" style="color:var(--dourado-c)">Experiência Sensorial</div>
@@ -670,14 +701,14 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
 <!-- ═══════════════════════════════════════
      RITUAL
 ═══════════════════════════════════════ -->
-<section class="ritual">
+<section class="ritual" id="preparo">
   <div class="rlead rv">
     <div class="stag" style="justify-content:center">O Ritual</div>
     <h2 class="stitle">Cada manhã<br>merece ser <em>especial</em></h2>
     <p>O Itajaó não é só um café. É o início do seu dia, feito com intenção e cuidado. Descubra como preparar sua xícara perfeita.</p>
   </div>
   <div class="steps rv d1">
-    <div class="step"><span class="stepn">01</span><div class="steptit">Pese o café</div><p>15g para 250ml de água. A proporção certa revela as notas mais sutis.</p></div>
+    <div class="step"><span class="stepn">01</span><div class="steptit">Pese o café</div><p>15g para 225ml de água. A proporção certa revela as notas mais sutis.</p></div>
     <div class="step"><span class="stepn">02</span><div class="steptit">Água a 93°C</div><p>Não em ebulição. A temperatura ideal extrai o melhor sem amargar.</p></div>
     <div class="step"><span class="stepn">03</span><div class="steptit">Bloom</div><p>Molhe os grãos por 30 segundos. Deixe o CO₂ revelar o frescor.</p></div>
     <div class="step"><span class="stepn">04</span><div class="steptit">Saboreie</div><p>O Itajaó revela seu caráter em temperatura. Espere. Então aproveite.</p></div>
@@ -696,81 +727,9 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
 
 
 <!-- ═══════════════════════════════════════
-     CLUBE DE ASSINATURA
-═══════════════════════════════════════ -->
-<section class="clube" id="clube">
-  <div class="clayout">
-    <div class="rv">
-      <div class="stag">Clube de Assinatura</div>
-      <h2 class="stitle">Café fresco,<br><em>todo mês</em></h2>
-      <div class="cbody"><p>No Clube Itajaó, você recebe grãos torrados há menos de 72 horas diretamente na sua porta, todo mês, com entrega pelo correio para todo o Brasil.</p></div>
-      <ul class="blist">
-        <li>Café torrado fresquíssimo (menos de 72h)</li>
-        <li>Acesso antecipado a lotes especiais</li>
-        <li>15% de desconto em todos os pedidos</li>
-        <li>Frete grátis em toda assinatura</li>
-        <li>Atendimento direto via WhatsApp</li>
-        <li>Cancele quando quiser, sem burocracia</li>
-      </ul>
-      <!-- EDITE O LINK DO BOTÃO ABAIXO -->
-      <button class="btn-d" onclick="window.open('https://wa.me/5535998087168?text=Olá! Quero assinar o Clube Itajaó','_blank')">
-        Quero assinar agora
-        <svg viewBox="0 0 20 20" stroke-width="2" stroke-linecap="round"><path d="M4 10h12M11 5l5 5-5 5"/></svg>
-      </button>
-    </div>
-    <div class="ccard rv d2">
-      <span class="cbadge">Plano mensal · Mais popular</span>
-      <!-- EDITE O PREÇO DA ASSINATURA -->
-      <div class="cpreco">R$&nbsp;139,90</div>
-      <span class="cpnote">/mês · entrega mensal</span>
-      <div class="crows">
-        <div class="crow"><span>Frequência</span><strong>Mensal</strong></div>
-        <div class="crow"><span>Formato</span><strong>Moído ou grãos</strong></div>
-        <div class="crow"><span>Torra</span><strong>Sob demanda</strong></div>
-        <div class="crow"><span>Frete</span><strong>Grátis</strong></div>
-        <div class="crow"><span>Atendimento</span><strong>WhatsApp direto</strong></div>
-      </div>
-      <button class="btn-d" style="width:100%;justify-content:center" onclick="window.open('https://wa.me/5535998087168?text=Olá! Quero assinar o Clube Itajaó','_blank')">
-        Começar agora
-        <svg viewBox="0 0 20 20" stroke-width="2" stroke-linecap="round" width="15" height="15"><path d="M4 10h12M11 5l5 5-5 5"/></svg>
-      </button>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════
-     DEPOIMENTOS — EDITE OS TEXTOS ABAIXO
-═══════════════════════════════════════ -->
-<section class="dep">
-  <div class="dhead rv">
-    <div class="stag" style="justify-content:center">Depoimentos</div>
-    <h2 class="stitle">O que dizem<br>quem já <em>descobriu</em></h2>
-  </div>
-  <div class="dgrid">
-    <div class="dcard rv d1">
-      <div class="ddots"><span></span><span></span><span></span><span></span><span></span></div>
-      <p class="dtxt">"Nunca achei que café pudesse ter tanto sabor. O aroma já me conquistou antes do primeiro gole. É completamente diferente de tudo que já tomei."</p>
-      <div class="dname">Ana Carolina — Campinas, SP</div>
-    </div>
-    <div class="dcard rv d2">
-      <div class="ddots"><span></span><span></span><span></span><span></span><span></span></div>
-      <p class="dtxt">"Faz dois meses que assino o clube e minha rotina mudou completamente. O atendimento via WhatsApp é super próximo. Recomendo demais!"</p>
-      <div class="dname">Marcos R. — Pouso Alegre, MG</div>
-    </div>
-    <div class="dcard rv d3">
-      <div class="ddots"><span></span><span></span><span></span><span></span><span></span></div>
-      <p class="dtxt">"As notas de chocolate e caramelo são reais, não é marketing. Cada xícara no V60 é uma experiência. Meus amigos já pedem para levar quando me visitam."</p>
-      <div class="dname">Juliana F. — Porto Alegre, RS</div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════
      FAQ
 ═══════════════════════════════════════ -->
-<section class="faq">
+<section class="faq" id="faq">
   <div class="fcenter rv">
     <div class="stag" style="justify-content:center">Perguntas</div>
     <h2 class="stitle">Respondemos<br>com <em>prazer</em></h2>
@@ -778,10 +737,9 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   <div class="fwrap">
     <div class="fitem rv"><button class="fbtn" onclick="faq(this)">O que é um café especial?<div class="ftog"></div></button><div class="fbody"><p>Cafés especiais são grãos que pontuam acima de 80 pontos na escala da SCA. O Itajaó pontua 84 pontos — resultado direto das condições únicas de altitude, clima e cuidado artesanal do sul de Minas Gerais.</p></div></div>
     <div class="fitem rv"><button class="fbtn" onclick="faq(this)">Qual a diferença entre moído e grãos?<div class="ftog"></div></button><div class="fbody"><p>Os grãos preservam o frescor por mais tempo e permitem ajustar a moagem para cada método. O moído é conveniente e pronto para usar. Recomendamos os grãos para quem tem moedor e quer extrair o máximo de sabor.</p></div></div>
-    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">Como armazenar corretamente?<div class="ftog"></div></button><div class="fbody"><p>Pote hermético, local seco, fresco e longe de luz direta. Evite a geladeira. O melhor sabor está nos primeiros 21 dias após a torra — por isso enviamos sempre fresquíssimo, sob pedido.</p></div></div>
-    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">Como funciona o Clube de Assinatura?<div class="ftog"></div></button><div class="fbody"><p>Você escolhe frequência e formato, e recebe todo mês com frete grátis. Pode pausar, alterar ou cancelar quando quiser. Assinantes têm 15% de desconto e atendimento prioritário via WhatsApp.</p></div></div>
-    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">Vocês entregam para todo o Brasil?<div class="ftog"></div></button><div class="fbody"><p>Sim! Entregamos via correios para todo o Brasil. O prazo varia de 2 a 7 dias úteis. Torramos sob pedido para garantir o máximo de frescor na entrega.</p></div></div>
-    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">O café é torrado na hora?<div class="ftog"></div></button><div class="fbody"><p>Sim. Trabalhamos com torra fresca sob demanda, para que o café chegue com mais aroma, sabor e qualidade na sua casa.</p></div></div>
+    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">Como armazenar corretamente?<div class="ftog"></div></button><div class="fbody"><p>Mantenha a embalagem bem fechada, em local seco, fresco e longe de luz direta. Evite a geladeira e consuma preferencialmente em até 30 dias depois de aberto.</p></div></div>
+    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">Vocês entregam para todo o Brasil?<div class="ftog"></div></button><div class="fbody"><p>Sim. Entregamos para todo o Brasil. Prazo e frete são calculados no checkout de acordo com o CEP e as opções disponíveis para o pedido.</p></div></div>
+    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">O café tem torra fresca?<div class="ftog"></div></button><div class="fbody"><p>Sim. Trabalhamos com torra fresca e controle de lote para preservar aroma, sabor e qualidade até a sua xícara.</p></div></div>
     <div class="fitem rv"><button class="fbtn" onclick="faq(this)">O que significa peneira 16+?<div class="ftog"></div></button><div class="fbody"><p>Significa que os grãos passam por uma seleção de tamanho. Na peneira 16+, ficam os grãos maiores e mais uniformes, enquanto grãos menores e quebrados são separados.</p></div></div>
     <div class="fitem rv"><button class="fbtn" onclick="faq(this)">O café é 100% arábica?<div class="ftog"></div></button><div class="fbody"><p>Sim. O Itajaó é produzido com café 100% arábica, da variedade Catuaí Amarelo, cultivado no Sul de Minas Gerais.</p></div></div>
     <div class="fitem rv"><button class="fbtn" onclick="faq(this)">Qual é a torra do Café Itajaó?<div class="ftog"></div></button><div class="fbody"><p>Trabalhamos com torra média, pensada para preservar a doçura natural do grão e realçar notas como chocolate, caramelo e castanha.</p></div></div>
@@ -804,12 +762,8 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   <p class="csub">Use o cupom abaixo na sua primeira compra.</p>
   <!-- EDITE O CUPOM AQUI -->
   <div class="ccode">BEMVINDO10</div><br>
-  <p style="font-size:.82rem;color:rgba(111,78,55,.6);margin-bottom:1.3rem;font-weight:400;position:relative;z-index:2">Cadastre seu e-mail e receba novidades:</p>
-  <div class="erow">
-    <input type="email" placeholder="Seu melhor e-mail" id="ein"/>
-    <button onclick="doEmail()">Cadastrar</button>
-  </div>
-  <p id="eok">Perfeito! Você está na lista. ☕</p>
+  <p style="font-size:.82rem;color:rgba(111,78,55,.6);margin-bottom:1.3rem;font-weight:400;position:relative;z-index:2">Quer receber novidades, lançamentos e avisos de torra?</p>
+  <a class="newsletter-cta" href="https://wa.me/5535998087168?text=Olá!%20Quero%20receber%20as%20novidades%20do%20Itajaó." target="_blank" rel="noopener">Receber novidades pelo WhatsApp</a>
 </div>
 
 
@@ -858,6 +812,14 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
     </div>
 
     <div class="cmap-area rv d2">
+      <svg viewBox="0 0 80 80" width="55" height="55" xmlns="http://www.w3.org/2000/svg" style="opacity:.5">
+        <circle cx="40" cy="40" r="37" fill="none" stroke="var(--dourado)" stroke-width="3.5"/>
+        <ellipse cx="40" cy="30" rx="16" ry="26" fill="none" stroke="var(--dourado)" stroke-width="3"/>
+        <line x1="40" y1="4" x2="40" y2="56" stroke="var(--dourado)" stroke-width="2.5"/>
+        <line x1="3" y1="40" x2="77" y2="40" stroke="var(--dourado)" stroke-width="2.5"/>
+        <path d="M24 56 Q32 48 40 56 Q48 48 56 56" fill="none" stroke="var(--dourado)" stroke-width="2.8" stroke-linecap="round"/>
+        <path d="M28 56 Q28 68 40 72 Q52 68 52 56" fill="none" stroke="var(--dourado)" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
       <div style="text-align:center">
         <strong style="color:rgba(254,216,177,.6);font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;display:block">ITAJAÓ</strong>
         <p style="color:rgba(254,216,177,.35);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.2rem">Cafés Especiais</p>
@@ -875,8 +837,16 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
 <footer>
   <div class="ftop">
     <div>
-      <a href="#" style="display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;margin-bottom:1rem">
-        <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;color:var(--bege)">ITAJAÓ <span style="color:var(--dourado)">Cafés Especiais</span></span>
+      <a href="#hero" style="display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;margin-bottom:1rem">
+        <svg width="30" height="30" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="40" cy="40" r="37" fill="none" stroke="var(--dourado)" stroke-width="3.5"/>
+          <ellipse cx="40" cy="30" rx="16" ry="26" fill="none" stroke="var(--dourado)" stroke-width="3"/>
+          <line x1="40" y1="4" x2="40" y2="56" stroke="var(--dourado)" stroke-width="2.5"/>
+          <line x1="3" y1="40" x2="77" y2="40" stroke="var(--dourado)" stroke-width="2.5"/>
+          <path d="M24 56 Q32 48 40 56 Q48 48 56 56" fill="none" stroke="var(--dourado)" stroke-width="2.8" stroke-linecap="round"/>
+          <path d="M28 56 Q28 68 40 72 Q52 68 52 56" fill="none" stroke="var(--dourado)" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;color:var(--bege)">ITAJAÓ <span style="color:var(--dourado)">Cafés</span></span>
       </a>
       <p class="ftag-txt">Da roça à sua xícara.<br>Com tempo, cuidado<br>e origem.</p>
       <div class="fcontacts">
@@ -891,26 +861,26 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
       <ul class="flinks">
         <li><a href="#quem">Quem somos</a></li>
         <li><a href="#cafes">Nossos cafés</a></li>
-        <li><a href="#clube">Clube de assinatura</a></li>
+        <li><a href="#faq">Perguntas frequentes</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
     </div>
     <div>
       <span class="fct">Informações</span>
       <ul class="flinks">
-        <li><a href="#">Política de privacidade</a></li>
-        <li><a href="#">Trocas e devoluções</a></li>
-        <li><a href="#">Rastreie seu pedido</a></li>
-        <li><a href="#">FAQ</a></li>
+        <li><a href="https://cafeitajao.lojavirtualnuvem.com.br/produtos/" target="_blank" rel="noopener">Comprar online</a></li>
+        <li><a href="https://wa.me/5535998087168" target="_blank" rel="noopener">Atendimento no WhatsApp</a></li>
+        <li><a href="https://instagram.com/cafeitajao" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#faq">FAQ</a></li>
       </ul>
     </div>
     <div>
       <span class="fct">Sobre o Café</span>
       <ul class="flinks">
-        <li><a href="#">O que é café especial</a></li>
-        <li><a href="#">Métodos de preparo</a></li>
-        <li><a href="#">Como armazenar</a></li>
-        <li><a href="#">Nossa pontuação SCA</a></li>
+        <li><a href="#sensorial">Notas sensoriais</a></li>
+        <li><a href="#preparo">Método de preparo</a></li>
+        <li><a href="#faq">Como armazenar</a></li>
+        <li><a href="#quem">Origem e pontuação SCA</a></li>
       </ul>
       <div style="margin-top:1.5rem;font-size:.68rem;color:rgba(254,216,177,.2);line-height:1.65">
         Alpinópolis – MG<br>Sul de Minas · 1.200m
@@ -919,7 +889,7 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   </div>
   <div class="fbot">
     <!-- EDITE O CNPJ SE NECESSÁRIO -->
-    <span>© 2024 Itajaó Cafés Especiais LTDA — CNPJ 29.309.289/0001-80</span>
+    <span>© 2026 Itajaó Cafés Especiais LTDA — CNPJ 29.309.289/0001-80</span>
     <span class="flove">Feito com amor no Sul de Minas ☕</span>
   </div>
 </footer>
@@ -951,15 +921,6 @@ function faq(b){
   var i=b.parentElement, o=i.classList.contains('open');
   document.querySelectorAll('.fitem.open').forEach(function(x){x.classList.remove('open')});
   if(!o)i.classList.add('open');
-}
-
-// ── EMAIL ──
-function doEmail(){
-  var v=document.getElementById('ein').value;
-  if(v&&v.indexOf('@')>-1){
-    document.getElementById('eok').style.display='block';
-    document.getElementById('ein').value='';
-  }
 }
 
 // ── SCROLL REVEAL ──
