@@ -14,12 +14,30 @@ export type ShippingQuote = {
   raw: any;
 };
 
-export async function fetchShippingQuotes(postalCode: string, items: CartItem[]) {
+export type ShippingPackageOverride = {
+  width: number;
+  height: number;
+  length: number;
+  weight: number;
+};
+
+export async function fetchShippingQuotes(postalCode: string, items: CartItem[], packageOverride?: ShippingPackageOverride) {
   const token = await providerToken('melhorenvio');
+  const products = packageOverride
+    ? [{
+        id: 'ITAJAO-SHIPPING-TEST',
+        width: packageOverride.width,
+        height: packageOverride.height,
+        length: packageOverride.length,
+        weight: packageOverride.weight,
+        insurance_value: cartSubtotal(items),
+        quantity: 1,
+      }]
+    : melhorEnvioProducts(items);
   const body = {
     from: { postal_code: env('SHIP_FROM_POSTAL_CODE').replace(/\D/g, '') },
     to: { postal_code: postalCode },
-    products: melhorEnvioProducts(items),
+    products,
     options: { receipt: false, own_hand: false },
   };
   const response = await fetch(`${melhorEnvioBaseUrl()}/api/v2/me/shipment/calculate`, {
@@ -74,4 +92,3 @@ export function publicShippingQuote(quote: ShippingQuote) {
     freeShipping: quote.freeShipping,
   };
 }
-
