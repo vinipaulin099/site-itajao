@@ -33,24 +33,19 @@ Deno.serve(async (req) => {
 
     const subtotal = cartSubtotal(items);
     const shippingAmount = roundMoney(shipping.price);
-    const total = roundMoney(subtotal + shippingAmount);
-    const publicToken = crypto.randomUUID();
     const order = await insertOrder({
-      public_token: publicToken,
-      status: 'awaiting_payment',
       customer,
-      delivery_address: address,
+      address,
       items: orderItemsSnapshot(items),
       subtotal,
-      shipping_amount: shippingAmount,
-      shipping_cost: shipping.cost,
-      total,
-      shipping_service_id: shipping.id,
-      shipping_service_name: shipping.name,
-      shipping_carrier: shipping.company,
-      shipping_quote: shipping.raw,
+      shippingAmount,
+      shippingCost: shipping.cost,
+      shippingServiceId: shipping.id,
+      shippingServiceName: shipping.name,
+      shippingCarrier: shipping.company,
+      shippingQuote: shipping.raw,
     });
-    if (!order?.id) throw new PublicError('Não foi possível criar o pedido.', 500);
+    if (!order?.id || !order?.public_token) throw new PublicError('Não foi possível criar o pedido.', 500);
     orderId = order.id;
 
     const siteUrl = env('SITE_URL');
@@ -77,9 +72,9 @@ Deno.serve(async (req) => {
       external_reference: order.id,
       notification_url: notificationUrl,
       back_urls: {
-        success: returnUrl(siteUrl, order.id, publicToken, 'success'),
-        pending: returnUrl(siteUrl, order.id, publicToken, 'pending'),
-        failure: returnUrl(siteUrl, order.id, publicToken, 'failure'),
+        success: returnUrl(siteUrl, order.id, order.public_token, 'success'),
+        pending: returnUrl(siteUrl, order.id, order.public_token, 'pending'),
+        failure: returnUrl(siteUrl, order.id, order.public_token, 'failure'),
       },
       auto_return: 'approved',
     };
@@ -92,7 +87,7 @@ Deno.serve(async (req) => {
     const preference = await mpResponse.json().catch(() => ({}));
     if (!mpResponse.ok || !preference?.id) {
       console.error('Mercado Pago preference error', mpResponse.status, preference);
-      await updateOrder(order.id, { status: 'checkout_error', integration_error: `Mercado Pago ${mpResponse.status}: ${String(preference?.message || 'erro ao criar preferência').slice(0, 600)}` });
+      await updateOrder(order.id, { checkout_status: 'checkout_error', integration_error: `Mercado Pago ${mpResponse.status}: ${String(preference?.message || 'erro ao criar preferência').slice(0, 600)}` });
       await logIntegration(order.id, 'mercadopago', 'preference_create', false, String(preference?.message || 'Falha ao criar preferência'));
       throw new PublicError('Não foi possível abrir o pagamento agora. Tente novamente em instantes.', 502);
     }
