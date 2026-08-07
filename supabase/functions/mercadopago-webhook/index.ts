@@ -1,5 +1,5 @@
 import { env, hmacHex, json, PublicError, publicErrorResponse, safeEqual } from '../_shared/core.ts';
-import { getOrder, logIntegration, updateOrder } from '../_shared/db.ts';
+import { getOrder, logIntegration, recordPayment, updateOrder } from '../_shared/db.ts';
 import { syncOrderToBling } from '../_shared/bling.ts';
 
 async function verifySignature(req: Request, url: URL) {
@@ -23,6 +23,24 @@ function localStatus(mpStatus: string) {
   if (['rejected', 'cancelled'].includes(mpStatus)) return 'payment_failed';
   if (['refunded', 'charged_back'].includes(mpStatus)) return 'refunded';
   return 'awaiting_payment';
+}
+
+function crmPaymentMethod(payment: any) {
+  const methodId = String(payment?.payment_method_id || '').toLowerCase();
+  const typeId = String(payment?.payment_type_id || '').toLowerCase();
+  if (methodId === 'pix') return 'pix';
+  if (typeId === 'credit_card') return 'cartao_credito';
+  if (typeId === 'debit_card') return 'cartao_debito';
+  if (typeId === 'ticket') return 'boleto';
+  if (typeId === 'bank_transfer') return 'transferencia';
+  return 'outro';
+}
+
+function crmPaymentStatus(mpStatus: string): 'pendente' | 'pago' | 'cancelado' | 'reembolsado' {
+  if (mpStatus === 'approved') return 'pago';
+  if (['refunded', 'charged_back'].includes(mpStatus)) return 'reembolsado';
+  if (['rejected', 'cancelled'].includes(mpStatus)) return 'cancelado';
+  return 'pendente';
 }
 
 Deno.serve(async (req) => {
@@ -52,12 +70,25 @@ Deno.serve(async (req) => {
       return json({ ok: true });
     }
     const updated = await updateOrder(order.id, {
-      status: localStatus(String(payment.status || '')),
+      checkout_status: localStatus(String(payment.status || '')),
       mp_payment_id: paymentId,
       mp_payment_status: String(payment.status || ''),
       integration_error: null,
     });
     await logIntegration(order.id, 'mercadopago', `payment_${String(payment.status || 'updated')}`, true, `Pagamento ${paymentId}: ${payment.status}`, paymentId);
+
+    const crmStatus = crmPaymentStatus(String(payment.status || ''));
+    await recordPayment(order.id, {
+      amount: Number(payment.transaction_amount),
+      method: crmPaymentMethod(payment),
+      status: crmStatus,
+      paidAt: crmStatus === 'pago'
+        ? String(payment.date_approved || payment.date_created || new Date().toISOString())
+        : null,
+      externalReference: paymentId,
+      notes: `Mercado Pago · status ${String(payment.status || 'não informado')} · tipo ${String(payment.payment_type_id || 'não informado')} · método ${String(payment.payment_method_id || 'não informado')}`,
+    });
+    await logIntegration(order.id, 'crm', 'payment_registered', true, `Pagamento ${paymentId} registrado no CRM como ${crmStatus}.`, paymentId);
 
     if (payment.status === 'approved' && !updated?.bling_order_id) {
       try {
@@ -74,4 +105,3 @@ Deno.serve(async (req) => {
     return publicErrorResponse(error);
   }
 });
-
