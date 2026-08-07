@@ -63,6 +63,7 @@ async function findOrCreateContact(order: any) {
 export async function syncOrderToBling(order: any) {
   if (order.bling_order_id) return order;
   const contactId = await findOrCreateContact(order);
+  const storeOrderNumber = String(order.order_number || order.id || '');
   const items = (order.items || []).map((item: any) => ({
     unidade: 'UN',
     quantidade: Number(item.quantity),
@@ -75,7 +76,7 @@ export async function syncOrderToBling(order: any) {
     method: 'POST',
     body: JSON.stringify({
       data: today,
-      numeroLoja: `SITE-${order.order_number}`,
+      numeroLoja: storeOrderNumber.startsWith('SITE-') ? storeOrderNumber : `SITE-${storeOrderNumber}`,
       contato: { id: contactId },
       itens: items,
       transporte: {
