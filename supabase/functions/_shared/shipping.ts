@@ -60,7 +60,7 @@ export async function fetchShippingQuotes(postalCode: string, items: CartItem[],
   const freeThreshold = destination?.state && ['SP', 'MG', 'RJ', 'ES'].includes(destination.state) ? 249.90 : 399.90;
   const freeEligible = subtotal >= freeThreshold;
 
-  const quotes: ShippingQuote[] = data
+  const baseQuotes: ShippingQuote[] = data
     .filter((quote: any) => quote && !quote.error && Number.isFinite(Number(quote.custom_price ?? quote.price)))
     .map((quote: any) => {
       const cost = roundMoney(Number(quote.custom_price ?? quote.price));
@@ -68,14 +68,29 @@ export async function fetchShippingQuotes(postalCode: string, items: CartItem[],
         id: Number(quote.id),
         name: String(quote.name || 'Entrega'),
         company: String(quote.company?.name || ''),
-        price: freeEligible ? 0 : cost,
+        price: cost,
         cost,
         deliveryTime: Number(quote.custom_delivery_time ?? quote.delivery_time) || null,
-        freeShipping: freeEligible,
+        freeShipping: false,
         raw: quote,
       };
     })
-    .filter((quote: ShippingQuote) => Number.isInteger(quote.id) && quote.id > 0 && quote.cost >= 0)
+    .filter((quote: ShippingQuote) => Number.isInteger(quote.id) && quote.id > 0 && quote.cost >= 0);
+
+  const freeShippingCredit = freeEligible && baseQuotes.length
+    ? Math.min(...baseQuotes.map((quote) => quote.cost))
+    : 0;
+
+  const quotes: ShippingQuote[] = baseQuotes
+    .map((quote) => {
+      if (!freeEligible) return quote;
+      const price = roundMoney(Math.max(0, quote.cost - freeShippingCredit));
+      return {
+        ...quote,
+        price,
+        freeShipping: price === 0,
+      };
+    })
     .sort((a: ShippingQuote, b: ShippingQuote) => a.price - b.price || (a.deliveryTime || 999) - (b.deliveryTime || 999));
 
   return { quotes, subtotal, freeEligible, destination };
