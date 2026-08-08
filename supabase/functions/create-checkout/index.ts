@@ -1,5 +1,5 @@
 import { CATALOG, cartSubtotal, orderItemsSnapshot, validateCart } from '../_shared/catalog.ts';
-import { commerceEnabled, env, handleOptions, json, parseJson, PublicError, publicErrorResponse, roundMoney } from '../_shared/core.ts';
+import { commerceEnabled, env, handleOptions, json, parseJson, PublicError, publicErrorResponse, roundMoney, safeEqual } from '../_shared/core.ts';
 import { insertOrder, logIntegration, updateOrder } from '../_shared/db.ts';
 import { fetchShippingQuotes } from '../_shared/shipping.ts';
 import { lookupCep, validateAddress, validateCustomer } from '../_shared/validation.ts';
@@ -12,12 +12,23 @@ function returnUrl(siteUrl: string, orderId: string, token: string, state: strin
   return url.toString();
 }
 
+function isProtectedCheckoutTest(req: Request) {
+  if (Deno.env.get('COMMERCE_ENABLED') === 'true') return false;
+  const received = req.headers.get('x-admin-token') || '';
+  const expected = Deno.env.get('ADMIN_SETUP_TOKEN')?.trim() || '';
+  return Boolean(received && expected) && safeEqual(received, expected);
+}
+
 Deno.serve(async (req) => {
   const preflight = handleOptions(req); if (preflight) return preflight;
   if (req.method !== 'POST') return json({ error: 'Método não permitido.' }, 405);
   let orderId: string | null = null;
   try {
-    commerceEnabled();
+    const protectedTest = isProtectedCheckoutTest(req);
+    if (!protectedTest) commerceEnabled();
+    if (protectedTest && Deno.env.get('MP_USE_SANDBOX') !== 'true') {
+      throw new PublicError('O checkout de teste protegido exige o Mercado Pago Sandbox.', 503);
+    }
     const body = await parseJson(req);
     const items = validateCart(body?.items);
     const customer = validateCustomer(body?.customer);
