@@ -167,7 +167,7 @@ section{padding:7.5rem 3.5rem}
 .ppreco{font-family:var(--fonte-site);font-size:1.5rem;font-weight:700;color:var(--marrom);font-variant-numeric:lining-nums tabular-nums}
 .btn-buy{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.5rem 1.1rem;background:var(--marrom);color:var(--bege);border:none;cursor:pointer;border-radius:var(--rb);font-family:'Manrope',sans-serif;font-weight:700;transition:all .3s cubic-bezier(.23,1,.32,1);box-shadow:0 3px 12px rgba(111,78,55,.18);text-decoration:none;white-space:nowrap}
 .btn-buy:hover{background:var(--dourado);color:var(--marrom);transform:translateY(-2px)}
-.product-actions{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-top:.9rem}.product-action{min-height:38px;border:1px solid var(--marrom);border-radius:var(--rb);padding:.55rem .55rem;font:800 .54rem var(--fonte-site);letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:.25s}.product-action.add{background:#fff;color:var(--marrom)}.product-action.buy-now{background:var(--marrom);color:var(--bege)}.product-action:hover{background:var(--dourado);border-color:var(--dourado);color:var(--marrom);transform:translateY(-1px)}.product-action:disabled{cursor:not-allowed;opacity:.55;transform:none}.pcard[role="link"]:focus-visible{outline:3px solid var(--dourado);outline-offset:3px}
+.product-card-link{position:absolute;inset:0;z-index:1}.product-actions{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-top:.9rem}.product-action{min-height:38px;border:1px solid var(--marrom);border-radius:var(--rb);padding:.55rem .55rem;font:800 .54rem var(--fonte-site);letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:.25s}.product-action.add{background:#fff;color:var(--marrom)}.product-action.buy-now{background:var(--marrom);color:var(--bege)}.product-action:hover{background:var(--dourado);border-color:var(--dourado);color:var(--marrom);transform:translateY(-1px)}.product-action:disabled{cursor:not-allowed;opacity:.55;transform:none}.product-card-link:focus-visible{outline:3px solid var(--dourado);outline-offset:-3px}
 .pold{font-family:'Manrope',sans-serif;font-size:.65rem;color:var(--muted);text-decoration:line-through;display:block;font-weight:400;margin-bottom:.12rem}
 .pstock{font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;color:#9c352f;font-weight:700;display:block;margin-top:.25rem}
 .pimg-kit img{position:absolute;width:72%;height:88%;object-fit:contain;filter:drop-shadow(0 12px 16px rgba(0,0,0,.2))}
@@ -592,6 +592,7 @@ body,body *,body *::before,body *::after{
 
     <!-- PRODUTO 1: 500g em Grãos -->
     <article class="pcard rv d1" data-product-id="graos500" data-product-href="produto.html?id=graos500" aria-label="Ver Café Itajaó 500g em Grãos" role="link" tabindex="0">
+      <a class="product-card-link" href="produto.html?id=graos500" aria-label="Ver Café Itajaó 500g em Grãos"></a>
       <div class="pimg" style="background:linear-gradient(145deg,#1C3A24,#0E1F12)">
         <span class="pbadge">Nova Embalagem</span>
         <img src="assets/images/products/500graos.png"
@@ -617,6 +618,7 @@ body,body *,body *::before,body *::after{
 
     <!-- PRODUTO 2: 500g Moído (embalagem marrom) -->
     <article class="pcard rv d2" data-product-id="moido500" data-product-href="produto.html?id=moido500" aria-label="Ver Café Itajaó 500g Moído" role="link" tabindex="0">
+      <a class="product-card-link" href="produto.html?id=moido500" aria-label="Ver Café Itajaó 500g Moído"></a>
       <div class="pimg" style="background:linear-gradient(145deg,#3D2010,#1A0D05)">
         <span class="pbadge">Nova Embalagem</span>
         <img src="assets/images/products/500moido.png"
@@ -642,6 +644,7 @@ body,body *,body *::before,body *::after{
 
     <!-- PRODUTO 3: 250g em Grãos -->
     <article class="pcard rv d3" data-product-id="graos250" data-product-href="produto.html?id=graos250" aria-label="Ver Café Itajaó 250g em Grãos" role="link" tabindex="0">
+      <a class="product-card-link" href="produto.html?id=graos250" aria-label="Ver Café Itajaó 250g em Grãos"></a>
       <div class="pimg" style="background:linear-gradient(145deg,#1C3A24,#0E1F12)">
         <span class="pbadge pbadge-ltd">Lote Limitado</span>
         <img src="assets/images/products/250graos.png"
@@ -667,6 +670,7 @@ body,body *,body *::before,body *::after{
 
     <!-- PRODUTO 4: 250g Moído (embalagem artesanal branca) -->
     <article class="pcard rv d4" data-product-id="moido250" data-product-href="produto.html?id=moido250" aria-label="Ver Café Itajaó 250g Moído" role="link" tabindex="0">
+      <a class="product-card-link" href="produto.html?id=moido250" aria-label="Ver Café Itajaó 250g Moído"></a>
       <div class="pimg" style="background:linear-gradient(145deg,#2A2010,#1A1408)">
         <img src="assets/images/products/250moido.png"
              alt="Itajaó 250g Moído embalagem artesanal"
@@ -691,6 +695,7 @@ body,body *,body *::before,body *::after{
 
     <!-- PRODUTO 5: Kit 1kg (2x500g) -->
     <article class="pcard rv d4" data-product-id="kit1kg" data-product-href="produto.html?id=kit1kg" aria-label="Ver Kit Itajaó 1kg" role="link" tabindex="0">
+      <a class="product-card-link" href="produto.html?id=kit1kg" aria-label="Ver Kit Itajaó 1kg"></a>
       <div class="pimg pimg-kit" style="background:linear-gradient(145deg,#4A321F,#21150C)">
         <span class="pbadge">Kit 1kg</span>
         <img src="assets/images/products/500graos.png" alt="Pacote Itajaó 500g" onerror="this.style.display='none'">

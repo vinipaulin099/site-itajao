@@ -10,7 +10,19 @@
       if(price)price.innerHTML=(product.compareAtPrice?'<span class="pold">'+store.money(product.compareAtPrice)+'</span>':'')+store.money(product.price);
       if(image){image.src=product.images[0];image.alt=product.name}
       card.setAttribute('aria-label','Ver '+product.name);
-      if(!product.available&&badge){badge.textContent='Esgotado';badge.classList.add('pbadge-ltd')}
+      const legacyButton=card.querySelector('.btn-buy');if(legacyButton)legacyButton.remove();
+      const actions=document.createElement('div');actions.className='product-actions';
+      actions.innerHTML='<button class="product-action add" type="button">Adicionar ao carrinho</button><button class="product-action buy-now" type="button">Comprar agora</button>';
+      const addButton=actions.querySelector('.add');const buyButton=actions.querySelector('.buy-now');
+      if(!product.available){if(badge){badge.textContent='Esgotado';badge.classList.add('pbadge-ltd')}addButton.disabled=true;buyButton.disabled=true;addButton.textContent='Esgotado';buyButton.textContent='Indisponível'}
+      else{
+        addButton.addEventListener('click',event=>{event.stopPropagation();store.add(product.id,1);addButton.textContent='Adicionado ✓';setTimeout(()=>{addButton.textContent='Adicionar ao carrinho'},1200)});
+        buyButton.addEventListener('click',event=>{event.stopPropagation();store.add(product.id,1);location.href='carrinho.html'});
+      }
+      card.querySelector('.pinfo').appendChild(actions);
+      const openProduct=()=>{location.href=card.dataset.productHref};
+      card.addEventListener('click',event=>{if(!event.target.closest('button'))openProduct()});
+      card.addEventListener('keydown',event=>{if((event.key==='Enter'||event.key===' ')&&!event.target.closest('button')){event.preventDefault();openProduct()}});
     });
     store.updateCounters();
   })();
