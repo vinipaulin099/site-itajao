@@ -91,13 +91,23 @@ Deno.serve(async (req) => {
     await logIntegration(order.id, 'crm', 'payment_registered', true, `Pagamento ${paymentId} registrado no CRM como ${crmStatus}.`, paymentId);
 
     if (payment.status === 'approved' && !updated?.bling_order_id) {
-      try {
-        await syncOrderToBling(updated);
-      } catch (syncError) {
-        const message = syncError instanceof Error ? syncError.message : String(syncError);
-        await updateOrder(order.id, { integration_error: `Bling: ${message}` });
-        await logIntegration(order.id, 'bling', 'sales_order_sync', false, message);
-        console.error('Bling sync failed', order.id, syncError);
+      if (Deno.env.get('MP_USE_SANDBOX') === 'true') {
+        await logIntegration(
+          order.id,
+          'bling',
+          'sales_order_skipped_sandbox',
+          true,
+          'Sincronização com o Bling ignorada porque o Mercado Pago está no Sandbox.',
+        );
+      } else {
+        try {
+          await syncOrderToBling(updated);
+        } catch (syncError) {
+          const message = syncError instanceof Error ? syncError.message : String(syncError);
+          await updateOrder(order.id, { integration_error: `Bling: ${message}` });
+          await logIntegration(order.id, 'bling', 'sales_order_sync', false, message);
+          console.error('Bling sync failed', order.id, syncError);
+        }
       }
     }
     return json({ ok: true });
