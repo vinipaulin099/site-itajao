@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Carrinho | Itajaó Cafés Especiais</title>
+<meta name="description" content="Revise seus cafés, aplique cupom, calcule o frete e siga para a finalização segura da compra.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}*{margin:0}body{font-family:'Montserrat',Arial,sans-serif;font-variant-numeric:lining-nums tabular-nums;background:#FEECD8;color:#6F4E37;-webkit-font-smoothing:antialiased}.top-bar{height:34px;background:#3D2B1F;color:#FED8B1;overflow:hidden;display:flex;align-items:center}.top-track{white-space:nowrap;display:inline-block;padding-left:100%;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;animation:marquee 28s linear infinite}.top-track strong{color:#ECB176}@keyframes marquee{to{transform:translateX(-100%)}}nav{height:78px;padding:0 clamp(1rem,5vw,3.5rem);display:flex;align-items:center;justify-content:space-between;background:rgba(254,236,216,.97);border-bottom:1px solid rgba(111,78,55,.1)}nav img{height:54px;display:block}.nav-actions{display:flex;align-items:center;gap:20px}.back,.cart-link{color:#6F4E37;text-decoration:none;font-size:.66rem;text-transform:uppercase;letter-spacing:.11em;font-weight:800}.cart-link{position:relative}.cart-count{position:absolute;right:-13px;top:-12px;background:#6F4E37;color:#FED8B1;min-width:19px;height:19px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:.58rem}.wrap{max-width:1220px;margin:0 auto;padding:44px clamp(16px,4vw,48px) 78px}.eyebrow{font-size:.61rem;text-transform:uppercase;letter-spacing:.22em;color:#A67B5B;font-weight:800;margin-bottom:9px}h1{font-size:clamp(2rem,4vw,3.25rem);line-height:1.05;color:#3D2B1F}.subtitle{font-size:.82rem;color:#8C6A50;line-height:1.7;margin-top:10px}.layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(320px,.65fr);gap:28px;align-items:start;margin-top:32px}.card{background:#fff;border:1px solid rgba(111,78,55,.1);border-radius:16px;padding:clamp(18px,3vw,28px);box-shadow:0 16px 48px rgba(61,43,31,.055)}.section-title{font-size:.98rem;color:#3D2B1F;margin-bottom:18px}.cart-row{display:grid;grid-template-columns:92px 1fr auto;gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid rgba(111,78,55,.1)}.cart-row:first-child{padding-top:0}.cart-row:last-child{border-bottom:0;padding-bottom:0}.cart-image{width:92px;height:92px;background:#3D2B1F;border-radius:12px;display:block;overflow:hidden}.cart-image img{width:100%;height:100%;object-fit:contain}.cart-copy{display:flex;flex-direction:column;align-items:flex-start}.cart-name{color:#3D2B1F;text-decoration:none;font-weight:800;font-size:.82rem;line-height:1.4}.cart-meta{font-size:.66rem;color:#8C6A50;margin-top:5px}.remove{border:0;background:none;padding:0;margin-top:10px;color:#9c352f;text-decoration:underline;text-underline-offset:3px;font:600 .61rem 'Montserrat',sans-serif;cursor:pointer}.cart-actions{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:12px}.cart-actions>strong{font-size:.76rem;color:#3D2B1F}.qty{display:flex;border:1px solid #d8ccc3;border-radius:999px;overflow:hidden}.qty button{width:34px;height:34px;border:0;background:#fff;color:#6F4E37;font-size:1rem;cursor:pointer}.qty span{width:30px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800}.tools{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}.tool{background:#fff;border:1px solid rgba(111,78,55,.1);border-radius:16px;padding:22px}.tool h2{font-size:.88rem;color:#3D2B1F;margin-bottom:6px}.tool p{font-size:.65rem;line-height:1.55;color:#8C6A50}.input-line{display:grid;grid-template-columns:1fr auto;gap:9px;margin-top:14px}.input-line input{height:44px;border:1px solid #d8ccc3;border-radius:9px;padding:0 12px;color:#3D2B1F;font:600 .75rem 'Montserrat',sans-serif;outline:none;min-width:0}.input-line input:focus{border-color:#A67B5B;box-shadow:0 0 0 3px rgba(166,123,91,.1)}.input-line button{height:44px;border:1px solid #6F4E37;border-radius:9px;background:#fff;color:#6F4E37;padding:0 16px;font:800 .65rem 'Montserrat',sans-serif;cursor:pointer}.input-line button:disabled{opacity:.55}.coupon-status,.status{min-height:17px;margin-top:9px;font-size:.62rem;line-height:1.5}.success{color:#427044}.error{color:#9c352f}.info{color:#785b34}.remove-coupon{border:0;background:none;color:#9c352f;font:600 .6rem 'Montserrat',sans-serif;text-decoration:underline;cursor:pointer;padding:0}.shipping-list{display:grid;gap:9px;margin-top:14px}.shipping-option{display:flex;align-items:center;gap:10px;border:1px solid #ddd0c7;border-radius:11px;padding:12px;cursor:pointer}.shipping-option:has(input:checked){border-color:#A67B5B;background:#fff8f0;box-shadow:0 0 0 2px rgba(166,123,91,.08)}.shipping-option input{accent-color:#6F4E37}.shipping-option div{flex:1;min-width:0}.shipping-option strong{display:block;font-size:.68rem;color:#3D2B1F}.shipping-option span{display:block;font-size:.59rem;color:#8C6A50;margin-top:3px}.shipping-option b{font-size:.67rem;color:#3D2B1F}.shipping-option b.free{color:#427044}.summary{position:sticky;top:20px}.sum-line{display:flex;justify-content:space-between;gap:16px;padding:8px 0;font-size:.75rem;color:#8C6A50}.sum-line strong{color:#3D2B1F}.discount strong{color:#427044}.sum-total{border-top:1px solid rgba(111,78,55,.14);margin-top:8px;padding-top:17px;font-size:1rem;font-weight:800;color:#3D2B1F}.progress-box{margin:16px 0 4px;padding:14px;border-radius:11px;background:#fff8f0}.progress-box p{font-size:.62rem;line-height:1.45;color:#6F4E37;font-weight:700}.progress{height:6px;border-radius:999px;background:#eaded3;margin-top:9px;overflow:hidden}.progress span{display:block;height:100%;width:0;background:#A67B5B;border-radius:inherit;transition:width .3s}.continue{width:100%;height:50px;border:0;border-radius:999px;background:#6F4E37;color:#FED8B1;margin-top:18px;font:800 .68rem 'Montserrat',sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}.continue:hover{background:#A67B5B;color:#3D2B1F}.continue:disabled{opacity:.5;cursor:not-allowed}.secure{text-align:center;color:#8C6A50;font-size:.59rem;line-height:1.55;margin-top:12px}.closed{margin-top:14px;padding:12px;border:1px solid #efd5a6;background:#fff6e6;border-radius:10px;color:#785b34;font-size:.62rem;line-height:1.5}.empty{text-align:center;padding:64px 20px}.empty strong{display:block;color:#3D2B1F;font-size:1.1rem;margin-bottom:8px}.empty p{color:#8C6A50;font-size:.75rem;margin-bottom:20px}.empty a{display:inline-flex;padding:13px 22px;border-radius:999px;background:#6F4E37;color:#FED8B1;text-decoration:none;text-transform:uppercase;letter-spacing:.1em;font-size:.64rem;font-weight:800}.recommend{margin-top:32px}.recommend h2{font-size:1.05rem;color:#3D2B1F}.recommend>p{font-size:.68rem;color:#8C6A50;margin-top:6px}.recommend-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.recommend-card{background:#fff;border:1px solid rgba(111,78,55,.1);border-radius:14px;padding:12px;display:grid;grid-template-columns:90px 1fr;gap:13px}.recommend-card>a{width:90px;height:108px;background:#3D2B1F;border-radius:10px;display:block}.recommend-card img{width:100%;height:100%;object-fit:contain}.recommend-card div{display:flex;flex-direction:column;align-items:flex-start}.recommend-card span{font-size:.55rem;color:#A67B5B;text-transform:uppercase;letter-spacing:.08em}.recommend-card a{text-decoration:none}.recommend-card strong{display:block;color:#3D2B1F;font-size:.68rem;line-height:1.35;margin-top:5px}.recommend-card b{font-size:.72rem;color:#6F4E37;margin-top:7px}.recommend-card button{border:0;background:none;color:#6F4E37;text-decoration:underline;text-underline-offset:3px;padding:0;margin-top:auto;font:700 .58rem 'Montserrat',sans-serif;cursor:pointer}@media(max-width:900px){.layout{grid-template-columns:1fr}.summary{position:static}.recommend-grid{grid-template-columns:1fr 1fr}}@media(max-width:650px){nav{height:68px}.nav-actions{gap:12px}.back{display:none}nav img{height:46px}.wrap{padding-top:30px}.tools{grid-template-columns:1fr}.cart-row{grid-template-columns:70px 1fr}.cart-image{width:70px;height:80px}.cart-actions{grid-column:2;flex-direction:row;align-items:center;justify-content:space-between;width:100%;text-align:left}.recommend-grid{grid-template-columns:1fr}.recommend-card{grid-template-columns:78px 1fr}.recommend-card>a{width:78px;height:96px}}
+</style>
+</head>
+<body>
+<div class="top-bar"><div class="top-track">🎁 <strong>BEMVINDO10</strong> • 10% OFF NA PRIMEIRA COMPRA • 🚚 FRETE GRÁTIS: SUDESTE ACIMA DE R$ 249,90 • DEMAIS REGIÕES ACIMA DE R$ 399,90 • ☕ TORRA FRESCA SOB DEMANDA • 🌱 DIRETO DA FAZENDA ITAJAÓ •</div></div>
+<nav>
+  <a href="index.html" aria-label="Itajaó Cafés Especiais"><img src="assets/images/brand/teste4.png" alt="Itajaó Cafés Especiais"></a>
+  <div class="nav-actions"><a class="back" href="index.html#cafes">← Continuar comprando</a><a class="cart-link" href="carrinho.html">Carrinho <span class="cart-count" data-cart-count hidden>0</span></a></div>
+</nav>
+<main class="wrap">
+  <div class="eyebrow">Seu carrinho</div>
+  <h1>Seu café, do seu jeito.</h1>
+  <p class="subtitle">Ajuste as quantidades, aplique seu cupom e escolha a entrega antes de finalizar.</p>
+
+  <div id="emptyCart" class="card empty" hidden><strong>Seu carrinho está vazio.</strong><p>Escolha um Café Itajaó para começar seu pedido.</p><a href="index.html#cafes">Ver cafés</a></div>
+
+  <div id="cartContent" hidden>
+    <div class="layout">
+      <div>
+        <section class="card"><h2 class="section-title">Produtos</h2><div id="cartItems"></div></section>
+        <div class="tools">
+          <section class="tool">
+            <h2>Cupom de desconto</h2><p>Use o código da campanha. As regras serão confirmadas novamente na finalização.</p>
+            <div class="input-line"><input id="couponCode" type="text" maxlength="30" autocomplete="off" placeholder="Ex.: BEMVINDO10" aria-label="Código do cupom"><button id="applyCoupon" type="button">Aplicar</button></div>
+            <div><p id="couponStatus" class="coupon-status" role="status" aria-live="polite"></p><button id="removeCoupon" class="remove-coupon" type="button" hidden>Remover cupom</button></div>
+          </section>
+          <section class="tool">
+            <h2>Calcular entrega</h2><p>Digite o CEP para consultar prazos e valores disponíveis.</p>
+            <div class="input-line"><input id="postalCode" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="9" placeholder="00000-000" aria-label="CEP"><button id="quoteButton" type="button">Calcular</button></div>
+            <div id="shippingList" class="shipping-list"></div>
+            <p id="cartStatus" class="status" role="status" aria-live="polite"></p>
+          </section>
+        </div>
+      </div>
+      <aside class="card summary">
+        <h2 class="section-title">Resumo do pedido</h2>
+        <div class="sum-line"><span>Produtos</span><strong id="subtotal">R$ 0,00</strong></div>
+        <div class="sum-line discount" id="discountLine" hidden><span>Desconto</span><strong id="discountTotal">− R$ 0,00</strong></div>
+        <div class="sum-line"><span>Frete</span><strong id="shippingTotal">Calcule o CEP</strong></div>
+        <div class="sum-line sum-total"><span>Total</span><span id="grandTotal">R$ 0,00</span></div>
+        <div class="progress-box"><p id="freeMessage">Veja quanto falta para ganhar frete grátis.</p><div class="progress" aria-hidden="true"><span id="freeProgress"></span></div></div>
+        <button class="continue" id="continueButton" type="button" disabled>Finalizar compra →</button>
+        <p class="secure">🔒 Preços, cupom, estoque e frete serão conferidos pelo servidor antes do pagamento.</p>
+        <div class="closed" id="closedNotice" hidden>O checkout próprio está em configuração e continua fechado ao público. Nenhum pagamento pode ser iniciado por esta página agora.</div>
+      </aside>
+    </div>
+
+    <section class="recommend" id="recommendSection" hidden><h2>Que tal levar também?</h2><p>Mais opções para completar seu pedido e aproveitar melhor o frete.</p><div class="recommend-grid" id="recommendations"></div></section>
+  </div>
+</main>
+<script src="assets/js/store-config.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/cart.js"></script>
+</body>
+</html>

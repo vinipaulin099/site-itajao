@@ -47,6 +47,8 @@ export async function insertOrder(payload: {
   address: Record<string, unknown>;
   items: Record<string, unknown>[];
   subtotal: number;
+  discountAmount: number;
+  couponCode: string | null;
   shippingAmount: number;
   shippingCost: number;
   shippingServiceId: number;
@@ -61,6 +63,8 @@ export async function insertOrder(payload: {
       p_address: payload.address,
       p_items: payload.items,
       p_subtotal: payload.subtotal,
+      p_discount_amount: payload.discountAmount,
+      p_coupon_code: payload.couponCode,
       p_shipping_amount: payload.shippingAmount,
       p_shipping_cost: payload.shippingCost,
       p_shipping_service_id: payload.shippingServiceId,
@@ -70,6 +74,12 @@ export async function insertOrder(payload: {
     }),
   });
   return order;
+}
+
+export async function releaseCouponRedemption(orderId: string) {
+  await dbRequest(`store_coupon_redemptions?order_id=eq.${encodeURIComponent(orderId)}`, {
+    method: 'DELETE',
+  });
 }
 
 async function productSkus(items: any[]) {

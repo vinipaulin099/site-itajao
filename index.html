@@ -69,6 +69,7 @@ nav{position:fixed;top:34px;left:0;right:0;z-index:200;height:68px;padding:0 3re
 .nav-links a:hover{color:var(--dourado)}
 .nav-cta{padding:.6rem 1.8rem;background:var(--marrom);color:var(--bege);border:none;cursor:pointer;border-radius:var(--rb);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;font-family:'Manrope',sans-serif;font-weight:700;transition:all .35s cubic-bezier(.23,1,.32,1);box-shadow:0 4px 18px rgba(111,78,55,.22);text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
 .nav-cta:hover{background:var(--dourado);color:var(--marrom);transform:translateY(-2px)}
+.nav-actions{display:flex;align-items:center;gap:12px}.nav-cart{position:relative;width:42px;height:42px;border:1px solid rgba(111,78,55,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--marrom);text-decoration:none;font-size:1rem}.nav-cart:hover{border-color:var(--dourado);color:var(--dourado)}.nav-cart-count{position:absolute;right:-5px;top:-6px;min-width:19px;height:19px;padding:0 4px;border-radius:999px;background:var(--marrom);color:var(--bege);display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:800}
 
 /* ── HERO CARROSSEL ── */
 .hero{position:relative;height:100vh;min-height:600px;overflow:hidden;background:var(--cafe)}
@@ -454,7 +455,7 @@ body,body *,body *::before,body *::after{
     <li><a href="#contato">Contato</a></li>
   </ul>
   <!-- EDITE O LINK DO BOTÃO COMPRAR -->
-  <a href="#cafes" class="nav-cta">Comprar meu Itajaó</a>
+  <div class="nav-actions"><a href="#cafes" class="nav-cta">Comprar meu Itajaó</a><a href="carrinho.html" class="nav-cart" aria-label="Abrir carrinho">🛒<span class="nav-cart-count" data-cart-count hidden>0</span></a></div>
 </nav>
 
 
@@ -589,7 +590,7 @@ body,body *,body *::before,body *::after{
   <div class="pgrid">
 
     <!-- PRODUTO 1: 500g em Grãos -->
-    <a class="pcard rv d1" aria-label="Ver Café Itajaó 500g em Grãos" href="produto.html?id=graos500">
+    <a class="pcard rv d1" data-product-id="graos500" aria-label="Ver Café Itajaó 500g em Grãos" href="produto.html?id=graos500">
       <div class="pimg" style="background:linear-gradient(145deg,#1C3A24,#0E1F12)">
         <span class="pbadge">Nova Embalagem</span>
         <img src="assets/images/products/500graos.png"
@@ -614,7 +615,7 @@ body,body *,body *::before,body *::after{
     </a>
 
     <!-- PRODUTO 2: 500g Moído (embalagem marrom) -->
-    <a class="pcard rv d2" aria-label="Ver Café Itajaó 500g Moído" href="produto.html?id=moido500">
+    <a class="pcard rv d2" data-product-id="moido500" aria-label="Ver Café Itajaó 500g Moído" href="produto.html?id=moido500">
       <div class="pimg" style="background:linear-gradient(145deg,#3D2010,#1A0D05)">
         <span class="pbadge">Nova Embalagem</span>
         <img src="assets/images/products/500moido.png"
@@ -639,7 +640,7 @@ body,body *,body *::before,body *::after{
     </a>
 
     <!-- PRODUTO 3: 250g em Grãos -->
-    <a class="pcard rv d3" aria-label="Ver Café Itajaó 250g em Grãos" href="produto.html?id=graos250">
+    <a class="pcard rv d3" data-product-id="graos250" aria-label="Ver Café Itajaó 250g em Grãos" href="produto.html?id=graos250">
       <div class="pimg" style="background:linear-gradient(145deg,#1C3A24,#0E1F12)">
         <span class="pbadge pbadge-ltd">Lote Limitado</span>
         <img src="assets/images/products/250graos.png"
@@ -664,7 +665,7 @@ body,body *,body *::before,body *::after{
     </a>
 
     <!-- PRODUTO 4: 250g Moído (embalagem artesanal branca) -->
-    <a class="pcard rv d4" aria-label="Ver Café Itajaó 250g Moído" href="produto.html?id=moido250">
+    <a class="pcard rv d4" data-product-id="moido250" aria-label="Ver Café Itajaó 250g Moído" href="produto.html?id=moido250">
       <div class="pimg" style="background:linear-gradient(145deg,#2A2010,#1A1408)">
         <img src="assets/images/products/250moido.png"
              alt="Itajaó 250g Moído embalagem artesanal"
@@ -688,7 +689,7 @@ body,body *,body *::before,body *::after{
     </a>
 
     <!-- PRODUTO 5: Kit 1kg (2x500g) -->
-    <a class="pcard rv d4" aria-label="Ver Kit Itajaó 1kg" href="produto.html?id=kit1kg">
+    <a class="pcard rv d4" data-product-id="kit1kg" aria-label="Ver Kit Itajaó 1kg" href="produto.html?id=kit1kg">
       <div class="pimg pimg-kit" style="background:linear-gradient(145deg,#4A321F,#21150C)">
         <span class="pbadge">Kit 1kg</span>
         <img src="assets/images/products/500graos.png" alt="Pacote Itajaó 500g" onerror="this.style.display='none'">
@@ -1064,6 +1065,10 @@ window.addEventListener('scroll',function(){
     window.scrollY>60?'0 4px 36px rgba(111,78,55,0.1)':'none';
 });
 </script>
+
+<script src="assets/js/store-config.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/home-store.js"></script>
 
 <script>
 // ── NEWSLETTER ──

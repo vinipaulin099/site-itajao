@@ -1,7 +1,8 @@
-import { CATALOG, cartSubtotal, orderItemsSnapshot, validateCart } from '../_shared/catalog.ts';
+import { Catalog, CartItem, cartSubtotal, loadCatalog, orderItemsSnapshot, validateCart } from '../_shared/catalog.ts';
 import { commerceEnabled, env, handleOptions, json, parseJson, PublicError, publicErrorResponse, roundMoney, safeEqual } from '../_shared/core.ts';
-import { insertOrder, logIntegration, updateOrder } from '../_shared/db.ts';
+import { insertOrder, logIntegration, releaseCouponRedemption, updateOrder } from '../_shared/db.ts';
 import { fetchShippingQuotes } from '../_shared/shipping.ts';
+import { applyCouponToShippingQuotes, quoteCoupon } from '../_shared/promotions.ts';
 import { lookupCep, validateAddress, validateCustomer } from '../_shared/validation.ts';
 
 function returnUrl(siteUrl: string, orderId: string, token: string, state: string) {
@@ -19,6 +20,28 @@ function isProtectedCheckoutTest(req: Request) {
   return Boolean(received && expected) && safeEqual(received, expected);
 }
 
+function paymentItems(items: CartItem[], catalog: Catalog, discountAmount: number) {
+  const subtotal = cartSubtotal(items, catalog);
+  const productTotal = roundMoney(subtotal - discountAmount);
+  if (productTotal <= 0) throw new PublicError('O desconto não pode cobrir todo o valor dos produtos.', 409);
+  let allocatedDiscount = 0;
+  return items.map((item, index) => {
+    const product = catalog[item.id];
+    const lineTotal = roundMoney(product.price * item.quantity);
+    const allocation = index === items.length - 1
+      ? roundMoney(discountAmount - allocatedDiscount)
+      : roundMoney(discountAmount * lineTotal / subtotal);
+    allocatedDiscount = roundMoney(allocatedDiscount + allocation);
+    return {
+      id: product.sku,
+      title: item.quantity > 1 ? `${item.quantity}× ${product.name}` : product.name,
+      currency_id: 'BRL',
+      quantity: 1,
+      unit_price: roundMoney(lineTotal - allocation),
+    };
+  });
+}
+
 Deno.serve(async (req) => {
   const preflight = handleOptions(req); if (preflight) return preflight;
   if (req.method !== 'POST') return json({ error: 'Método não permitido.' }, 405);
@@ -30,7 +53,8 @@ Deno.serve(async (req) => {
       throw new PublicError('O checkout de teste protegido exige o Mercado Pago Sandbox.', 503);
     }
     const body = await parseJson(req);
-    const items = validateCart(body?.items);
+    const catalog = await loadCatalog();
+    const items = validateCart(body?.items, catalog);
     const customer = validateCustomer(body?.customer);
     const address = validateAddress(body?.address);
     const destination = await lookupCep(address.postalCode);
@@ -38,17 +62,22 @@ Deno.serve(async (req) => {
 
     const shippingServiceId = Number(body?.shippingServiceId);
     if (!Number.isInteger(shippingServiceId) || shippingServiceId <= 0) throw new PublicError('Escolha uma opção de frete.');
-    const shippingResult = await fetchShippingQuotes(address.postalCode, items);
-    const shipping = shippingResult.quotes.find((quote) => quote.id === shippingServiceId);
+    const shippingResult = await fetchShippingQuotes(address.postalCode, items, { catalog });
+    const subtotal = cartSubtotal(items, catalog);
+    const coupon = await quoteCoupon(body?.couponCode, subtotal, customer);
+    const shippingQuotes = applyCouponToShippingQuotes(shippingResult.quotes, coupon);
+    const shipping = shippingQuotes.find((quote) => quote.id === shippingServiceId);
     if (!shipping) throw new PublicError('A opção de frete mudou. Calcule o frete novamente.', 409);
 
-    const subtotal = cartSubtotal(items);
+    const discountAmount = coupon?.discountAmount || 0;
     const shippingAmount = roundMoney(shipping.price);
     const order = await insertOrder({
       customer,
       address,
-      items: orderItemsSnapshot(items),
+      items: orderItemsSnapshot(items, catalog),
       subtotal,
+      discountAmount,
+      couponCode: coupon?.code || null,
       shippingAmount,
       shippingCost: shipping.cost,
       shippingServiceId: shipping.id,
@@ -65,13 +94,7 @@ Deno.serve(async (req) => {
     const lastName = nameParts.join(' ') || firstName;
     const notificationUrl = `${env('SUPABASE_URL')}/functions/v1/mercadopago-webhook`;
     const preferenceBody = {
-      items: items.map((item) => ({
-        id: CATALOG[item.id].sku,
-        title: CATALOG[item.id].name,
-        currency_id: 'BRL',
-        quantity: item.quantity,
-        unit_price: CATALOG[item.id].price,
-      })),
+      items: paymentItems(items, catalog, Number(order.discount_amount ?? discountAmount)),
       shipments: { cost: shippingAmount, mode: 'not_specified' },
       payer: {
         name: firstName,
@@ -106,9 +129,22 @@ Deno.serve(async (req) => {
     if (!checkoutUrl) throw new PublicError('O Mercado Pago não retornou a URL de pagamento.', 502);
     await updateOrder(order.id, { mp_preference_id: preference.id, integration_error: null });
     await logIntegration(order.id, 'mercadopago', 'preference_create', true, `Preferência ${preference.id} criada.`, preference.id);
-    return json({ orderId: order.id, checkoutUrl });
+    return json({
+      orderId: order.id,
+      checkoutUrl,
+      subtotal: Number(order.subtotal ?? subtotal),
+      discountAmount: Number(order.discount_amount ?? discountAmount),
+      shippingAmount: Number(order.shipping_amount ?? shippingAmount),
+      total: Number(order.total),
+      couponCode: order.coupon_code || null,
+    });
   } catch (error) {
-    if (orderId) console.error('create-checkout failed for order', orderId, error);
+    if (orderId) {
+      console.error('create-checkout failed for order', orderId, error);
+      await releaseCouponRedemption(orderId).catch((releaseError) => {
+        console.error('Falha ao liberar reserva de cupom', orderId, releaseError);
+      });
+    }
     return publicErrorResponse(error);
   }
 });

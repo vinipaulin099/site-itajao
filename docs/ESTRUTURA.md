@@ -6,6 +6,7 @@ Arquivos HTML que formam as páginas públicas ficam na raiz do repositório. Os
 site-itajao/
 ├── index.html
 ├── produto.html
+├── carrinho.html
 ├── checkout.html
 ├── pedido.html
 ├── assets/
@@ -28,7 +29,10 @@ site-itajao/
 - `assets/images/home/`: imagens do carrossel e da seção Quem Somos.
 - `assets/images/products/`: fotos das embalagens e produtos.
 - `assets/images/testimonials/`: fotos dos clientes dos depoimentos. O site já procura por `depoimento1.jpg`, `depoimento2.jpg` e `depoimento3.jpg` nesta pasta.
-- `assets/js/`: JavaScript do checkout e configuração pública da loja.
+- `assets/js/store.js`: catálogo público, carrinho persistente e estado da finalização.
+- `assets/js/cart.js`: cupom, CEP, frete, recomendações e resumo do carrinho.
+- `assets/js/checkout.js`: dados de cliente/endereço e criação do pagamento.
+- `assets/js/`: também contém a configuração pública e os scripts de catálogo da home/produto.
 - `docs/`: documentação que não é carregada pelo site.
 - `supabase/functions/`: backend das integrações.
 - `supabase/migrations/`: alterações de estrutura do banco.

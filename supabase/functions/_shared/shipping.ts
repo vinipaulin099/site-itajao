@@ -1,4 +1,4 @@
-import { CartItem, cartSubtotal, melhorEnvioProducts } from './catalog.ts';
+import { Catalog, CartItem, FALLBACK_CATALOG, cartSubtotal, melhorEnvioProducts } from './catalog.ts';
 import { env, PublicError, roundMoney } from './core.ts';
 import { melhorEnvioBaseUrl, providerToken } from './tokens.ts';
 import { lookupCep } from './validation.ts';
@@ -21,7 +21,13 @@ export type ShippingPackageOverride = {
   weight: number;
 };
 
-export async function fetchShippingQuotes(postalCode: string, items: CartItem[], packageOverride?: ShippingPackageOverride) {
+export async function fetchShippingQuotes(
+  postalCode: string,
+  items: CartItem[],
+  options: { catalog?: Catalog; packageOverride?: ShippingPackageOverride } = {},
+) {
+  const catalog = options.catalog || FALLBACK_CATALOG;
+  const packageOverride = options.packageOverride;
   const token = await providerToken('melhorenvio');
   const products = packageOverride
     ? [{
@@ -30,10 +36,10 @@ export async function fetchShippingQuotes(postalCode: string, items: CartItem[],
         height: packageOverride.height,
         length: packageOverride.length,
         weight: packageOverride.weight,
-        insurance_value: cartSubtotal(items),
+        insurance_value: cartSubtotal(items, catalog),
         quantity: 1,
       }]
-    : melhorEnvioProducts(items);
+    : melhorEnvioProducts(items, catalog);
   const body = {
     from: { postal_code: env('SHIP_FROM_POSTAL_CODE').replace(/\D/g, '') },
     to: { postal_code: postalCode },
@@ -56,7 +62,7 @@ export async function fetchShippingQuotes(postalCode: string, items: CartItem[],
     throw new PublicError('Não foi possível calcular o frete agora. Tente novamente em instantes.', 502);
   }
   const destination = await lookupCep(postalCode);
-  const subtotal = cartSubtotal(items);
+  const subtotal = cartSubtotal(items, catalog);
   const freeThreshold = destination?.state && ['SP', 'MG', 'RJ', 'ES'].includes(destination.state) ? 249.90 : 399.90;
   const freeEligible = subtotal >= freeThreshold;
 
@@ -93,7 +99,7 @@ export async function fetchShippingQuotes(postalCode: string, items: CartItem[],
     })
     .sort((a: ShippingQuote, b: ShippingQuote) => a.price - b.price || (a.deliveryTime || 999) - (b.deliveryTime || 999));
 
-  return { quotes, subtotal, freeEligible, destination };
+  return { quotes, subtotal, freeEligible, freeThreshold, destination };
 }
 
 export function publicShippingQuote(quote: ShippingQuote) {

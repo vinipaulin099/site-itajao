@@ -23,6 +23,7 @@ nav{height:76px;padding:0 clamp(1.2rem,4vw,3.5rem);display:flex;align-items:cent
 .logo img{height:54px;width:auto;display:block}
 .back{display:inline-flex;align-items:center;gap:.55rem;color:var(--marrom);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;font-weight:700}
 .back:hover{color:var(--dourado)}
+.nav-actions{display:flex;align-items:center;gap:18px}.cart-link{position:relative;color:var(--marrom);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;font-weight:800}.cart-count{position:absolute;right:-13px;top:-12px;min-width:19px;height:19px;padding:0 5px;border-radius:999px;background:var(--marrom);color:var(--bege);display:flex;align-items:center;justify-content:center;font-size:.56rem;letter-spacing:0}
 main{max-width:1240px;margin:0 auto;padding:3.5rem clamp(1.2rem,4vw,3.5rem) 6rem}
 .crumb{font-size:.68rem;color:var(--muted);margin-bottom:2rem}.crumb a{color:var(--dourado);text-decoration:none}
 .product{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.9fr);gap:clamp(2.2rem,6vw,6rem);align-items:start}
@@ -73,7 +74,7 @@ body,body *,body *::before,body *::after{
   <div class="nl-modal" role="dialog" aria-modal="true" aria-labelledby="newsletterTitle">
     <button class="nl-close" id="newsletterClose" type="button" aria-label="Fechar cadastro de newsletter">×</button>
     <div class="nl-form-side">
-      <img class="nl-logo" src="teste4.png" alt="Itajaó Cafés Especiais" onerror="this.style.display='none'">
+      <img class="nl-logo" src="assets/images/brand/teste4.png" alt="Itajaó Cafés Especiais" onerror="this.style.display='none'">
       <p class="nl-title" id="newsletterTitle">Vem tomar um café com a gente</p>
       <form class="nl-form" id="newsletterForm">
         <input class="nl-input" id="newsletterName" name="name" type="text" maxlength="120" autocomplete="name" placeholder="Nome completo" aria-label="Nome completo" required>
@@ -85,7 +86,7 @@ body,body *,body *::before,body *::after{
     </div>
     <div class="nl-art" aria-hidden="true">
       <div class="nl-art-copy"><span>Vem tomar</span><strong>um café</strong><span>com a gente</span><small>Inscreva-se e receba nossas promoções em primeira mão.</small></div>
-      <img class="nl-art-product" src="500graos.png" alt="">
+      <img class="nl-art-product" src="assets/images/products/500graos.png" alt="">
     </div>
   </div>
 </div>
@@ -106,15 +107,15 @@ body,body *,body *::before,body *::after{
   </div>
 </div>
 <nav>
-  <a class="logo" href="index.html" aria-label="Voltar para o início"><img src="teste4.png" alt="Itajaó Cafés Especiais" onerror="this.style.display='none'"></a>
-  <a class="back" href="index.html#cafes">← Voltar aos cafés</a>
+  <a class="logo" href="index.html" aria-label="Voltar para o início"><img src="assets/images/brand/teste4.png" alt="Itajaó Cafés Especiais" onerror="this.style.display='none'"></a>
+  <div class="nav-actions"><a class="back" href="index.html#cafes">← Voltar aos cafés</a><a class="cart-link" href="carrinho.html">Carrinho <span class="cart-count" data-cart-count hidden>0</span></a></div>
 </nav>
 
 <main>
   <div class="crumb"><a href="index.html">Início</a> / <a href="index.html#cafes">Cafés</a> / <span id="crumbName">Produto</span></div>
   <section class="product">
     <div class="gallery">
-      <div class="stage"><img id="mainImage" src="500graos.png" alt="Café Itajaó"></div>
+      <div class="stage"><img id="mainImage" src="assets/images/products/500graos.png" alt="Café Itajaó"></div>
       <div class="thumbs" id="thumbs"></div>
     </div>
     <div class="info">
@@ -172,40 +173,41 @@ body,body *,body *::before,body *::after{
   <span><a href="https://instagram.com/cafeitajao" target="_blank" rel="noopener">@cafeitajao</a> · <a href="https://wa.me/5535998087168" target="_blank" rel="noopener">WhatsApp</a></span>
 </footer>
 
-<script src="store-config.js"></script>
+<script src="assets/js/store-config.js"></script>
+<script src="assets/js/store.js"></script>
 <script>
 const PRODUCTS={
   graos500:{
     name:'Itajaó Especial 500g em Grãos',weight:'500g',format:'Em Grãos',oldPrice:'R$ 62,90',price:'R$ 56,90',available:true,
-    images:['500graos.png'],
+    images:['assets/images/products/500graos.png'],
     url:'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-500g-graos-torra-media-100-arabica-sul-de-minas-itajao/',
     short:'Café especial em grãos para quem quer moer na hora e aproveitar o máximo de aroma e frescor.',
     description:'Produzido na Fazenda Itajaó, este lote de 500g em grãos preserva o café inteiro até o momento do preparo e permite ajustar a moagem ao método que você preferir.'
   },
   moido500:{
     name:'Itajaó Especial 500g Moído',weight:'500g',format:'Moído',oldPrice:'R$ 60,90',price:'R$ 54,90',available:true,
-    images:['500moido.png'],
+    images:['assets/images/products/500moido.png'],
     url:'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-500g-moido-torra-media-100-arabica-sul-de-minas-itajao/',
     short:'A praticidade do café já moído sem abrir mão do perfil especial do Itajaó.',
     description:'A versão de 500g moída é pensada para o preparo prático do dia a dia, mantendo o perfil sensorial do lote: chocolate, caramelo e castanha, com doçura alta e corpo cremoso.'
   },
   graos250:{
     name:'Itajaó Especial 250g em Grãos',weight:'250g',format:'Em Grãos',oldPrice:'R$ 38,90',price:'R$ 31,90',available:false,
-    images:['250graos.png'],
+    images:['assets/images/products/250graos.png'],
     url:'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-250g-graos-torra-media-100-arabica-sul-de-minas-itajao/',
     short:'Formato compacto em grãos, ideal para experimentar o lote e moer cada dose na hora.',
     description:'O pacote de 250g em grãos traz o mesmo lote especial Itajaó em uma quantidade menor, mantendo a flexibilidade de moagem para coados, prensa, espresso e outros métodos.'
   },
   moido250:{
     name:'Itajaó Especial 250g Moído',weight:'250g',format:'Moído',oldPrice:'R$ 36,90',price:'R$ 29,90',available:true,
-    images:['250moido.png'],
+    images:['assets/images/products/250moido.png'],
     url:'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-250g-moido-torra-media-100-arabica-sul-de-minas-itajao/',
     short:'Uma porta de entrada prática para conhecer o Itajaó já moído e pronto para o seu ritual.',
     description:'O pacote de 250g moído reúne praticidade e o perfil do café especial Itajaó, com notas naturais de chocolate, caramelo e castanha e torra média.'
   },
   kit1kg:{
     name:'Kit Itajaó Especial 1kg',weight:'1kg',format:'Kit · 2×500g',oldPrice:'R$ 104,90',price:'R$ 103,90',available:true,
-    images:['500graos.png','500moido.png'],
+    images:['assets/images/products/500graos.png','assets/images/products/500moido.png'],
     url:'https://cafeitajao.com.br/produtos/kit-1kg-cafe-especial-84-pontos-sca-torra-media-100-arabica-sul-de-minas-itajao/',
     short:'Kit com 1kg de Café Itajaó em dois pacotes de 500g, com escolha da variedade disponível na loja.',
     description:'O kit de 1kg reúne dois pacotes de 500g do Café Especial Itajaó. Consulte as opções de grãos e moído disponíveis na Nuvemshop antes de finalizar o pedido.'
@@ -230,10 +232,10 @@ const checkoutEnabled=Boolean(window.ITAJAO_STORE_CONFIG&&window.ITAJAO_STORE_CO
 buyLink.href=p.url;
 legacyBuy.href=p.url;
 if(p.available&&checkoutEnabled){
-  buyLink.href='checkout.html?add='+encodeURIComponent(key);
+  buyLink.href='carrinho.html?add='+encodeURIComponent(key);
   buyLink.removeAttribute('target');
   buyLink.removeAttribute('rel');
-  buyLink.textContent='Adicionar e finalizar compra →';
+  buyLink.textContent='Adicionar ao carrinho →';
   legacyBuy.hidden=false;
   document.getElementById('pix').textContent='Pix, cartão e boleto no ambiente seguro do Mercado Pago';
 }
@@ -261,6 +263,7 @@ if(p.images.length>1){
   });
 }
 </script>
+<script src="assets/js/product.js"></script>
 <script>
 (function(){
   var SUPABASE_URL='https://eumgdopgiffzpahzcdsq.supabase.co';

@@ -3,6 +3,12 @@ project_id = "site-itajao"
 [functions.shipping-quote]
 verify_jwt = false
 
+[functions.store-catalog]
+verify_jwt = false
+
+[functions.coupon-quote]
+verify_jwt = false
+
 [functions.create-checkout]
 verify_jwt = false
 

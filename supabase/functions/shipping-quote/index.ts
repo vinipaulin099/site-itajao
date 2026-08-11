@@ -1,5 +1,6 @@
 import { commerceEnabled, handleOptions, json, parseJson, PublicError, publicErrorResponse, safeEqual } from '../_shared/core.ts';
-import { validateCart } from '../_shared/catalog.ts';
+import { loadCatalog, validateCart } from '../_shared/catalog.ts';
+import { applyCouponToShippingQuotes, quoteCoupon } from '../_shared/promotions.ts';
 import { fetchShippingQuotes, publicShippingQuote, ShippingPackageOverride } from '../_shared/shipping.ts';
 import { validatePostalCode } from '../_shared/validation.ts';
 
@@ -33,15 +34,30 @@ Deno.serve(async (req) => {
     const protectedTest = isProtectedShippingTest(req);
     if (!protectedTest) commerceEnabled();
     const body = await parseJson(req);
+    const catalog = await loadCatalog();
     const postalCode = validatePostalCode(body?.postalCode);
-    const items = validateCart(body?.items);
+    const items = validateCart(body?.items, catalog);
     const packageOverride = protectedTest && body?.testPackage ? validateTestPackage(body.testPackage) : undefined;
-    const result = await fetchShippingQuotes(postalCode, items, packageOverride);
+    const result = await fetchShippingQuotes(postalCode, items, { catalog, packageOverride });
+    const coupon = await quoteCoupon(body?.couponCode, result.subtotal);
+    const quotes = applyCouponToShippingQuotes(result.quotes, coupon);
     return json({
       subtotal: result.subtotal,
+      discountAmount: coupon?.discountAmount || 0,
+      totalBeforeShipping: result.subtotal - (coupon?.discountAmount || 0),
+      coupon: coupon ? {
+        code: coupon.code,
+        name: coupon.name,
+        discountType: coupon.discountType,
+        discountAmount: coupon.discountAmount,
+        firstPurchaseOnly: coupon.firstPurchaseOnly,
+        requiresCheckoutValidation: coupon.requiresCheckoutValidation,
+      } : null,
       freeShippingEligible: result.freeEligible,
+      freeShippingThreshold: result.freeThreshold,
+      destinationState: result.destination?.state || null,
       ...(protectedTest && packageOverride ? { testPackage: packageOverride } : {}),
-      quotes: result.quotes.map(publicShippingQuote),
+      quotes: quotes.map(publicShippingQuote),
     });
   } catch (error) {
     return publicErrorResponse(error);

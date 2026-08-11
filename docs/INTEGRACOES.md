@@ -8,7 +8,11 @@ O checkout novo começa **desligado**. Enquanto a configuração não for conclu
 
 ## O que já está implementado
 
-- Carrinho próprio com vários produtos e quantidade (`checkout.html` + `checkout.js`).
+- Página própria de carrinho com produtos, quantidades, cupom, CEP, frete, recomendações e total (`carrinho.html` + `cart.js`).
+- Checkout separado, dedicado aos dados de entrega e à criação do pagamento (`checkout.html` + `checkout.js`).
+- Carrinho persistente no navegador e revalidação completa no servidor.
+- Catálogo público carregado de `public.products`, com fallback seguro enquanto a migration não foi aplicada.
+- Cupom `BEMVINDO10` validado no servidor e confirmado novamente com os dados do cliente na finalização.
 - Formulário de cliente/endereço e preenchimento auxiliar pelo CEP.
 - Cotação de frete server-side no Melhor Envio. O navegador envia apenas IDs e quantidades; preço, peso e dimensões são reconstruídos no backend.
 - Política de frete grátis já considerada na cotação: Sudeste a partir de R$ 249,90 e demais regiões a partir de R$ 399,90.
@@ -23,11 +27,18 @@ O checkout novo começa **desligado**. Enquanto a configuração não for conclu
 
 ## O que precisa ser configurado antes de ligar
 
-1. Execute `supabase/migrations/202608070001_commerce.sql` no mesmo projeto Supabase usado pelo site.
-2. Cadastre os secrets listados em `supabase/functions/.env.example` nas configurações das Edge Functions. Nunca envie os valores reais para o GitHub.
-3. Informe o CEP/endereço real de origem e as dimensões externas reais dos pacotes. O backend não usa dimensões inventadas; sem elas a cotação é bloqueada.
-4. Informe os IDs no Bling correspondentes aos cinco SKUs definidos em `supabase/functions/_shared/catalog.ts`.
-5. Faça os testes com `COMMERCE_ENABLED=false`. Quando as funções, tokens e webhooks estiverem validados, mude primeiro o secret para `COMMERCE_ENABLED=true` e, por último, `commerceCheckoutEnabled` para `true` em `store-config.js`.
+1. Execute `supabase/migrations/202608070001_commerce.sql` no mesmo projeto Supabase usado pelo site, caso ela ainda não tenha sido aplicada.
+2. Execute `supabase/migrations/202608100001_storefront_catalog_and_coupons.sql` para adicionar os campos de catálogo, cupons e a nova assinatura atômica do checkout.
+3. Publique `store-catalog`, `coupon-quote`, `shipping-quote` e `create-checkout` na mesma atualização.
+4. Cadastre os secrets listados em `supabase/functions/.env.example` nas configurações das Edge Functions. Nunca envie os valores reais para o GitHub.
+5. Confira CEP de origem, dimensões, pesos e IDs dos produtos no Bling.
+6. Faça os testes com `COMMERCE_ENABLED=false`. Quando funções, tokens, webhooks, cupons e e-mails estiverem validados, mude primeiro o secret para `COMMERCE_ENABLED=true` e, por último, `commerceCheckoutEnabled` para `true` em `assets/js/store-config.js`.
+
+## Catálogo e cupons
+
+O site lê nome, preço, disponibilidade, imagens, descrição, peso e dimensões diretamente de `public.products` por meio da função pública `store-catalog`. O navegador nunca define o preço aceito pelo pedido; `create-checkout` carrega o mesmo catálogo novamente.
+
+Os cupons ficam em `public.store_coupons` e os usos em `public.store_coupon_redemptions`. As tabelas não são expostas diretamente ao navegador. A migration cria `BEMVINDO10` com 10% de desconto e restrição de primeira compra. O carrinho faz uma cotação preliminar, e a função SQL revalida e registra o uso na mesma transação do pedido.
 
 ## Mercado Pago
 
@@ -105,6 +116,8 @@ Com Supabase CLI vinculada ao projeto:
 
 ```bash
 supabase functions deploy shipping-quote
+supabase functions deploy store-catalog
+supabase functions deploy coupon-quote
 supabase functions deploy create-checkout
 supabase functions deploy mercadopago-webhook
 supabase functions deploy order-status
@@ -113,4 +126,3 @@ supabase functions deploy sync-order
 ```
 
 Antes de ativar vendas reais, execute pelo menos: cotação de CEP MG/SP/outro estado, frete grátis nos dois limites, pagamento aprovado, pendente e recusado, webhook com assinatura inválida, criação de contato/pedido no Bling e repetição do mesmo webhook.
-
