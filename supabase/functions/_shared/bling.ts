@@ -61,6 +61,9 @@ async function findOrCreateContact(order: any) {
 }
 
 export async function syncOrderToBling(order: any) {
+  if (Deno.env.get('MP_USE_SANDBOX') === 'true') {
+    throw new PublicError('Sincronização com o Bling bloqueada enquanto o Mercado Pago está no Sandbox.', 409);
+  }
   if (order.bling_order_id) return order;
   const contactId = await findOrCreateContact(order);
   const storeOrderNumber = String(order.order_number || order.id || '');
