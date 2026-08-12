@@ -1,6 +1,6 @@
 import { adminClient } from '../_shared/community.ts';
 import { json } from '../_shared/core.ts';
-import { enqueueEmail } from '../_shared/email.ts';
+import { adminRecipientEmail, enqueueEmail } from '../_shared/email.ts';
 
 const TIMEZONE = 'America/Sao_Paulo';
 
@@ -100,9 +100,7 @@ Deno.serve(async (req) => {
       orders: accumulator.orders + value.orders,
     }), { total_amount: 0, total_items: 0, reseller_earning: 0, orders: 0 });
 
-    const recipient = String(
-      Deno.env.get('REPORT_EMAIL_TO') || Deno.env.get('NOTIFICATION_EMAIL_TO') || '',
-    ).trim();
+    const recipient = await adminRecipientEmail();
     if (!recipient) throw new Error('Destinatário do relatório mensal não configurado.');
     const crmUrl = String(Deno.env.get('CRM_URL') || '').trim();
     const outboxId = await enqueueEmail({

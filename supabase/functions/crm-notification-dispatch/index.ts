@@ -1,6 +1,6 @@
 import { createClient, SupabaseClient } from 'npm:@supabase/supabase-js@2.112.3';
 import { env, json, safeEqual } from '../_shared/core.ts';
-import { EmailOutboxRow, enqueueEmail, sendWithResend, senderAddress } from '../_shared/email.ts';
+import { adminRecipientEmail, EmailOutboxRow, enqueueEmail, sendWithResend, senderAddress } from '../_shared/email.ts';
 
 function serviceKey() {
   const secretKeys = Deno.env.get('SUPABASE_SECRET_KEYS')?.trim() || '';
@@ -155,9 +155,7 @@ Deno.serve(async (request: Request) => {
   const admin = createClient(env('SUPABASE_URL'), serviceKey(), {
     auth: { persistSession: false, autoRefreshToken: false },
   });
-  const adminEmail = String(
-    Deno.env.get('NOTIFICATION_EMAIL_TO') || Deno.env.get('REPORT_EMAIL_TO') || '',
-  ).trim();
+  const adminEmail = await adminRecipientEmail();
   if (!adminEmail) return json({ error: 'Destinatário administrativo não configurado.' }, 500);
   const crmUrl = String(Deno.env.get('CRM_URL') || '').trim();
 
@@ -177,7 +175,7 @@ Deno.serve(async (request: Request) => {
       subject: `✅ Teste ${kind === 'customer' ? 'Site' : 'CRM'} Itajaó`,
       payload: {
         title: 'Envio de e-mail funcionando',
-        message: `O remetente ${senderAddress(kind)} está configurado corretamente.`,
+        message: `O remetente ${await senderAddress(kind)} está configurado corretamente.`,
       },
     });
     return json({ ok: result.ok, sender: kind, status: result.status, error: result.error || null }, result.ok ? 200 : 502);

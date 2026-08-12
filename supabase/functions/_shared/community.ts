@@ -1,6 +1,6 @@
 import { createClient, SupabaseClient } from 'npm:@supabase/supabase-js@2.112.3';
 import { cleanText, env, PublicError, safeEqual } from './core.ts';
-import { enqueueEmail } from './email.ts';
+import { adminRecipientEmail, enqueueEmail } from './email.ts';
 
 const MEDIA_BUCKET = 'community-media';
 const ALLOWED_IMAGE_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
@@ -234,9 +234,7 @@ export async function notifyAdmins(input: {
     if (inserted.error) console.error('CRM community notification failed', inserted.error);
   }
 
-  const adminEmail = String(
-    Deno.env.get('NOTIFICATION_EMAIL_TO') || Deno.env.get('REPORT_EMAIL_TO') || '',
-  ).trim();
+  const adminEmail = await adminRecipientEmail();
   if (!adminEmail) {
     console.error('Admin community email recipient is not configured');
     return;

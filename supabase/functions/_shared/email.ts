@@ -36,6 +36,24 @@ export type QueueEmailInput = {
   priority?: number;
 };
 
+type RuntimeEmailConfig = {
+  notification_email_to: string;
+  customer_email_from: string;
+  notification_email_from: string;
+  reply_to_email: string;
+};
+
+let runtimeEmailConfigPromise: Promise<RuntimeEmailConfig | null> | null = null;
+
+async function runtimeEmailConfig() {
+  if (!runtimeEmailConfigPromise) {
+    runtimeEmailConfigPromise = dbRequest(
+      'email_runtime_config?singleton=eq.true&select=notification_email_to,customer_email_from,notification_email_from,reply_to_email&limit=1',
+    ).then((rows) => (rows?.[0] || null) as RuntimeEmailConfig | null);
+  }
+  return await runtimeEmailConfigPromise;
+}
+
 function escapeHtml(value: unknown) {
   return String(value ?? '').replace(/[&<>"']/g, (character) => ({
     '&': '&amp;',
@@ -65,7 +83,7 @@ function firstName(value: unknown) {
 }
 
 function siteUrl(path = '') {
-  const base = env('SITE_URL').replace(/\/+$/, '');
+  const base = String(Deno.env.get('SITE_URL') || 'https://cafeitajao.com.br').replace(/\/+$/, '');
   return path ? `${base}/${path.replace(/^\/+/, '')}` : base;
 }
 
@@ -324,26 +342,40 @@ export async function enqueueEmail(input: QueueEmailInput) {
   });
 }
 
-export function senderAddress(kind: SenderKind) {
+export async function adminRecipientEmail() {
+  const configured = String(
+    Deno.env.get('NOTIFICATION_EMAIL_TO') || Deno.env.get('REPORT_EMAIL_TO') || '',
+  ).trim();
+  if (configured) return configured;
+  return String((await runtimeEmailConfig())?.notification_email_to || '').trim();
+}
+
+export async function senderAddress(kind: SenderKind) {
   const address = kind === 'admin'
     ? Deno.env.get('NOTIFICATION_EMAIL_FROM') || Deno.env.get('REPORT_EMAIL_FROM')
     : Deno.env.get('CUSTOMER_EMAIL_FROM') || Deno.env.get('REPORT_EMAIL_FROM');
-  if (!address?.trim()) throw new Error(`Remetente ${kind} não configurado.`);
-  return address.trim();
+  if (address?.trim()) return address.trim();
+  const fallback = await runtimeEmailConfig();
+  const runtimeAddress = kind === 'admin'
+    ? fallback?.notification_email_from
+    : fallback?.customer_email_from;
+  if (!runtimeAddress?.trim()) throw new Error(`Remetente ${kind} não configurado.`);
+  return runtimeAddress.trim();
 }
 
 export async function sendWithResend(row: Pick<EmailOutboxRow, 'id' | 'category' | 'recipient_email' | 'sender_kind' | 'subject' | 'payload' | 'template_key' | 'recipient_name'>) {
   const apiKey = env('RESEND_API_KEY');
   const html = renderEmail(row);
-  const replyTo = String(
+  let replyTo = String(
     Deno.env.get('REPLY_TO_EMAIL')
       || Deno.env.get('CUSTOMER_EMAIL_FROM')
       || Deno.env.get('REPORT_EMAIL_FROM')
       || '',
   ).trim();
+  if (!replyTo) replyTo = String((await runtimeEmailConfig())?.reply_to_email || '').trim();
   if (!replyTo) throw new Error('Endereço de resposta não configurado.');
   const resendBody: Record<string, unknown> = {
-    from: senderAddress(row.sender_kind),
+    from: await senderAddress(row.sender_kind),
     to: [row.recipient_email],
     reply_to: replyTo,
     subject: row.subject,

@@ -74,4 +74,9 @@ Os remetentes e o endereço de resposta são configurados somente nos secrets
 `REPLY_TO_EMAIL` do Supabase. Nenhum endereço administrativo fica gravado no
 repositório público.
 
+Enquanto os secrets legados não estiverem migrados, a tabela privada
+`email_runtime_config` fornece o fallback dos remetentes e reaproveita o
+destinatário já validado pelos alertas anteriores do CRM. Ela não possui acesso
+para `anon` nem `authenticated`.
+
 Não adicione chaves do Resend, service role ou secrets de webhook ao repositório.
