@@ -268,6 +268,7 @@ body.nl-lock{overflow:hidden}
 .nl-logo{width:156px;height:auto;display:block;margin:0 auto 16px}
 .nl-title{text-align:center;color:#3D2B1F;font-size:.88rem;line-height:1.5;margin-bottom:20px;font-weight:500}
 .nl-form{display:flex;flex-direction:column;gap:12px}
+.nl-hp{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
 .nl-input{width:100%;height:42px;border:1px solid #c9c2bd;background:#fff;color:#3D2B1F;padding:0 12px;font:500 .78rem var(--fonte-site);outline:none;border-radius:0;transition:border-color .2s,box-shadow .2s}
 .nl-input::placeholder{color:#7b706a;opacity:1}
 .nl-input:focus{border-color:var(--dourado);box-shadow:0 0 0 2px rgba(166,123,91,.12)}
@@ -411,6 +412,7 @@ body,body *,body *::before,body *::after{
       <form class="nl-form" id="newsletterForm">
         <input class="nl-input" id="newsletterName" name="name" type="text" maxlength="120" autocomplete="name" placeholder="Nome completo" aria-label="Nome completo" required>
         <input class="nl-input" id="newsletterEmail" name="email" type="email" maxlength="180" autocomplete="email" inputmode="email" placeholder="Seu e-mail" aria-label="Seu e-mail" required>
+        <label class="nl-hp">Site<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
         <button class="nl-submit" id="newsletterSubmit" type="submit">Enviar</button>
         <p class="nl-consent">Ao enviar, você concorda em receber novidades e promoções da Itajaó. <a href="https://cafeitajao.com.br/politica-de-privacidade/" target="_blank" rel="noopener">Privacidade</a>.</p>
         <p class="nl-status" id="newsletterStatus" role="status" aria-live="polite"></p>
@@ -450,8 +452,8 @@ body,body *,body *::before,body *::after{
 </a>
   <ul class="nav-links">
     <li><a href="#quem">Origem</a></li>
-    <li><a href="#cafes">Cafés</a></li> 
-
+    <li><a href="#cafes">Cafés</a></li>
+    <li><a href="comunidade.html">Comunidade</a></li>
     <li><a href="#clube">Assinatura</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
@@ -823,40 +825,14 @@ body,body *,body *::before,body *::after{
 <!-- ═══════════════════════════════════════
      DEPOIMENTOS — EDITE OS TEXTOS ABAIXO
 ═══════════════════════════════════════ -->
-<section class="dep">
+<section class="dep" id="comunidade">
   <div class="dhead rv">
-    <div class="stag" style="justify-content:center">Depoimentos</div>
-    <h2 class="stitle">O que dizem<br>quem já <em>descobriu</em></h2>
+    <div class="stag" style="justify-content:center">Compras verificadas</div>
+    <h2 class="stitle">O que diz<br>a nossa <em>comunidade</em></h2>
+    <p style="color:var(--muted);font-size:.8rem;line-height:1.7;margin-top:1rem">Avaliações reais, vinculadas a pedidos pagos e moderadas pela equipe Itajaó.</p>
   </div>
-  <div class="dgrid">
-    <div class="dcard rv d1">
-      <div class="dperson">
-        <img class="dphoto" src="assets/images/testimonials/depoimento1.jpg" alt="Foto de Ana Carolina" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <span class="dphoto-placeholder">AC</span>
-      </div>
-      <div class="ddots"><span></span><span></span><span></span><span></span><span></span></div>
-      <p class="dtxt">"Nunca achei que café pudesse ter tanto sabor. O aroma já me conquistou antes do primeiro gole. É completamente diferente de tudo que já tomei."</p>
-      <div class="dname">Ana Carolina M. — São Paulo, SP</div>
-    </div>
-    <div class="dcard rv d2">
-      <div class="dperson">
-        <img class="dphoto" src="assets/images/testimonials/depoimento2.jpg" alt="Foto de Marcos" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <span class="dphoto-placeholder">MR</span>
-      </div>
-      <div class="ddots"><span></span><span></span><span></span><span></span><span></span></div>
-      <p class="dtxt">"Faz dois meses que assino o clube e minha rotina mudou completamente. O atendimento via WhatsApp é super próximo. Recomendo demais!"</p>
-      <div class="dname">Marcos R. — Belo Horizonte, MG</div>
-    </div>
-    <div class="dcard rv d3">
-      <div class="dperson">
-        <img class="dphoto" src="assets/images/testimonials/depoimento3.jpg" alt="Foto de Juliana" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <span class="dphoto-placeholder">JF</span>
-      </div>
-      <div class="ddots"><span></span><span></span><span></span><span></span><span></span></div>
-      <p class="dtxt">"As notas de chocolate e caramelo são reais, não é marketing. Cada xícara no V60 é uma experiência. Meus amigos já pedem para levar quando me visitam."</p>
-      <div class="dname">Juliana F. — Curitiba, PR</div>
-    </div>
-  </div>
+  <div class="dgrid" id="homeCommunityReviews" aria-live="polite"><div class="dcard"><p class="dtxt">Carregando avaliações verificadas…</p></div></div>
+  <div style="text-align:center;margin-top:2.2rem"><a class="btn-d" href="comunidade.html" style="text-decoration:none">Ver avaliações e receitas da Comunidade →</a></div>
 </section>
 
 
@@ -996,6 +972,7 @@ body,body *,body *::before,body *::after{
       <ul class="flinks">
         <li><a href="#quem">Quem somos</a></li>
         <li><a href="#cafes">Nossos cafés</a></li>
+        <li><a href="comunidade.html">Comunidade Itajaó</a></li>
         <li><a href="#clube">Clube de assinatura</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
@@ -1075,12 +1052,14 @@ window.addEventListener('scroll',function(){
 <script src="assets/js/store-config.js"></script>
 <script src="assets/js/store.js"></script>
 <script src="assets/js/home-store.js"></script>
+<script src="assets/js/home-community.js"></script>
 
 <script>
 // ── NEWSLETTER ──
 (function(){
-  var SUPABASE_URL='https://eumgdopgiffzpahzcdsq.supabase.co';
-  var SUPABASE_KEY='sb_publishable_ydNEXUWmA65ZnPFXnpImvA_HMSIJ4B7';
+  var STORE_CONFIG=window.ITAJAO_STORE_CONFIG||{};
+  var FUNCTIONS_URL=String(STORE_CONFIG.functionsBaseUrl||'').replace(/\/+$/,'');
+  var SUPABASE_KEY=String(STORE_CONFIG.supabasePublishableKey||'');
   var popup=document.getElementById('newsletterPopup');
   var closeBtn=document.getElementById('newsletterClose');
   var form=document.getElementById('newsletterForm');
@@ -1116,17 +1095,17 @@ window.addEventListener('scroll',function(){
     status.textContent='Salvando seu cadastro...';
     submitBtn.disabled=true;
     try{
-      var response=await fetch(SUPABASE_URL+'/rest/v1/newsletter_subscribers?on_conflict=email',{
+      var response=await fetch(FUNCTIONS_URL+'/newsletter-signup',{
         method:'POST',
         headers:{
           'apikey':SUPABASE_KEY,
           'Authorization':'Bearer '+SUPABASE_KEY,
-          'Content-Type':'application/json',
-          'Prefer':'resolution=ignore-duplicates,return=minimal'
+          'Content-Type':'application/json'
         },
-        body:JSON.stringify({name:name,email:email,source:'popup_site_itajao'})
+        body:JSON.stringify({name:name,email:email,source:'popup_home',website:form.elements.website.value})
       });
-      if(!response.ok)throw new Error('Newsletter HTTP '+response.status);
+      var data=await response.json().catch(function(){return{}});
+      if(!response.ok)throw new Error(data.error||'Newsletter HTTP '+response.status);
       setStore(localStorage,'itajaoNewsletterSubscribed','1');
       setStore(sessionStorage,'itajaoNewsletterDismissed','1');
       status.className='nl-status success';

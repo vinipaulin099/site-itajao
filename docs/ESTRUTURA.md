@@ -9,12 +9,16 @@ site-itajao/
 ├── carrinho.html
 ├── checkout.html
 ├── pedido.html
+├── comunidade.html
+├── avaliar.html
+├── cancelar-inscricao.html
 ├── assets/
 │   ├── images/
 │   │   ├── brand/
 │   │   ├── home/
-│   │   ├── products/
-│   │   └── testimonials/
+│   │   └── products/
+│   ├── css/
+│   │   └── community.css
 │   └── js/
 ├── docs/
 └── supabase/
@@ -28,7 +32,10 @@ site-itajao/
 - `assets/images/brand/`: logos e variações da identidade visual.
 - `assets/images/home/`: imagens do carrossel e da seção Quem Somos.
 - `assets/images/products/`: fotos das embalagens e produtos.
-- `assets/images/testimonials/`: fotos dos clientes dos depoimentos. O site já procura por `depoimento1.jpg`, `depoimento2.jpg` e `depoimento3.jpg` nesta pasta.
+- `comunidade.html`: avaliações verificadas e receitas aprovadas.
+- `avaliar.html`: formulário protegido por link e código do convite.
+- `cancelar-inscricao.html`: confirmação de descadastro da newsletter.
+- `assets/css/community.css`: estilos das páginas da comunidade.
 - `assets/js/store.js`: catálogo público, carrinho persistente e estado da finalização.
 - `assets/js/cart.js`: cupom, CEP, frete, recomendações e resumo do carrinho.
 - `assets/js/checkout.js`: dados de cliente/endereço e criação do pagamento.
