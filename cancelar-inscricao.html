@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>Cancelar inscrição | Itajaó Cafés Especiais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/community.css">
+</head>
+<body>
+  <nav class="site-nav" aria-label="Navegação principal"><a class="site-logo" href="index.html"><img src="assets/images/brand/teste4.png" alt="Itajaó Cafés Especiais"></a><div class="site-links"><a href="index.html">Voltar ao site</a></div></nav>
+  <main class="simple-page">
+    <section class="simple-card">
+      <span class="eyebrow">Preferências de e-mail</span>
+      <h1>Cancelar novidades da Itajaó?</h1>
+      <p id="unsubscribeText">Ao confirmar, você deixará de receber novidades e promoções. E-mails essenciais sobre pedidos e segurança continuarão chegando.</p>
+      <p class="form-status" id="unsubscribeStatus" role="status" aria-live="polite"></p>
+      <button class="primary-button" id="unsubscribeButton" type="button">Confirmar cancelamento</button>
+    </section>
+  </main>
+  <script src="assets/js/store-config.js"></script>
+  <script>
+  (function(){
+    'use strict';
+    var config=window.ITAJAO_STORE_CONFIG||{};
+    var token=new URLSearchParams(location.search).get('token')||'';
+    var button=document.getElementById('unsubscribeButton');
+    var status=document.getElementById('unsubscribeStatus');
+    var key=String(config.supabasePublishableKey||'');
+    if(!/^[0-9a-f-]{36}$/i.test(token)){status.className='form-status error';status.textContent='Este link de cancelamento é inválido.';button.disabled=true;return}
+    button.addEventListener('click',async function(){
+      button.disabled=true;status.className='form-status';status.textContent='Atualizando sua preferência…';
+      try{
+        var response=await fetch(String(config.functionsBaseUrl||'').replace(/\/+$/,'')+'/newsletter-unsubscribe',{method:'POST',headers:{apikey:key,Authorization:'Bearer '+key,'Content-Type':'application/json'},body:JSON.stringify({token:token})});
+        var data=await response.json().catch(function(){return{}});if(!response.ok)throw new Error(data.error||'Não foi possível cancelar agora.');
+        status.className='form-status success';status.textContent='Inscrição cancelada. Sua preferência foi salva.';document.getElementById('unsubscribeText').textContent='Você não receberá mais novidades e promoções da Itajaó.';button.hidden=true;
+      }catch(error){status.className='form-status error';status.textContent=error.message;button.disabled=false}
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -4,6 +4,7 @@ import { insertOrder, logIntegration, releaseCouponRedemption, updateOrder } fro
 import { fetchShippingQuotes } from '../_shared/shipping.ts';
 import { applyCouponToShippingQuotes, quoteCoupon } from '../_shared/promotions.ts';
 import { lookupCep, validateAddress, validateCustomer } from '../_shared/validation.ts';
+import { enqueueEmail } from '../_shared/email.ts';
 
 function returnUrl(siteUrl: string, orderId: string, token: string, state: string) {
   const url = new URL('pedido.html', siteUrl.endsWith('/') ? siteUrl : `${siteUrl}/`);
@@ -129,6 +130,33 @@ Deno.serve(async (req) => {
     if (!checkoutUrl) throw new PublicError('O Mercado Pago não retornou a URL de pagamento.', 502);
     await updateOrder(order.id, { mp_preference_id: preference.id, integration_error: null });
     await logIntegration(order.id, 'mercadopago', 'preference_create', true, `Preferência ${preference.id} criada.`, preference.id);
+    try {
+      await enqueueEmail({
+        category: 'transactional',
+        templateKey: 'order_received',
+        recipientEmail: customer.email,
+        recipientName: customer.name,
+        senderKind: 'customer',
+        subject: `Recebemos seu pedido ${order.order_number || ''}`.trim(),
+        payload: {
+          customer_name: customer.name,
+          order_id: order.id,
+          order_number: order.order_number,
+          public_token: order.public_token,
+          subtotal: Number(order.subtotal ?? subtotal),
+          shipping_amount: Number(order.shipping_amount ?? shippingAmount),
+          total_amount: Number(order.total),
+        },
+        idempotencyKey: `order:${order.id}:received`,
+        relatedOrderId: order.id,
+        relatedCustomerId: order.customer_id || null,
+        resourceType: 'order',
+        resourceId: order.id,
+        priority: 15,
+      });
+    } catch (emailError) {
+      console.error('Order received email queue failed', order.id, emailError);
+    }
     return json({
       orderId: order.id,
       checkoutUrl,

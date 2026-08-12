@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>Avaliar compra | Itajaó Cafés Especiais</title>
+  <meta name="description" content="Avalie os cafés do seu pedido Itajaó verificado.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/community.css">
+</head>
+<body>
+  <div class="top-bar"><div class="top-bar-track"><span>☕ SUA EXPERIÊNCIA AJUDA OUTRAS PESSOAS A DESCOBRIR O ITAJAÓ • AVALIAÇÃO DE COMPRA VERIFICADA •</span></div></div>
+  <nav class="site-nav" aria-label="Navegação principal">
+    <a class="site-logo" href="index.html"><img src="assets/images/brand/teste4.png" alt="Itajaó Cafés Especiais"></a>
+    <div class="site-links"><a href="comunidade.html">Ver Comunidade</a><a class="nav-button" href="index.html#cafes">Nossos cafés</a></div>
+  </nav>
+
+  <main class="review-shell">
+    <header class="review-intro">
+      <span class="eyebrow">Compra verificada</span>
+      <h1>Conte como foi seu Itajaó</h1>
+      <p>Use o código de 6 dígitos recebido no WhatsApp. O convite vale por 30 dias e permite até 5 tentativas.</p>
+    </header>
+
+    <section class="step-card" id="codeStep" aria-labelledby="codeTitle">
+      <div class="code-wrap">
+        <h2 id="codeTitle">Confirme seu código</h2>
+        <form id="codeForm">
+          <label class="field" for="reviewCode">Código de 6 dígitos</label>
+          <input class="code-input" id="reviewCode" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" aria-describedby="codeHelp" required>
+          <p id="codeHelp" class="form-status" role="status" aria-live="polite"></p>
+          <button class="primary-button" id="verifyButton" type="submit">Confirmar código</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="step-card" id="reviewStep" hidden aria-labelledby="reviewFormTitle">
+      <form id="reviewForm">
+        <div class="review-form-head">
+          <div><span class="eyebrow" id="orderNumber"></span><h2 id="reviewFormTitle">Sua avaliação</h2></div>
+          <span class="verified-pill">✓ Compra confirmada</span>
+        </div>
+        <div class="name-grid">
+          <div class="field"><label for="firstName">Nome</label><input id="firstName" name="first_name" type="text" maxlength="80" autocomplete="given-name" required></div>
+          <div class="field"><label for="lastName">Sobrenome</label><input id="lastName" name="last_name" type="text" maxlength="100" autocomplete="family-name" required></div>
+        </div>
+        <div id="productsToReview"></div>
+        <p class="form-status" id="reviewStatus" role="status" aria-live="polite"></p>
+        <div class="form-actions"><a class="secondary-button" href="comunidade.html">Cancelar</a><button class="primary-button" id="reviewSubmit" type="submit">Enviar avaliação</button></div>
+      </form>
+    </section>
+
+    <section class="step-card success-card" id="successStep" hidden>
+      <div class="success-icon" aria-hidden="true">☕</div>
+      <h2>Obrigado por compartilhar</h2>
+      <p>Recebemos sua avaliação. Ela aparecerá na Comunidade Itajaó depois da análise da nossa equipe.</p>
+      <a class="primary-button" href="comunidade.html">Conhecer a Comunidade</a>
+    </section>
+  </main>
+
+  <footer class="site-footer"><span>© 2026 Itajaó Cafés Especiais LTDA · Sul de Minas</span><span><a href="mailto:sac@cafeitajao.com.br">sac@cafeitajao.com.br</a></span></footer>
+  <script src="assets/js/store-config.js"></script>
+  <script src="assets/js/review-form.js"></script>
+</body>
+</html>

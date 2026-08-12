@@ -26,3 +26,30 @@ verify_jwt = false
 
 [functions.newsletter-signup]
 verify_jwt = false
+
+[functions.newsletter-unsubscribe]
+verify_jwt = false
+
+[functions.community-feed]
+verify_jwt = false
+
+[functions.community-review]
+verify_jwt = false
+
+[functions.community-recipe]
+verify_jwt = false
+
+[functions.community-admin]
+verify_jwt = true
+
+[functions.crm-notification-dispatch]
+verify_jwt = false
+
+[functions.resend-webhook]
+verify_jwt = false
+
+[functions.auth-email-hook]
+verify_jwt = false
+
+[functions.monthly-reseller-report]
+verify_jwt = true
