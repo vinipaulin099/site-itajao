@@ -83,7 +83,7 @@ function firstName(value: unknown) {
 }
 
 function siteUrl(path = '') {
-  const base = String(Deno.env.get('SITE_URL') || 'https://cafeitajao.com.br').replace(/\/+$/, '');
+  const base = String(Deno.env.get('SITE_URL') || 'https://vinipaulin099.github.io/site-itajao').replace(/\/+$/, '');
   return path ? `${base}/${path.replace(/^\/+/, '')}` : base;
 }
 
