@@ -327,7 +327,7 @@ export async function enqueueEmail(input: QueueEmailInput) {
 export function senderAddress(kind: SenderKind) {
   const address = kind === 'admin'
     ? Deno.env.get('NOTIFICATION_EMAIL_FROM') || Deno.env.get('REPORT_EMAIL_FROM')
-    : Deno.env.get('CUSTOMER_EMAIL_FROM');
+    : Deno.env.get('CUSTOMER_EMAIL_FROM') || Deno.env.get('REPORT_EMAIL_FROM');
   if (!address?.trim()) throw new Error(`Remetente ${kind} não configurado.`);
   return address.trim();
 }
@@ -336,7 +336,10 @@ export async function sendWithResend(row: Pick<EmailOutboxRow, 'id' | 'category'
   const apiKey = env('RESEND_API_KEY');
   const html = renderEmail(row);
   const replyTo = String(
-    Deno.env.get('REPLY_TO_EMAIL') || Deno.env.get('CUSTOMER_EMAIL_FROM') || '',
+    Deno.env.get('REPLY_TO_EMAIL')
+      || Deno.env.get('CUSTOMER_EMAIL_FROM')
+      || Deno.env.get('REPORT_EMAIL_FROM')
+      || '',
   ).trim();
   if (!replyTo) throw new Error('Endereço de resposta não configurado.');
   const resendBody: Record<string, unknown> = {
