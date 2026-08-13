@@ -16,7 +16,7 @@
       const addButton=actions.querySelector('.add');const buyButton=actions.querySelector('.buy-now');
       if(!product.available){if(badge){badge.textContent='Esgotado';badge.classList.add('pbadge-ltd')}addButton.disabled=true;buyButton.disabled=true;addButton.textContent='Esgotado';buyButton.textContent='Indisponível'}
       else{
-        addButton.addEventListener('click',event=>{event.stopPropagation();store.add(product.id,1);addButton.textContent='Adicionado ✓';setTimeout(()=>{addButton.textContent='Adicionar ao carrinho'},1200)});
+        addButton.addEventListener('click',event=>{event.stopPropagation();store.add(product.id,1);addButton.textContent='Adicionado';setTimeout(()=>{addButton.textContent='Adicionar ao carrinho'},1200)});
         buyButton.addEventListener('click',event=>{event.stopPropagation();store.add(product.id,1);location.href='carrinho.html'});
       }
       card.querySelector('.pinfo').appendChild(actions);

@@ -9,19 +9,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/community.css">
+  <link rel="stylesheet" href="assets/css/brand-refresh.css">
 </head>
 <body>
-  <div class="top-bar"><div class="top-bar-track"><span>☕ COMUNIDADE ITAJAÓ • AVALIAÇÕES DE COMPRAS VERIFICADAS • RECEITAS FEITAS COM CAFÉ ITAJAÓ • DIRETO DA FAZENDA PARA A SUA XÍCARA •</span></div></div>
-  <nav class="site-nav" aria-label="Navegação principal">
-    <a class="site-logo" href="index.html" aria-label="Página inicial"><img src="assets/images/brand/teste4.png" alt="Itajaó Cafés Especiais"></a>
-    <div class="site-links">
-      <a href="index.html#quem">Origem</a>
-      <a href="index.html#cafes">Cafés</a>
-      <a href="#receitas" class="nav-button" data-open-recipe>Enviar receita</a>
-    </div>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="top-bar"><div class="top-bar-track"><span>COMUNIDADE ITAJAÓ • AVALIAÇÕES DE COMPRAS VERIFICADAS • RECEITAS FEITAS COM CAFÉ ITAJAÓ • DIRETO DA FAZENDA PARA A SUA XÍCARA •</span></div></div>
+  <nav class="site-nav global-nav" aria-label="Navegação principal">
+    <a class="nav-logo" href="index.html" aria-label="Página inicial"><img src="assets/images/brand/teste4.png" alt="Itajaó Cafés Especiais"><span class="brand-wordmark"><strong>ITAJAÓ</strong><small>Cafés especiais</small></span></a>
+    <ul class="site-links"><li><a href="index.html#quem">Origem</a></li><li><a href="produtos.html">Cafés</a></li><li><a href="comunidade.html" aria-current="page">Comunidade</a></li><li><a href="assinatura.html">Assinatura</a></li><li><a href="perguntas-frequentes.html">FAQ</a></li></ul>
+    <div class="nav-actions"><a href="enviar-receita.html" class="nav-cta">Enviar receita</a><a class="nav-cart" href="carrinho.html" aria-label="Abrir carrinho"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20.5 8H6.1M10 20h.01M17 20h.01" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-cart-count" data-cart-count hidden>0</span></a></div>
   </nav>
 
-  <main class="community-main">
+  <main class="community-main site-page" id="conteudo">
     <header class="community-hero">
       <span class="eyebrow">Feita por quem vive o café</span>
       <h1>Comunidade Itajaó</h1>
@@ -48,39 +47,17 @@
     <section class="tab-panel" id="recipesPanel" role="tabpanel" aria-labelledby="recipesTab" hidden>
       <div class="section-heading" id="receitas">
         <div><h2>Receitas para o Itajaó</h2><p>Do café coado à sobremesa: ideias enviadas pela comunidade e aprovadas pela nossa equipe.</p></div>
-        <button class="primary-button" type="button" data-open-recipe>Enviar minha receita</button>
+        <a class="primary-button" href="enviar-receita.html">Enviar minha receita</a>
       </div>
       <div class="card-grid" id="recipesGrid" aria-live="polite"><div class="loading-state">Carregando receitas…</div></div>
       <div class="load-row"><button class="secondary-button" id="loadMoreRecipes" type="button" hidden>Ver mais receitas</button></div>
     </section>
   </main>
 
-  <dialog id="recipeDialog" aria-labelledby="recipeDialogTitle">
-    <div class="dialog-card">
-      <button class="dialog-close" type="button" data-close-recipe aria-label="Fechar">×</button>
-      <h2 id="recipeDialogTitle">Compartilhe sua receita</h2>
-      <p class="dialog-intro">Ela será analisada pela equipe Itajaó antes de aparecer publicamente. Seu e-mail não será exibido.</p>
-      <form id="recipeForm">
-        <div class="form-grid">
-          <div class="field"><label for="recipeAuthor">Seu nome</label><input id="recipeAuthor" name="author_name" type="text" maxlength="120" autocomplete="name" required></div>
-          <div class="field"><label for="recipeEmail">Seu e-mail</label><input id="recipeEmail" name="email" type="email" maxlength="180" autocomplete="email" required></div>
-          <div class="field full"><label for="recipeTitle">Nome da receita</label><input id="recipeTitle" name="title" type="text" maxlength="140" required></div>
-          <div class="field full"><label for="recipeIntro">Apresentação <small>(opcional)</small></label><textarea id="recipeIntro" name="introduction" maxlength="500" rows="3" placeholder="Conte brevemente quando você gosta de preparar essa receita."></textarea></div>
-          <div class="field full"><label for="recipeIngredients">Ingredientes</label><textarea id="recipeIngredients" name="ingredients" maxlength="4000" placeholder="Um ingrediente por linha" required></textarea></div>
-          <div class="field full"><label for="recipeInstructions">Modo de preparo</label><textarea id="recipeInstructions" name="instructions" maxlength="8000" placeholder="Explique o preparo passo a passo" required></textarea></div>
-          <div class="field"><label for="recipeTime">Tempo em minutos <small>(opcional)</small></label><input id="recipeTime" name="prep_minutes" type="number" min="1" max="1440" inputmode="numeric"></div>
-          <div class="field"><label for="recipeServings">Rendimento <small>(opcional)</small></label><input id="recipeServings" name="servings" type="text" maxlength="80" placeholder="Ex.: 2 xícaras"></div>
-          <div class="field full"><label for="recipePhoto">Foto <small>(JPG, PNG ou WebP · até 6 MB)</small></label><input id="recipePhoto" name="photo" type="file" accept="image/jpeg,image/png,image/webp"></div>
-          <div class="hidden-field" aria-hidden="true"><label for="recipeWebsite">Site</label><input id="recipeWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-        </div>
-        <p class="form-status" id="recipeStatus" role="status" aria-live="polite"></p>
-        <div class="form-actions"><button class="secondary-button" type="button" data-close-recipe>Cancelar</button><button class="primary-button" id="recipeSubmit" type="submit">Enviar para análise</button></div>
-      </form>
-    </div>
-  </dialog>
-
-  <footer class="site-footer"><span>© 2026 Itajaó Cafés Especiais LTDA · Sul de Minas</span><span><a href="index.html">Início</a> · <a href="https://instagram.com/cafeitajao" target="_blank" rel="noopener">Instagram</a> · <a href="https://wa.me/5535998087168" target="_blank" rel="noopener">WhatsApp</a></span></footer>
+  <footer class="global-footer"><div class="global-footer-inner"><div class="global-footer-brand"><img src="assets/images/brand/teste4.png" alt="Itajaó"><strong>ITAJAÓ CAFÉS ESPECIAIS</strong><p>Da Fazenda Itajaó, no Sul de Minas, para a sua xícara.</p></div><div><h2>Comprar</h2><ul><li><a href="produtos.html">Todos os cafés</a></li><li><a href="assinatura.html">Assinatura</a></li><li><a href="carrinho.html">Carrinho</a></li></ul></div><div><h2>Conhecer</h2><ul><li><a href="index.html#quem">Nossa origem</a></li><li><a href="comunidade.html">Comunidade</a></li><li><a href="enviar-receita.html">Enviar receita</a></li></ul></div><div><h2>Ajuda</h2><ul><li><a href="perguntas-frequentes.html">Perguntas frequentes</a></li><li><a href="mailto:sac@cafeitajao.com.br">sac@cafeitajao.com.br</a></li><li><a href="https://wa.me/5535998087168" target="_blank" rel="noopener">WhatsApp</a></li></ul></div></div><div class="global-footer-bottom"><span>© <span data-current-year>2026</span> Itajaó Cafés Especiais LTDA</span><span>CNPJ 62.431.181/0001-68 · Alpinópolis, MG</span></div></footer>
   <script src="assets/js/store-config.js"></script>
+  <script src="assets/js/store.js"></script>
   <script src="assets/js/community.js"></script>
+  <script src="assets/js/site-ui.js"></script>
 </body>
 </html>

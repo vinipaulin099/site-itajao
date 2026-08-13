@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Enviar receita | Comunidade Itajaó</title>
+  <meta name="description" content="Envie sua receita feita com Café Itajaó para a equipe analisar e publicar na comunidade.">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/brand-refresh.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="top-bar"><div class="top-bar-track"><span>COMUNIDADE ITAJAÓ • RECEITAS FEITAS COM CAFÉ ITAJAÓ • CONTE SUA HISTÓRIA E COMPARTILHE SEU PREPARO •</span></div></div>
+  <nav class="global-nav" aria-label="Navegação principal">
+    <a class="nav-logo" href="index.html" aria-label="Itajaó, página inicial"><img src="assets/images/brand/teste4.png" alt="Itajaó Cafés Especiais"><span class="brand-wordmark"><strong>ITAJAÓ</strong><small>Cafés especiais</small></span></a>
+    <ul class="nav-links"><li><a href="index.html#quem">Origem</a></li><li><a href="produtos.html">Cafés</a></li><li><a href="comunidade.html" aria-current="page">Comunidade</a></li><li><a href="assinatura.html">Assinatura</a></li><li><a href="perguntas-frequentes.html">FAQ</a></li></ul>
+    <div class="nav-actions"><a class="nav-cta" href="comunidade.html#receitas">Ver receitas</a><a class="nav-cart" href="carrinho.html" aria-label="Abrir carrinho"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20.5 8H6.1M10 20h.01M17 20h.01" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-cart-count" data-cart-count hidden>0</span></a></div>
+  </nav>
+  <main class="site-page" id="conteudo">
+    <header class="page-hero"><div class="page-shell"><span class="eyebrow">Caderno da comunidade</span><h1>Compartilhe sua receita.</h1><p>Organize ingredientes e preparo passo a passo. A equipe Itajaó revisa cada envio antes de publicá-lo, e seu e-mail nunca aparece na página.</p></div></header>
+    <section class="page-shell recipe-layout">
+      <form class="recipe-form-card" id="recipeForm" enctype="multipart/form-data">
+        <section class="recipe-section">
+          <div class="recipe-section-heading"><span>1</span><div><h2>Sobre você e a receita</h2><p>Essas informações identificam a autoria e ajudam nossa equipe a entrar em contato.</p></div></div>
+          <div class="form-grid">
+            <div class="form-field"><label for="recipeAuthor">Seu nome</label><input id="recipeAuthor" name="author_name" type="text" maxlength="120" autocomplete="name" required></div>
+            <div class="form-field"><label for="recipeEmail">Seu e-mail</label><input id="recipeEmail" name="email" type="email" maxlength="180" autocomplete="email" required></div>
+            <div class="form-field full"><label for="recipeTitle">Nome da receita</label><input id="recipeTitle" name="title" type="text" maxlength="140" required></div>
+            <div class="form-field full"><label for="recipeIntro">Apresentação opcional</label><textarea id="recipeIntro" name="introduction" maxlength="500" rows="4" placeholder="Conte quando você prepara essa receita e o que a torna especial."></textarea></div>
+          </div>
+        </section>
+        <section class="recipe-section">
+          <div class="recipe-section-heading"><span>2</span><div><h2>Ingredientes</h2><p>Escreva quantidade, unidade e ingrediente. Use a ordem em que eles entram no preparo.</p></div></div>
+          <div class="repeat-list" id="ingredientRows"></div><button class="add-row" id="addIngredient" type="button">Adicionar ingrediente</button>
+          <textarea name="ingredients" id="recipeIngredients" hidden required></textarea>
+        </section>
+        <section class="recipe-section">
+          <div class="recipe-section-heading"><span>3</span><div><h2>Modo de preparo</h2><p>Divida o processo em etapas curtas, claras e na sequência correta.</p></div></div>
+          <div class="repeat-list" id="instructionRows"></div><button class="add-row" id="addInstruction" type="button">Adicionar etapa</button>
+          <textarea name="instructions" id="recipeInstructions" hidden required></textarea>
+        </section>
+        <section class="recipe-section">
+          <div class="recipe-section-heading"><span>4</span><div><h2>Detalhes finais</h2><p>Tempo, rendimento e uma boa foto ajudam outras pessoas a reproduzir a receita.</p></div></div>
+          <div class="form-grid">
+            <div class="form-field"><label for="recipeTime">Tempo em minutos</label><input id="recipeTime" name="prep_minutes" type="number" min="1" max="1440" inputmode="numeric"></div>
+            <div class="form-field"><label for="recipeServings">Rendimento</label><input id="recipeServings" name="servings" type="text" maxlength="80" placeholder="2 xícaras ou 8 porções"></div>
+            <div class="form-field full"><label for="recipePhoto">Foto em JPG, PNG ou WebP, até 6 MB</label><input id="recipePhoto" name="photo" type="file" accept="image/jpeg,image/png,image/webp"></div>
+            <div class="form-field" aria-hidden="true" style="position:absolute;left:-10000px"><label for="recipeWebsite">Site</label><input id="recipeWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+          </div>
+        </section>
+        <button class="recipe-submit" id="recipeSubmit" type="submit">Enviar para análise</button><p class="recipe-status" id="recipeStatus" role="status" aria-live="polite"></p>
+      </form>
+      <aside class="recipe-aside-card"><img src="assets/images/products/real/graos-500-cafeteria.jpg" alt="Pacote do Café Itajaó em uma cafeteria"><span class="eyebrow">Antes de enviar</span><h2>Uma receita fácil de seguir.</h2><ul><li>Use medidas precisas sempre que possível.</li><li>Informe o tipo e a quantidade de Café Itajaó.</li><li>Liste ingredientes na ordem de uso.</li><li>Separe o preparo em etapas.</li><li>Envie apenas uma foto de sua autoria.</li></ul></aside>
+    </section>
+  </main>
+  <footer class="global-footer"><div class="global-footer-inner"><div class="global-footer-brand"><img src="assets/images/brand/teste4.png" alt="Itajaó"><strong>ITAJAÓ CAFÉS ESPECIAIS</strong><p>Da Fazenda Itajaó, no Sul de Minas, para a sua xícara.</p></div><div><h2>Comprar</h2><ul><li><a href="produtos.html">Todos os cafés</a></li><li><a href="assinatura.html">Assinatura</a></li><li><a href="carrinho.html">Carrinho</a></li></ul></div><div><h2>Conhecer</h2><ul><li><a href="index.html#quem">Nossa origem</a></li><li><a href="comunidade.html">Comunidade</a></li><li><a href="enviar-receita.html">Enviar receita</a></li></ul></div><div><h2>Ajuda</h2><ul><li><a href="perguntas-frequentes.html">Perguntas frequentes</a></li><li><a href="mailto:sac@cafeitajao.com.br">sac@cafeitajao.com.br</a></li><li><a href="https://wa.me/5535998087168" target="_blank" rel="noopener">WhatsApp</a></li></ul></div></div><div class="global-footer-bottom"><span>© <span data-current-year>2026</span> Itajaó Cafés Especiais LTDA</span><span>CNPJ 62.431.181/0001-68 · Alpinópolis, MG</span></div></footer>
+  <script src="assets/js/store-config.js"></script><script src="assets/js/store.js"></script><script src="assets/js/recipe-submit.js"></script><script src="assets/js/site-ui.js"></script>
+</body>
+</html>

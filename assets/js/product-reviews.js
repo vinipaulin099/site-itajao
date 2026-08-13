@@ -21,7 +21,7 @@
       (review.title ? '<h3>' + escapeHtml(review.title) + '</h3>' : '') + '<p>' + escapeHtml(review.comment) + '</p>' +
       (photo ? '<img src="' + escapeHtml(photo) + '" alt="Foto enviada na avaliação" loading="lazy">' : '') +
       (review.admin_response ? '<div class="public-brand-response"><strong>Itajaó respondeu</strong><br>' + escapeHtml(review.admin_response) + '</div>' : '') +
-      '<div class="public-review-meta"><span>' + escapeHtml(review.reviewer || 'Cliente Itajaó') + '</span><strong>✓ Compra verificada</strong></div></article>';
+      '<div class="public-review-meta"><span>' + escapeHtml(review.reviewer || 'Cliente Itajaó') + '</span><strong>Compra verificada</strong></div></article>';
   }
   async function load(key) {
     if (!key || key === loadedKey) return;
