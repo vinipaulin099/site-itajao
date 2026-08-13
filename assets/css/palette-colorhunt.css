@@ -1,56 +1,67 @@
-/* Experimento de identidade — Warm Earth Tones.
-   #8C1C13 · #BF4342 · #E7D7C1 · #A78A7F · #735751 */
+/* Identidade Itajaó — paleta Raízes do Café.
+   Espresso #38220F · Vinho #811E2A · Oliva #5C724A
+   Creme #ECE0D1 · Dourado suave #C7B793 */
 :root{
-  --palette-wine-dark:#735751;
-  --palette-red:#8c1c13;
-  --palette-orange:#bf4342;
-  --palette-yellow:#e7d7c1;
-  --palette-taupe:#a78a7f;
-  --palette-yellow-soft:#f2e8de;
-  --palette-paper:#fbf7f2;
-  --palette-muted:#735751;
+  --palette-espresso:#38220f;
+  --palette-wine:#811e2a;
+  --palette-olive:#5c724a;
+  --palette-cream:#ece0d1;
+  --palette-gold:#c7b793;
+  --palette-gold-deep:#9c7b42;
+  --palette-coffee:#634832;
+  --palette-cream-soft:#f5eee5;
+  --palette-paper:#fbf8f3;
+  --palette-muted:var(--palette-coffee);
+
+  /* Nomes legados mantidos para as páginas que ainda usam a paleta anterior. */
+  --palette-wine-dark:var(--palette-espresso);
+  --palette-red:var(--palette-wine);
+  --palette-orange:var(--palette-olive);
+  --palette-yellow:var(--palette-cream);
+  --palette-taupe:var(--palette-gold);
+  --palette-yellow-soft:var(--palette-cream-soft);
 
   /* Compatibilidade com a identidade compartilhada e com as páginas antigas. */
   --itajao-ivory:var(--palette-yellow);
   --itajao-paper:var(--palette-paper);
   --itajao-ink:var(--palette-wine-dark);
-  --itajao-forest:var(--palette-red);
-  --itajao-forest-2:var(--palette-orange);
-  --itajao-coffee-brown:var(--palette-wine-dark);
-  --itajao-coffee-deep:var(--palette-wine-dark);
-  --itajao-wine:var(--palette-red);
-  --itajao-wine-2:var(--palette-orange);
-  --itajao-gold:var(--palette-orange);
+  --itajao-forest:var(--palette-olive);
+  --itajao-forest-2:var(--palette-espresso);
+  --itajao-coffee-brown:var(--palette-coffee);
+  --itajao-coffee-deep:var(--palette-espresso);
+  --itajao-wine:var(--palette-wine);
+  --itajao-wine-2:var(--palette-espresso);
+  --itajao-gold:var(--palette-gold);
   --itajao-sand:var(--palette-yellow);
   --itajao-muted:var(--palette-muted);
-  --itajao-line:rgba(115,87,81,.2);
-  --itajao-shadow:0 20px 60px rgba(115,87,81,.16);
+  --itajao-line:rgba(56,34,15,.18);
+  --itajao-shadow:0 20px 60px rgba(56,34,15,.15);
 
   --bege:var(--palette-yellow);
   --creme:var(--palette-yellow-soft);
   --cafe:var(--palette-wine-dark);
-  --marrom:var(--palette-red);
-  --dourado:var(--palette-orange);
-  --dourado-c:var(--palette-yellow);
+  --marrom:var(--palette-coffee);
+  --dourado:var(--palette-gold);
+  --dourado-c:var(--palette-gold);
   --muted:var(--palette-muted);
   --cream:var(--palette-yellow);
   --paper:var(--palette-paper);
   --coffee:var(--palette-wine-dark);
-  --brown:var(--palette-red);
-  --gold:var(--palette-orange);
-  --peach:var(--palette-yellow);
+  --brown:var(--palette-coffee);
+  --gold:var(--palette-gold);
+  --peach:var(--palette-gold);
   --line:var(--itajao-line);
-  --green:var(--palette-red);
-  --red:var(--palette-orange);
+  --green:var(--palette-olive);
+  --red:var(--palette-wine);
   --shadow:var(--itajao-shadow);
 }
 
 body{
-  background:var(--palette-yellow)!important;
-  color:var(--palette-wine-dark)!important;
+  background:var(--palette-cream)!important;
+  color:var(--palette-espresso)!important;
 }
-::selection{background:var(--palette-orange)!important;color:#fff!important}
-:focus-visible{outline-color:var(--palette-orange)!important}
+::selection{background:var(--palette-wine)!important;color:#fff!important}
+:focus-visible{outline-color:var(--palette-olive)!important}
 
 /* Tarja e navegação. */
 .top-bar,.checkout-page .top,.order-page .top{
@@ -62,9 +73,9 @@ body{
 }
 .global-nav,nav.global-nav,.site-nav.global-nav,.site-nav,
 .cart-page nav,.checkout-page nav,.product-page nav{
-  background:rgba(231,215,193,.96)!important;
-  border-color:rgba(115,87,81,.2)!important;
-  box-shadow:0 8px 28px rgba(115,87,81,.08)!important;
+  background:rgba(236,224,209,.96)!important;
+  border-color:rgba(56,34,15,.18)!important;
+  box-shadow:0 8px 28px rgba(56,34,15,.08)!important;
 }
 .global-nav .brand-wordmark,.global-nav .nav-links a,.global-nav .site-links a,
 .site-links,.site-links a,.cart-page .back,.cart-page .cart-link,.checkout-page .back,
@@ -94,10 +105,10 @@ body{
   background:linear-gradient(180deg,var(--palette-yellow-soft) 0%,var(--palette-yellow) 100%)!important;
 }
 
-/* Home: os cinco tons formam uma sequência clara entre os blocos. */
+/* Home: vinho e oliva equilibram o café, o creme e o dourado da embalagem. */
 .slide-overlay{
-  background:linear-gradient(180deg,rgba(115,87,81,.1) 0%,rgba(115,87,81,.76) 66%,rgba(115,87,81,.96) 100%),
-             linear-gradient(100deg,rgba(140,28,19,.58) 0%,transparent 58%)!important;
+  background:linear-gradient(180deg,rgba(56,34,15,.1) 0%,rgba(56,34,15,.76) 66%,rgba(56,34,15,.96) 100%),
+             linear-gradient(100deg,rgba(129,30,42,.58) 0%,transparent 58%)!important;
 }
 .hero h1,.sensorial .stitle,.clube .stitle,.contato .stitle{color:#fffdf0!important}
 .hero h1 em,.hero-eye,.hero-eye-line,.hero-sub strong,.hdot.active,
@@ -107,12 +118,12 @@ body{
 }
 .hero-eye-line,.hdot.active{background:var(--palette-yellow)!important}
 .hero-sub{color:rgba(255,253,240,.76)!important}
-.hstat{background:rgba(115,87,81,.7)!important;border-color:rgba(231,215,193,.48)!important}
+.hstat{background:rgba(56,34,15,.72)!important;border-color:rgba(236,224,209,.48)!important}
 .hstat-n,.hstat-l{color:var(--palette-yellow)!important}
 .btn-p{
   background:var(--palette-yellow)!important;
   color:var(--palette-wine-dark)!important;
-  box-shadow:0 8px 28px rgba(115,87,81,.26)!important;
+  box-shadow:0 8px 28px rgba(56,34,15,.26)!important;
 }
 .btn-p:hover{background:var(--palette-orange)!important;color:#fff!important}
 .btn-d,.product-action.buy-now,.catalog-action.primary{
@@ -125,8 +136,8 @@ body{
   border-color:var(--palette-orange)!important;
   color:#fff!important;
 }
-.btn-o{color:var(--palette-yellow)!important;border-color:rgba(231,215,193,.54)!important}
-.btn-o:hover{color:#fff!important;border-color:var(--palette-orange)!important;background:rgba(191,67,66,.2)!important}
+.btn-o{color:var(--palette-yellow)!important;border-color:rgba(236,224,209,.54)!important}
+.btn-o:hover{color:#fff!important;border-color:var(--palette-olive)!important;background:rgba(92,114,74,.22)!important}
 .stats-bar,.quote,.contato{background:var(--palette-red)!important}
 .sensorial,.clube,footer{background:var(--palette-wine-dark)!important}
 .quem,.ritual,.faq{background:var(--palette-yellow)!important}
@@ -167,7 +178,7 @@ body{
 .cupom{
   background:linear-gradient(135deg,var(--palette-wine-dark) 0%,var(--palette-red) 56%,var(--palette-orange) 100%)!important;
 }
-.cupom::before{background:radial-gradient(ellipse at 50% 0%,rgba(231,215,193,.28),transparent 62%)!important}
+.cupom::before{background:radial-gradient(ellipse at 50% 0%,rgba(236,224,209,.3),transparent 62%)!important}
 .cupom .ceye,.cupom .ctitle,.cupom .csub,.cupom>p{color:var(--palette-yellow)!important}
 .cupom .ccode{background:var(--palette-yellow)!important;color:var(--palette-wine-dark)!important}
 .cupom .btn-d{background:var(--palette-wine-dark)!important}
@@ -177,7 +188,7 @@ body{
 .page-hero,.community-hero{
   background:linear-gradient(125deg,var(--palette-wine-dark) 0%,var(--palette-red) 72%,var(--palette-orange) 100%)!important;
 }
-.page-hero::after{background:rgba(167,138,127,.38)!important}
+.page-hero::after{background:rgba(199,183,147,.4)!important}
 .page-hero .eyebrow,.page-hero h1{color:var(--palette-yellow)!important}
 .page-hero p{color:rgba(255,253,240,.78)!important}
 .eyebrow,.catalog-kicker,.review-product,.recipe-author{color:var(--palette-red)!important}
@@ -200,7 +211,7 @@ body{
 .choice-card input:checked+label{
   border-color:var(--palette-red)!important;
   background:var(--palette-yellow-soft)!important;
-  box-shadow:0 0 0 2px rgba(140,28,19,.14)!important;
+  box-shadow:0 0 0 2px rgba(129,30,42,.14)!important;
 }
 .subscription-summary::before{background:linear-gradient(90deg,var(--palette-wine-dark),var(--palette-red),var(--palette-orange),var(--palette-taupe),var(--palette-yellow))!important}
 .subscription-note,.brand-response,.recipe-facts span,.verified-pill{
@@ -210,10 +221,10 @@ body{
 .form-field input:focus,.form-field textarea:focus,.form-field select:focus,
 .field input:focus,.field textarea:focus,.code-input:focus{
   border-color:var(--palette-orange)!important;
-  box-shadow:0 0 0 3px rgba(191,67,66,.18)!important;
+  box-shadow:0 0 0 3px rgba(92,114,74,.2)!important;
 }
 .repeat-row .order,.rating-track{background:var(--palette-yellow-soft)!important}
-.remove-row,.remove-coupon,.remove{color:var(--palette-orange)!important}
+.remove-row,.remove-coupon,.remove{color:var(--palette-wine)!important}
 
 /* Comunidade, avaliações e cancelamento de newsletter. */
 .community-main,.review-shell,.simple-page{background:transparent!important}
@@ -224,14 +235,14 @@ body{
 }
 .community-tabs{border-color:var(--itajao-line)!important}
 .tab-button{color:var(--palette-muted)!important}
-.tab-button.active{color:var(--palette-red)!important;border-color:var(--palette-orange)!important}
+.tab-button.active{color:var(--palette-red)!important;border-color:var(--palette-gold-deep)!important}
 .average .stars,.review-card .stars,.rating-fill,.star-button.selected{
-  color:var(--palette-orange)!important;
-  background-color:var(--palette-orange)!important;
+  color:var(--palette-gold-deep)!important;
+  background-color:var(--palette-gold-deep)!important;
 }
 .average .stars,.review-card .stars,.star-button.selected{background-color:transparent!important}
 .verified,.form-status.success{color:var(--palette-red)!important}
-.form-status.error{color:var(--palette-orange)!important}
+.form-status.error{color:var(--palette-wine)!important}
 .recipe-placeholder{background:linear-gradient(135deg,var(--palette-wine-dark),var(--palette-red),var(--palette-orange))!important}
 .recipe-placeholder span{color:var(--palette-yellow)!important}
 .secondary-button{color:var(--palette-red)!important;border-color:var(--palette-red)!important}
@@ -263,7 +274,7 @@ body{
 .product-page .note,.product-page .public-brand-response{background:var(--palette-yellow-soft)!important}
 .nl-form-side{background:var(--palette-paper)!important}
 .nl-title,.nl-input,.nl-consent a,.nl-status{color:var(--palette-wine-dark)!important}
-.nl-input:focus{border-color:var(--palette-orange)!important;box-shadow:0 0 0 2px rgba(191,67,66,.18)!important}
+.nl-input:focus{border-color:var(--palette-olive)!important;box-shadow:0 0 0 2px rgba(92,114,74,.2)!important}
 .nl-submit{background:var(--palette-red)!important;color:#fff!important}
 .nl-submit:hover{background:var(--palette-orange)!important}
 .nl-art{background:linear-gradient(145deg,var(--palette-yellow) 0%,var(--palette-taupe) 52%,var(--palette-orange) 100%)!important}
@@ -313,11 +324,11 @@ body{
 }
 .cart-page .input-line input:focus,.checkout-page .field input:focus{
   border-color:var(--palette-orange)!important;
-  box-shadow:0 0 0 3px rgba(191,67,66,.16)!important;
+  box-shadow:0 0 0 3px rgba(92,114,74,.18)!important;
 }
 .checkout-page .step{background:var(--palette-red)!important;color:var(--palette-yellow)!important}
 .order-page .support a{color:var(--palette-red)!important}
 
 @media(max-width:600px){
-  .global-nav,nav.global-nav,.site-nav.global-nav{background:rgba(231,215,193,.98)!important}
+  .global-nav,nav.global-nav,.site-nav.global-nav{background:rgba(236,224,209,.98)!important}
 }
