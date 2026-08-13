@@ -109,8 +109,7 @@ nav.global-nav,
 
 .site-page{padding-top:106px;min-height:100vh;background:var(--itajao-ivory)}
 
-/* Atualização de cores na home antiga. */
-.hero .slide-overlay{background:linear-gradient(180deg,rgba(20,31,26,.08),rgba(20,31,26,.74) 70%,rgba(20,31,26,.94)),linear-gradient(100deg,rgba(16,33,27,.48),transparent 58%)!important}
+/* Atualização de cores na home antiga. O overlay mantém o marrom café original. */
 .hero-eye,.stag,.ptipo,.cbadge,.ceye,.fct,.cinfo-label{color:var(--itajao-gold)!important}
 .hero h1,.sensorial .stitle,.clube .stitle,.contato .stitle{color:#f8f0e4!important}
 .btn-p{background:var(--itajao-gold)!important;color:var(--itajao-ink)!important}
