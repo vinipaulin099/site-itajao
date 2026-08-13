@@ -1,0 +1,321 @@
+/* Experimento de identidade — paleta escolhida no Color Hunt.
+   #3B060A · #8A0000 · #C83F12 · #FFF287 */
+:root{
+  --palette-wine-dark:#3b060a;
+  --palette-red:#8a0000;
+  --palette-orange:#c83f12;
+  --palette-yellow:#fff287;
+  --palette-yellow-soft:#fff9c2;
+  --palette-paper:#fffdf0;
+  --palette-muted:#70494c;
+
+  /* Compatibilidade com a identidade compartilhada e com as páginas antigas. */
+  --itajao-ivory:var(--palette-yellow);
+  --itajao-paper:var(--palette-paper);
+  --itajao-ink:var(--palette-wine-dark);
+  --itajao-forest:var(--palette-red);
+  --itajao-forest-2:var(--palette-orange);
+  --itajao-coffee-brown:var(--palette-red);
+  --itajao-coffee-deep:var(--palette-wine-dark);
+  --itajao-wine:var(--palette-red);
+  --itajao-wine-2:var(--palette-orange);
+  --itajao-gold:var(--palette-orange);
+  --itajao-sand:var(--palette-yellow);
+  --itajao-muted:var(--palette-muted);
+  --itajao-line:rgba(59,6,10,.17);
+  --itajao-shadow:0 20px 60px rgba(59,6,10,.14);
+
+  --bege:var(--palette-yellow);
+  --creme:var(--palette-yellow-soft);
+  --cafe:var(--palette-wine-dark);
+  --marrom:var(--palette-red);
+  --dourado:var(--palette-orange);
+  --dourado-c:var(--palette-yellow);
+  --muted:var(--palette-muted);
+  --cream:var(--palette-yellow);
+  --paper:var(--palette-paper);
+  --coffee:var(--palette-wine-dark);
+  --brown:var(--palette-red);
+  --gold:var(--palette-orange);
+  --peach:var(--palette-yellow);
+  --line:var(--itajao-line);
+  --green:var(--palette-red);
+  --red:var(--palette-orange);
+  --shadow:var(--itajao-shadow);
+}
+
+body{
+  background:var(--palette-yellow)!important;
+  color:var(--palette-wine-dark)!important;
+}
+::selection{background:var(--palette-orange)!important;color:#fff!important}
+:focus-visible{outline-color:var(--palette-orange)!important}
+
+/* Tarja e navegação. */
+.top-bar,.checkout-page .top,.order-page .top{
+  background:var(--palette-wine-dark)!important;
+  color:var(--palette-yellow)!important;
+}
+.top-bar-track span,.top-track,.top-bar-track,.top-bar strong,.top-track strong,.checkout-page .top strong{
+  color:var(--palette-yellow)!important;
+}
+.global-nav,nav.global-nav,.site-nav.global-nav,.site-nav,
+.cart-page nav,.checkout-page nav,.product-page nav{
+  background:rgba(255,242,135,.96)!important;
+  border-color:rgba(59,6,10,.18)!important;
+  box-shadow:0 8px 28px rgba(59,6,10,.06)!important;
+}
+.global-nav .brand-wordmark,.global-nav .nav-links a,.global-nav .site-links a,
+.site-links,.site-links a,.cart-page .back,.cart-page .cart-link,.checkout-page .back,
+.product-page .back,.product-page .cart-link{
+  color:var(--palette-wine-dark)!important;
+}
+.global-nav .nav-links a:hover,.global-nav .site-links a:hover,
+.global-nav a[aria-current="page"],.site-links a:hover{
+  color:var(--palette-red)!important;
+}
+.global-nav .nav-cta,.global-nav .nav-button,.nav-button,.primary-button{
+  background:var(--palette-red)!important;
+  border-color:var(--palette-red)!important;
+  color:#fff!important;
+}
+.global-nav .nav-cta:hover,.global-nav .nav-button:hover,.nav-button:hover,.primary-button:hover{
+  background:var(--palette-orange)!important;
+  border-color:var(--palette-orange)!important;
+  color:#fff!important;
+}
+.global-nav .nav-cart,.product-page .cart-link{color:var(--palette-red)!important}
+.global-nav .nav-cart-count,.cart-page .cart-count,.product-page .cart-count{
+  background:var(--palette-orange)!important;
+  color:#fff!important;
+}
+.site-page{
+  background:linear-gradient(180deg,var(--palette-yellow-soft) 0%,var(--palette-yellow) 100%)!important;
+}
+
+/* Home: os quatro tons formam uma sequência clara entre os blocos. */
+.slide-overlay{
+  background:linear-gradient(180deg,rgba(59,6,10,.12) 0%,rgba(59,6,10,.78) 66%,rgba(59,6,10,.96) 100%),
+             linear-gradient(100deg,rgba(138,0,0,.58) 0%,transparent 58%)!important;
+}
+.hero h1,.sensorial .stitle,.clube .stitle,.contato .stitle{color:#fffdf0!important}
+.hero h1 em,.hero-eye,.hero-eye-line,.hero-sub strong,.hdot.active,
+.sensorial .stag,.clube .stag,.contato .stag{
+  color:var(--palette-yellow)!important;
+  border-color:var(--palette-yellow)!important;
+}
+.hero-eye-line,.hdot.active{background:var(--palette-yellow)!important}
+.hero-sub{color:rgba(255,253,240,.76)!important}
+.hstat{background:rgba(59,6,10,.62)!important;border-color:rgba(255,242,135,.38)!important}
+.hstat-n,.hstat-l{color:var(--palette-yellow)!important}
+.btn-p{
+  background:var(--palette-yellow)!important;
+  color:var(--palette-wine-dark)!important;
+  box-shadow:0 8px 28px rgba(59,6,10,.24)!important;
+}
+.btn-p:hover{background:var(--palette-orange)!important;color:#fff!important}
+.btn-d,.product-action.buy-now,.catalog-action.primary{
+  background:var(--palette-red)!important;
+  border-color:var(--palette-red)!important;
+  color:#fff!important;
+}
+.btn-d:hover,.product-action:hover,.catalog-action.primary:hover{
+  background:var(--palette-orange)!important;
+  border-color:var(--palette-orange)!important;
+  color:#fff!important;
+}
+.btn-o{color:var(--palette-yellow)!important;border-color:rgba(255,242,135,.48)!important}
+.btn-o:hover{color:#fff!important;border-color:var(--palette-orange)!important;background:rgba(200,63,18,.18)!important}
+.stats-bar,.quote,.contato{background:var(--palette-red)!important}
+.sensorial,.clube,footer{background:var(--palette-wine-dark)!important}
+.quem,.ritual,.faq{background:var(--palette-yellow)!important}
+.produtos,.dep{background:var(--palette-yellow-soft)!important}
+.stats-bar .sin,.stats-bar .sil,.quote,.quote p,.quote strong{color:var(--palette-yellow)!important}
+.quem .stag,.ritual .stag,.produtos .stag,.dep .stag,.faq .stag,
+.quem .stitle,.ritual .stitle,.produtos .stitle,.dep .stitle,.faq .stitle{
+  color:var(--palette-red)!important;
+}
+.quem .quem-body p,.produtos .ssub,.dep .ssub,.faq .ssub{color:var(--palette-muted)!important}
+.detail,.pcard,.dcard,.catalog-card,.recipe-form-card,.recipe-aside-card,
+.subscription-builder,.subscription-summary,.billing-card,.v60-card{
+  background:var(--palette-paper)!important;
+  border-color:var(--itajao-line)!important;
+  box-shadow:var(--itajao-shadow)!important;
+}
+.pcard[data-format="graos"] .pbadge,.pcard[data-format="moido"] .pbadge,
+.format-grains,.format-ground,.catalog-badge,.catalog-card[data-format~="moido"] .catalog-badge{
+  background:var(--palette-red)!important;
+  color:#fff!important;
+}
+.pcard[data-format="moido"] .pbadge,.format-ground,.catalog-card[data-format~="moido"] .catalog-badge{
+  background:var(--palette-orange)!important;
+}
+.catalog-price,.catalog-card[data-format~="moido"] .catalog-price,.subscription-price strong{
+  color:var(--palette-red)!important;
+}
+.clean-link,.catalog-action,.subscription-cta.secondary{
+  color:var(--palette-red)!important;
+  border-color:var(--palette-red)!important;
+}
+.clean-link:hover,.catalog-filter.active{
+  background:var(--palette-red)!important;
+  color:#fff!important;
+  border-color:var(--palette-red)!important;
+}
+.cupom{
+  background:linear-gradient(135deg,var(--palette-wine-dark) 0%,var(--palette-red) 56%,var(--palette-orange) 100%)!important;
+}
+.cupom::before{background:radial-gradient(ellipse at 50% 0%,rgba(255,242,135,.22),transparent 62%)!important}
+.cupom .ceye,.cupom .ctitle,.cupom .csub,.cupom>p{color:var(--palette-yellow)!important}
+.cupom .ccode{background:var(--palette-yellow)!important;color:var(--palette-wine-dark)!important}
+.cupom .btn-d{background:var(--palette-wine-dark)!important}
+.cupom .btn-d:hover{background:var(--palette-yellow)!important;color:var(--palette-wine-dark)!important}
+
+/* Páginas editoriais, V60, assinatura e formulários. */
+.page-hero,.community-hero{
+  background:linear-gradient(125deg,var(--palette-wine-dark) 0%,var(--palette-red) 72%,var(--palette-orange) 100%)!important;
+}
+.page-hero::after{background:rgba(255,242,135,.18)!important}
+.page-hero .eyebrow,.page-hero h1{color:var(--palette-yellow)!important}
+.page-hero p{color:rgba(255,253,240,.78)!important}
+.eyebrow,.catalog-kicker,.review-product,.recipe-author{color:var(--palette-red)!important}
+.section-title,.faq-group h2,.recipe-section-heading h2,.subscription-summary h2,
+.billing-card h3,.review-card h3,.recipe-card h3,.review-intro h1,.simple-card h1{
+  color:var(--palette-wine-dark)!important;
+}
+.section-copy,.faq-answer p,.recipe-section-heading p,.recipe-aside-card ul,
+.summary-row,.billing-card p,.review-card>p,.recipe-card p,.review-intro p,.simple-card p{
+  color:var(--palette-muted)!important;
+}
+.v60-summary{background:linear-gradient(145deg,var(--palette-wine-dark),var(--palette-red))!important;color:#fff!important}
+.v60-summary .eyebrow,.v60-summary h2{color:var(--palette-yellow)!important}
+.v60-step>span,.recipe-section-heading>span{background:var(--palette-yellow)!important;color:var(--palette-wine-dark)!important}
+.recipe-submit,.subscription-cta{
+  background:var(--palette-red)!important;
+  color:#fff!important;
+}
+.recipe-submit:hover,.subscription-cta:not(:disabled):hover{background:var(--palette-orange)!important}
+.choice-card input:checked+label{
+  border-color:var(--palette-red)!important;
+  background:var(--palette-yellow-soft)!important;
+  box-shadow:0 0 0 2px rgba(138,0,0,.14)!important;
+}
+.subscription-summary::before{background:linear-gradient(90deg,var(--palette-wine-dark),var(--palette-red),var(--palette-orange),var(--palette-yellow))!important}
+.subscription-note,.brand-response,.recipe-facts span,.verified-pill{
+  background:var(--palette-yellow-soft)!important;
+  color:var(--palette-red)!important;
+}
+.form-field input:focus,.form-field textarea:focus,.form-field select:focus,
+.field input:focus,.field textarea:focus,.code-input:focus{
+  border-color:var(--palette-orange)!important;
+  box-shadow:0 0 0 3px rgba(200,63,18,.18)!important;
+}
+.repeat-row .order,.rating-track{background:var(--palette-yellow-soft)!important}
+.remove-row,.remove-coupon,.remove{color:var(--palette-orange)!important}
+
+/* Comunidade, avaliações e cancelamento de newsletter. */
+.community-main,.review-shell,.simple-page{background:transparent!important}
+.review-summary,.review-card,.recipe-card,.step-card,.simple-card,.dialog-card,.product-review{
+  background:var(--palette-paper)!important;
+  border-color:var(--itajao-line)!important;
+  box-shadow:var(--itajao-shadow)!important;
+}
+.community-tabs{border-color:var(--itajao-line)!important}
+.tab-button{color:var(--palette-muted)!important}
+.tab-button.active{color:var(--palette-red)!important;border-color:var(--palette-orange)!important}
+.average .stars,.review-card .stars,.rating-fill,.star-button.selected{
+  color:var(--palette-orange)!important;
+  background-color:var(--palette-orange)!important;
+}
+.average .stars,.review-card .stars,.star-button.selected{background-color:transparent!important}
+.verified,.form-status.success{color:var(--palette-red)!important}
+.form-status.error{color:var(--palette-orange)!important}
+.recipe-placeholder{background:linear-gradient(135deg,var(--palette-wine-dark),var(--palette-red),var(--palette-orange))!important}
+.recipe-placeholder span{color:var(--palette-yellow)!important}
+.secondary-button{color:var(--palette-red)!important;border-color:var(--palette-red)!important}
+.secondary-button:hover{background:var(--palette-yellow-soft)!important}
+.site-footer,.global-footer{background:var(--palette-wine-dark)!important;color:var(--palette-yellow)!important}
+.site-footer a,.global-footer h2,.global-footer a:hover{color:var(--palette-yellow)!important}
+
+/* Produto e newsletter. */
+.product-page .stage{background:linear-gradient(145deg,var(--palette-red),var(--palette-wine-dark))!important}
+.product-page h1,.product-page .price,.product-page .fact strong,.product-page .panel h2,
+.product-page .product-reviews-head h2,.product-page .reviews-summary strong{
+  color:var(--palette-wine-dark)!important;
+}
+.product-page .eyebrow,.product-page .fact span,.product-page .review-stars,
+.product-page .public-review-card .review-stars{color:var(--palette-red)!important}
+.product-page .pix,.product-page .public-review-meta strong,.nl-status.success{
+  color:var(--palette-red)!important;
+}
+.product-page .buy.now{
+  background:var(--palette-red)!important;
+  border-color:var(--palette-red)!important;
+  color:#fff!important;
+}
+.product-page .buy:hover{background:var(--palette-orange)!important;border-color:var(--palette-orange)!important;color:#fff!important}
+.product-page .panel,.product-page .ship,.product-page .public-review-card{
+  background:var(--palette-paper)!important;
+  border-color:var(--itajao-line)!important;
+}
+.product-page .note,.product-page .public-brand-response{background:var(--palette-yellow-soft)!important}
+.nl-form-side{background:var(--palette-paper)!important}
+.nl-title,.nl-input,.nl-consent a,.nl-status{color:var(--palette-wine-dark)!important}
+.nl-input:focus{border-color:var(--palette-orange)!important;box-shadow:0 0 0 2px rgba(200,63,18,.18)!important}
+.nl-submit{background:var(--palette-red)!important;color:#fff!important}
+.nl-submit:hover{background:var(--palette-orange)!important}
+.nl-art{background:linear-gradient(145deg,var(--palette-yellow) 0%,var(--palette-orange) 58%,var(--palette-red) 100%)!important}
+.nl-art-copy{color:var(--palette-wine-dark)!important}.nl-art-copy strong{color:var(--palette-red)!important}
+.nl-close:hover{background:var(--palette-red)!important;color:#fff!important}
+
+/* Carrinho, checkout e acompanhamento do pedido. */
+.cart-page,.checkout-page,.order-page{background:var(--palette-yellow-soft)!important}
+.cart-page .card,.cart-page .tool,.cart-page .recommend-card,
+.checkout-page .card,.order-page .card{
+  background:var(--palette-paper)!important;
+  border-color:var(--itajao-line)!important;
+  box-shadow:var(--itajao-shadow)!important;
+}
+.cart-page h1,.cart-page .section-title,.cart-page .tool h2,.cart-page .cart-name,
+.cart-page .cart-actions>strong,.cart-page .sum-line strong,.cart-page .sum-total,
+.cart-page .recommend h2,.cart-page .recommend-card strong,.checkout-page h1,
+.checkout-page .card h2,.checkout-page .order-row strong,.checkout-page .order-row b,
+.checkout-page .sum-line strong,.checkout-page .sum-total,.order-page h1,.order-page .order strong{
+  color:var(--palette-wine-dark)!important;
+}
+.cart-page .eyebrow,.checkout-page .eyebrow,.cart-page .recommend-card span{
+  color:var(--palette-red)!important;
+}
+.cart-page .subtitle,.cart-page .cart-meta,.cart-page .tool p,.cart-page .sum-line,
+.cart-page .secure,.cart-page .recommend>p,.checkout-page .subtitle,.checkout-page .sum-line,
+.checkout-page .secure,.order-page .copy,.order-page .support{
+  color:var(--palette-muted)!important;
+}
+.cart-page .continue,.cart-page .empty a,.checkout-page .pay,.checkout-page .blocker a,.order-page .btn{
+  background:var(--palette-red)!important;
+  color:#fff!important;
+}
+.cart-page .continue:hover,.checkout-page .pay:hover,.order-page .btn:hover{background:var(--palette-orange)!important;color:#fff!important}
+.cart-page .progress-box,.cart-page .shipping-option:has(input:checked),
+.checkout-page .delivery-choice,.order-page .order,.order-page .icon{
+  background:var(--palette-yellow)!important;
+}
+.cart-page .progress span{background:var(--palette-orange)!important}
+.cart-page .success,.cart-page .shipping-option b.free,.cart-page .discount strong,
+.checkout-page .status.success,.checkout-page .discount strong{
+  color:var(--palette-red)!important;
+}
+.checkout-page .coupon-summary{
+  background:var(--palette-yellow)!important;
+  color:var(--palette-red)!important;
+}
+.cart-page .input-line input:focus,.checkout-page .field input:focus{
+  border-color:var(--palette-orange)!important;
+  box-shadow:0 0 0 3px rgba(200,63,18,.16)!important;
+}
+.checkout-page .step{background:var(--palette-red)!important;color:var(--palette-yellow)!important}
+.order-page .support a{color:var(--palette-red)!important}
+
+@media(max-width:600px){
+  .global-nav,nav.global-nav,.site-nav.global-nav{background:rgba(255,242,135,.98)!important}
+}
