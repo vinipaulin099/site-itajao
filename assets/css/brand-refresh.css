@@ -9,8 +9,8 @@
   --itajao-forest-2:#28584a;
   --itajao-coffee-brown:#6f4e37;
   --itajao-coffee-deep:#3d2b1f;
-  --itajao-wine:#6e2130;
-  --itajao-wine-2:#8c3444;
+  --itajao-wine:#561719;
+  --itajao-wine-2:#6a2022;
   --itajao-gold:#b58943;
   --itajao-sand:#d8c7ae;
   --itajao-muted:#6c6a63;
@@ -124,8 +124,8 @@ nav.global-nav,
 .quem .quem-body p{color:#78685b!important}
 .quem .detail{border-left-color:var(--itajao-coffee-brown)!important}
 .produtos,.dep{background:var(--itajao-ivory)!important}
-.cupom{background:var(--itajao-wine)!important}
-.cupom::before{background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.14) 0%,transparent 62%)!important}
+.cupom{background:linear-gradient(135deg,#451113 0%,var(--itajao-wine) 55%,var(--itajao-wine-2) 100%)!important}
+.cupom::before{background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.06) 0%,transparent 62%)!important}
 .cupom .ceye{color:#e7c57f!important}
 .cupom .ctitle{color:#fff8ee!important}
 .cupom .csub,.cupom>p{color:rgba(255,248,238,.72)!important}
