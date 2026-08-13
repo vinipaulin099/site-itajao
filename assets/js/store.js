@@ -2,11 +2,8 @@
   'use strict';
 
   const FALLBACK_PRODUCTS=[
-    {id:'graos500',sku:'ITAJAO-GRAOS-500',name:'Itajaó Especial 500g em Grãos',price:56.90,compareAtPrice:62.90,weightLabel:'500g',format:'Em Grãos',shortDescription:'Café especial em grãos para moer na hora e aproveitar o máximo de aroma e frescor.',description:'Produzido na Fazenda Itajaó, este lote de 500g em grãos preserva o café inteiro até o preparo e permite ajustar a moagem ao método preferido.',images:['assets/images/products/500graos.png'],legacyUrl:'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-500g-graos-torra-media-100-arabica-sul-de-minas-itajao/',available:true},
-    {id:'moido500',sku:'ITAJAO-MOIDO-500',name:'Itajaó Especial 500g Moído',price:54.90,compareAtPrice:60.90,weightLabel:'500g',format:'Moído',shortDescription:'A praticidade do café já moído sem abrir mão do perfil especial do Itajaó.',description:'A versão de 500g moída foi pensada para o preparo prático do dia a dia, mantendo notas de chocolate, caramelo e castanha.',images:['assets/images/products/500moido.png'],legacyUrl:'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-500g-moido-torra-media-100-arabica-sul-de-minas-itajao/',available:true},
-    {id:'graos250',sku:'ITAJAO-GRAOS-250',name:'Itajaó Especial 250g em Grãos',price:31.90,compareAtPrice:38.90,weightLabel:'250g',format:'Em Grãos',shortDescription:'Formato compacto em grãos, ideal para experimentar o lote e moer cada dose na hora.',description:'O pacote de 250g em grãos traz o mesmo lote especial Itajaó em uma quantidade menor e mantém a flexibilidade de moagem.',images:['assets/images/products/250graos.png'],legacyUrl:'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-250g-graos-torra-media-100-arabica-sul-de-minas-itajao/',available:false},
-    {id:'moido250',sku:'ITAJAO-MOIDO-250',name:'Itajaó Especial 250g Moído',price:29.90,compareAtPrice:36.90,weightLabel:'250g',format:'Moído',shortDescription:'Uma porta de entrada prática para conhecer o Itajaó já moído.',description:'O pacote de 250g moído reúne praticidade, torra média e notas naturais de chocolate, caramelo e castanha.',images:['assets/images/products/250moido.png'],legacyUrl:'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-250g-moido-torra-media-100-arabica-sul-de-minas-itajao/',available:true},
-    {id:'kit1kg',sku:'ITAJAO-KIT-1KG',name:'Kit Itajaó Especial 1kg',price:103.90,compareAtPrice:104.90,weightLabel:'1kg',format:'Kit · 2×500g',shortDescription:'Dois pacotes de 500g para completar 1kg de Café Especial Itajaó.',description:'O kit de 1kg reúne dois pacotes de 500g do Café Especial Itajaó para quem quer manter o café fresco por mais tempo.',images:['assets/images/products/500graos.png','assets/images/products/500moido.png'],legacyUrl:'https://cafeitajao.com.br/produtos/kit-1kg-cafe-especial-84-pontos-sca-torra-media-100-arabica-sul-de-minas-itajao/',available:true}
+    {id:'graos500',sku:'ITAJAO-GRAOS-500',name:'Itajaó Especial 500g em Grãos',price:56.90,compareAtPrice:62.90,weightLabel:'500g',format:'Em Grãos',shortDescription:'Café especial em grãos para moer na hora e aproveitar o máximo de aroma e frescor.',description:'Produzido na Fazenda Itajaó, este lote de 500g em grãos preserva o café inteiro até o preparo e permite ajustar a moagem ao método preferido.',images:['assets/images/products/real/graos-500-estudio.jpg','assets/images/products/real/graos-500-cafeteria.jpg'],legacyUrl:'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-500g-graos-torra-media-100-arabica-sul-de-minas-itajao/',available:true},
+    {id:'moido500',sku:'ITAJAO-MOIDO-500',name:'Itajaó Especial 500g Moído',price:54.90,compareAtPrice:60.90,weightLabel:'500g',format:'Moído',shortDescription:'A praticidade do café já moído sem abrir mão do perfil especial do Itajaó.',description:'A versão de 500g moída foi pensada para o preparo prático do dia a dia, mantendo notas de chocolate, caramelo e castanha.',images:['assets/images/products/real/moido-500-estudio.jpg'],legacyUrl:'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-500g-moido-torra-media-100-arabica-sul-de-minas-itajao/',available:true}
   ];
 
   const CART_KEY='itajaoCartV1';
@@ -18,7 +15,8 @@
 
   function toCatalog(products){
     return Object.fromEntries((products||[]).filter(product=>product&&product.id).map(product=>{
-      const normalized={...product,price:Number(product.price)||0,compareAtPrice:product.compareAtPrice===null?null:Number(product.compareAtPrice)||null,available:Boolean(product.available),images:Array.isArray(product.images)&&product.images.length?product.images:['assets/images/products/500graos.png']};
+      const local=FALLBACK_PRODUCTS.find(item=>String(item.id)===String(product.id))||{};
+      const normalized={...local,...product,price:Number(product.price)||0,compareAtPrice:product.compareAtPrice===null?null:Number(product.compareAtPrice)||null,available:Boolean(product.available),images:Array.isArray(local.images)&&local.images.length?local.images:(Array.isArray(product.images)&&product.images.length?product.images:['assets/images/products/real/graos-500-estudio.jpg'])};
       return [String(product.id),normalized];
     }));
   }
@@ -51,7 +49,8 @@
         const response=await fetch(cfg.functionsBaseUrl+'/store-catalog',{headers:headers()});
         const data=await response.json().catch(()=>({}));
         if(!response.ok||!Array.isArray(data.products)||!data.products.length)throw new Error(data.error||'Catálogo indisponível.');
-        catalog=toCatalog(data.products);sanitizeCart();writeJson(CART_KEY,cart);updateCounters();return catalog;
+        const activeIds=new Set(FALLBACK_PRODUCTS.map(product=>String(product.id)));
+        catalog=toCatalog(data.products.filter(product=>activeIds.has(String(product.id))));sanitizeCart();writeJson(CART_KEY,cart);updateCounters();return catalog;
       }catch(error){console.warn('Catálogo remoto indisponível; usando catálogo local.',error);return catalog}
     })();
     return catalogPromise;

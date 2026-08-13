@@ -399,8 +399,10 @@ body,body *,body *::before,body *::after{
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
 </style>
+<link rel="stylesheet" href="assets/css/brand-refresh.css">
 </head>
 <body>
+<a class="skip-link" href="#hero">Pular para o conteúdo</a>
 
 <!-- NEWSLETTER — aparece uma vez por sessão e deixa de aparecer após o cadastro -->
 <div class="nl-overlay" id="newsletterPopup" hidden>
@@ -420,25 +422,14 @@ body,body *,body *::before,body *::after{
     </div>
     <div class="nl-art" aria-hidden="true">
       <div class="nl-art-copy"><span>Vem tomar</span><strong>um café</strong><span>com a gente</span><small>Inscreva-se e receba nossas promoções em primeira mão.</small></div>
-      <img class="nl-art-product" src="assets/images/products/500graos.png" alt="">
+      <img class="nl-art-product" src="assets/images/products/real/graos-500-estudio.jpg" alt="">
     </div>
   </div>
 </div>
 
 <div class="top-bar">
   <div class="top-bar-track">
-    <span>
-🎁 <strong>BEMVINDO10</strong> • 10% OFF NA PRIMEIRA COMPRA •
-🚚 FRETE GRÁTIS: SUDESTE ACIMA DE R$249,90 • DEMAIS REGIÕES ACIMA DE R$399,90 •
-☕ TORRA FRESCA SOB DEMANDA •
-🌱 DIRETO DA FAZENDA ITAJAÓ •
-⭐ CAFÉ ESPECIAL PENEIRA 16+ •
-🎁 <strong>BEMVINDO10</strong> • 10% OFF NA PRIMEIRA COMPRA •
-🚚 FRETE GRÁTIS: SUDESTE ACIMA DE R$249,90 • DEMAIS REGIÕES ACIMA DE R$399,90 •
-☕ TORRA FRESCA SOB DEMANDA •
-🌱 DIRETO DA FAZENDA ITAJAÓ •
-⭐ CAFÉ ESPECIAL PENEIRA 16+ •
-    </span>
+    <span><strong>BEMVINDO6</strong> • 6% NA PRIMEIRA COMPRA • FRETE GRÁTIS: SUDESTE ACIMA DE R$ 249,90 • DEMAIS REGIÕES ACIMA DE R$ 399,90 • TORRA FRESCA SOB DEMANDA • DIRETO DA FAZENDA ITAJAÓ • CAFÉ ESPECIAL PENEIRA 16+ •</span>
   </div>
 </div>
 
@@ -446,19 +437,19 @@ body,body *,body *::before,body *::after{
 <!-- ═══════════════════════════════════════
      NAV
 ═══════════════════════════════════════ -->
-<nav id="nav">
- <a href="#" class="nav-logo">
+<nav id="nav" class="global-nav" aria-label="Navegação principal">
+ <a href="index.html" class="nav-logo" aria-label="Itajaó, página inicial">
     <img src="assets/images/brand/teste4.png" alt="Café Itajaó" class="logo-img">
+    <span class="brand-wordmark"><strong>ITAJAÓ</strong><small>Cafés especiais</small></span>
 </a>
   <ul class="nav-links">
     <li><a href="#quem">Origem</a></li>
-    <li><a href="#cafes">Cafés</a></li>
+    <li><a href="produtos.html">Cafés</a></li>
     <li><a href="comunidade.html">Comunidade</a></li>
-    <li><a href="#clube">Assinatura</a></li>
-    <li><a href="#contato">Contato</a></li>
+    <li><a href="assinatura.html">Assinatura</a></li>
+    <li><a href="perguntas-frequentes.html">FAQ</a></li>
   </ul>
-  <!-- EDITE O LINK DO BOTÃO COMPRAR -->
-  <div class="nav-actions"><a href="#cafes" class="nav-cta">Comprar meu Itajaó</a><a href="carrinho.html" class="nav-cart" aria-label="Abrir carrinho">🛒<span class="nav-cart-count" data-cart-count hidden>0</span></a></div>
+  <div class="nav-actions"><a href="#cafes" class="nav-cta">Comprar meu Itajaó</a><a href="carrinho.html" class="nav-cart" aria-label="Abrir carrinho"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20.5 8H6.1M10 20h.01M17 20h.01" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-cart-count" data-cart-count hidden>0</span></a></div>
 </nav>
 
 
@@ -514,14 +505,14 @@ body,body *,body *::before,body *::after{
   <div class="hero-stats">
     <div class="hstat"><span class="hstat-n">84</span><span class="hstat-l">Pontos SCA</span></div>
     <div class="hstat"><span class="hstat-n">1200m</span><span class="hstat-l">Altitude</span></div>
-    <div class="hstat"><span class="hstat-n">3ª</span><span class="hstat-l">Geração</span></div>
+    <div class="hstat"><span class="hstat-n">16+</span><span class="hstat-l">Peneira</span></div>
   </div>
 
   <div class="hero-content">
     <div class="hero-eye"><div class="hero-eye-line"></div>Sul de Minas Gerais · Alpinópolis - MG</div>
     <!-- EDITE O TÍTULO PRINCIPAL ABAIXO -->
     <h1>O sabor que<br><em>abraça</em><br>sua manhã.</h1>
-    <p class="hero-sub">Café especial de altitude, produzido pela nossa família no sul de Minas Gerais. Da roça à sua xícara, com amor e tradição de gerações.</p>
+    <p class="hero-sub">Café especial de altitude, produzido e selecionado no Sul de Minas. Catuaí Amarelo, processo natural e torra média para uma xícara doce e equilibrada.</p>
     <div class="hero-btns">
       <a href="#cafes" class="btn-p">Comprar meu Itajaó <svg viewBox="0 0 20 20" stroke-width="2" stroke-linecap="round"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a>
       <a href="#quem" class="btn-o">Nossa história</a>
@@ -537,7 +528,7 @@ body,body *,body *::before,body *::after{
   <div class="si"><span class="sin">84</span><span class="sil">Pontos SCA</span></div>
   <div class="si"><span class="sin">1200m</span><span class="sil">Altitude</span></div>
   <div class="si"><span class="sin">100%</span><span class="sil">Catuaí Amarelo</span></div>
-  <div class="si"><span class="sin">3ª</span><span class="sil">Geração Familiar</span></div>
+  <div class="si"><span class="sin">Natural</span><span class="sil">Processo do café</span></div>
 </div>
 
 
@@ -593,11 +584,11 @@ body,body *,body *::before,body *::after{
   <div class="pgrid">
 
     <!-- PRODUTO 1: 500g em Grãos -->
-    <article class="pcard rv d1" data-product-id="graos500" data-product-href="produto.html?id=graos500" aria-label="Ver Café Itajaó 500g em Grãos" role="link" tabindex="0">
+    <article class="pcard rv d1" data-format="graos" data-product-id="graos500" data-product-href="produto.html?id=graos500" aria-label="Ver Café Itajaó 500g em Grãos" role="link" tabindex="0">
       <a class="product-card-link" href="produto.html?id=graos500" aria-label="Ver Café Itajaó 500g em Grãos"></a>
       <div class="pimg" style="background:linear-gradient(145deg,#1C3A24,#0E1F12)">
         <span class="pbadge">Nova Embalagem</span>
-        <img src="assets/images/products/500graos.png"
+        <img src="assets/images/products/real/graos-500-estudio.jpg"
              alt="Itajaó 500g em Grãos"
              onerror="this.style.display='none'">
         <div class="phovercta"><span>Ver produto</span></div>
@@ -619,11 +610,11 @@ body,body *,body *::before,body *::after{
     </article>
 
     <!-- PRODUTO 2: 500g Moído (embalagem marrom) -->
-    <article class="pcard rv d2" data-product-id="moido500" data-product-href="produto.html?id=moido500" aria-label="Ver Café Itajaó 500g Moído" role="link" tabindex="0">
+    <article class="pcard rv d2" data-format="moido" data-product-id="moido500" data-product-href="produto.html?id=moido500" aria-label="Ver Café Itajaó 500g Moído" role="link" tabindex="0">
       <a class="product-card-link" href="produto.html?id=moido500" aria-label="Ver Café Itajaó 500g Moído"></a>
       <div class="pimg" style="background:linear-gradient(145deg,#3D2010,#1A0D05)">
         <span class="pbadge">Nova Embalagem</span>
-        <img src="assets/images/products/500moido.png"
+        <img src="assets/images/products/real/moido-500-estudio.jpg"
              alt="Itajaó 500g Moído"
              onerror="this.style.display='none'">
         <div class="phovercta"><span>Ver produto</span></div>
@@ -644,83 +635,8 @@ body,body *,body *::before,body *::after{
       </div>
     </article>
 
-    <!-- PRODUTO 3: 250g em Grãos -->
-    <article class="pcard rv d3" data-product-id="graos250" data-product-href="produto.html?id=graos250" aria-label="Ver Café Itajaó 250g em Grãos" role="link" tabindex="0">
-      <a class="product-card-link" href="produto.html?id=graos250" aria-label="Ver Café Itajaó 250g em Grãos"></a>
-      <div class="pimg" style="background:linear-gradient(145deg,#1C3A24,#0E1F12)">
-        <span class="pbadge pbadge-ltd">Lote Limitado</span>
-        <img src="assets/images/products/250graos.png"
-             alt="Itajaó 250g em Grãos"
-             onerror="this.style.display='none'">
-        <div class="phovercta"><span>Ver produto</span></div>
-      </div>
-      <div class="pinfo">
-        <span class="ptipo">84 pts SCA · Torra Média</span>
-        <div class="pnome">Itajaó Especial<br>250g em Grãos</div>
-        <div class="pills">
-          <span class="pill">Chocolate</span>
-          <span class="pill">Caramelo</span>
-          <span class="pill">Castanha</span>
-        </div>
-        <p class="pmet">100% Arábica · Catuaí Amarelo · Natural</p>
-        <div class="pfooter">
-          <span class="ppreco"><span class="pold">R$ 38,90</span>R$&nbsp;31,90<span class="pstock">Esgotado na loja</span></span>
-          <span class="btn-buy">Ver produto</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- PRODUTO 4: 250g Moído (embalagem artesanal branca) -->
-    <article class="pcard rv d4" data-product-id="moido250" data-product-href="produto.html?id=moido250" aria-label="Ver Café Itajaó 250g Moído" role="link" tabindex="0">
-      <a class="product-card-link" href="produto.html?id=moido250" aria-label="Ver Café Itajaó 250g Moído"></a>
-      <div class="pimg" style="background:linear-gradient(145deg,#2A2010,#1A1408)">
-        <img src="assets/images/products/250moido.png"
-             alt="Itajaó 250g Moído embalagem artesanal"
-             onerror="this.style.display='none'">
-        <div class="phovercta"><span>Ver produto</span></div>
-      </div>
-      <div class="pinfo">
-        <span class="ptipo">84 pts SCA · Torra Média</span>
-        <div class="pnome">Itajaó Especial<br>250g Moído</div>
-        <div class="pills">
-          <span class="pill">Chocolate</span>
-          <span class="pill">Caramelo</span>
-          <span class="pill">Castanha</span>
-        </div>
-        <p class="pmet">100% Arábica · Catuaí Amarelo · Natural</p>
-        <div class="pfooter">
-          <span class="ppreco"><span class="pold">R$ 36,90</span>R$&nbsp;29,90</span>
-          <span class="btn-buy">Ver produto</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- PRODUTO 5: Kit 1kg (2x500g) -->
-    <article class="pcard rv d4" data-product-id="kit1kg" data-product-href="produto.html?id=kit1kg" aria-label="Ver Kit Itajaó 1kg" role="link" tabindex="0">
-      <a class="product-card-link" href="produto.html?id=kit1kg" aria-label="Ver Kit Itajaó 1kg"></a>
-      <div class="pimg pimg-kit" style="background:linear-gradient(145deg,#4A321F,#21150C)">
-        <span class="pbadge">Kit 1kg</span>
-        <img src="assets/images/products/500graos.png" alt="Pacote Itajaó 500g" onerror="this.style.display='none'">
-        <img src="assets/images/products/500moido.png" alt="Pacote Itajaó 500g" onerror="this.style.display='none'">
-        <div class="phovercta"><span>Ver produto</span></div>
-      </div>
-      <div class="pinfo">
-        <span class="ptipo">2 pacotes de 500g · Kit</span>
-        <div class="pnome">Kit Itajaó Especial<br>1kg</div>
-        <div class="pills">
-          <span class="pill">Chocolate</span>
-          <span class="pill">Caramelo</span>
-          <span class="pill">Castanha</span>
-        </div>
-        <p class="pmet">Escolha a variedade disponível na loja</p>
-        <div class="pfooter">
-          <span class="ppreco"><span class="pold">R$ 104,90</span>R$&nbsp;103,90</span>
-          <span class="btn-buy">Ver produto</span>
-        </div>
-      </div>
-    </article>
-
   </div>
+  <div class="home-products-more"><a class="clean-link" href="produtos.html">Ver todos os tamanhos</a></div>
 </section>
 
 
@@ -732,8 +648,8 @@ body,body *,body *::before,body *::after{
     <div class="sbody rv">
       <div class="stag" style="color:var(--dourado-c)">Experiência Sensorial</div>
       <h2 class="stitle">Notas que ficam<br><em>na memória</em></h2>
-      <p>Cada xícara de Itajaó é uma experiência multissensorial. Chocolate, caramelo e castanha em harmonia com acidez cítrica e corpo cremoso — resultado direto dos 1.200m de altitude.</p>
-      <p>Nossa torra média preserva o melhor do grão: a doçura natural do terroir, a complexidade da fazenda familiar, e a limpeza que só um café de verdade pode oferecer.</p>
+      <p>Na xícara, o Itajaó reúne doçura, corpo cremoso e acidez cítrica. As notas de chocolate, caramelo e castanha vêm naturalmente do grão e do cuidado com a torra.</p>
+      <p>A torra média busca equilíbrio. Ela preserva a doçura do Catuaí Amarelo e deixa o café confortável tanto no coador do dia a dia quanto nos métodos filtrados.</p>
       <div class="mrow">
         <span class="mtag">V60</span>
         <span class="mtag">Prensa Francesa</span>
@@ -742,9 +658,9 @@ body,body *,body *::before,body *::after{
       </div>
     </div>
     <div class="ntrio rv d2">
-      <div class="ncard"><span class="nicon">🍫</span><span class="ntitle">Chocolate</span><span class="nsub">Amargo refinado</span></div>
-      <div class="ncard"><span class="nicon">🍯</span><span class="ntitle">Caramelo</span><span class="nsub">Doçura profunda</span></div>
-      <div class="ncard"><span class="nicon">🌰</span><span class="ntitle">Castanha</span><span class="nsub">Corpo aveludado</span></div>
+      <div class="ncard"><span class="nmark"></span><span class="ntitle">Chocolate</span><span class="nsub">Cacau e doçura</span></div>
+      <div class="ncard"><span class="nmark"></span><span class="ntitle">Caramelo</span><span class="nsub">Final doce</span></div>
+      <div class="ncard"><span class="nmark"></span><span class="ntitle">Castanha</span><span class="nsub">Corpo cremoso</span></div>
     </div>
   </div>
 </section>
@@ -753,17 +669,17 @@ body,body *,body *::before,body *::after{
 <!-- ═══════════════════════════════════════
      RITUAL
 ═══════════════════════════════════════ -->
-<section class="ritual">
-  <div class="rlead rv">
-    <div class="stag" style="justify-content:center">O Ritual</div>
-    <h2 class="stitle">Cada manhã<br>merece ser <em>especial</em></h2>
-    <p>O Itajaó não é só um café. É o início do seu dia, feito com intenção e cuidado. Descubra como preparar sua xícara perfeita.</p>
-  </div>
-  <div class="steps rv d1">
-    <div class="step"><span class="stepn">01</span><div class="steptit">Pese o café</div><p>15g para 225ml de água. A proporção certa revela as notas mais sutis.</p></div>
-    <div class="step"><span class="stepn">02</span><div class="steptit">Água a 93°C</div><p>Não em ebulição. A temperatura ideal extrai o melhor sem amargar.</p></div>
-    <div class="step"><span class="stepn">03</span><div class="steptit">Bloom</div><p>Molhe os grãos por 30 segundos. Deixe o CO₂ revelar o frescor.</p></div>
-    <div class="step"><span class="stepn">04</span><div class="steptit">Saboreie</div><p>O Itajaó revela seu caráter em temperatura. Espere. Então aproveite.</p></div>
+<section class="ritual" id="v60">
+  <div class="v60-card rv">
+    <div class="v60-summary"><span class="eyebrow">Receita V60</span><h2>Uma xícara limpa e doce.</h2><p>Use moagem média-fina, filtro de papel e água filtrada a cerca de 93°C. A receita segue a proporção 1:15.</p><div class="v60-ratio"><div><strong>20g</strong><span>Café</span></div><div><strong>300ml</strong><span>Água</span></div></div></div>
+    <div class="v60-steps">
+      <div class="v60-step"><span>1</span><div><h3>Prepare o filtro</h3><p>Enxágue o papel com água quente e descarte essa água. Isso também aquece o conjunto.</p></div></div>
+      <div class="v60-step"><span>2</span><div><h3>Adicione o café</h3><p>Coloque 20g de café com moagem média-fina e nivele a cama.</p></div></div>
+      <div class="v60-step"><span>3</span><div><h3>Faça a pré-infusão</h3><p>Despeje 60g de água, molhe todo o café e espere até completar 40 segundos.</p></div></div>
+      <div class="v60-step"><span>4</span><div><h3>Chegue a 150g</h3><p>Despeje em círculos lentos, evitando jogar água diretamente nas paredes do filtro.</p></div></div>
+      <div class="v60-step"><span>5</span><div><h3>Continue até 225g</h3><p>Espere o nível baixar um pouco e faça o próximo despejo com o mesmo controle.</p></div></div>
+      <div class="v60-step"><span>6</span><div><h3>Finalize em 300g</h3><p>Complete a receita. A extração deve terminar por volta de 2min45s a 3min15s.</p></div></div>
+    </div>
   </div>
 </section>
 
@@ -786,37 +702,35 @@ body,body *,body *::before,body *::after{
     <div class="rv">
       <div class="stag">Clube de Assinatura</div>
       <h2 class="stitle">Café fresco,<br><em>todo mês</em></h2>
-      <div class="cbody"><p>No Clube Itajaó, você recebe grãos torrados há menos de 72 horas diretamente na sua porta, todo mês — com entrega pelo correio para todo o Brasil.</p></div>
+      <div class="cbody"><p>Escolha quanto café quer receber, o peso de cada pacote e o formato. Você pode pagar mês a mês ou contratar os 12 envios em uma compra anual.</p></div>
       <ul class="blist">
-        <li>Café torrado fresquíssimo (menos de 72h)</li>
-        <li>Acesso antecipado a lotes especiais</li>
-        <li>15% de desconto em todos os pedidos</li>
-        <li>Frete grátis em toda assinatura</li>
-        <li>Atendimento direto via WhatsApp</li>
-        <li>Cancele quando quiser, sem burocracia</li>
+        <li>1 ou 2 pacotes por envio</li>
+        <li>Pacotes de 500g ou 1kg</li>
+        <li>Café moído ou em grãos</li>
+        <li>Período mínimo de um mês no plano mensal</li>
+        <li>Plano anual com pagamento em até 12 vezes</li>
+        <li>Configuração acompanhada pela equipe Itajaó</li>
       </ul>
-      <!-- EDITE O LINK DO BOTÃO ABAIXO -->
-      <button class="btn-d" onclick="window.open('https://wa.me/5535998087168?text=Olá! Quero assinar o Clube Itajaó','_blank')">
-        Quero assinar agora
+      <a class="btn-d" href="assinatura.html" style="text-decoration:none">
+        Montar minha assinatura
         <svg viewBox="0 0 20 20" stroke-width="2" stroke-linecap="round"><path d="M4 10h12M11 5l5 5-5 5"/></svg>
-      </button>
+      </a>
     </div>
     <div class="ccard rv d2">
-      <span class="cbadge">Plano mensal · Mais popular</span>
-      <!-- EDITE O PREÇO DA ASSINATURA -->
-      <div class="cpreco">R$&nbsp;62,90</div>
-      <span class="cpnote">/mês · entrega mensal</span>
+      <span class="cbadge">Plano configurável</span>
+      <div class="cpreco">Do seu jeito</div>
+      <span class="cpnote">quantidade, peso, formato e pagamento</span>
       <div class="crows">
-        <div class="crow"><span>Frequência</span><strong>Mensal</strong></div>
+        <div class="crow"><span>Quantidade</span><strong>1 ou 2 pacotes</strong></div>
+        <div class="crow"><span>Peso</span><strong>500g ou 1kg</strong></div>
         <div class="crow"><span>Formato</span><strong>Moído ou grãos</strong></div>
-        <div class="crow"><span>Torra</span><strong>Sob demanda</strong></div>
-        <div class="crow"><span>Frete</span><strong>Grátis</strong></div>
-        <div class="crow"><span>Atendimento</span><strong>WhatsApp direto</strong></div>
+        <div class="crow"><span>Cobrança</span><strong>Mensal ou anual</strong></div>
+        <div class="crow"><span>Ativação</span><strong>Após confirmação</strong></div>
       </div>
-      <button class="btn-d" style="width:100%;justify-content:center" onclick="window.open('https://wa.me/5535998087168?text=Olá! Quero assinar o Clube Itajaó','_blank')">
-        Começar agora
+      <a class="btn-d" href="assinatura.html" style="width:100%;justify-content:center;text-decoration:none">
+        Configurar plano
         <svg viewBox="0 0 20 20" stroke-width="2" stroke-linecap="round" width="15" height="15"><path d="M4 10h12M11 5l5 5-5 5"/></svg>
-      </button>
+      </a>
     </div>
   </div>
 </section>
@@ -845,22 +759,13 @@ body,body *,body *::before,body *::after{
     <h2 class="stitle">Respondemos<br>com <em>prazer</em></h2>
   </div>
   <div class="fwrap">
-    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">O que é um café especial?<div class="ftog"></div></button><div class="fbody"><p>Cafés especiais são grãos que pontuam acima de 80 pontos na escala da SCA. O Itajaó pontua 84 pontos — resultado direto das condições únicas de altitude, clima e cuidado artesanal do sul de Minas Gerais.</p></div></div>
+    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">O que é um café especial?<div class="ftog"></div></button><div class="fbody"><p>É um café avaliado por critérios técnicos de qualidade e que alcança pelo menos 80 pontos. O Itajaó tem 84 pontos e origem rastreada na própria fazenda.</p></div></div>
     <div class="fitem rv"><button class="fbtn" onclick="faq(this)">Qual a diferença entre moído e grãos?<div class="ftog"></div></button><div class="fbody"><p>Os grãos preservam o frescor por mais tempo e permitem ajustar a moagem para cada método. O moído é conveniente e pronto para usar. Recomendamos os grãos para quem tem moedor e quer extrair o máximo de sabor.</p></div></div>
-    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">Como armazenar corretamente?<div class="ftog"></div></button><div class="fbody"><p>Pote hermético, local seco, fresco e longe de luz direta. Evite a geladeira. O melhor sabor está nos primeiros 21 dias após a torra — por isso enviamos sempre fresquíssimo, sob pedido.</p></div></div>
-    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">Como funciona o Clube de Assinatura?<div class="ftog"></div></button><div class="fbody"><p>Você escolhe frequência e formato, e recebe todo mês com frete grátis. Pode pausar, alterar ou cancelar quando quiser. Assinantes têm 15% de desconto e atendimento prioritário via WhatsApp.</p></div></div>
+    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">Como armazenar corretamente?<div class="ftog"></div></button><div class="fbody"><p>Mantenha a embalagem bem fechada ou use um recipiente hermético, longe de luz, calor, umidade e odores. Evite a geladeira.</p></div></div>
+    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">Como funciona a assinatura?<div class="ftog"></div></button><div class="fbody"><p>Você escolhe 1 ou 2 pacotes, 500g ou 1kg, em grãos ou moído. Há opção mensal recorrente e plano anual em uma compra parcelável.</p></div></div>
     <div class="fitem rv"><button class="fbtn" onclick="faq(this)">Vocês entregam para todo o Brasil?<div class="ftog"></div></button><div class="fbody"><p>Sim. O prazo e as opções de envio variam conforme o CEP e são calculados na finalização da compra.</p></div></div>
-    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">O café é torrado na hora?<div class="ftog"></div></button><div class="fbody"><p>Sim. Trabalhamos com torra fresca sob demanda, para que o café chegue com mais aroma, sabor e qualidade na sua casa.</p></div></div>
-    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">O que significa peneira 16+?<div class="ftog"></div></button><div class="fbody"><p>Significa que os grãos passam por uma seleção de tamanho. Na peneira 16+, ficam os grãos maiores e mais uniformes, enquanto grãos menores e quebrados são separados.</p></div></div>
-    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">O café é 100% arábica?<div class="ftog"></div></button><div class="fbody"><p>Sim. O Itajaó é produzido com café 100% arábica, da variedade Catuaí Amarelo, cultivado no Sul de Minas Gerais.</p></div></div>
-    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">Qual é a torra do Café Itajaó?<div class="ftog"></div></button><div class="fbody"><p>Trabalhamos com torra média, pensada para preservar a doçura natural do grão e realçar notas como chocolate, caramelo e castanha.</p></div></div>
-    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">O café tem açúcar ou aromatizante?<div class="ftog"></div></button><div class="fbody"><p>Não. As notas sensoriais de chocolate, caramelo e castanha são características naturais do café, resultado da variedade, altitude, cultivo, seleção dos grãos e torra.</p></div></div>
-    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">Qual moagem devo escolher?<div class="ftog"></div></button><div class="fbody"><p>Se você usa coador comum, filtro de papel ou V60, escolha moagem média. Para prensa francesa, o ideal é moagem mais grossa. Para espresso, recomendamos comprar em grãos e moer na hora. Dúvidas sobre preparo? <a href="https://coeiapp.com/" target="_blank" rel="noopener">Entre aqui</a> ou <a href="https://wa.me/5535998087168?text=Olá! Tenho uma dúvida sobre o preparo do Café Itajaó" target="_blank" rel="noopener">fale com a gente pelo WhatsApp.</a></p></div></div>
-    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">O café vem em grãos ou moído?<div class="ftog"></div></button><div class="fbody"><p>Você pode escolher entre café em grãos ou moído. O café em grãos preserva melhor o frescor, enquanto o moído é mais prático para o dia a dia.</p></div></div>
-    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">Como usar o cupom de primeira compra?<div class="ftog"></div></button><div class="fbody"><p>Use o cupom BEMVINDO10 na finalização do pedido para garantir 10% de desconto na sua primeira compra. O cupom é válido uma vez por cliente.</p></div></div>
-    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">O café é produzido onde?<div class="ftog"></div></button><div class="fbody"><p>O Café Itajaó é produzido no Sul de Minas Gerais, na região entre Alpinópolis e Carmo do Rio Claro, uma área tradicional na produção de cafés especiais.</p></div></div>
-    <div class="fitem rv"><button class="fbtn" onclick="faq(this)">Depois de aberto, quanto tempo o café dura?<div class="ftog"></div></button><div class="fbody"><p>Depois de aberto, o ideal é consumir em até 30 dias, mantendo o café bem fechado, em local seco, fresco e longe da luz.</p></div></div>
   </div>
+  <div class="home-products-more"><a class="clean-link" href="perguntas-frequentes.html">Ver todas as perguntas</a></div>
 </section>
 
 
@@ -869,10 +774,10 @@ body,body *,body *::before,body *::after{
 ═══════════════════════════════════════ -->
 <div class="cupom">
   <span class="ceye">Primeira compra</span>
-  <h2 class="ctitle">10% de desconto<br>para começar</h2>
+  <h2 class="ctitle">6% de desconto<br>para começar</h2>
   <p class="csub">Use o cupom abaixo na sua primeira compra.</p>
   <!-- EDITE O CUPOM AQUI -->
-  <div class="ccode">BEMVINDO10</div><br>
+  <div class="ccode">BEMVINDO6</div><br>
   <p style="font-size:.82rem;color:rgba(111,78,55,.6);margin-bottom:1.3rem;font-weight:400;position:relative;z-index:2">Quer ajuda para escolher o seu café?</p>
   <a class="btn-d" href="https://wa.me/5535998087168?text=Olá! Quero conhecer melhor os cafés Itajaó" target="_blank" rel="noopener">Falar no WhatsApp</a>
 </div>
@@ -912,25 +817,18 @@ body,body *,body *::before,body *::after{
         <div class="cinfo-item" style="grid-column:1/-1">
           <span class="cinfo-label">Endereço</span>
           <!-- EDITE O ENDEREÇO -->
-          <span class="cinfo-val">R. Manoel V. Carvalho, 75 — Jardim B. Vista<br>Alpinópolis – MG · CEP 37640-000</span>
+          <span class="cinfo-val">R. Manoel V. Carvalho, 75, Jardim B. Vista<br>Alpinópolis, MG · CEP 37640-000</span>
         </div>
       </div>
       <div class="csocial">
-        <a href="https://wa.me/5535998087168" class="csoc-btn" target="_blank">💬 WhatsApp</a>
-        <a href="https://instagram.com/cafeitajao" class="csoc-btn" target="_blank">📷 Instagram</a>
-        <a href="https://www.cafeitajao.com.br" class="csoc-btn" target="_blank">🌐 Site oficial</a>
+        <a href="https://wa.me/5535998087168" class="csoc-btn" target="_blank">WhatsApp</a>
+        <a href="https://instagram.com/cafeitajao" class="csoc-btn" target="_blank">Instagram</a>
+        <a href="https://www.cafeitajao.com.br" class="csoc-btn" target="_blank">Site oficial</a>
       </div>
     </div>
 
     <div class="cmap-area rv d2">
-      <svg viewBox="0 0 80 80" width="55" height="55" xmlns="http://www.w3.org/2000/svg" style="opacity:.5">
-        <circle cx="40" cy="40" r="37" fill="none" stroke="var(--dourado)" stroke-width="3.5"/>
-        <ellipse cx="40" cy="30" rx="16" ry="26" fill="none" stroke="var(--dourado)" stroke-width="3"/>
-        <line x1="40" y1="4" x2="40" y2="56" stroke="var(--dourado)" stroke-width="2.5"/>
-        <line x1="3" y1="40" x2="77" y2="40" stroke="var(--dourado)" stroke-width="2.5"/>
-        <path d="M24 56 Q32 48 40 56 Q48 48 56 56" fill="none" stroke="var(--dourado)" stroke-width="2.8" stroke-linecap="round"/>
-        <path d="M28 56 Q28 68 40 72 Q52 68 52 56" fill="none" stroke="var(--dourado)" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>
+      <img class="footer-real-logo" src="assets/images/brand/teste4.png" alt="Itajaó Cafés Especiais">
       <div style="text-align:center">
         <strong style="color:rgba(254,216,177,.6);font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;display:block">ITAJAÓ</strong>
         <p style="color:rgba(254,216,177,.35);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.2rem">Cafés Especiais</p>
@@ -948,15 +846,8 @@ body,body *,body *::before,body *::after{
 <footer>
   <div class="ftop">
     <div>
-      <a href="#" style="display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;margin-bottom:1rem">
-        <svg width="30" height="30" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="40" cy="40" r="37" fill="none" stroke="var(--dourado)" stroke-width="3.5"/>
-          <ellipse cx="40" cy="30" rx="16" ry="26" fill="none" stroke="var(--dourado)" stroke-width="3"/>
-          <line x1="40" y1="4" x2="40" y2="56" stroke="var(--dourado)" stroke-width="2.5"/>
-          <line x1="3" y1="40" x2="77" y2="40" stroke="var(--dourado)" stroke-width="2.5"/>
-          <path d="M24 56 Q32 48 40 56 Q48 48 56 56" fill="none" stroke="var(--dourado)" stroke-width="2.8" stroke-linecap="round"/>
-          <path d="M28 56 Q28 68 40 72 Q52 68 52 56" fill="none" stroke="var(--dourado)" stroke-width="2.5" stroke-linecap="round"/>
-        </svg>
+      <a href="index.html" style="display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;margin-bottom:1rem">
+        <img src="assets/images/brand/teste4.png" alt="" style="width:38px;height:38px;object-fit:contain;filter:brightness(0) invert(1)">
         <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;color:var(--bege)">ITAJAÓ <span style="color:var(--dourado)">Cafés</span></span>
       </a>
       <p class="ftag-txt">Da roça à sua xícara.<br>Com tempo, cuidado<br>e origem.</p>
@@ -971,9 +862,9 @@ body,body *,body *::before,body *::after{
       <span class="fct">Navegação</span>
       <ul class="flinks">
         <li><a href="#quem">Quem somos</a></li>
-        <li><a href="#cafes">Nossos cafés</a></li>
+        <li><a href="produtos.html">Todos os cafés</a></li>
         <li><a href="comunidade.html">Comunidade Itajaó</a></li>
-        <li><a href="#clube">Clube de assinatura</a></li>
+        <li><a href="assinatura.html">Clube de assinatura</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
     </div>
@@ -989,10 +880,11 @@ body,body *,body *::before,body *::after{
     <div>
       <span class="fct">Sobre o Café</span>
       <ul class="flinks">
-        <li><a href="#cafes">Nossos cafés</a></li>
+        <li><a href="produtos.html">Nossos cafés</a></li>
         <li><a href="#quem">Origem Itajaó</a></li>
-        <li><a href="#clube">Clube de assinatura</a></li>
-        <li><a href="https://cafeitajao.com.br/perguntas-frequentes/" target="_blank" rel="noopener">Perguntas frequentes</a></li>
+        <li><a href="assinatura.html">Clube de assinatura</a></li>
+        <li><a href="perguntas-frequentes.html">Perguntas frequentes</a></li>
+        <li><a href="enviar-receita.html">Enviar receita</a></li>
       </ul>
       <div style="margin-top:1.5rem;font-size:.68rem;color:rgba(254,216,177,.2);line-height:1.65">
         Alpinópolis – MG<br>Sul de Minas · 1.200m
@@ -1000,8 +892,8 @@ body,body *,body *::before,body *::after{
     </div>
   </div>
   <div class="fbot">
-    <span>© 2026 Itajaó Cafés Especiais LTDA — CNPJ 62.431.181/0001-68</span>
-    <span class="flove">Feito com amor no Sul de Minas ☕</span>
+    <span>© 2026 Itajaó Cafés Especiais LTDA · CNPJ 62.431.181/0001-68</span>
+    <span class="flove">Produzido no Sul de Minas</span>
   </div>
 </footer>
 
@@ -1053,6 +945,7 @@ window.addEventListener('scroll',function(){
 <script src="assets/js/store.js"></script>
 <script src="assets/js/home-store.js"></script>
 <script src="assets/js/home-community.js"></script>
+<script src="assets/js/site-ui.js"></script>
 
 <script>
 // ── NEWSLETTER ──
@@ -1109,7 +1002,7 @@ window.addEventListener('scroll',function(){
       setStore(localStorage,'itajaoNewsletterSubscribed','1');
       setStore(sessionStorage,'itajaoNewsletterDismissed','1');
       status.className='nl-status success';
-      status.textContent='Pronto! Você entrou para a nossa lista. ☕';
+      status.textContent='Pronto! Você entrou para a nossa lista.';
       form.reset();
       setTimeout(function(){closePopup(false)},1250);
     }catch(err){

@@ -12,10 +12,6 @@
   const ratingFilters = document.getElementById('ratingFilters');
   const loadMoreReviews = document.getElementById('loadMoreReviews');
   const loadMoreRecipes = document.getElementById('loadMoreRecipes');
-  const recipeDialog = document.getElementById('recipeDialog');
-  const recipeForm = document.getElementById('recipeForm');
-  const recipeStatus = document.getElementById('recipeStatus');
-  const recipeSubmit = document.getElementById('recipeSubmit');
   const state = { reviewsPage: 1, recipesPage: 1, rating: 0, reviewsLoading: false, recipesLoading: false };
 
   function escapeHtml(value) {
@@ -81,7 +77,7 @@
       (photo ? '<img class="review-photo" src="' + escapeHtml(photo) + '" alt="Foto enviada na avaliação" loading="lazy">' : '') +
       response +
       '<div class="review-meta"><span>' + escapeHtml(review.reviewer || 'Cliente Itajaó') + '</span>' +
-      '<span class="verified">✓ Compra verificada</span><span>' + escapeHtml(formatDate(review.published_at)) + '</span></div>' +
+      '<span class="verified">Compra verificada</span><span>' + escapeHtml(formatDate(review.published_at)) + '</span></div>' +
       '</article>';
   }
 
@@ -142,11 +138,11 @@
   function recipeCard(recipe) {
     const photo = safeUrl(recipe.image_url, '');
     const facts = [
-      recipe.prep_minutes ? '⏱ ' + Number(recipe.prep_minutes) + ' min' : '',
+      recipe.prep_minutes ? Number(recipe.prep_minutes) + ' min' : '',
       recipe.servings ? 'Serve ' + escapeHtml(recipe.servings) : '',
     ].filter(Boolean).map(function (fact) { return '<span>' + fact + '</span>'; }).join('');
     return '<article class="recipe-card">' +
-      (photo ? '<img src="' + escapeHtml(photo) + '" alt="' + escapeHtml(recipe.title) + '" loading="lazy">' : '<div class="recipe-placeholder" aria-hidden="true">☕</div>') +
+      (photo ? '<img src="' + escapeHtml(photo) + '" alt="' + escapeHtml(recipe.title) + '" loading="lazy">' : '<div class="recipe-placeholder" aria-hidden="true"><span>ITAJAÓ</span></div>') +
       '<div class="recipe-body"><span class="recipe-author">Receita de ' + escapeHtml(recipe.author_name) + '</span>' +
       '<h3>' + escapeHtml(recipe.title) + '</h3>' +
       (recipe.introduction ? '<p>' + escapeHtml(recipe.introduction) + '</p>' : '') +
@@ -191,50 +187,11 @@
     if (isRecipes && state.recipesPage === 1 && recipesGrid.querySelector('.loading-state')) loadRecipes(true);
   }
 
-  function openRecipe() {
-    activateTab('recipes', true);
-    if (typeof recipeDialog.showModal === 'function') recipeDialog.showModal();
-    else recipeDialog.setAttribute('open', '');
-  }
-
-  function closeRecipe() {
-    if (typeof recipeDialog.close === 'function') recipeDialog.close();
-    else recipeDialog.removeAttribute('open');
-  }
-
   document.querySelectorAll('[data-tab]').forEach(function (button) {
     button.addEventListener('click', function () { activateTab(button.getAttribute('data-tab'), true); });
   });
-  document.querySelectorAll('[data-open-recipe]').forEach(function (button) { button.addEventListener('click', openRecipe); });
-  document.querySelectorAll('[data-close-recipe]').forEach(function (button) { button.addEventListener('click', closeRecipe); });
-  recipeDialog.addEventListener('click', function (event) { if (event.target === recipeDialog) closeRecipe(); });
   loadMoreReviews.addEventListener('click', function () { state.reviewsPage += 1; loadReviews(false); });
   loadMoreRecipes.addEventListener('click', function () { state.recipesPage += 1; loadRecipes(false); });
-
-  recipeForm.addEventListener('submit', async function (event) {
-    event.preventDefault();
-    if (!recipeForm.reportValidity()) return;
-    const file = document.getElementById('recipePhoto').files[0];
-    if (file && file.size > 6 * 1024 * 1024) {
-      recipeStatus.className = 'form-status error';
-      recipeStatus.textContent = 'A foto pode ter no máximo 6 MB.';
-      return;
-    }
-    recipeSubmit.disabled = true;
-    recipeStatus.className = 'form-status';
-    recipeStatus.textContent = 'Enviando sua receita…';
-    try {
-      await request('community-recipe', { method: 'POST', body: new FormData(recipeForm) });
-      recipeForm.reset();
-      recipeStatus.className = 'form-status success';
-      recipeStatus.textContent = 'Receita recebida! Você receberá um e-mail quando nossa equipe concluir a análise.';
-    } catch (error) {
-      recipeStatus.className = 'form-status error';
-      recipeStatus.textContent = error.message;
-    } finally {
-      recipeSubmit.disabled = false;
-    }
-  });
 
   const initialTab = window.location.hash === '#receitas' ? 'recipes' : 'reviews';
   activateTab(initialTab, false);

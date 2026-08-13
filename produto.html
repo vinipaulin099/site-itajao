@@ -71,6 +71,7 @@ body,body *,body *::before,body *::after{
 @media(max-width:620px){.nav-actions{gap:10px}.nav-actions .back{display:none}.product-reviews-head{align-items:flex-start;flex-direction:column}.product-review-grid{grid-template-columns:1fr}}
 @media(max-width:480px){.stage{height:350px}.facts{grid-template-columns:1fr}.notes{grid-template-columns:1fr 1fr}h1{font-size:2.15rem}}
 </style>
+<link rel="stylesheet" href="assets/css/brand-refresh.css">
 </head>
 <body>
 <div class="nl-overlay" id="newsletterPopup" hidden>
@@ -90,36 +91,26 @@ body,body *,body *::before,body *::after{
     </div>
     <div class="nl-art" aria-hidden="true">
       <div class="nl-art-copy"><span>Vem tomar</span><strong>um café</strong><span>com a gente</span><small>Inscreva-se e receba nossas promoções em primeira mão.</small></div>
-      <img class="nl-art-product" src="assets/images/products/500graos.png" alt="">
+      <img class="nl-art-product" src="assets/images/products/real/graos-500-estudio.jpg" alt="">
     </div>
   </div>
 </div>
 <div class="top-bar">
   <div class="top-bar-track">
-    <span>
-🎁 <strong>BEMVINDO10</strong> • 10% OFF NA PRIMEIRA COMPRA •
-🚚 FRETE GRÁTIS: SUDESTE ACIMA DE R$249,90 • DEMAIS REGIÕES ACIMA DE R$399,90 •
-☕ TORRA FRESCA SOB DEMANDA •
-🌱 DIRETO DA FAZENDA ITAJAÓ •
-⭐ CAFÉ ESPECIAL PENEIRA 16+ •
-🎁 <strong>BEMVINDO10</strong> • 10% OFF NA PRIMEIRA COMPRA •
-🚚 FRETE GRÁTIS: SUDESTE ACIMA DE R$249,90 • DEMAIS REGIÕES ACIMA DE R$399,90 •
-☕ TORRA FRESCA SOB DEMANDA •
-🌱 DIRETO DA FAZENDA ITAJAÓ •
-⭐ CAFÉ ESPECIAL PENEIRA 16+ •
-    </span>
+    <span><strong>BEMVINDO6</strong> • 6% NA PRIMEIRA COMPRA • FRETE GRÁTIS: SUDESTE ACIMA DE R$ 249,90 • DEMAIS REGIÕES ACIMA DE R$ 399,90 • TORRA FRESCA SOB DEMANDA • DIRETO DA FAZENDA ITAJAÓ •</span>
   </div>
 </div>
-<nav>
-  <a class="logo" href="index.html" aria-label="Voltar para o início"><img src="assets/images/brand/teste4.png" alt="Itajaó Cafés Especiais" onerror="this.style.display='none'"></a>
-  <div class="nav-actions"><a class="back" href="index.html#cafes">← Voltar aos cafés</a><a class="back" href="comunidade.html">Comunidade</a><a class="cart-link" href="carrinho.html">Carrinho <span class="cart-count" data-cart-count hidden>0</span></a></div>
+<nav class="global-nav" aria-label="Navegação principal">
+  <a class="nav-logo" href="index.html" aria-label="Voltar para o início"><img src="assets/images/brand/teste4.png" alt="Itajaó Cafés Especiais"><span class="brand-wordmark"><strong>ITAJAÓ</strong><small>Cafés especiais</small></span></a>
+  <ul class="nav-links"><li><a href="index.html#quem">Origem</a></li><li><a href="produtos.html" aria-current="page">Cafés</a></li><li><a href="comunidade.html">Comunidade</a></li><li><a href="assinatura.html">Assinatura</a></li><li><a href="perguntas-frequentes.html">FAQ</a></li></ul>
+  <div class="nav-actions"><a class="nav-cta" href="produtos.html">Todos os cafés</a><a class="nav-cart" href="carrinho.html" aria-label="Abrir carrinho"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20.5 8H6.1M10 20h.01M17 20h.01" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-cart-count" data-cart-count hidden>0</span></a></div>
 </nav>
 
-<main>
-  <div class="crumb"><a href="index.html">Início</a> / <a href="index.html#cafes">Cafés</a> / <span id="crumbName">Produto</span></div>
+<main class="site-page">
+  <div class="crumb"><a href="index.html">Início</a> / <a href="produtos.html">Cafés</a> / <span id="crumbName">Produto</span></div>
   <section class="product">
     <div class="gallery">
-      <div class="stage"><img id="mainImage" src="assets/images/products/500graos.png" alt="Café Itajaó"></div>
+      <div class="stage"><img id="mainImage" src="assets/images/products/real/graos-500-estudio.jpg" alt="Café Itajaó"></div>
       <div class="thumbs" id="thumbs"></div>
     </div>
     <div class="info">
@@ -151,9 +142,9 @@ body,body *,body *::before,body *::after{
       <p id="description"></p>
       <p>Um café doce e equilibrado, de corpo cremoso e acidez cítrica, produzido em Alpinópolis, no Sul de Minas, diretamente por quem cultiva.</p>
       <div class="notes">
-        <div class="note"><i>🍫</i><strong>Chocolate</strong></div>
-        <div class="note"><i>🍯</i><strong>Caramelo</strong></div>
-        <div class="note"><i>🌰</i><strong>Castanha</strong></div>
+        <div class="note"><span class="nmark"></span><strong>Chocolate</strong></div>
+        <div class="note"><span class="nmark"></span><strong>Caramelo</strong></div>
+        <div class="note"><span class="nmark"></span><strong>Castanha</strong></div>
       </div>
     </div>
     <div class="panel">
@@ -177,15 +168,13 @@ body,body *,body *::before,body *::after{
   </section>
 </main>
 
-<footer>
-  <span>© 2026 Itajaó Cafés Especiais LTDA · CNPJ 62.431.181/0001-68</span>
-  <span><a href="https://instagram.com/cafeitajao" target="_blank" rel="noopener">@cafeitajao</a> · <a href="https://wa.me/5535998087168" target="_blank" rel="noopener">WhatsApp</a></span>
-</footer>
+<footer class="global-footer"><div class="global-footer-inner"><div class="global-footer-brand"><img src="assets/images/brand/teste4.png" alt="Itajaó"><strong>ITAJAÓ CAFÉS ESPECIAIS</strong><p>Da Fazenda Itajaó, no Sul de Minas, para a sua xícara.</p></div><div><h2>Comprar</h2><ul><li><a href="produtos.html">Todos os cafés</a></li><li><a href="assinatura.html">Assinatura</a></li><li><a href="carrinho.html">Carrinho</a></li></ul></div><div><h2>Conhecer</h2><ul><li><a href="index.html#quem">Nossa origem</a></li><li><a href="comunidade.html">Comunidade</a></li><li><a href="enviar-receita.html">Enviar receita</a></li></ul></div><div><h2>Ajuda</h2><ul><li><a href="perguntas-frequentes.html">Perguntas frequentes</a></li><li><a href="mailto:sac@cafeitajao.com.br">sac@cafeitajao.com.br</a></li><li><a href="https://wa.me/5535998087168" target="_blank" rel="noopener">WhatsApp</a></li></ul></div></div><div class="global-footer-bottom"><span>© <span data-current-year>2026</span> Itajaó Cafés Especiais LTDA</span><span>CNPJ 62.431.181/0001-68 · Alpinópolis, MG</span></div></footer>
 
 <script src="assets/js/store-config.js"></script>
 <script src="assets/js/store.js"></script>
 <script src="assets/js/product.js"></script>
 <script src="assets/js/product-reviews.js"></script>
+<script src="assets/js/site-ui.js"></script>
 <script>
 (function(){
   var STORE_CONFIG=window.ITAJAO_STORE_CONFIG||{};
@@ -204,7 +193,7 @@ body,body *,body *::before,body *::after{
     try{
       var response=await fetch(FUNCTIONS_URL+'/newsletter-signup',{method:'POST',headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify({name:name,email:email,source:'popup_produto',website:form.elements.website.value})});
       var data=await response.json().catch(function(){return{}});if(!response.ok)throw new Error(data.error||'Newsletter HTTP '+response.status);
-      setStore(localStorage,'itajaoNewsletterSubscribed','1');setStore(sessionStorage,'itajaoNewsletterDismissed','1');status.className='nl-status success';status.textContent='Pronto! Você entrou para a nossa lista. ☕';form.reset();setTimeout(function(){closePopup(false)},1250);
+      setStore(localStorage,'itajaoNewsletterSubscribed','1');setStore(sessionStorage,'itajaoNewsletterDismissed','1');status.className='nl-status success';status.textContent='Pronto! Você entrou para a nossa lista.';form.reset();setTimeout(function(){closePopup(false)},1250);
     }catch(err){status.className='nl-status error';status.textContent='Não foi possível cadastrar agora. Tente novamente em instantes.'}finally{submitBtn.disabled=false}
   });
   window.addEventListener('load',function(){setTimeout(openPopup,450)});
