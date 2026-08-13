@@ -20,38 +20,42 @@
     <div class="nav-actions"><a href="enviar-receita.html" class="nav-cta">Enviar receita</a><a class="nav-cart" href="carrinho.html" aria-label="Abrir carrinho"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20.5 8H6.1M10 20h.01M17 20h.01" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-cart-count" data-cart-count hidden>0</span></a></div>
   </nav>
 
-  <main class="community-main site-page" id="conteudo">
-    <header class="community-hero">
-      <span class="eyebrow">Feita por quem vive o café</span>
-      <h1>Comunidade Itajaó</h1>
-      <p>Experiências reais de quem comprou nosso café e receitas que transformam cada pacote Itajaó em novos momentos à mesa.</p>
+  <main class="community-page site-page" id="conteudo">
+    <header class="community-hero page-hero">
+      <div class="page-shell">
+        <span class="eyebrow">Feita por quem vive o café</span>
+        <h1>Comunidade Itajaó</h1>
+        <p>Experiências reais de quem comprou nosso café e receitas que transformam cada pacote Itajaó em novos momentos à mesa.</p>
+      </div>
     </header>
 
-    <div class="community-tabs" role="tablist" aria-label="Conteúdos da comunidade">
-      <button class="tab-button active" id="reviewsTab" type="button" role="tab" aria-selected="true" aria-controls="reviewsPanel" data-tab="reviews">Avaliações verificadas</button>
-      <button class="tab-button" id="recipesTab" type="button" role="tab" aria-selected="false" aria-controls="recipesPanel" data-tab="recipes">Receitas para o Itajaó</button>
+    <div class="community-main">
+      <div class="community-tabs" role="tablist" aria-label="Conteúdos da comunidade">
+        <button class="tab-button active" id="reviewsTab" type="button" role="tab" aria-selected="true" aria-controls="reviewsPanel" data-tab="reviews">Avaliações verificadas</button>
+        <button class="tab-button" id="recipesTab" type="button" role="tab" aria-selected="false" aria-controls="recipesPanel" data-tab="recipes">Receitas para o Itajaó</button>
+      </div>
+
+      <section class="tab-panel" id="reviewsPanel" role="tabpanel" aria-labelledby="reviewsTab">
+        <div class="section-heading">
+          <div><h2>Quem prova, conta</h2><p>Cada avaliação abaixo está vinculada a um pedido pago e passa por moderação antes de ser publicada.</p></div>
+        </div>
+        <div class="review-summary" id="reviewSummary" hidden>
+          <div class="average"><strong id="averageRating">0,0</strong><span class="stars" aria-hidden="true">★★★★★</span><small id="reviewCount">Nenhuma avaliação</small></div>
+          <div class="rating-filters" id="ratingFilters" role="group" aria-label="Filtrar avaliações por nota"></div>
+        </div>
+        <div class="card-grid" id="reviewsGrid" aria-live="polite"><div class="loading-state">Carregando avaliações…</div></div>
+        <div class="load-row"><button class="secondary-button" id="loadMoreReviews" type="button" hidden>Ver mais avaliações</button></div>
+      </section>
+
+      <section class="tab-panel" id="recipesPanel" role="tabpanel" aria-labelledby="recipesTab" hidden>
+        <div class="section-heading" id="receitas">
+          <div><h2>Receitas para o Itajaó</h2><p>Do café coado à sobremesa: ideias enviadas pela comunidade e aprovadas pela nossa equipe.</p></div>
+          <a class="primary-button" href="enviar-receita.html">Enviar minha receita</a>
+        </div>
+        <div class="card-grid" id="recipesGrid" aria-live="polite"><div class="loading-state">Carregando receitas…</div></div>
+        <div class="load-row"><button class="secondary-button" id="loadMoreRecipes" type="button" hidden>Ver mais receitas</button></div>
+      </section>
     </div>
-
-    <section class="tab-panel" id="reviewsPanel" role="tabpanel" aria-labelledby="reviewsTab">
-      <div class="section-heading">
-        <div><h2>Quem prova, conta</h2><p>Cada avaliação abaixo está vinculada a um pedido pago e passa por moderação antes de ser publicada.</p></div>
-      </div>
-      <div class="review-summary" id="reviewSummary" hidden>
-        <div class="average"><strong id="averageRating">0,0</strong><span class="stars" aria-hidden="true">★★★★★</span><small id="reviewCount">Nenhuma avaliação</small></div>
-        <div class="rating-filters" id="ratingFilters" role="group" aria-label="Filtrar avaliações por nota"></div>
-      </div>
-      <div class="card-grid" id="reviewsGrid" aria-live="polite"><div class="loading-state">Carregando avaliações…</div></div>
-      <div class="load-row"><button class="secondary-button" id="loadMoreReviews" type="button" hidden>Ver mais avaliações</button></div>
-    </section>
-
-    <section class="tab-panel" id="recipesPanel" role="tabpanel" aria-labelledby="recipesTab" hidden>
-      <div class="section-heading" id="receitas">
-        <div><h2>Receitas para o Itajaó</h2><p>Do café coado à sobremesa: ideias enviadas pela comunidade e aprovadas pela nossa equipe.</p></div>
-        <a class="primary-button" href="enviar-receita.html">Enviar minha receita</a>
-      </div>
-      <div class="card-grid" id="recipesGrid" aria-live="polite"><div class="loading-state">Carregando receitas…</div></div>
-      <div class="load-row"><button class="secondary-button" id="loadMoreRecipes" type="button" hidden>Ver mais receitas</button></div>
-    </section>
   </main>
 
   <footer class="global-footer"><div class="global-footer-inner"><div class="global-footer-brand"><img src="assets/images/brand/teste4.png" alt="Itajaó"><strong>ITAJAÓ CAFÉS ESPECIAIS</strong><p>Da Fazenda Itajaó, no Sul de Minas, para a sua xícara.</p></div><div><h2>Comprar</h2><ul><li><a href="produtos.html">Todos os cafés</a></li><li><a href="assinatura.html">Assinatura</a></li><li><a href="carrinho.html">Carrinho</a></li></ul></div><div><h2>Conhecer</h2><ul><li><a href="index.html#quem">Nossa origem</a></li><li><a href="comunidade.html">Comunidade</a></li><li><a href="enviar-receita.html">Enviar receita</a></li></ul></div><div><h2>Ajuda</h2><ul><li><a href="perguntas-frequentes.html">Perguntas frequentes</a></li><li><a href="mailto:sac@cafeitajao.com.br">sac@cafeitajao.com.br</a></li><li><a href="https://wa.me/5535998087168" target="_blank" rel="noopener">WhatsApp</a></li></ul></div></div><div class="global-footer-bottom"><span>© <span data-current-year>2026</span> Itajaó Cafés Especiais LTDA</span><span>CNPJ 62.431.181/0001-68 · Alpinópolis, MG</span></div></footer>
