@@ -7,6 +7,8 @@
   --itajao-ink:#1e2722;
   --itajao-forest:#173f33;
   --itajao-forest-2:#28584a;
+  --itajao-coffee-brown:#6f4e37;
+  --itajao-coffee-deep:#3d2b1f;
   --itajao-wine:#6e2130;
   --itajao-wine-2:#8c3444;
   --itajao-gold:#b58943;
@@ -46,7 +48,7 @@ img{max-width:100%}
 :focus-visible{outline:3px solid rgba(181,137,67,.62);outline-offset:3px}
 .skip-link{position:fixed;left:1rem;top:-100px;z-index:20000;padding:.7rem 1rem;background:#fff;color:var(--itajao-ink);border-radius:0 0 9px 9px;font-size:.72rem;font-weight:800}.skip-link:focus{top:0}
 
-/* Tarja sem emojis e com contraste mais limpo. */
+/* Tarja com os emojis originais da comunicação Itajaó. */
 .top-bar{position:fixed!important;inset:0 0 auto!important;z-index:10000!important;height:34px!important;background:var(--itajao-ink)!important;color:#f1dfc4!important;overflow:hidden!important;display:flex!important;align-items:center!important}
 .top-bar-track,.top-track{width:100%;height:100%;display:flex;align-items:center;overflow:hidden}
 .top-bar-track span,.top-track{color:#f1dfc4!important;font-weight:650!important;letter-spacing:.1em!important}
@@ -118,8 +120,18 @@ nav.global-nav,
 .stats-bar,.quote,.contato{background:var(--itajao-forest)!important}
 .sensorial,.clube,footer{background:var(--itajao-ink)!important}
 .quem,.ritual,.faq{background:#efe5d7!important}
+.quem .stitle,.quem .quem-body p strong,.quem .dval,.quem .quem-badge-n{color:var(--itajao-coffee-brown)!important}
+.quem .quem-body p{color:#78685b!important}
+.quem .detail{border-left-color:var(--itajao-coffee-brown)!important}
 .produtos,.dep{background:var(--itajao-ivory)!important}
-.cupom{background:#dcc6a5!important}
+.cupom{background:var(--itajao-wine)!important}
+.cupom::before{background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.14) 0%,transparent 62%)!important}
+.cupom .ceye{color:#e7c57f!important}
+.cupom .ctitle{color:#fff8ee!important}
+.cupom .csub,.cupom>p{color:rgba(255,248,238,.72)!important}
+.cupom .ccode{background:#fff8ee!important;color:var(--itajao-wine)!important;box-shadow:0 12px 32px rgba(42,12,19,.26)!important}
+.cupom .btn-d{background:var(--itajao-coffee-deep)!important;color:#fff8ee!important}
+.cupom .btn-d:hover{background:var(--itajao-gold)!important;color:var(--itajao-ink)!important}
 .detail,.pcard,.dcard{background:var(--itajao-paper)!important;border-color:var(--itajao-line)!important}
 .pcard[data-format="graos"] .pbadge,.format-grains{background:var(--itajao-forest)!important;color:#fff!important}
 .pcard[data-format="moido"] .pbadge,.format-ground{background:var(--itajao-wine)!important;color:#fff!important}
@@ -161,7 +173,8 @@ nav.global-nav,
 .catalog-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
 .catalog-card:hover .catalog-photo img{transform:scale(1.025)}
 .catalog-badge{position:absolute;left:14px;top:14px;border-radius:999px;padding:.38rem .72rem;background:var(--itajao-forest);color:#fff;font-size:.54rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-.catalog-card[data-format="moido"] .catalog-badge{background:var(--itajao-wine)}
+.catalog-card[data-format~="moido"] .catalog-badge{background:var(--itajao-wine)}
+.catalog-card[data-format~="moido"] .catalog-price{color:var(--itajao-wine)}
 .catalog-body{padding:1.3rem;display:flex;flex-direction:column;flex:1}
 .catalog-kicker{font-size:.57rem;color:var(--itajao-gold);font-weight:800;letter-spacing:.13em;text-transform:uppercase}
 .catalog-card h2,.catalog-card h3{font-family:Georgia,'Times New Roman',serif;color:var(--itajao-ink);font-size:1.35rem;line-height:1.15;margin:.55rem 0}
