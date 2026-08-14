@@ -157,7 +157,8 @@ Deno.serve(async (request: Request) => {
   });
   const adminEmail = await adminRecipientEmail();
   if (!adminEmail) return json({ error: 'Destinatário administrativo não configurado.' }, 500);
-  const crmUrl = String(Deno.env.get('CRM_URL') || '').trim();
+  const siteUrl = String(Deno.env.get('SITE_URL') || 'https://cafeitajao.com.br').replace(/\/+$/, '');
+  const crmUrl = String(Deno.env.get('CRM_URL') || `${siteUrl}/admin-comunidade.html`).trim();
 
   let body: Record<string, unknown> = {};
   try { body = await request.json(); } catch { /* Corpo vazio é permitido. */ }

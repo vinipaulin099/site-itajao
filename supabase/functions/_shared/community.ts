@@ -239,7 +239,8 @@ export async function notifyAdmins(input: {
     console.error('Admin community email recipient is not configured');
     return;
   }
-  const crmUrl = String(Deno.env.get('CRM_URL') || '').trim();
+  const siteUrl = String(Deno.env.get('SITE_URL') || 'https://cafeitajao.com.br').replace(/\/+$/, '');
+  const crmUrl = String(Deno.env.get('CRM_URL') || `${siteUrl}/admin-comunidade.html`).trim();
   await enqueueEmail({
     category: 'internal',
     templateKey: input.templateKey,
