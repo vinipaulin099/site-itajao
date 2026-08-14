@@ -152,7 +152,7 @@
     var container = byId('ordersList');
     byId('ordersCount').textContent = String(items.length);
     if (!items.length) {
-      clearWithMessage(container, 'Nenhum pedido está apto para receber convite agora.');
+      clearWithMessage(container, 'Nenhuma venda paga tem produtos disponíveis para avaliação.');
       return;
     }
     var fragment = document.createDocumentFragment();
@@ -175,26 +175,30 @@
       addMeta(meta, 'Telefone', customer.phone || 'Não cadastrado');
       addMeta(meta, 'Itens disponíveis', order.reviewable_items);
       if (latest) addMeta(meta, 'Último convite', formatDate(latest.created_at));
+      if (latest && latest.access_code) {
+        var codeMeta = element('span', 'access-code-meta');
+        codeMeta.append(element('strong', '', 'Chave de acesso: '), element('code', 'order-access-code', latest.access_code));
+        meta.append(codeMeta);
+      }
 
       var actions = element('div', 'card-actions');
       var option = element('label', 'send-option');
       var checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
-      checkbox.checked = Boolean(customer.email);
+      checkbox.checked = false;
       checkbox.disabled = !customer.email;
       option.append(checkbox, document.createTextNode(customer.email ? 'Enviar também por e-mail' : 'Cliente sem e-mail cadastrado'));
-      var button = element('button', 'button button-primary', latest && latest.status === 'pending' ? 'Gerar novo convite' : 'Gerar convite');
+      var button = element('button', 'button button-primary', 'Abrir convite');
       button.type = 'button';
       button.addEventListener('click', async function () {
-        if (latest && latest.status === 'pending' && !window.confirm('Gerar um novo convite revoga o convite anterior. Deseja continuar?')) return;
         var original = button.textContent;
         button.disabled = true;
-        button.textContent = 'Gerando…';
-        setGlobalStatus('Criando um convite seguro para este pedido…');
+        button.textContent = 'Abrindo…';
+        setGlobalStatus('Preparando o acesso desta venda…');
         try {
-          var result = await adminCall({ action: 'create_review_invite', order_id: order.id, send_email: checkbox.checked });
+          var result = await adminCall({ action: 'get_review_invite', order_id: order.id, send_email: checkbox.checked });
           showInvite(result);
-          setGlobalStatus('Convite criado com sucesso.', 'success');
+          setGlobalStatus('Acesso pronto para compartilhar.', 'success');
           await loadOrders();
         } catch (error) {
           setGlobalStatus(error.message, 'error');
@@ -363,7 +367,7 @@
       }
     } catch (_) {}
     var productCount = Array.isArray(result.products) ? result.products.length : 0;
-    byId('inviteEmailStatus').textContent = (result.email_queued ? 'O e-mail também entrou na fila de envio. ' : 'Nenhum e-mail foi solicitado. ') + productCount + (productCount === 1 ? ' produto disponível para avaliação.' : ' produtos disponíveis para avaliação.');
+    byId('inviteEmailStatus').textContent = (result.email_queued ? 'O e-mail também entrou na fila de envio. ' : 'A chave permanece salva para esta venda. ') + productCount + (productCount === 1 ? ' produto disponível para avaliação.' : ' produtos disponíveis para avaliação.');
     byId('inviteDialog').showModal();
   }
 

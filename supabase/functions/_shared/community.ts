@@ -44,9 +44,13 @@ export function randomLinkToken() {
 }
 
 export function randomReviewCode() {
-  const values = new Uint32Array(1);
-  crypto.getRandomValues(values);
-  return String(100000 + (values[0] % 900000));
+  const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let code = '';
+  do {
+    const values = crypto.getRandomValues(new Uint8Array(6));
+    code = Array.from(values, (value) => alphabet[value % alphabet.length]).join('');
+  } while (!/[A-HJ-NP-Z]/.test(code) || !/[2-9]/.test(code));
+  return code;
 }
 
 export function normalizeLinkToken(value: unknown) {
@@ -56,8 +60,8 @@ export function normalizeLinkToken(value: unknown) {
 }
 
 export function normalizeReviewCode(value: unknown) {
-  const code = String(value ?? '').replace(/\D/g, '');
-  if (!/^\d{6}$/.test(code)) throw new PublicError('Informe o código de 6 dígitos.');
+  const code = String(value ?? '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+  if (!/^[A-HJ-NP-Z2-9]{6}$/.test(code)) throw new PublicError('Informe a chave de 6 caracteres.');
   return code;
 }
 
@@ -175,7 +179,7 @@ export async function verifyInvite(tokenValue: unknown, codeValue: unknown) {
   }
   if (Number(invite.attempts) >= Number(invite.max_attempts)) {
     await admin.from('review_invites').update({ status: 'locked' }).eq('id', invite.id);
-    throw new PublicError('O limite de tentativas foi atingido. Peça um novo código.', 429);
+    throw new PublicError('O limite de tentativas foi atingido. Peça uma nova chave.', 429);
   }
 
   if (!safeEqual(String(invite.code_hash), codeHash)) {
@@ -186,8 +190,8 @@ export async function verifyInvite(tokenValue: unknown, codeValue: unknown) {
       status: locked ? 'locked' : 'pending',
       last_attempt_at: new Date().toISOString(),
     }).eq('id', invite.id);
-    if (locked) throw new PublicError('Código incorreto. O convite foi bloqueado após 5 tentativas.', 429);
-    throw new PublicError(`Código incorreto. Restam ${Number(invite.max_attempts) - attempts} tentativas.`, 401);
+    if (locked) throw new PublicError('Chave incorreta. O convite foi bloqueado após 5 tentativas.', 429);
+    throw new PublicError(`Chave incorreta. Restam ${Number(invite.max_attempts) - attempts} tentativas.`, 401);
   }
 
   await admin.from('review_invites').update({

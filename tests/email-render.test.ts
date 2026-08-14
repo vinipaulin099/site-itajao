@@ -33,6 +33,21 @@ Deno.test('newsletter inclui descadastro e cabeçalhos visuais', () => {
   assert(html.includes('https://example.supabase.co/functions/v1/newsletter-unsubscribe?token=abc'), 'URL de descadastro ausente.');
 });
 
+Deno.test('convite de avaliação aceita chave alfanumérica', () => {
+  const html = renderEmail({
+    template_key: 'review_invite',
+    recipient_name: 'Cliente',
+    payload: {
+      customer_name: 'Cliente',
+      order_number: 'CRM-105',
+      review_url: 'https://cafeitajao.com.br/avaliar.html?token=segredo',
+      code: 'A2B3C4',
+    },
+  });
+  assert(html.includes('Chave de acesso'), 'Rótulo da chave não encontrado.');
+  assert(html.includes('A2B3C4'), 'Chave alfanumérica não foi renderizada.');
+});
+
 Deno.test('notificação administrativa escapa dados da newsletter', () => {
   const html = renderEmail({
     template_key: 'crm_notification',

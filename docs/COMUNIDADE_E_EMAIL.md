@@ -4,8 +4,8 @@ Esta entrega adiciona avaliações de compra verificada, receitas da comunidade 
 
 ## Fluxos implementados
 
-- O cron do CRM identifica pedidos pagos com pelo menos 3 dias e cria um aviso `review_invite_due` para os administradores.
-- `community-admin` gera um link secreto e um código aleatório de 6 dígitos, válidos por 30 dias e limitados a 5 tentativas, além da mensagem pronta para WhatsApp.
+- Um gatilho no banco cria automaticamente, junto com cada venda, um link secreto e uma chave alfanumérica de 6 caracteres.
+- `community-admin` recupera esse acesso para administradores e monta a mensagem pronta para WhatsApp ou e-mail. O acesso vale por 30 dias e permite até 5 tentativas.
 - O cliente pode avaliar um ou mais produtos do pedido, com nota, título, comentário e foto opcional.
 - Avaliações e receitas ficam privadas até aprovação de um administrador.
 - Conteúdo aprovado aparece na home, na página do produto e em `comunidade.html`.
@@ -50,23 +50,24 @@ A função `community-admin` exige o JWT de um usuário cujo perfil seja `admin`
 
 | Ação | Uso |
 |---|---|
-| `eligible_orders` | Lista pedidos que já podem receber convite. |
-| `create_review_invite` | Recebe `order_id` e `send_email`; devolve `whatsapp_url`, mensagem, link e código. |
+| `eligible_orders` | Lista vendas pagas com produtos que ainda podem ser avaliados. |
+| `get_review_invite` | Recebe `order_id` e `send_email`; recupera ou renova o acesso automático e devolve `whatsapp_url`, mensagem, link e chave. |
+| `create_review_invite` | Alias mantido para compatibilidade com versões anteriores do painel. |
 | `pending` | Lista avaliações e receitas aguardando análise. |
 | `moderate_review` | Recebe `id`, `status`, resposta pública e nota interna. |
 | `moderate_recipe` | Recebe `id`, `status`, resposta pública e nota interna. |
 
-Exemplo de corpo para gerar o convite:
+Exemplo de corpo para consultar e preparar o convite:
 
 ```json
 {
-  "action": "create_review_invite",
+  "action": "get_review_invite",
   "order_id": "UUID_DO_PEDIDO",
   "send_email": false
 }
 ```
 
-O CRM deve abrir o `whatsapp_url` retornado. O código puro nunca é armazenado no banco; somente hashes são persistidos.
+O painel pode abrir o `whatsapp_url` retornado. A chave e o token puros ficam na tabela `review_invites`, que usa RLS e não concede acesso a `anon` nem a `authenticated`; o formulário público valida somente os hashes combinados do link e da chave.
 
 O painel operacional está disponível em `admin-comunidade.html`. Ele não aparece
 na navegação pública, usa sessão temporária do Supabase Auth e só carrega dados

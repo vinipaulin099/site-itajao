@@ -23,17 +23,17 @@
     <header class="review-intro">
       <span class="eyebrow">Compra verificada</span>
       <h1>Conte como foi seu Itajaó</h1>
-      <p>Use o código de 6 dígitos recebido no WhatsApp. O convite vale por 30 dias e permite até 5 tentativas.</p>
+      <p>Use a chave de 6 caracteres, com letras e números, recebida com o convite. O acesso vale por 30 dias e permite até 5 tentativas.</p>
     </header>
 
     <section class="step-card" id="codeStep" aria-labelledby="codeTitle">
       <div class="code-wrap">
-        <h2 id="codeTitle">Confirme seu código</h2>
+        <h2 id="codeTitle">Confirme sua chave</h2>
         <form id="codeForm">
-          <label class="field" for="reviewCode">Código de 6 dígitos</label>
-          <input class="code-input" id="reviewCode" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" aria-describedby="codeHelp" required>
+          <label class="field" for="reviewCode">Chave de 6 caracteres</label>
+          <input class="code-input" id="reviewCode" name="code" type="text" inputmode="text" autocomplete="one-time-code" autocapitalize="characters" spellcheck="false" maxlength="6" pattern="[A-Za-z0-9]{6}" aria-describedby="codeHelp" required>
           <p id="codeHelp" class="form-status" role="status" aria-live="polite"></p>
-          <button class="primary-button" id="verifyButton" type="submit">Confirmar código</button>
+          <button class="primary-button" id="verifyButton" type="submit">Confirmar chave</button>
         </form>
       </div>
     </section>
@@ -64,6 +64,6 @@
 
   <footer class="site-footer"><span>© 2026 Itajaó Cafés Especiais LTDA · Sul de Minas</span><span><a href="mailto:sac@cafeitajao.com.br">sac@cafeitajao.com.br</a></span></footer>
   <script src="assets/js/store-config.js"></script>
-  <script src="assets/js/review-form.js"></script>
+  <script src="assets/js/review-form.js?v=20260813-2"></script>
 </body>
 </html>
