@@ -73,6 +73,8 @@ na navegação pública, usa sessão temporária do Supabase Auth e só carrega 
 quando `community-admin` confirma que o perfil autenticado está ativo com papel
 `admin`. A página permite gerar convites, escolher o envio por e-mail, abrir a
 mensagem pronta no WhatsApp e aprovar ou rejeitar avaliações e receitas.
+Se `CRM_URL` ainda não estiver configurada, os avisos internos usam
+automaticamente `${SITE_URL}/admin-comunidade.html`.
 
 ## Remetentes
 
