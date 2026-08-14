@@ -108,6 +108,30 @@ nav.global-nav,
 .global-nav .nav-cart svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8}
 .global-nav .nav-cart-count{position:absolute;right:-5px;top:-5px;min-width:18px;height:18px;padding:0 4px;border-radius:999px;background:var(--itajao-wine);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.52rem;font-weight:800}
 .global-nav .nav-cart-count[hidden]{display:none}
+.mobile-menu-toggle{display:none}
+
+/* Cupom clicável: mais compacto, legível e com retorno visual ao copiar. */
+.cupom .ccode{
+  min-width:0;
+  margin:0 0 2rem;
+  padding:.78rem 1.9rem;
+  border:1px solid rgba(43,27,20,.1);
+  border-radius:999px;
+  appearance:none;
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:.2rem;
+  cursor:pointer;
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+}
+.cupom .ccode:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(42,12,19,.24)!important}
+.cupom .ccode:active{transform:translateY(0)}
+.cupom .ccode:focus-visible{outline:3px solid rgba(255,248,238,.82)!important;outline-offset:4px}
+.coupon-code-text{padding-left:.2em;font-size:1.18rem;font-weight:850;letter-spacing:.2em;line-height:1.15}
+.coupon-copy-hint{font-size:.5rem;font-weight:750;letter-spacing:.09em;text-transform:uppercase;opacity:.68;line-height:1.2}
+.cupom .ccode.copied{background:#fffdf8!important;box-shadow:0 14px 34px rgba(42,12,19,.22)!important}
 
 .site-page{padding-top:106px;min-height:100vh;background:var(--itajao-ivory)}
 
@@ -276,10 +300,93 @@ nav.global-nav,
 }
 
 @media(max-width:600px){
-  html{scroll-padding-top:134px}
-  .top-bar{height:30px!important}.global-nav,nav.global-nav,.site-nav.global-nav{top:30px!important}
-  .global-nav .nav-logo img,.global-nav .logo-img{width:38px!important;height:38px!important}
-  .global-nav .nav-actions{gap:.35rem}
+  html{scroll-padding-top:104px}
+  .top-bar{height:30px!important}
+  .top-bar-track span,.top-track{font-size:.53rem!important;letter-spacing:.08em!important;line-height:30px!important}
+  .global-nav,nav.global-nav,.site-nav.global-nav{
+    top:30px!important;
+    height:64px!important;
+    padding:0 .72rem!important;
+    gap:.55rem!important;
+  }
+  .global-nav .nav-logo img,.global-nav .logo-img{width:41px!important;height:41px!important}
+  .global-nav .nav-actions{gap:.34rem;min-width:0}
+  .global-nav .nav-cta[data-mobile-label],.global-nav .nav-button[data-mobile-label]{
+    min-height:36px;
+    padding:.52rem .72rem!important;
+    font-size:0!important;
+    line-height:1!important;
+  }
+  .global-nav .nav-cta[data-mobile-label]::after,.global-nav .nav-button[data-mobile-label]::after{
+    content:attr(data-mobile-label);
+    font-size:.54rem;
+    font-weight:850;
+    letter-spacing:.07em;
+  }
+  .global-nav .nav-cart{width:36px;height:36px;flex:0 0 36px}
+  .global-nav .nav-links,.global-nav .site-links{
+    position:absolute!important;
+    top:calc(100% + .4rem)!important;
+    bottom:auto!important;
+    left:.65rem!important;
+    right:.65rem!important;
+    height:auto!important;
+    max-height:0;
+    padding:0 .45rem!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    justify-content:flex-start!important;
+    gap:0!important;
+    overflow:hidden!important;
+    visibility:hidden;
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(-8px);
+    background:rgba(255,250,245,.985);
+    border:1px solid var(--itajao-line)!important;
+    border-radius:16px;
+    box-shadow:0 20px 44px rgba(43,27,20,.18);
+    transition:max-height .28s ease,opacity .2s ease,transform .2s ease,padding .28s ease;
+  }
+  .global-nav.mobile-nav-open .nav-links,.global-nav.mobile-nav-open .site-links{
+    max-height:360px;
+    padding:.45rem!important;
+    visibility:visible;
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0);
+  }
+  .global-nav .nav-links li,.global-nav .site-links li{width:100%}
+  .global-nav .nav-links a,.global-nav .site-links a{
+    display:block!important;
+    width:100%;
+    padding:.82rem .72rem!important;
+    border-radius:10px;
+    font-size:.61rem!important;
+    letter-spacing:.09em!important;
+  }
+  .global-nav .nav-links a:hover,.global-nav .site-links a:hover,.global-nav .nav-links a[aria-current="page"],.global-nav .site-links a[aria-current="page"]{background:rgba(122,31,43,.08)}
+  .mobile-menu-toggle{
+    width:36px;
+    height:36px;
+    flex:0 0 36px;
+    padding:0;
+    border:1px solid var(--itajao-line);
+    border-radius:50%;
+    background:rgba(255,255,255,.55);
+    color:var(--itajao-ink);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    cursor:pointer;
+  }
+  .mobile-menu-toggle span{width:14px;height:1.5px;border-radius:99px;background:currentColor;transition:transform .2s ease,opacity .2s ease}
+  .mobile-menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+  .mobile-menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .mobile-menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+  .site-page{padding-top:94px!important}
   .hero{min-height:680px!important}
   .hero-content{left:1rem!important;right:1rem!important;bottom:4.5rem!important}
   .hero h1{font-size:2.55rem!important}.hero-sub{font-size:.82rem!important;margin-bottom:1.7rem!important}
@@ -294,6 +401,10 @@ nav.global-nav,
   .form-grid,.choice-grid,.billing-explainer{grid-template-columns:1fr}
   .faq-index{grid-template-columns:1fr 1fr;gap:.2rem}.faq-index a{font-size:.58rem}
   .global-footer-inner{grid-template-columns:1fr}.global-footer-bottom{flex-direction:column}
+  .cupom{padding:4rem 1rem!important}
+  .cupom .ccode{margin:0 0 1.75rem;padding:.7rem 1.4rem}
+  .coupon-code-text{font-size:1.05rem;letter-spacing:.18em}
+  .coupon-copy-hint{font-size:.46rem}
 }
 
 @media(prefers-reduced-motion:reduce){
