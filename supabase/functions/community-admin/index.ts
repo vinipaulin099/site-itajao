@@ -2,9 +2,6 @@ import { cleanText, handleOptions, json, parseJson, PublicError, publicErrorResp
 import { enqueueEmail } from '../_shared/email.ts';
 import {
   adminClient,
-  hashesForInvite,
-  randomLinkToken,
-  randomReviewCode,
   requireAdmin,
   signedImageUrl,
 } from '../_shared/community.ts';
@@ -32,9 +29,6 @@ async function orderInviteContext(orderId: string) {
   if (order.payment_status !== 'pago' || ['cancelado', 'reembolsado'].includes(order.status)) {
     throw new PublicError('Somente pedidos pagos e válidos podem receber convite.', 409);
   }
-  if (new Date(order.order_date).getTime() > Date.now() - 3 * 24 * 60 * 60 * 1000) {
-    throw new PublicError('O convite fica disponível 3 dias após a compra.', 409);
-  }
 
   const [customerResult, itemsResult, reviewedResult] = await Promise.all([
     admin.from('customers').select('id,full_name,email,phone').eq('id', order.customer_id).maybeSingle(),
@@ -51,44 +45,34 @@ async function orderInviteContext(orderId: string) {
   return { order, customer: customerResult.data, items: available };
 }
 
-async function createReviewInvite(body: Record<string, unknown>, userId: string) {
+async function getReviewInvite(body: Record<string, unknown>, userId: string) {
   const orderId = cleanText(body.order_id, 80);
   if (!/^[0-9a-f-]{36}$/i.test(orderId)) throw new PublicError('Pedido inválido.');
   const context = await orderInviteContext(orderId);
   const admin = adminClient();
-  const token = randomLinkToken();
-  const code = randomReviewCode();
-  const { tokenHash, codeHash } = await hashesForInvite(token, code);
-  const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
-
-  const revoked = await admin
-    .from('review_invites')
-    .update({ status: 'revoked' })
-    .eq('order_id', orderId)
-    .eq('status', 'pending');
-  if (revoked.error) throw revoked.error;
+  const ensured = await admin.rpc('ensure_review_invite', {
+    p_order_id: orderId,
+    p_created_by: userId,
+  });
+  if (ensured.error) throw ensured.error;
 
   const { data: invite, error } = await admin
     .from('review_invites')
-    .insert({
-      order_id: orderId,
-      customer_id: context.order.customer_id,
-      link_token_hash: tokenHash,
-      code_hash: codeHash,
-      status: 'pending',
-      attempts: 0,
-      max_attempts: 5,
-      expires_at: expiresAt,
-      created_by: userId,
-    })
-    .select('id,expires_at')
-    .single();
+    .select('id,expires_at,link_token,access_code')
+    .eq('id', ensured.data)
+    .maybeSingle();
   if (error) throw error;
+  if (!invite?.link_token || !invite?.access_code) {
+    throw new PublicError('Não foi possível recuperar a chave desta venda.', 500);
+  }
+
+  const token = String(invite.link_token);
+  const code = String(invite.access_code);
 
   const reviewUrl = new URL(siteUrl('avaliar.html'));
   reviewUrl.searchParams.set('token', token);
   const firstName = String(context.customer.full_name || 'Olá').split(/\s+/)[0];
-  const message = `Olá, ${firstName}! ☕ Queremos saber como foi sua experiência com o Café Itajaó.\n\nAvalie por aqui: ${reviewUrl.toString()}\nCódigo de verificação: ${code}\n\nO link é válido por 30 dias.`;
+  const message = `Olá, ${firstName}! ☕ Queremos saber como foi sua experiência com o Café Itajaó.\n\nAvalie por aqui: ${reviewUrl.toString()}\nChave de acesso: ${code}\n\nO link é válido por 30 dias.`;
   const phone = whatsappNumber(context.customer.phone);
 
   if (body.send_email === true && context.customer.email) {
@@ -167,13 +151,11 @@ async function pendingContent() {
 
 async function eligibleOrders() {
   const admin = adminClient();
-  const cutoff = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString();
   const { data: orders, error } = await admin
     .from('orders')
     .select('id,customer_id,external_order_number,order_date,status,payment_status')
     .eq('payment_status', 'pago')
     .not('status', 'in', '(cancelado,reembolsado)')
-    .lte('order_date', cutoff)
     .order('order_date', { ascending: false })
     .limit(100);
   if (error) throw error;
@@ -185,7 +167,7 @@ async function eligibleOrders() {
     admin.from('customers').select('id,full_name,email,phone').in('id', customerIds),
     admin.from('order_items').select('id,order_id,product_id').in('order_id', orderIds),
     admin.from('product_reviews').select('order_item_id').in('order_id', orderIds),
-    admin.from('review_invites').select('id,order_id,status,expires_at,created_at').in('order_id', orderIds).order('created_at', { ascending: false }),
+    admin.from('review_invites').select('id,order_id,status,expires_at,created_at,access_code').in('order_id', orderIds).order('created_at', { ascending: false }),
   ]);
   for (const result of [customers, items, reviews, invites]) if (result.error) throw result.error;
   const customerMap = new Map((customers.data || []).map((customer) => [customer.id, customer]));
@@ -314,7 +296,8 @@ Deno.serve(async (req) => {
     switch (body?.action) {
       case 'pending': return json(await pendingContent());
       case 'eligible_orders': return json({ items: await eligibleOrders() });
-      case 'create_review_invite': return json(await createReviewInvite(body, adminUser.userId));
+      case 'get_review_invite':
+      case 'create_review_invite': return json(await getReviewInvite(body, adminUser.userId));
       case 'moderate_review': return json(await moderateReview(body, adminUser.userId));
       case 'moderate_recipe': return json(await moderateRecipe(body, adminUser.userId));
       default: throw new PublicError('Ação administrativa inválida.');

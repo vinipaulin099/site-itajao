@@ -80,7 +80,9 @@
     });
   }
 
-  codeInput.addEventListener('input', function () { codeInput.value = codeInput.value.replace(/\D/g, '').slice(0, 6); });
+  codeInput.addEventListener('input', function () {
+    codeInput.value = codeInput.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6);
+  });
 
   codeForm.addEventListener('submit', async function (event) {
     event.preventDefault();
@@ -94,7 +96,7 @@
     codeHelp.className = 'form-status';
     codeHelp.textContent = 'Confirmando seu pedido…';
     try {
-      verifiedCode = codeInput.value;
+      verifiedCode = codeInput.value.toUpperCase();
       const response = await fetch(endpoint, {
         method: 'POST', headers: headers(true), body: JSON.stringify({ action: 'verify', token: token, code: verifiedCode }),
       });

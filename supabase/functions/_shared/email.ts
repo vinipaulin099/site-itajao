@@ -204,7 +204,7 @@ export function renderEmail(row: Pick<EmailOutboxRow, 'template_key' | 'payload'
       return layout({
         preview: 'Conte como foi sua experiência com o Café Itajaó.',
         title: 'Como foi seu Café Itajaó?',
-        body: `<p style="margin:0 0 14px">Olá, ${escapeHtml(name)}!</p><p style="margin:0 0 16px">Sua opinião ajuda outras pessoas a escolherem um bom café e nos ajuda a melhorar sempre.</p><div style="padding:16px;border-radius:10px;background:#f6eee5;text-align:center"><span style="display:block;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#94755e">Código de verificação</span><strong style="display:block;margin-top:6px;font-size:28px;letter-spacing:.18em;color:#3d2b1f">${escapeHtml(payload.code)}</strong></div>`,
+        body: `<p style="margin:0 0 14px">Olá, ${escapeHtml(name)}!</p><p style="margin:0 0 16px">Sua opinião ajuda outras pessoas a escolherem um bom café e nos ajuda a melhorar sempre.</p><div style="padding:16px;border-radius:10px;background:#f6eee5;text-align:center"><span style="display:block;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#94755e">Chave de acesso</span><strong style="display:block;margin-top:6px;font-size:28px;letter-spacing:.18em;color:#3d2b1f">${escapeHtml(payload.code)}</strong></div>`,
         action: text(payload.review_url),
         actionLabel: 'Avaliar meu café',
       });

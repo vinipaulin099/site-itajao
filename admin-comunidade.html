@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/admin-community.css?v=20260813-1">
+  <link rel="stylesheet" href="assets/css/admin-community.css?v=20260813-2">
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -30,7 +30,7 @@
       <form class="login-card" id="loginForm">
         <span class="eyebrow">Área protegida</span>
         <h1>Comunidade Itajaó</h1>
-        <p>Entre com uma conta administrativa para gerar convites e moderar o conteúdo enviado.</p>
+        <p>Entre com uma conta administrativa para consultar acessos de avaliação e moderar o conteúdo enviado.</p>
         <label for="adminEmail">E-mail</label>
         <input id="adminEmail" name="email" type="email" autocomplete="username" required>
         <label for="adminPassword">Senha</label>
@@ -49,7 +49,7 @@
       <div class="notice" id="globalStatus" role="status" aria-live="polite" hidden></div>
 
       <div class="stats" aria-label="Resumo da comunidade">
-        <article><span>Pedidos aptos</span><strong id="ordersCount">0</strong></article>
+        <article><span>Vendas com acesso</span><strong id="ordersCount">0</strong></article>
         <article><span>Avaliações pendentes</span><strong id="reviewsCount">0</strong></article>
         <article><span>Receitas pendentes</span><strong id="recipesCount">0</strong></article>
       </div>
@@ -61,7 +61,7 @@
       </div>
 
       <section class="admin-panel" id="ordersPanel" role="tabpanel" aria-labelledby="ordersTab">
-        <div class="panel-heading"><div><h2>Convites de avaliação</h2><p>Pedidos pagos há pelo menos três dias e que ainda têm produtos para avaliar.</p></div></div>
+        <div class="panel-heading"><div><h2>Acessos de avaliação</h2><p>Cada venda paga recebe automaticamente uma chave de 6 caracteres para avaliar os produtos.</p></div></div>
         <div class="admin-list" id="ordersList"><div class="empty-state">Carregando pedidos…</div></div>
       </section>
 
@@ -80,10 +80,10 @@
   <dialog id="inviteDialog" aria-labelledby="inviteDialogTitle">
     <div class="dialog-card">
       <button class="dialog-close" id="closeInviteDialog" type="button" aria-label="Fechar">×</button>
-      <span class="eyebrow">Convite criado</span>
+      <span class="eyebrow">Acesso da venda</span>
       <h2 id="inviteDialogTitle">Mensagem pronta para envio</h2>
-      <p class="dialog-copy">O código e o link abaixo aparecem somente nesta confirmação. O convite anterior deste pedido, se existia, foi revogado.</p>
-      <div class="invite-code"><span>Código</span><strong id="inviteCode"></strong></div>
+      <p class="dialog-copy">A chave foi criada automaticamente com a venda e continuará disponível neste painel enquanto o acesso estiver válido.</p>
+      <div class="invite-code"><span>Chave de acesso</span><strong id="inviteCode"></strong></div>
       <textarea id="inviteMessage" readonly aria-label="Mensagem do convite"></textarea>
       <div class="dialog-actions">
         <button class="button button-outline" id="copyInviteButton" type="button">Copiar mensagem</button>
@@ -94,6 +94,6 @@
   </dialog>
 
   <script src="assets/js/store-config.js"></script>
-  <script src="assets/js/admin-community.js?v=20260813-1"></script>
+  <script src="assets/js/admin-community.js?v=20260813-2"></script>
 </body>
 </html>
