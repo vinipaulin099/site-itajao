@@ -11,6 +11,7 @@ Esta entrega adiciona avaliações de compra verificada, receitas da comunidade 
 - Conteúdo aprovado aparece na home, na página do produto e em `comunidade.html`.
 - Clientes e administradores recebem mensagens pelo mesmo `email_outbox`, com idempotência, retentativas e registro dos eventos do Resend.
 - Bounce, denúncia de spam e descadastro entram em `email_suppressions`.
+- Cada novo cadastro na newsletter também gera um aviso interno idempotente para a equipe.
 
 ## Ordem de publicação
 
@@ -66,6 +67,12 @@ Exemplo de corpo para gerar o convite:
 ```
 
 O CRM deve abrir o `whatsapp_url` retornado. O código puro nunca é armazenado no banco; somente hashes são persistidos.
+
+O painel operacional está disponível em `admin-comunidade.html`. Ele não aparece
+na navegação pública, usa sessão temporária do Supabase Auth e só carrega dados
+quando `community-admin` confirma que o perfil autenticado está ativo com papel
+`admin`. A página permite gerar convites, escolher o envio por e-mail, abrir a
+mensagem pronta no WhatsApp e aprovar ou rejeitar avaliações e receitas.
 
 ## Remetentes
 

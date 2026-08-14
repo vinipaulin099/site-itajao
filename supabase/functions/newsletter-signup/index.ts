@@ -1,6 +1,6 @@
 import { cleanText, handleOptions, json, parseJson, PublicError, publicErrorResponse } from '../_shared/core.ts';
 import { dbRequest } from '../_shared/db.ts';
-import { enqueueEmail } from '../_shared/email.ts';
+import { adminRecipientEmail, enqueueEmail } from '../_shared/email.ts';
 
 function validateEmail(value: unknown) {
   const email = cleanText(value, 180).toLowerCase();
@@ -74,6 +74,34 @@ Deno.serve(async (req) => {
       });
     } catch (emailError) {
       console.error('Newsletter welcome queue failed', emailError);
+    }
+
+    try {
+      const adminEmail = await adminRecipientEmail();
+      if (adminEmail) {
+        const siteUrl = String(Deno.env.get('SITE_URL') || 'https://cafeitajao.com.br').replace(/\/+$/, '');
+        const crmUrl = String(Deno.env.get('CRM_URL') || `${siteUrl}/admin-comunidade.html`).trim();
+        await enqueueEmail({
+          category: 'internal',
+          templateKey: 'crm_notification',
+          recipientEmail: adminEmail,
+          recipientName: 'Equipe Itajaó',
+          senderKind: 'admin',
+          subject: '[CRM Itajaó] Novo cadastro na newsletter',
+          payload: {
+            title: 'Novo cadastro na newsletter',
+            message: `${name} (${email}) entrou para a newsletter pelo canal ${sourceName(body?.source)}.`,
+            crm_url: crmUrl,
+          },
+          idempotencyKey: `newsletter:admin:${subscriber.id}`,
+          resourceType: 'newsletter_subscriber',
+          resourceId: subscriber.id,
+          priority: 30,
+        });
+      }
+    } catch (emailError) {
+      // A notificação interna não pode impedir o cadastro do cliente.
+      console.error('Newsletter admin notification queue failed', emailError);
     }
 
     return json({ ok: true });

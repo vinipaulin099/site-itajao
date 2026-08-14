@@ -10,6 +10,7 @@ site-itajao/
 ├── checkout.html
 ├── pedido.html
 ├── comunidade.html
+├── admin-comunidade.html
 ├── avaliar.html
 ├── cancelar-inscricao.html
 ├── assets/
@@ -33,6 +34,7 @@ site-itajao/
 - `assets/images/home/`: imagens do carrossel e da seção Quem Somos.
 - `assets/images/products/`: fotos das embalagens e produtos.
 - `comunidade.html`: avaliações verificadas e receitas aprovadas.
+- `admin-comunidade.html`: painel protegido para convites e moderação da comunidade; não faz parte da navegação pública.
 - `avaliar.html`: formulário protegido por link e código do convite.
 - `cancelar-inscricao.html`: confirmação de descadastro da newsletter.
 - `assets/css/community.css`: estilos das páginas da comunidade.

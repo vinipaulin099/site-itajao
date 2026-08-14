@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src https://eumgdopgiffzpahzcdsq.supabase.co; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
+  <title>Comunidade | Administração Itajaó</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/admin-community.css?v=20260813-1">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="admin-header">
+    <a class="admin-brand" href="index.html" aria-label="Voltar ao site Itajaó">
+      <img src="assets/images/brand/teste4.png" alt="">
+      <span><strong>ITAJAÓ</strong><small>Operações da comunidade</small></span>
+    </a>
+    <div class="session-actions" id="sessionActions" hidden>
+      <span id="sessionEmail"></span>
+      <button class="button button-quiet" id="logoutButton" type="button">Sair</button>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="login-shell" id="loginPanel">
+      <form class="login-card" id="loginForm">
+        <span class="eyebrow">Área protegida</span>
+        <h1>Comunidade Itajaó</h1>
+        <p>Entre com uma conta administrativa para gerar convites e moderar o conteúdo enviado.</p>
+        <label for="adminEmail">E-mail</label>
+        <input id="adminEmail" name="email" type="email" autocomplete="username" required>
+        <label for="adminPassword">Senha</label>
+        <input id="adminPassword" name="password" type="password" autocomplete="current-password" required>
+        <button class="button button-primary" type="submit">Entrar</button>
+        <p class="form-status" id="loginStatus" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="dashboard" id="dashboard" hidden>
+      <div class="dashboard-head">
+        <div><span class="eyebrow">Painel operacional</span><h1>Comunidade</h1><p>Convites de avaliação, avaliações verificadas e receitas em um só lugar.</p></div>
+        <button class="button button-outline" id="refreshButton" type="button">Atualizar dados</button>
+      </div>
+
+      <div class="notice" id="globalStatus" role="status" aria-live="polite" hidden></div>
+
+      <div class="stats" aria-label="Resumo da comunidade">
+        <article><span>Pedidos aptos</span><strong id="ordersCount">0</strong></article>
+        <article><span>Avaliações pendentes</span><strong id="reviewsCount">0</strong></article>
+        <article><span>Receitas pendentes</span><strong id="recipesCount">0</strong></article>
+      </div>
+
+      <div class="admin-tabs" role="tablist" aria-label="Operações da comunidade">
+        <button class="admin-tab active" id="ordersTab" type="button" role="tab" aria-selected="true" aria-controls="ordersPanel" data-panel="ordersPanel">Convites</button>
+        <button class="admin-tab" id="reviewsTab" type="button" role="tab" aria-selected="false" aria-controls="reviewsPanel" data-panel="reviewsPanel">Avaliações</button>
+        <button class="admin-tab" id="recipesTab" type="button" role="tab" aria-selected="false" aria-controls="recipesPanel" data-panel="recipesPanel">Receitas</button>
+      </div>
+
+      <section class="admin-panel" id="ordersPanel" role="tabpanel" aria-labelledby="ordersTab">
+        <div class="panel-heading"><div><h2>Convites de avaliação</h2><p>Pedidos pagos há pelo menos três dias e que ainda têm produtos para avaliar.</p></div></div>
+        <div class="admin-list" id="ordersList"><div class="empty-state">Carregando pedidos…</div></div>
+      </section>
+
+      <section class="admin-panel" id="reviewsPanel" role="tabpanel" aria-labelledby="reviewsTab" hidden>
+        <div class="panel-heading"><div><h2>Avaliações aguardando análise</h2><p>Confira texto, nota e imagem antes de publicar.</p></div></div>
+        <div class="admin-list" id="reviewsList"><div class="empty-state">Carregando avaliações…</div></div>
+      </section>
+
+      <section class="admin-panel" id="recipesPanel" role="tabpanel" aria-labelledby="recipesTab" hidden>
+        <div class="panel-heading"><div><h2>Receitas aguardando análise</h2><p>Revise ingredientes, preparo e imagem antes de publicar.</p></div></div>
+        <div class="admin-list" id="recipesList"><div class="empty-state">Carregando receitas…</div></div>
+      </section>
+    </section>
+  </main>
+
+  <dialog id="inviteDialog" aria-labelledby="inviteDialogTitle">
+    <div class="dialog-card">
+      <button class="dialog-close" id="closeInviteDialog" type="button" aria-label="Fechar">×</button>
+      <span class="eyebrow">Convite criado</span>
+      <h2 id="inviteDialogTitle">Mensagem pronta para envio</h2>
+      <p class="dialog-copy">O código e o link abaixo aparecem somente nesta confirmação. O convite anterior deste pedido, se existia, foi revogado.</p>
+      <div class="invite-code"><span>Código</span><strong id="inviteCode"></strong></div>
+      <textarea id="inviteMessage" readonly aria-label="Mensagem do convite"></textarea>
+      <div class="dialog-actions">
+        <button class="button button-outline" id="copyInviteButton" type="button">Copiar mensagem</button>
+        <a class="button button-primary" id="whatsappInviteButton" target="_blank" rel="noopener noreferrer" hidden>Abrir WhatsApp</a>
+      </div>
+      <p class="dialog-note" id="inviteEmailStatus"></p>
+    </div>
+  </dialog>
+
+  <script src="assets/js/store-config.js"></script>
+  <script src="assets/js/admin-community.js?v=20260813-1"></script>
+</body>
+</html>

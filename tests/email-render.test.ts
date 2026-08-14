@@ -33,6 +33,21 @@ Deno.test('newsletter inclui descadastro e cabeçalhos visuais', () => {
   assert(html.includes('https://example.supabase.co/functions/v1/newsletter-unsubscribe?token=abc'), 'URL de descadastro ausente.');
 });
 
+Deno.test('notificação administrativa escapa dados da newsletter', () => {
+  const html = renderEmail({
+    template_key: 'crm_notification',
+    recipient_name: 'Equipe Itajaó',
+    payload: {
+      title: 'Novo cadastro na newsletter',
+      message: '<script>alert(1)</script> entrou para a lista.',
+      crm_url: 'https://cafeitajao.com.br/admin-comunidade.html',
+    },
+  });
+  assert(!html.includes('<script>alert(1)</script>'), 'Mensagem administrativa não foi escapada.');
+  assert(html.includes('&lt;script&gt;alert(1)&lt;/script&gt;'), 'Mensagem administrativa escapada não encontrada.');
+  assert(html.includes('Abrir CRM'), 'Atalho para o painel administrativo ausente.');
+});
+
 Deno.test('relatório mensal aceita apenas dados estruturados escapados', () => {
   Deno.env.set('SITE_URL', 'https://cafeitajao.com.br');
   const html = renderEmail({
