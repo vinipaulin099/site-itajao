@@ -77,7 +77,7 @@ body{
   border-color:rgba(43,27,20,.16)!important;
   box-shadow:0 8px 28px rgba(43,27,20,.08)!important;
 }
-.global-nav .brand-wordmark,.global-nav .nav-links a,.global-nav .site-links a,
+.global-nav .nav-links a,.global-nav .site-links a,
 .site-links,.site-links a,.cart-page .back,.cart-page .cart-link,.checkout-page .back,
 .product-page .back,.product-page .cart-link{
   color:var(--palette-wine-dark)!important;

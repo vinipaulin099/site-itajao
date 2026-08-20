@@ -181,7 +181,7 @@ section{padding:7.5rem 3.5rem}
 .sensorial .stitle{color:var(--bege)}
 .sbody p{color:rgba(254,216,177,.5);font-size:.91rem;line-height:1.95;margin-bottom:1.2rem;font-weight:300}
 .mrow{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:2.2rem}
-.mtag{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;padding:.42rem .95rem;border:1.5px solid rgba(166,123,91,.22);color:rgba(254,216,177,.5);border-radius:var(--rb);font-weight:600;transition:.3s}
+.mtag{display:inline-flex;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;padding:.42rem .95rem;border:1.5px solid rgba(166,123,91,.22);color:rgba(254,216,177,.5);border-radius:var(--rb);font-weight:600;text-decoration:none;transition:.3s}
 .mtag:hover{border-color:var(--dourado);color:var(--dourado)}
 .ntrio{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
 .ncard{padding:2.3rem 1.1rem;border:1.5px solid rgba(166,123,91,.15);text-align:center;transition:all .4s ease;border-radius:var(--r)}
@@ -328,6 +328,7 @@ body.nl-lock{overflow:hidden}
 .cinfo-val{font-size:.82rem;color:rgba(254,216,177,.75);font-weight:400;text-decoration:none;display:block;line-height:1.4}
 .cinfo-val:hover{color:var(--dourado-c)}
 .cmap-area{background:rgba(254,216,177,.04);border:1px solid rgba(166,123,91,.15);border-radius:var(--r);padding:2.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;min-height:320px}
+.footer-real-logo{width:160px;max-width:60%;height:auto;display:block}
 .csocial{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap}
 .csoc-btn{padding:.6rem 1.4rem;border:1px solid rgba(166,123,91,.25);color:rgba(254,216,177,.55);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;font-family:'Manrope',sans-serif;font-weight:600;border-radius:var(--rb);text-decoration:none;transition:.3s;display:inline-flex;align-items:center;gap:.5rem}
 .csoc-btn:hover{border-color:var(--dourado);color:var(--dourado)}
@@ -399,7 +400,7 @@ body,body *,body *::before,body *::after{
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
 </style>
-<link rel="stylesheet" href="assets/css/brand-refresh.css?v=20260814-1">
+<link rel="stylesheet" href="assets/css/brand-refresh.css?v=20260819-1">
 <link rel="stylesheet" href="assets/css/palette-colorhunt.css?v=20260814-1">
 </head>
 <body class="home-page">
@@ -410,7 +411,7 @@ body,body *,body *::before,body *::after{
   <div class="nl-modal" role="dialog" aria-modal="true" aria-labelledby="newsletterTitle">
     <button class="nl-close" id="newsletterClose" type="button" aria-label="Fechar cadastro de newsletter">×</button>
     <div class="nl-form-side">
-      <img class="nl-logo" src="assets/images/brand/teste4.png" alt="Itajaó Cafés Especiais" onerror="this.style.display='none'">
+      <img class="nl-logo" src="assets/images/brand/logo-itajao-hq.png" alt="Itajaó Cafés Especiais" onerror="this.style.display='none'">
       <p class="nl-title" id="newsletterTitle">Vem tomar um café com a gente</p>
       <form class="nl-form" id="newsletterForm">
         <input class="nl-input" id="newsletterName" name="name" type="text" maxlength="120" autocomplete="name" placeholder="Nome completo" aria-label="Nome completo" required>
@@ -440,8 +441,7 @@ body,body *,body *::before,body *::after{
 ═══════════════════════════════════════ -->
 <nav id="nav" class="global-nav" aria-label="Navegação principal">
  <a href="index.html" class="nav-logo" aria-label="Itajaó, página inicial">
-    <img src="assets/images/brand/teste4.png" alt="Café Itajaó" class="logo-img">
-    <span class="brand-wordmark"><strong>ITAJAÓ</strong><small>Cafés especiais</small></span>
+    <img src="assets/images/brand/logo-itajao-hq.png" alt="Café Itajaó" class="logo-img">
 </a>
   <ul class="nav-links">
     <li><a href="#quem">Origem</a></li>
@@ -515,8 +515,7 @@ body,body *,body *::before,body *::after{
     <h1>O sabor que<br><em>abraça</em><br>sua manhã.</h1>
     <p class="hero-sub">Café especial de altitude, produzido e selecionado no Sul de Minas. Catuaí Amarelo, processo natural e torra média para uma xícara doce e equilibrada.</p>
     <div class="hero-btns">
-      <a href="#cafes" class="btn-p">Comprar meu Itajaó <svg viewBox="0 0 20 20" stroke-width="2" stroke-linecap="round"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a>
-      <a href="#quem" class="btn-o">Nossa história</a>
+      <a href="produtos.html" class="btn-p">Conhecer mais <svg viewBox="0 0 20 20" stroke-width="2" stroke-linecap="round"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a>
     </div>
   </div>
 </section>
@@ -652,10 +651,10 @@ body,body *,body *::before,body *::after{
       <p>Na xícara, o Itajaó reúne doçura, corpo cremoso e acidez cítrica. As notas de chocolate, caramelo e castanha vêm naturalmente do grão e do cuidado com a torra.</p>
       <p>A torra média busca equilíbrio. Ela preserva a doçura do Catuaí Amarelo e deixa o café confortável tanto no coador do dia a dia quanto nos métodos filtrados.</p>
       <div class="mrow">
-        <span class="mtag">V60</span>
-        <span class="mtag">Prensa Francesa</span>
-        <span class="mtag">Café Coado</span>
-        <span class="mtag">Aeropress</span>
+        <a class="mtag" href="comunidade.html#receitas">V60</a>
+        <a class="mtag" href="comunidade.html#receitas">Prensa Francesa</a>
+        <a class="mtag" href="comunidade.html#receitas">Café Coado</a>
+        <a class="mtag" href="comunidade.html#receitas">Aeropress</a>
       </div>
     </div>
     <div class="ntrio rv d2">
@@ -703,10 +702,9 @@ body,body *,body *::before,body *::after{
     <div class="rv">
       <div class="stag">Clube de Assinatura</div>
       <h2 class="stitle">Café fresco,<br><em>todo mês</em></h2>
-      <div class="cbody"><p>Escolha quanto café quer receber, o peso de cada pacote e o formato. Você pode pagar mês a mês ou contratar os 12 envios em uma compra anual.</p></div>
+      <div class="cbody"><p>Escolha 500g ou 1kg e receba em grãos ou moído. Você pode pagar mês a mês ou contratar os 12 envios em uma compra anual.</p></div>
       <ul class="blist">
-        <li>1 ou 2 pacotes por envio</li>
-        <li>Pacotes de 500g ou 1kg</li>
+        <li>Envios de 500g ou 1kg</li>
         <li>Café moído ou em grãos</li>
         <li>Período mínimo de um mês no plano mensal</li>
         <li>Plano anual com pagamento em até 12 vezes</li>
@@ -720,10 +718,9 @@ body,body *,body *::before,body *::after{
     <div class="ccard rv d2">
       <span class="cbadge">Plano configurável</span>
       <div class="cpreco">Do seu jeito</div>
-      <span class="cpnote">quantidade, peso, formato e pagamento</span>
+      <span class="cpnote">peso, formato e pagamento</span>
       <div class="crows">
-        <div class="crow"><span>Quantidade</span><strong>1 ou 2 pacotes</strong></div>
-        <div class="crow"><span>Peso</span><strong>500g ou 1kg</strong></div>
+        <div class="crow"><span>Peso do envio</span><strong>500g ou 1kg</strong></div>
         <div class="crow"><span>Formato</span><strong>Moído ou grãos</strong></div>
         <div class="crow"><span>Cobrança</span><strong>Mensal ou anual</strong></div>
         <div class="crow"><span>Ativação</span><strong>Após confirmação</strong></div>
@@ -763,7 +760,7 @@ body,body *,body *::before,body *::after{
     <div class="fitem rv"><button class="fbtn" type="button" aria-expanded="false" onclick="faq(this)">O que é um café especial?<span class="ftog" aria-hidden="true"></span></button><div class="fbody"><p>É um café avaliado por critérios técnicos de qualidade e que alcança pelo menos 80 pontos. O Itajaó tem 84 pontos e origem rastreada na própria fazenda.</p></div></div>
     <div class="fitem rv"><button class="fbtn" type="button" aria-expanded="false" onclick="faq(this)">Qual a diferença entre moído e grãos?<span class="ftog" aria-hidden="true"></span></button><div class="fbody"><p>Os grãos preservam o frescor por mais tempo e permitem ajustar a moagem para cada método. O moído é conveniente e pronto para usar. Recomendamos os grãos para quem tem moedor e quer extrair o máximo de sabor.</p></div></div>
     <div class="fitem rv"><button class="fbtn" type="button" aria-expanded="false" onclick="faq(this)">Como armazenar corretamente?<span class="ftog" aria-hidden="true"></span></button><div class="fbody"><p>Mantenha a embalagem bem fechada ou use um recipiente hermético, longe de luz, calor, umidade e odores. Evite a geladeira.</p></div></div>
-    <div class="fitem rv"><button class="fbtn" type="button" aria-expanded="false" onclick="faq(this)">Como funciona a assinatura?<span class="ftog" aria-hidden="true"></span></button><div class="fbody"><p>Você escolhe 1 ou 2 pacotes, 500g ou 1kg, em grãos ou moído. Há opção mensal recorrente e plano anual em uma compra parcelável.</p></div></div>
+    <div class="fitem rv"><button class="fbtn" type="button" aria-expanded="false" onclick="faq(this)">Como funciona a assinatura?<span class="ftog" aria-hidden="true"></span></button><div class="fbody"><p>Você escolhe 500g ou 1kg, em grãos ou moído. Há opção mensal recorrente e plano anual em uma compra parcelável.</p></div></div>
     <div class="fitem rv"><button class="fbtn" type="button" aria-expanded="false" onclick="faq(this)">Vocês entregam para todo o Brasil?<span class="ftog" aria-hidden="true"></span></button><div class="fbody"><p>Sim. O prazo e as opções de envio variam conforme o CEP e são calculados na finalização da compra.</p></div></div>
   </div>
   <div class="home-products-more"><a class="clean-link" href="perguntas-frequentes.html">Ver todas as perguntas</a></div>
@@ -832,10 +829,8 @@ body,body *,body *::before,body *::after{
     </div>
 
     <div class="cmap-area rv d2">
-      <img class="footer-real-logo" src="assets/images/brand/teste4.png" alt="Itajaó Cafés Especiais">
+      <img class="footer-real-logo" src="assets/images/brand/logo-itajao-hq-light.png" alt="Itajaó Cafés Especiais">
       <div style="text-align:center">
-        <strong style="color:rgba(254,216,177,.6);font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;display:block">ITAJAÓ</strong>
-        <p style="color:rgba(254,216,177,.35);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.2rem">Cafés Especiais</p>
         <p style="color:rgba(254,216,177,.45);font-size:.82rem;line-height:1.75">Alpinópolis &amp; Carmo do Rio Claro<br>Sul de Minas Gerais · 1.200m altitude</p>
         <p style="margin-top:.8rem;font-style:italic;font-family:'Playfair Display',serif;font-size:.9rem;color:rgba(254,216,177,.3)">"Raízes Mineiras. Olhar para o Mundo."</p>
       </div>
@@ -851,8 +846,7 @@ body,body *,body *::before,body *::after{
   <div class="ftop">
     <div>
       <a href="index.html" style="display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;margin-bottom:1rem">
-        <img src="assets/images/brand/teste4.png" alt="" style="width:38px;height:38px;object-fit:contain;filter:brightness(0) invert(1)">
-        <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;color:var(--bege)">ITAJAÓ <span style="color:var(--dourado)">Cafés</span></span>
+        <img src="assets/images/brand/logo-itajao-hq-light.png" alt="Itajaó Cafés Especiais" style="width:92px;height:auto;object-fit:contain">
       </a>
       <p class="ftag-txt">Da roça à sua xícara.<br>Com tempo, cuidado<br>e origem.</p>
       <div class="fcontacts">

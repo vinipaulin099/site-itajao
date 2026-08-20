@@ -2,6 +2,7 @@
   'use strict';
   var grid = document.getElementById('catalogGrid');
   var store = window.ItajaoStore;
+  var filterButtons = Array.prototype.slice.call(document.querySelectorAll('[data-catalog-filter]'));
   if (!grid || !store) return;
 
   var products = [
@@ -37,6 +38,23 @@
       '<div class="catalog-price">' + store.escapeHtml(price) + '<small>' + store.escapeHtml(priceNote) + '</small></div><div class="catalog-actions">' + actions + '</div></div></article>';
   }
 
+  function applyFilter(filter) {
+    var selected = ['graos', 'moido', 'volume'].indexOf(filter) >= 0 ? filter : 'todos';
+    grid.querySelectorAll('[data-catalog-card]').forEach(function (item) {
+      var formats = String(item.getAttribute('data-format') || '').split(/\s+/);
+      item.hidden = selected !== 'todos' && formats.indexOf(selected) < 0;
+    });
+    filterButtons.forEach(function (button) {
+      var active = button.getAttribute('data-catalog-filter') === selected;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    var url = new URL(window.location.href);
+    if (selected === 'todos') url.searchParams.delete('filtro');
+    else url.searchParams.set('filtro', selected);
+    history.replaceState(null, '', url.pathname + url.search + '#catalogo');
+  }
+
   (async function () {
     var catalog = await store.loadCatalog();
     grid.innerHTML = products.map(function (product) { return card(product, product.id ? catalog[product.id] : null); }).join('');
@@ -46,6 +64,12 @@
         if (store.add(id, 1)) window.location.href = 'carrinho.html';
       });
     });
+    filterButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        applyFilter(button.getAttribute('data-catalog-filter'));
+      });
+    });
+    applyFilter(new URLSearchParams(window.location.search).get('filtro') || 'todos');
     store.updateCounters();
   })();
 })();
