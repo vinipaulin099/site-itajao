@@ -4,7 +4,7 @@ Estrutura preparada para o fluxo:
 
 `site → Melhor Envio (cotação) → Mercado Pago Checkout Pro → webhook → Bling (pedido de venda)`
 
-O checkout novo começa **desligado**. Enquanto a configuração não for concluída, `produto.html` continua enviando o cliente para a Nuvemshop. Isso é controlado por `commerceCheckoutEnabled: false` em `store-config.js` e por `COMMERCE_ENABLED=false` no backend.
+O checkout novo começa **desligado**. Enquanto a configuração não for concluída, o cliente pode navegar pelos produtos e montar o carrinho, mas o botão de finalização permanece bloqueado. Isso é controlado por `commerceCheckoutEnabled: false` em `store-config.js` e por `COMMERCE_ENABLED=false` no backend.
 
 ## O que já está implementado
 
@@ -12,7 +12,7 @@ O checkout novo começa **desligado**. Enquanto a configuração não for conclu
 - Checkout separado, dedicado aos dados de entrega e à criação do pagamento (`checkout.html` + `checkout.js`).
 - Carrinho persistente no navegador e revalidação completa no servidor.
 - Catálogo público carregado de `public.products`, com fallback seguro enquanto a migration não foi aplicada.
-- Cupom `BEMVINDO10` validado no servidor e confirmado novamente com os dados do cliente na finalização.
+- Cupom `BEMVINDO` com 6% de desconto, validado no servidor e confirmado novamente com os dados do cliente na finalização.
 - Formulário de cliente/endereço e preenchimento auxiliar pelo CEP.
 - Cotação de frete server-side no Melhor Envio. O navegador envia apenas IDs e quantidades; preço, peso e dimensões são reconstruídos no backend.
 - Política de frete grátis já considerada na cotação: Sudeste a partir de R$ 249,90 e demais regiões a partir de R$ 399,90.
@@ -23,7 +23,7 @@ O checkout novo começa **desligado**. Enquanto a configuração não for conclu
 - OAuth do Bling e do Melhor Envio com tokens/refresh tokens armazenados somente em tabela privada.
 - Página `pedido.html` para consultar o status sem expor dados pessoais.
 - Tabelas com RLS e sem acesso direto para `anon`/`authenticated`.
-- Fallback para a Nuvemshop até o novo fluxo passar pelos testes.
+- Bloqueio seguro da finalização enquanto o novo fluxo não concluir os testes.
 
 ## O que precisa ser configurado antes de ligar
 
@@ -38,7 +38,7 @@ O checkout novo começa **desligado**. Enquanto a configuração não for conclu
 
 O site lê nome, preço, disponibilidade, imagens, descrição, peso e dimensões diretamente de `public.products` por meio da função pública `store-catalog`. O navegador nunca define o preço aceito pelo pedido; `create-checkout` carrega o mesmo catálogo novamente.
 
-Os cupons ficam em `public.store_coupons` e os usos em `public.store_coupon_redemptions`. As tabelas não são expostas diretamente ao navegador. A migration cria `BEMVINDO10` com 10% de desconto e restrição de primeira compra. O carrinho faz uma cotação preliminar, e a função SQL revalida e registra o uso na mesma transação do pedido.
+Os cupons ficam em `public.store_coupons` e os usos em `public.store_coupon_redemptions`. As tabelas não são expostas diretamente ao navegador. A configuração ativa usa `BEMVINDO` com 6% de desconto e restrição de primeira compra. O carrinho faz uma cotação preliminar, e a função SQL revalida e registra o uso na mesma transação do pedido.
 
 ## Mercado Pago
 
