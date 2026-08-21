@@ -12,6 +12,8 @@
   --itajao-wine:#561719;
   --itajao-wine-2:#6a2022;
   --itajao-gold:#b58943;
+  --itajao-rating-gold:#d4a017;
+  --itajao-rating-gold-soft:#bc984f;
   --itajao-sand:#d8c7ae;
   --itajao-muted:#6c6a63;
   --itajao-line:rgba(23,63,51,.15);
@@ -200,7 +202,7 @@ nav.global-nav,
 .catalog-kicker{font-size:.57rem;color:var(--itajao-gold);font-weight:800;letter-spacing:.13em;text-transform:uppercase}
 .catalog-card h2,.catalog-card h3{font-family:Georgia,'Times New Roman',serif;color:var(--itajao-ink);font-size:1.35rem;line-height:1.15;margin:.55rem 0}
 .product-rating{min-height:1.25rem;display:flex;align-items:center;gap:.48rem;margin:0 0 .85rem;color:var(--itajao-muted);font-size:.64rem;font-weight:650;line-height:1.2;font-variant-numeric:tabular-nums}
-.product-rating-stars{color:#b6aa99;font-size:.78rem;letter-spacing:.055em;white-space:nowrap}.product-rating-stars.has-rating{color:var(--itajao-gold)}
+.product-rating-stars{color:var(--itajao-rating-gold-soft);font-size:.84rem;font-weight:800;letter-spacing:.065em;white-space:nowrap;text-shadow:0 1px 0 rgba(43,27,20,.08)}.product-rating-stars.has-rating{color:var(--itajao-rating-gold);text-shadow:0 0 10px rgba(212,160,23,.24)}
 .product-rating-text{white-space:nowrap}
 .catalog-card p{color:var(--itajao-muted);font-size:.76rem;line-height:1.65;margin:0 0 1rem}
 .catalog-price{margin-top:auto;padding-top:1rem;border-top:1px solid var(--itajao-line);font-weight:850;color:var(--itajao-forest);font-size:1.35rem;font-variant-numeric:tabular-nums}
