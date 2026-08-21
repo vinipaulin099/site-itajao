@@ -7,7 +7,17 @@ import {
 } from '../_shared/community.ts';
 
 function siteUrl(path = '') {
-  const base = String(Deno.env.get('SITE_URL') || 'https://vinipaulin099.github.io/site-itajao').replace(/\/+$/, '');
+  const configured = String(Deno.env.get('SITE_URL') || 'https://www.cafeitajao.com.br').trim();
+  let base = 'https://www.cafeitajao.com.br';
+  try {
+    const parsed = new URL(configured);
+    if (parsed.hostname.toLowerCase() === 'cafeitajao.com.br') {
+      parsed.hostname = 'www.cafeitajao.com.br';
+    }
+    base = parsed.toString().replace(/\/+$/, '');
+  } catch {
+    // Mantém o domínio público canônico se a variável estiver inválida.
+  }
   return path ? `${base}/${path.replace(/^\/+/, '')}` : base;
 }
 
