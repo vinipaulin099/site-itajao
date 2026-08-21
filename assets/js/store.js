@@ -30,6 +30,50 @@
     if(cfg.supabasePublishableKey){value.apikey=cfg.supabasePublishableKey;value.Authorization='Bearer '+cfg.supabasePublishableKey}
     return value;
   }
+  async function loadReviewSummaries(skus){
+    const requested=Array.from(new Set((skus||[]).map(value=>String(value||'').trim().toUpperCase()).filter(Boolean)));
+    const unavailable=()=>Object.fromEntries(requested.map(sku=>[sku,{sku,average:0,total:0,available:false}]));
+    if(!requested.length)return {};
+    if(!cfg.functionsBaseUrl)return unavailable();
+    try{
+      const query=new URLSearchParams({type:'review_summaries',skus:requested.join(',')});
+      const response=await fetch(cfg.functionsBaseUrl+'/community-feed?'+query.toString(),{headers:headers()});
+      const data=await response.json().catch(()=>({}));
+      if(!response.ok||!Array.isArray(data.items))throw new Error(data.error||'Avaliações indisponíveis.');
+      const summaries=Object.fromEntries(requested.map(sku=>[sku,{sku,average:0,total:0,available:true}]));
+      data.items.forEach(item=>{
+        const sku=String(item&&item.sku||'').toUpperCase();
+        if(!summaries[sku])return;
+        summaries[sku]={sku,average:Math.max(0,Math.min(5,Number(item.average)||0)),total:Math.max(0,Number(item.total)||0),available:true};
+      });
+      return summaries;
+    }catch(error){console.warn('Resumo de avaliações indisponível.',error);return unavailable()}
+  }
+  function renderReviewSummary(node,summary){
+    if(!node)return;
+    const stars=node.querySelector('.product-rating-stars');
+    const text=node.querySelector('.product-rating-text');
+    if(!summary||summary.available===false){
+      if(stars)stars.textContent='☆☆☆☆☆';
+      if(text)text.textContent='Avaliações indisponíveis';
+      node.setAttribute('aria-label','Avaliações temporariamente indisponíveis');
+      return;
+    }
+    const total=Math.max(0,Number(summary.total)||0);
+    const average=total?Math.max(0,Math.min(5,Number(summary.average)||0)):0;
+    const filled=Math.round(average);
+    if(stars)stars.textContent=total?'★'.repeat(filled)+'☆'.repeat(5-filled):'☆☆☆☆☆';
+    if(stars)stars.classList.toggle('has-rating',total>0);
+    if(total){
+      const averageText=average.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1});
+      const countText=total===1?'1 avaliação':total+' avaliações';
+      if(text)text.textContent=averageText+' · '+countText;
+      node.setAttribute('aria-label','Avaliação média '+averageText+' de 5, em '+countText);
+    }else{
+      if(text)text.textContent='0 avaliações';
+      node.setAttribute('aria-label','Este produto ainda não recebeu avaliações');
+    }
+  }
   function notify(){
     sanitizeCart();writeJson(CART_KEY,cart);updateCounters();
     window.dispatchEvent(new CustomEvent('itajao:cart',{detail:{cart:{...cart},count:cartCount()}}));
@@ -87,7 +131,7 @@
   window.ItajaoStore={
     config:cfg,FALLBACK_PRODUCTS,loadCatalog,getCatalog:()=>catalog,getCart,cartItems,cartCount,
     add,setQuantity,remove,clear,payload,subtotal,fingerprint,saveCheckout,readCheckout,clearCheckout,
-    api,money,digits,escapeHtml,updateCounters
+    api,money,digits,escapeHtml,updateCounters,loadReviewSummaries,renderReviewSummary
   };
   sanitizeCart();updateCounters();
 })();

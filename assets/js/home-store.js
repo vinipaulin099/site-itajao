@@ -24,6 +24,9 @@
       card.addEventListener('click',event=>{if(!event.target.closest('button'))openProduct()});
       card.addEventListener('keydown',event=>{if((event.key==='Enter'||event.key===' ')&&!event.target.closest('button')){event.preventDefault();openProduct()}});
     });
+    const ratingNodes=Array.from(document.querySelectorAll('[data-review-sku]'));
+    const summaries=await store.loadReviewSummaries(ratingNodes.map(node=>node.dataset.reviewSku));
+    ratingNodes.forEach(node=>store.renderReviewSummary(node,summaries[String(node.dataset.reviewSku||'').toUpperCase()]));
     store.updateCounters();
   })();
 })();
