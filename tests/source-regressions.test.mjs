@@ -2,11 +2,12 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
-const [home, store, homeStore, catalogPage, reviewPage, reviewScript, reviewFunction, feedFunction, adminFunction, dispatchFunction, reviewProductMigration] = await Promise.all([
+const [home, store, homeStore, catalogPage, brandStyles, reviewPage, reviewScript, reviewFunction, feedFunction, adminFunction, dispatchFunction, reviewProductMigration] = await Promise.all([
   readFile(new URL('../index.html', import.meta.url), 'utf8'),
   readFile(new URL('../assets/js/store.js', import.meta.url), 'utf8'),
   readFile(new URL('../assets/js/home-store.js', import.meta.url), 'utf8'),
   readFile(new URL('../assets/js/catalog-page.js', import.meta.url), 'utf8'),
+  readFile(new URL('../assets/css/brand-refresh.css', import.meta.url), 'utf8'),
   readFile(new URL('../avaliar.html', import.meta.url), 'utf8'),
   readFile(new URL('../assets/js/review-form.js', import.meta.url), 'utf8'),
   readFile(new URL('../supabase/functions/community-review/index.ts', import.meta.url), 'utf8'),
@@ -56,6 +57,8 @@ test('exibe média e quantidade de avaliações nos cards de café', () => {
   assert.match(store, /renderReviewSummary/);
   assert.match(homeStore, /loadReviewSummaries/);
   assert.match(catalogPage, /data-review-sku/);
+  assert.match(brandStyles, /--itajao-rating-gold:#d4a017/);
+  assert.match(brandStyles, /\.product-rating-stars\.has-rating\{color:var\(--itajao-rating-gold\)/);
   assert.match(feedFunction, /review_summaries/);
   assert.match(feedFunction, /product_reviews/);
 });
