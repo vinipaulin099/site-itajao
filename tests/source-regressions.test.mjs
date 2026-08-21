@@ -36,4 +36,6 @@ test('abre a avaliação pelo link individual e convida para enviar receita', ()
   assert.doesNotMatch(reviewScript, /formData\.append\('code'/);
   assert.match(reviewFunction, /verifyInviteByToken/);
   assert.doesNotMatch(adminFunction, /Chave de acesso:/);
+  assert.match(adminFunction, /https:\/\/www\.cafeitajao\.com\.br/);
+  assert.match(adminFunction, /parsed\.hostname = 'www\.cafeitajao\.com\.br'/);
 });
