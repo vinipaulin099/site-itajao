@@ -199,6 +199,9 @@ nav.global-nav,
 .catalog-body{padding:1.3rem;display:flex;flex-direction:column;flex:1}
 .catalog-kicker{font-size:.57rem;color:var(--itajao-gold);font-weight:800;letter-spacing:.13em;text-transform:uppercase}
 .catalog-card h2,.catalog-card h3{font-family:Georgia,'Times New Roman',serif;color:var(--itajao-ink);font-size:1.35rem;line-height:1.15;margin:.55rem 0}
+.product-rating{min-height:1.25rem;display:flex;align-items:center;gap:.48rem;margin:0 0 .85rem;color:var(--itajao-muted);font-size:.64rem;font-weight:650;line-height:1.2;font-variant-numeric:tabular-nums}
+.product-rating-stars{color:#b6aa99;font-size:.78rem;letter-spacing:.055em;white-space:nowrap}.product-rating-stars.has-rating{color:var(--itajao-gold)}
+.product-rating-text{white-space:nowrap}
 .catalog-card p{color:var(--itajao-muted);font-size:.76rem;line-height:1.65;margin:0 0 1rem}
 .catalog-price{margin-top:auto;padding-top:1rem;border-top:1px solid var(--itajao-line);font-weight:850;color:var(--itajao-forest);font-size:1.35rem;font-variant-numeric:tabular-nums}
 .catalog-price small{display:block;color:var(--itajao-muted);font-size:.62rem;font-weight:600;margin-top:.25rem}
@@ -393,6 +396,7 @@ nav.global-nav,
   .page-hero{padding-top:3.7rem}.page-hero h1{font-size:2.55rem}
   .section-head{align-items:flex-start;flex-direction:column;gap:.7rem}
   .catalog-grid,.pgrid{grid-template-columns:1fr!important}.catalog-actions{grid-template-columns:1fr 1fr}
+  .product-rating{font-size:.66rem}.product-rating-stars{font-size:.82rem}
   .v60-card{grid-template-columns:1fr}.v60-steps{grid-template-columns:1fr}
   .form-grid,.choice-grid,.billing-explainer{grid-template-columns:1fr}
   .faq-index{grid-template-columns:1fr 1fr;gap:.2rem}.faq-index a{font-size:.58rem}

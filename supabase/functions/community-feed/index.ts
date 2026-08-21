@@ -12,6 +12,58 @@ function publicReviewer(first: unknown, last: unknown) {
   return lastName ? `${firstName} ${lastName.charAt(0).toUpperCase()}.` : firstName;
 }
 
+function requestedProductSkus(url: URL) {
+  return Array.from(new Set(
+    String(url.searchParams.get('skus') || '')
+      .split(',')
+      .map((value) => cleanText(value, 64).toUpperCase())
+      .filter((value) => /^[A-Z0-9-]+$/.test(value)),
+  )).slice(0, 24);
+}
+
+async function reviewSummaries(url: URL) {
+  const skus = requestedProductSkus(url);
+  if (!skus.length) return { items: [] };
+
+  const admin = adminClient();
+  const productsResult = await admin
+    .from('products')
+    .select('id,sku')
+    .in('sku', skus)
+    .eq('active', true);
+  if (productsResult.error) throw productsResult.error;
+
+  const products = productsResult.data || [];
+  const productIds = products.map((product) => product.id);
+  const ratingsResult = productIds.length
+    ? await admin
+      .from('product_reviews')
+      .select('product_id,rating')
+      .in('product_id', productIds)
+      .eq('status', 'approved')
+      .limit(5000)
+    : { data: [], error: null };
+  if (ratingsResult.error) throw ratingsResult.error;
+
+  const productBySku = new Map(products.map((product) => [product.sku, product.id]));
+  const ratingsByProduct = new Map<string, number[]>();
+  for (const review of ratingsResult.data || []) {
+    const values = ratingsByProduct.get(review.product_id) || [];
+    values.push(Number(review.rating));
+    ratingsByProduct.set(review.product_id, values);
+  }
+
+  const items = skus.map((sku) => {
+    const productId = productBySku.get(sku);
+    const values = productId ? ratingsByProduct.get(productId) || [] : [];
+    const average = values.length
+      ? Math.round((values.reduce((sum, value) => sum + value, 0) / values.length) * 10) / 10
+      : 0;
+    return { sku, average, total: values.length };
+  });
+  return { items };
+}
+
 async function reviewFeed(url: URL) {
   const admin = adminClient();
   const page = positiveInt(url.searchParams.get('page'), 1, 10000);
@@ -113,6 +165,7 @@ Deno.serve(async (req) => {
     const url = new URL(req.url);
     const type = url.searchParams.get('type') || 'reviews';
     if (type === 'reviews') return json(await reviewFeed(url));
+    if (type === 'review_summaries') return json(await reviewSummaries(url));
     if (type === 'recipes') return json(await recipeFeed(url));
     throw new PublicError('Tipo de conteúdo inválido.');
   } catch (error) {

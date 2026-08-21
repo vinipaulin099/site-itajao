@@ -2,12 +2,15 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
-const [home, store, reviewPage, reviewScript, reviewFunction, adminFunction, dispatchFunction, reviewProductMigration] = await Promise.all([
+const [home, store, homeStore, catalogPage, reviewPage, reviewScript, reviewFunction, feedFunction, adminFunction, dispatchFunction, reviewProductMigration] = await Promise.all([
   readFile(new URL('../index.html', import.meta.url), 'utf8'),
   readFile(new URL('../assets/js/store.js', import.meta.url), 'utf8'),
+  readFile(new URL('../assets/js/home-store.js', import.meta.url), 'utf8'),
+  readFile(new URL('../assets/js/catalog-page.js', import.meta.url), 'utf8'),
   readFile(new URL('../avaliar.html', import.meta.url), 'utf8'),
   readFile(new URL('../assets/js/review-form.js', import.meta.url), 'utf8'),
   readFile(new URL('../supabase/functions/community-review/index.ts', import.meta.url), 'utf8'),
+  readFile(new URL('../supabase/functions/community-feed/index.ts', import.meta.url), 'utf8'),
   readFile(new URL('../supabase/functions/community-admin/index.ts', import.meta.url), 'utf8'),
   readFile(new URL('../supabase/functions/crm-notification-dispatch/index.ts', import.meta.url), 'utf8'),
   readFile(new URL('../supabase/migrations/20260821035059_canonicalize_legacy_500g_review_links.sql', import.meta.url), 'utf8'),
@@ -44,4 +47,15 @@ test('consolida avaliações dos SKUs antigos nos cafés atuais de 500 g', () =>
   assert.match(reviewProductMigration, /ITAJAO-MOIDO-500/);
   assert.match(reviewProductMigration, /update public\.order_items/);
   assert.match(reviewProductMigration, /update public\.product_reviews/);
+});
+
+test('exibe média e quantidade de avaliações nos cards de café', () => {
+  assert.match(home, /data-review-sku="ITAJAO-GRAOS-500"/);
+  assert.match(home, /data-review-sku="ITAJAO-MOIDO-500"/);
+  assert.match(store, /loadReviewSummaries/);
+  assert.match(store, /renderReviewSummary/);
+  assert.match(homeStore, /loadReviewSummaries/);
+  assert.match(catalogPage, /data-review-sku/);
+  assert.match(feedFunction, /review_summaries/);
+  assert.match(feedFunction, /product_reviews/);
 });
