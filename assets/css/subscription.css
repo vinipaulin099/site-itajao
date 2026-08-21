@@ -1,0 +1,191 @@
+/* Clube Itajaó — página de assinatura mensal e anual. */
+.subscription-page .site-page{background:var(--palette-cream-soft)!important;color:var(--palette-espresso)!important}
+.subscription-page .page-shell{min-width:0}
+
+.subscription-hero{position:relative;isolation:isolate;min-height:610px;padding:clamp(5rem,9vw,8rem) 0;display:flex;align-items:center;overflow:hidden;background:var(--palette-coffee);color:var(--palette-cream)}
+.subscription-hero::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(circle at 82% 28%,rgba(201,177,156,.17),transparent 25%),linear-gradient(112deg,var(--palette-espresso) 0%,var(--palette-coffee) 62%,#6b4838 100%)}
+.subscription-hero::after{content:"";position:absolute;right:-9%;bottom:-55%;z-index:-1;width:min(48vw,650px);aspect-ratio:1;border:1px solid rgba(243,231,214,.12);border-radius:50%;box-shadow:0 0 0 60px rgba(243,231,214,.025),0 0 0 120px rgba(243,231,214,.018)}
+.subscription-hero-inner{padding:0!important;position:relative;z-index:2}
+.subscription-hero .eyebrow{color:#e7c47c!important}
+.subscription-hero h1{max-width:760px;margin:0;font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.4rem,8.4vw,7.1rem);font-weight:700;line-height:.88;letter-spacing:-.06em;color:var(--palette-cream)!important}
+.subscription-hero p{max-width:660px;margin:1.5rem 0 0;color:rgba(255,250,245,.74);font-size:clamp(.88rem,1.4vw,1rem);line-height:1.85}
+.subscription-highlights{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem}
+.subscription-highlights span{padding:.62rem .85rem;border:1px solid rgba(243,231,214,.28);border-radius:999px;background:rgba(43,27,20,.18);color:var(--palette-cream);font-size:.58rem;font-weight:750;letter-spacing:.09em;text-transform:uppercase}
+.hero-subscription-cta{display:inline-flex;align-items:center;gap:.8rem;margin-top:2rem;padding:.88rem 1.2rem;border-radius:999px;background:var(--palette-wine);color:#fff;text-decoration:none;font-size:.62rem;font-weight:850;letter-spacing:.1em;text-transform:uppercase}
+.hero-subscription-cta:hover{background:var(--palette-cream);color:var(--palette-espresso);transform:translateY(-2px)}
+.hero-subscription-cta span{font-size:1rem;line-height:1}
+.subscription-hero-mark{position:absolute;right:clamp(3rem,9vw,10rem);top:50%;z-index:1;width:210px;height:210px;border:1px solid rgba(243,231,214,.25);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:translateY(-50%);color:var(--palette-cream);text-align:center}
+.subscription-hero-mark span{font-family:Georgia,'Times New Roman',serif;font-size:5.5rem;line-height:.76}
+.subscription-hero-mark small{margin-top:.85rem;font-size:.55rem;font-weight:800;line-height:1.55;letter-spacing:.16em;text-transform:uppercase}
+
+.subscription-configurator{padding-top:clamp(3rem,6vw,5.5rem)!important;padding-bottom:clamp(4rem,8vw,7rem)!important}
+.shipping-perk{margin:0 0 clamp(3rem,6vw,5rem);padding:1.25rem 1.5rem;border:1px solid rgba(122,31,43,.2);border-radius:18px;display:flex;align-items:center;justify-content:center;gap:1rem;background:var(--palette-wine);box-shadow:0 20px 48px rgba(43,27,20,.15);color:#fff}
+.shipping-perk-icon{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;background:rgba(255,255,255,.11);font-size:1.35rem}
+.shipping-perk div{display:flex;flex-direction:column;gap:.25rem;min-width:0}
+.shipping-perk strong{font-family:Georgia,'Times New Roman',serif;font-size:clamp(1.15rem,2.3vw,1.65rem)}
+.shipping-perk span:not(.shipping-perk-icon){color:rgba(255,255,255,.72);font-size:.7rem;line-height:1.5}
+.subscription-section-head{margin-bottom:2.4rem}
+.subscription-section-head .eyebrow{color:var(--palette-wine)!important}
+.subscription-section-head .section-title{color:var(--palette-espresso)!important}
+.subscription-section-head .section-copy{max-width:510px;color:var(--palette-muted)!important}
+
+.subscription-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(330px,.72fr);gap:1.4rem;align-items:start}
+.subscription-builder,.subscription-summary{background:var(--palette-paper)!important;border:1px solid rgba(43,27,20,.14)!important;border-radius:22px;box-shadow:0 20px 60px rgba(43,27,20,.1)!important}
+.subscription-builder{padding:clamp(1.35rem,4vw,2.6rem)}
+.choice-block{min-width:0;margin:0 0 2rem;padding:0 0 2rem;border:0;border-bottom:1px solid rgba(43,27,20,.13)}
+.choice-block:last-of-type{margin-bottom:1.4rem}
+.choice-block legend{width:100%;margin:0 0 1.15rem;padding:0;display:flex;align-items:center;gap:.75rem;color:var(--palette-espresso);font-size:.93rem;font-weight:750;line-height:1.35}
+.choice-block legend>span:last-child{display:flex;flex-direction:column;min-width:0}
+.choice-block legend small{margin-bottom:.15rem;color:var(--palette-wine);font-size:.52rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.choice-number{width:38px;height:38px;border:1px solid rgba(122,31,43,.26);border-radius:50%;display:grid;place-items:center;flex:0 0 auto;color:var(--palette-wine);font-size:.58rem;font-weight:850}
+.choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}
+.choice-card{position:relative;min-width:0}
+.choice-card input{position:absolute;opacity:0;pointer-events:none}
+.choice-card label{position:relative;min-height:92px;padding:1rem 1.05rem;border:1px solid rgba(43,27,20,.16);border-radius:15px;display:flex;flex-direction:column;justify-content:center;cursor:pointer;background:#fff;color:var(--palette-muted);overflow:hidden}
+.choice-card label:hover{border-color:rgba(122,31,43,.48);transform:translateY(-2px)}
+.choice-card label strong{color:var(--palette-espresso);font-size:.83rem;line-height:1.35}
+.choice-card label span{margin-top:.32rem;color:var(--palette-muted);font-size:.63rem;line-height:1.5}
+.choice-card input:checked+label{border-color:var(--palette-wine)!important;background:#fbf1e7!important;box-shadow:0 0 0 2px rgba(122,31,43,.13)!important}
+.choice-card input:focus-visible+label{outline:3px solid rgba(139,106,85,.45);outline-offset:3px}
+.plan-card label{min-height:184px;justify-content:flex-start;padding:1.15rem}
+.plan-card.featured label::after{content:"";position:absolute;right:-27px;bottom:-37px;width:105px;height:105px;border:1px solid rgba(122,31,43,.12);border-radius:50%}
+.plan-card-top{display:flex!important;align-items:center;justify-content:space-between;gap:.5rem;margin:0!important}
+.plan-card-top strong{font-size:.94rem!important}
+.plan-card-top em{padding:.34rem .52rem;border-radius:999px;background:var(--palette-cream);color:var(--palette-wine);font-size:.47rem;font-style:normal;font-weight:800;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+.plan-card-copy{min-height:42px;margin-top:.75rem!important}
+.plan-card-price{margin-top:auto!important;padding-top:.9rem;border-top:1px solid rgba(43,27,20,.1);color:var(--palette-wine)!important;font-family:Georgia,'Times New Roman',serif;font-size:1.32rem!important;font-weight:700;line-height:1.1!important;font-variant-numeric:tabular-nums}
+.plan-card-price small{font-family:'Montserrat',Arial,sans-serif;font-size:.56rem;font-weight:650;color:var(--palette-muted)}
+.choice-assurance{margin:.7rem 0 0;color:var(--palette-muted);font-size:.61rem;line-height:1.5}
+.payment-card label{min-height:112px;padding-right:1.15rem}
+.pix-card label{padding-top:1.6rem}
+.discount-badge{position:absolute;right:.7rem;top:.62rem;margin:0!important;padding:.28rem .48rem;border-radius:999px;background:var(--palette-wine);color:#fff!important;font-size:.45rem!important;font-weight:850;letter-spacing:.08em}
+.club-rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}
+.club-rules>div{min-width:0;padding:.9rem;border-radius:13px;display:flex;align-items:flex-start;gap:.6rem;background:var(--palette-cream-soft)}
+.club-rules>div>span{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;background:var(--palette-wine);color:#fff;font-size:.58rem;font-weight:850}
+.club-rules p{margin:0;color:var(--palette-muted);font-size:.59rem;line-height:1.5}
+.club-rules strong{display:block;margin-bottom:.15rem;color:var(--palette-espresso);font-size:.63rem}
+
+.subscription-summary{position:sticky;top:124px;padding:1.55rem;overflow:hidden}
+.subscription-summary::before{content:"";position:absolute;inset:0 0 auto;height:5px;background:var(--palette-wine)!important}
+.subscription-summary>.eyebrow{margin:.25rem 0 .45rem;color:var(--palette-wine)!important}
+.subscription-summary h2{margin:.25rem 0 1rem;color:var(--palette-espresso)!important;font-family:Georgia,'Times New Roman',serif;font-size:1.7rem}
+.summary-row{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding:.67rem 0;border-bottom:1px solid rgba(43,27,20,.11);color:var(--palette-muted)!important;font-size:.66rem;line-height:1.4}
+.summary-row strong{max-width:58%;color:var(--palette-espresso);text-align:right;overflow-wrap:anywhere}
+.free-shipping-value{color:var(--palette-wine)!important;font-size:.62rem;letter-spacing:.08em}
+.subscription-price{padding:1.25rem 0 .85rem}
+.subscription-price>span{display:block;color:var(--palette-muted);font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.subscription-price>strong{display:block;margin:.25rem 0 0;color:var(--palette-wine)!important;font-size:clamp(1.75rem,3.5vw,2.35rem);line-height:1.08;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.subscription-price>small{display:block;margin-top:.42rem;color:var(--palette-muted);font-size:.61rem;line-height:1.45}
+.pix-price-panel{margin:1.15rem 0;padding:1rem;border:1px solid rgba(122,31,43,.2);border-radius:14px;background:#fbf1e7}
+.pix-price-panel[hidden]{display:none}
+.pix-price-heading{display:flex;align-items:center;justify-content:space-between;gap:.7rem;margin-bottom:.8rem}
+.pix-price-heading>span{color:var(--palette-espresso);font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em}
+.pix-price-heading>strong{padding:.3rem .5rem;border-radius:999px;background:var(--palette-wine);color:#fff;font-size:.48rem;letter-spacing:.08em}
+.price-detail{display:flex;justify-content:space-between;gap:1rem;padding:.35rem 0;color:var(--palette-muted);font-size:.62rem}
+.price-detail del,.price-detail strong{color:var(--palette-espresso);font-weight:700;font-variant-numeric:tabular-nums}
+.pix-total{display:flex;justify-content:space-between;align-items:end;gap:1rem;margin-top:.65rem;padding-top:.75rem;border-top:1px solid rgba(43,27,20,.13)}
+.pix-total span{color:var(--palette-muted);font-size:.59rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.pix-total strong{color:var(--palette-wine);font-size:1.65rem;line-height:1;font-variant-numeric:tabular-nums}
+.pix-savings{margin:.8rem 0 0;padding:.65rem;border-radius:9px;background:var(--palette-wine);color:#fff;text-align:center;font-size:.58rem;font-weight:750;line-height:1.45}
+.subscription-note{margin:0;padding:.9rem!important;border-radius:12px;background:var(--palette-cream-soft)!important;color:var(--palette-muted)!important;font-size:.63rem;line-height:1.55}
+.subscription-cta{width:100%;min-height:52px;margin-top:1rem;padding:.75rem 1rem;border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;background:var(--palette-wine)!important;color:#fff!important;font-size:.61rem;font-weight:850;letter-spacing:.09em;text-transform:uppercase;text-decoration:none;cursor:pointer}
+.subscription-cta:hover{background:var(--palette-coffee)!important;transform:translateY(-1px)}
+.subscription-cta.secondary{min-height:44px;margin-top:.55rem;border:1px solid rgba(122,31,43,.5);background:transparent!important;color:var(--palette-wine)!important}
+.subscription-cta.secondary:hover{background:var(--palette-cream-soft)!important}
+.checkout-status{min-height:1rem;margin:.65rem .2rem 0;color:var(--palette-muted);text-align:center;font-size:.55rem;line-height:1.45}
+.checkout-status.is-error{color:var(--palette-wine);font-weight:650}
+
+.subscription-benefits{padding:clamp(4rem,8vw,7.5rem) 0;background:var(--palette-espresso);color:var(--palette-cream)}
+.subscription-benefits .page-shell,.rewards-section .page-shell{padding:0}
+.benefits-intro{display:grid;grid-template-columns:1.15fr .75fr;align-items:end;gap:2rem;margin-bottom:2.5rem}
+.benefits-intro .eyebrow{color:#e7c47c!important}
+.benefits-intro h2,.rewards-heading h2{margin:0;font-family:Georgia,'Times New Roman',serif;font-size:clamp(2.35rem,5vw,4.5rem);line-height:.98;letter-spacing:-.04em}
+.benefits-intro h2{color:var(--palette-cream)}
+.benefits-intro>p{margin:0;color:rgba(255,250,245,.62);font-size:.78rem;line-height:1.8}
+.benefits-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem}
+.benefit-card{min-width:0;min-height:225px;padding:1.35rem;border:1px solid rgba(243,231,214,.13);border-radius:17px;background:rgba(255,255,255,.025)}
+.benefit-card:hover{border-color:rgba(231,196,124,.5);transform:translateY(-3px)}
+.benefit-icon{width:42px;height:42px;border:1px solid rgba(231,196,124,.35);border-radius:50%;display:grid;place-items:center;font-size:1rem}
+.benefit-card h3{margin:1.05rem 0 .45rem;color:var(--palette-cream);font-family:Georgia,'Times New Roman',serif;font-size:1.2rem}
+.benefit-card p{margin:0;color:rgba(255,250,245,.58);font-size:.67rem;line-height:1.72}
+
+.rewards-section{padding:clamp(4rem,8vw,7.5rem) 0;background:var(--palette-cream-soft)}
+.rewards-heading{max-width:850px;margin:0 auto 3rem;text-align:center}
+.rewards-heading .eyebrow{color:var(--palette-wine)!important}
+.rewards-heading h2{color:var(--palette-espresso)}
+.rewards-heading p{max-width:680px;margin:1.1rem auto 0;color:var(--palette-muted);font-size:.72rem;line-height:1.8}
+.reward-timeline{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin:0;padding:0;list-style:none}
+.reward-timeline::before{content:"";position:absolute;top:39px;left:16%;right:16%;height:1px;background:rgba(122,31,43,.28)}
+.reward-step{position:relative;z-index:1;min-width:0;text-align:center}
+.reward-marker{width:78px;height:78px;margin:0 auto 1.2rem;border:1px solid rgba(122,31,43,.32);border-radius:50%;display:grid;place-items:center;background:var(--palette-cream-soft);color:var(--palette-wine);font-family:Georgia,'Times New Roman',serif;font-size:1.6rem;font-weight:700}
+.reward-step>div{min-height:175px;padding:1.25rem;border:1px solid rgba(43,27,20,.13);border-radius:16px;background:var(--palette-paper);box-shadow:0 15px 38px rgba(43,27,20,.06)}
+.reward-step small{color:var(--palette-wine);font-size:.5rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
+.reward-step h3{margin:.62rem 0 .5rem;color:var(--palette-espresso);font-family:Georgia,'Times New Roman',serif;font-size:1.12rem;line-height:1.25}
+.reward-step p{margin:0;color:var(--palette-muted);font-size:.65rem;line-height:1.65}
+
+.club-closing{padding:clamp(3.5rem,7vw,6rem) 0;background:var(--palette-coffee);color:var(--palette-cream)}
+.club-closing-inner{padding:0!important;display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.club-closing .eyebrow{color:#e7c47c!important}
+.club-closing h2{max-width:750px;margin:0;color:var(--palette-cream);font-family:Georgia,'Times New Roman',serif;font-size:clamp(2rem,4vw,3.7rem);line-height:1}
+.club-closing p{margin:1rem 0 0;color:rgba(255,250,245,.66);font-size:.72rem;line-height:1.7}
+.club-closing a{flex:0 0 auto;padding:.9rem 1.25rem;border-radius:999px;background:var(--palette-cream);color:var(--palette-espresso);font-size:.59rem;font-weight:850;letter-spacing:.09em;text-decoration:none}
+.club-closing a:hover{background:var(--palette-wine);color:#fff;transform:translateY(-2px)}
+
+@media(max-width:1100px){
+  .subscription-hero-mark{right:3rem;width:175px;height:175px}.subscription-hero-mark span{font-size:4.5rem}
+  .subscription-hero-inner>p{max-width:590px}
+}
+
+@media(max-width:980px){
+  .subscription-hero{min-height:540px;padding:5.3rem 0}
+  .subscription-hero-mark{display:none}
+  .subscription-layout{grid-template-columns:1fr}
+  .subscription-summary{position:static;order:2}
+  .benefits-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:720px){
+  .subscription-hero{min-height:auto;padding:4rem 0 4.5rem}
+  .subscription-hero h1{font-size:clamp(3.25rem,15vw,5rem)}
+  .subscription-highlights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .subscription-highlights span{text-align:center}
+  .shipping-perk{align-items:flex-start;justify-content:flex-start;padding:1.05rem}
+  .shipping-perk strong{font-size:1.15rem}
+  .choice-grid,.club-rules{grid-template-columns:1fr}
+  .choice-card label{min-height:88px}
+  .plan-card label{min-height:165px}
+  .benefits-intro{grid-template-columns:1fr;align-items:start;gap:1rem}
+  .benefits-grid{grid-template-columns:1fr}
+  .benefit-card{min-height:0}
+  .reward-timeline{grid-template-columns:1fr;gap:1.15rem}
+  .reward-timeline::before{top:34px;bottom:34px;left:31px;right:auto;width:1px;height:auto}
+  .reward-step{display:grid;grid-template-columns:64px minmax(0,1fr);gap:.85rem;align-items:start;text-align:left}
+  .reward-marker{width:64px;height:64px;margin:0;background:var(--palette-cream-soft);font-size:1.3rem}
+  .reward-step>div{min-height:0}
+  .club-closing-inner{align-items:flex-start;flex-direction:column}
+}
+
+@media(max-width:480px){
+  .subscription-page .page-shell{width:min(100% - 1.25rem,1180px)}
+  .subscription-hero{padding:3.5rem 0 4rem}
+  .subscription-hero p{font-size:.79rem;line-height:1.72}
+  .subscription-highlights span{padding:.56rem .48rem;font-size:.49rem;letter-spacing:.06em}
+  .hero-subscription-cta{width:100%;justify-content:center}
+  .shipping-perk-icon{width:40px;height:40px;font-size:1.05rem}
+  .subscription-builder,.subscription-summary{border-radius:18px}
+  .subscription-builder{padding:1.05rem}
+  .subscription-summary{padding:1.2rem}
+  .plan-card-top{align-items:flex-start;flex-direction:column}
+  .plan-card-copy{min-height:auto}
+  .pix-total{align-items:flex-start;flex-direction:column;gap:.35rem}
+  .pix-total strong{font-size:1.85rem}
+  .rewards-heading h2{font-size:2.25rem}
+  .reward-step{grid-template-columns:52px minmax(0,1fr);gap:.7rem}
+  .reward-marker{width:52px;height:52px;font-size:1.1rem}
+  .reward-timeline::before{left:25px}
+  .reward-step>div{padding:1rem}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .benefit-card,.choice-card label,.hero-subscription-cta,.club-closing a{transition:none}
+}
