@@ -8,10 +8,11 @@ import {
   uploadImage,
   validateImage,
   verifyInvite,
+  verifyInviteByToken,
 } from '../_shared/community.ts';
 
-async function inviteContext(token: unknown, code: unknown) {
-  const verified = await verifyInvite(token, code);
+async function inviteContext(token: unknown, code: unknown, directAccess = false) {
+  const verified = directAccess ? await verifyInviteByToken(token) : await verifyInvite(token, code);
   const admin = adminClient();
   const { invite } = verified;
 
@@ -77,7 +78,7 @@ function parseReviews(value: FormDataEntryValue | null) {
 
 async function submitReviews(req: Request) {
   const form = await req.formData();
-  const context = await inviteContext(form.get('token'), form.get('code'));
+  const context = await inviteContext(form.get('token'), null, true);
   const { firstName, lastName } = splitName(form.get('first_name'), form.get('last_name'));
   if (!lastName) throw new PublicError('Informe seu sobrenome.');
 
@@ -187,7 +188,7 @@ Deno.serve(async (req) => {
 
     const body = await parseJson(req);
     if (body?.action !== 'verify') throw new PublicError('Ação inválida.');
-    const context = await inviteContext(body?.token, body?.code);
+    const context = await inviteContext(body?.token, body?.code, body?.direct === true);
     return json({
       ok: true,
       order_number: context.order.external_order_number,

@@ -6,17 +6,13 @@
   const key = String(config.supabasePublishableKey || '');
   const token = new URLSearchParams(window.location.search).get('token') || '';
   const codeStep = document.getElementById('codeStep');
-  const codeForm = document.getElementById('codeForm');
-  const codeInput = document.getElementById('reviewCode');
   const codeHelp = document.getElementById('codeHelp');
-  const verifyButton = document.getElementById('verifyButton');
   const reviewStep = document.getElementById('reviewStep');
   const reviewForm = document.getElementById('reviewForm');
   const productsToReview = document.getElementById('productsToReview');
   const reviewStatus = document.getElementById('reviewStatus');
   const reviewSubmit = document.getElementById('reviewSubmit');
   const successStep = document.getElementById('successStep');
-  let verifiedCode = '';
   let availableProducts = [];
 
   function escapeHtml(value) {
@@ -80,25 +76,17 @@
     });
   }
 
-  codeInput.addEventListener('input', function () {
-    codeInput.value = codeInput.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6);
-  });
-
-  codeForm.addEventListener('submit', async function (event) {
-    event.preventDefault();
+  async function verifyDirectAccess() {
     if (!token) {
       codeHelp.className = 'form-status error';
-      codeHelp.textContent = 'O link do convite está incompleto. Solicite um novo convite à Itajaó.';
+      codeHelp.textContent = 'Este acesso precisa do link individual enviado pela Itajaó. Solicite um novo convite.';
       return;
     }
-    if (!codeForm.reportValidity()) return;
-    verifyButton.disabled = true;
     codeHelp.className = 'form-status';
-    codeHelp.textContent = 'Confirmando seu pedido…';
+    codeHelp.textContent = 'Confirmando seu pedido e preparando os cafés para avaliação…';
     try {
-      verifiedCode = codeInput.value.toUpperCase();
       const response = await fetch(endpoint, {
-        method: 'POST', headers: headers(true), body: JSON.stringify({ action: 'verify', token: token, code: verifiedCode }),
+        method: 'POST', headers: headers(true), body: JSON.stringify({ action: 'verify', token: token, direct: true }),
       });
       const data = await responseData(response);
       availableProducts = Array.isArray(data.products) ? data.products : [];
@@ -112,10 +100,8 @@
     } catch (error) {
       codeHelp.className = 'form-status error';
       codeHelp.textContent = error.message;
-    } finally {
-      verifyButton.disabled = false;
     }
-  });
+  }
 
   reviewForm.addEventListener('submit', async function (event) {
     event.preventDefault();
@@ -149,7 +135,6 @@
 
     const formData = new FormData();
     formData.append('token', token);
-    formData.append('code', verifiedCode);
     formData.append('first_name', document.getElementById('firstName').value.trim());
     formData.append('last_name', document.getElementById('lastName').value.trim());
     formData.append('reviews', JSON.stringify(reviews));
@@ -171,9 +156,5 @@
     }
   });
 
-  if (!token) {
-    codeHelp.className = 'form-status error';
-    codeHelp.textContent = 'O link do convite está incompleto. Solicite um novo convite à Itajaó.';
-    verifyButton.disabled = true;
-  }
+  verifyDirectAccess();
 })();

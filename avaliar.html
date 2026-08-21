@@ -23,18 +23,14 @@
     <header class="review-intro">
       <span class="eyebrow">Compra verificada</span>
       <h1>Conte como foi seu Itajaó</h1>
-      <p>Use a chave de 6 caracteres, com letras e números, recebida com o convite. O acesso vale por 30 dias e permite até 5 tentativas.</p>
+      <p>Seu link é individual e já está ligado ao pedido. Em instantes, você verá exatamente os cafés que pode avaliar.</p>
     </header>
 
     <section class="step-card" id="codeStep" aria-labelledby="codeTitle">
       <div class="code-wrap">
-        <h2 id="codeTitle">Confirme sua chave</h2>
-        <form id="codeForm">
-          <label class="field" for="reviewCode">Chave de 6 caracteres</label>
-          <input class="code-input" id="reviewCode" name="code" type="text" inputmode="text" autocomplete="one-time-code" autocapitalize="characters" spellcheck="false" maxlength="6" pattern="[A-Za-z0-9]{6}" aria-describedby="codeHelp" required>
-          <p id="codeHelp" class="form-status" role="status" aria-live="polite"></p>
-          <button class="primary-button" id="verifyButton" type="submit">Confirmar chave</button>
-        </form>
+        <div class="access-progress" aria-hidden="true"><span></span></div>
+        <h2 id="codeTitle">Confirmando seu pedido</h2>
+        <p id="codeHelp" class="form-status" role="status" aria-live="polite">Preparando sua avaliação…</p>
       </div>
     </section>
 
@@ -58,12 +54,13 @@
       <div class="success-icon" aria-hidden="true">OK</div>
       <h2>Obrigado por compartilhar</h2>
       <p>Recebemos sua avaliação. Ela aparecerá na Comunidade Itajaó depois da análise da nossa equipe.</p>
-      <a class="primary-button" href="comunidade.html">Conhecer a Comunidade</a>
+      <div class="success-recipe-invite"><span class="eyebrow">Sua receita também pode inspirar</span><h3>Você quer compartilhar com a gente a receita que preparou com seu Café Itajaó?</h3><p>Conte os ingredientes, o modo de preparo e, se quiser, envie uma foto.</p></div>
+      <div class="success-actions"><a class="primary-button" href="enviar-receita.html">Compartilhar minha receita</a><a class="secondary-button" href="comunidade.html">Conhecer a Comunidade</a></div>
     </section>
   </main>
 
   <footer class="site-footer"><span>© 2026 Itajaó Cafés Especiais LTDA · Sul de Minas</span><span><a href="mailto:sac@cafeitajao.com.br">sac@cafeitajao.com.br</a></span></footer>
   <script src="assets/js/store-config.js"></script>
-  <script src="assets/js/review-form.js?v=20260813-2"></script>
+  <script src="assets/js/review-form.js?v=20260821-1"></script>
 </body>
 </html>

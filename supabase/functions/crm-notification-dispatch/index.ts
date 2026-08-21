@@ -16,31 +16,21 @@ function serviceKey() {
   return env('SUPABASE_SERVICE_ROLE_KEY');
 }
 
-function allowedApiKeys() {
-  const keys = new Set<string>();
-  const raw = Deno.env.get('SUPABASE_PUBLISHABLE_KEYS');
-  if (raw) {
-    try {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) {
-        for (const value of parsed) if (typeof value === 'string') keys.add(value);
-      } else if (parsed && typeof parsed === 'object') {
-        for (const value of Object.values(parsed)) if (typeof value === 'string') keys.add(value);
-      } else if (typeof parsed === 'string') {
-        keys.add(parsed);
-      }
-    } catch {
-      keys.add(raw);
-    }
-  }
-  const anonKey = Deno.env.get('SUPABASE_ANON_KEY');
-  if (anonKey) keys.add(anonKey);
-  return keys;
-}
+async function isAuthorizedCron(request: Request, admin: SupabaseClient) {
+  const supplied = request.headers.get('x-cron-secret') || '';
+  if (!supplied) return false;
 
-function isAuthorizedCron(request: Request) {
-  const supplied = request.headers.get('apikey') || '';
-  return Boolean(supplied && allowedApiKeys().has(supplied));
+  const { data, error } = await admin
+    .from('internal_dispatch_secrets')
+    .select('secret_value')
+    .eq('name', 'crm-notification-dispatch')
+    .maybeSingle();
+  if (error) {
+    console.error('Cron secret lookup failed', error);
+    return false;
+  }
+  const expected = String(data?.secret_value || '');
+  return Boolean(expected) && safeEqual(supplied, expected);
 }
 
 function isAuthorizedManualTest(request: Request) {
@@ -150,11 +140,11 @@ async function dispatchOutbox(admin: SupabaseClient) {
 
 Deno.serve(async (request: Request) => {
   if (request.method !== 'POST') return json({ error: 'Método não permitido.' }, 405);
-  if (!isAuthorizedCron(request)) return json({ error: 'Não autorizado.' }, 401);
-
   const admin = createClient(env('SUPABASE_URL'), serviceKey(), {
     auth: { persistSession: false, autoRefreshToken: false },
   });
+  if (!(await isAuthorizedCron(request, admin))) return json({ error: 'Não autorizado.' }, 401);
+
   const adminEmail = await adminRecipientEmail();
   if (!adminEmail) return json({ error: 'Destinatário administrativo não configurado.' }, 500);
   const siteUrl = String(Deno.env.get('SITE_URL') || 'https://cafeitajao.com.br').replace(/\/+$/, '');
