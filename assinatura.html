@@ -3,71 +3,171 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Assinatura | Clube Itajaó</title>
-  <meta name="description" content="Monte sua assinatura Itajaó: escolha 500g ou 1kg, em grãos ou moído, com pagamento mensal ou plano anual.">
+  <title>Clube de Assinatura | Itajaó Cafés Especiais</title>
+  <meta name="description" content="Escolha o plano mensal ou anual do Clube Itajaó, com café fresco, frete grátis, preço protegido e benefícios exclusivos.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/brand-refresh.css?v=20260819-1">
   <link rel="stylesheet" href="assets/css/palette-colorhunt.css?v=20260814-1">
+  <link rel="stylesheet" href="assets/css/subscription.css?v=20260821-1">
 </head>
 <body class="subscription-page">
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-  <div class="top-bar"><div class="top-bar-track"><span>🎁 <strong>BEMVINDO</strong> • 6% NA PRIMEIRA COMPRA • ☕ CAFÉ FRESCO TODO MÊS • ESCOLHA PESO E FORMATO • 🌱 DIRETO DA FAZENDA ITAJAÓ •</span></div></div>
+  <div class="top-bar"><div class="top-bar-track"><span>☕ CAFÉ FRESCO TODO MÊS • 🚚 FRETE GRÁTIS EM TODOS OS ENVIOS • 🔒 PREÇO PROTEGIDO • 🎁 BENEFÍCIOS EXCLUSIVOS •</span></div></div>
   <nav class="global-nav" aria-label="Navegação principal">
     <a class="nav-logo" href="index.html" aria-label="Itajaó, página inicial"><img src="assets/images/brand/logo-itajao-hq.png" alt="Itajaó Cafés Especiais"></a>
     <ul class="nav-links">
       <li><a href="index.html#quem">Origem</a></li><li><a href="produtos.html">Cafés</a></li><li><a href="comunidade.html">Comunidade</a></li><li><a href="assinatura.html" aria-current="page">Assinatura</a></li><li><a href="perguntas-frequentes.html">FAQ</a></li>
     </ul>
-    <div class="nav-actions"><a class="nav-cta" href="produtos.html" data-mobile-label="Comprar">Comprar meu Itajaó</a><a class="nav-cart" href="carrinho.html" aria-label="Abrir carrinho"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20.5 8H6.1M10 20h.01M17 20h.01" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-cart-count" data-cart-count hidden>0</span></a></div>
+    <div class="nav-actions"><a class="nav-cta" href="#montar" data-mobile-label="Assinar">Assinar Itajaó</a><a class="nav-cart" href="carrinho.html" aria-label="Abrir carrinho"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20.5 8H6.1M10 20h.01M17 20h.01" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-cart-count" data-cart-count hidden>0</span></a></div>
   </nav>
 
   <main class="site-page" id="conteudo">
-    <header class="page-hero">
-      <div class="page-shell"><span class="eyebrow">Clube Itajaó</span><h1>Café fresco, do seu jeito, todo mês.</h1><p>Monte cada envio em poucos passos. Você pode começar com um mês e escolher cobrança mensal ou um plano anual pago como compra única.</p></div>
+    <header class="subscription-hero">
+      <div class="page-shell subscription-hero-inner">
+        <span class="eyebrow">Clube Itajaó</span>
+        <h1>Seu Itajaó,<br>todo mês.</h1>
+        <p>Escolha quanto café quer receber e deixe o resto com a gente. Café fresco direto da Fazenda Itajaó, com frete grátis e benefícios exclusivos para assinantes.</p>
+        <div class="subscription-highlights" aria-label="Destaques da assinatura">
+          <span>1 ou 12 envios</span><span>Frete grátis</span><span>Preço protegido</span><span>Benefícios exclusivos</span>
+        </div>
+        <a class="hero-subscription-cta" href="#montar">Montar minha assinatura <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="subscription-hero-mark" aria-hidden="true"><span>12</span><small>meses de<br>café fresco</small></div>
     </header>
-    <section class="page-shell" id="montar" aria-labelledby="builderTitle">
-      <div class="section-head"><div><span class="eyebrow">Personalize</span><h2 class="section-title" id="builderTitle">Monte sua assinatura</h2></div><p class="section-copy">A tabela final de preços está sendo cadastrada. Sua seleção fica pronta para o atendimento confirmar, sem cobrança automática nesta etapa.</p></div>
-      <div class="subscription-layout">
-        <div class="subscription-builder" id="subscriptionForm">
-          <fieldset class="choice-block">
-            <legend><span class="eyebrow">Passo 1</span>Quanto café você quer receber?</legend>
-            <div class="choice-grid">
-              <div class="choice-card"><input id="weight500" name="weight" type="radio" value="500g" checked><label for="weight500"><strong>500g</strong><span>Ideal para uma rotina moderada</span></label></div>
-              <div class="choice-card"><input id="weight1kg" name="weight" type="radio" value="1kg"><label for="weight1kg"><strong>1kg</strong><span>Para consumo maior ou compartilhado</span></label></div>
+
+    <section class="page-shell subscription-configurator" id="montar" aria-labelledby="builderTitle">
+      <div class="shipping-perk">
+        <span class="shipping-perk-icon" aria-hidden="true">🚚</span>
+        <div><strong>Frete grátis em todos os envios</strong><span>Um ou doze meses de café na sua casa, com o frete por nossa conta.</span></div>
+      </div>
+
+      <div class="section-head subscription-section-head">
+        <div><span class="eyebrow">Do seu jeito</span><h2 class="section-title" id="builderTitle">Monte seu Clube Itajaó</h2></div>
+        <p class="section-copy">Escolha o ciclo, o peso e o formato. O preço é o mesmo para café moído ou em grãos.</p>
+      </div>
+
+      <form class="subscription-layout" id="subscriptionForm">
+        <div class="subscription-builder">
+          <fieldset class="choice-block plan-choice-block">
+            <legend><span class="choice-number">01</span><span><small>Escolha seu ciclo</small>Qual plano combina com você?</span></legend>
+            <div class="choice-grid plan-grid">
+              <div class="choice-card plan-card">
+                <input id="planMonthly" name="plan" type="radio" value="monthly" checked>
+                <label for="planMonthly">
+                  <span class="plan-card-top"><strong>Plano mensal</strong><em>Flexível</em></span>
+                  <span class="plan-card-copy">1 envio por ciclo, com renovação mensal.</span>
+                  <span class="plan-card-price" id="monthlyPlanPrice">R$ 88,90 <small>/mês</small></span>
+                </label>
+              </div>
+              <div class="choice-card plan-card featured">
+                <input id="planAnnual" name="plan" type="radio" value="annual">
+                <label for="planAnnual">
+                  <span class="plan-card-top"><strong>Plano anual</strong><em>Melhor valor</em></span>
+                  <span class="plan-card-copy">12 envios e compromisso de 12 meses.</span>
+                  <span class="plan-card-price" id="annualPlanPrice">12x de R$ 74,90</span>
+                </label>
+              </div>
             </div>
           </fieldset>
+
           <fieldset class="choice-block">
-            <legend><span class="eyebrow">Passo 2</span>Como você prefere?</legend>
+            <legend><span class="choice-number">02</span><span><small>Passo 1</small>Quanto café você quer receber?</span></legend>
+            <div class="choice-grid">
+              <div class="choice-card"><input id="weight500" name="weight" type="radio" value="500g" checked><label for="weight500"><strong>500g por envio</strong><span>Ideal para uma rotina moderada</span></label></div>
+              <div class="choice-card"><input id="weight1kg" name="weight" type="radio" value="1kg"><label for="weight1kg"><strong>1kg por envio</strong><span>Para consumo maior ou compartilhado</span></label></div>
+            </div>
+          </fieldset>
+
+          <fieldset class="choice-block">
+            <legend><span class="choice-number">03</span><span><small>Passo 2</small>Como você prefere?</span></legend>
             <div class="choice-grid">
               <div class="choice-card"><input id="formatBeans" name="format" type="radio" value="Em grãos" checked><label for="formatBeans"><strong>Em grãos</strong><span>Mais frescor e moagem ajustável</span></label></div>
               <div class="choice-card"><input id="formatGround" name="format" type="radio" value="Moído"><label for="formatGround"><strong>Moído</strong><span>Pronto para o preparo no coador</span></label></div>
             </div>
+            <p class="choice-assurance">Sem diferença de preço entre café moído e em grãos.</p>
           </fieldset>
-          <fieldset class="choice-block">
-            <legend><span class="eyebrow">Passo 3</span>Como quer pagar?</legend>
+
+          <fieldset class="choice-block payment-choice-block">
+            <legend><span class="choice-number">04</span><span><small>Passo 3</small>Como deseja pagar?</span></legend>
             <div class="choice-grid">
-              <div class="choice-card"><input id="billingMonthly" name="billing" type="radio" value="Mensal recorrente" checked><label for="billingMonthly"><strong>Pagamento mensal</strong><span>Uma cobrança a cada envio. Permanência mínima de 1 mês.</span></label></div>
-              <div class="choice-card"><input id="billingAnnual" name="billing" type="radio" value="Anual em até 12x"><label for="billingAnnual"><strong>Plano anual em até 12x</strong><span>Uma compra de 12 envios, parcelável no Mercado Pago.</span></label></div>
+              <div class="choice-card payment-card">
+                <input id="billingStandard" name="billing" type="radio" value="standard" checked>
+                <label for="billingStandard"><strong id="standardBillingTitle">Pagamento mensal</strong><span id="standardBillingCopy">Uma cobrança por ciclo, com renovação mensal.</span></label>
+              </div>
+              <div class="choice-card payment-card pix-card">
+                <input id="billingPix" name="billing" type="radio" value="pix">
+                <label for="billingPix"><span class="discount-badge">5% OFF</span><strong>PIX</strong><span id="pixBillingCopy">Pagamento de um mês com 5% de desconto.</span></label>
+              </div>
             </div>
           </fieldset>
-          <div class="billing-explainer">
-            <article class="billing-card"><h3>Mensal recorrente</h3><p>O Mercado Pago faz uma nova cobrança todo mês. Você pode cancelar depois do primeiro ciclo, respeitando pedidos já processados.</p></article>
-            <article class="billing-card"><h3>Anual parcelado</h3><p>O total dos 12 envios é uma compra única. O parcelamento em até 12 vezes aparece no pagamento, conforme as condições do Mercado Pago.</p></article>
+
+          <div class="club-rules" aria-label="Condições da assinatura">
+            <div><span aria-hidden="true">✓</span><p><strong>Frete sempre grátis</strong>Não há cobrança adicional de entrega.</p></div>
+            <div><span aria-hidden="true">✓</span><p><strong>Sem cupom</strong>Cupons não são aplicáveis aos planos do clube.</p></div>
           </div>
         </div>
 
         <aside class="subscription-summary" aria-live="polite">
           <span class="eyebrow">Seu plano</span><h2>Resumo da assinatura</h2>
-          <div class="summary-row"><span>Peso do envio</span><strong id="summaryWeight">500g</strong></div>
+          <div class="summary-row"><span>Plano</span><strong id="summaryPlan">Plano mensal</strong></div>
+          <div class="summary-row"><span>Peso por envio</span><strong id="summaryWeight">500g</strong></div>
           <div class="summary-row"><span>Formato</span><strong id="summaryFormat">Em grãos</strong></div>
-          <div class="summary-row"><span>Pagamento</span><strong id="summaryBilling">Mensal recorrente</strong></div>
-          <div class="subscription-price"><span>Valor</span><strong>Sob consulta</strong></div>
-          <p class="subscription-note">A cobrança só será liberada depois que preço, frete e integração da assinatura forem conferidos. Neste momento, o atendimento confirma tudo com você.</p>
-          <a class="subscription-cta" id="subscriptionContact" href="https://wa.me/5535998087168" target="_blank" rel="noopener">Confirmar pelo WhatsApp</a>
-          <a class="subscription-cta secondary" href="produtos.html">Ver compra avulsa</a>
+          <div class="summary-row"><span>Duração</span><strong id="summaryDuration">Renovação mensal</strong></div>
+          <div class="summary-row"><span>Envios</span><strong id="summaryShipments">1 envio por ciclo</strong></div>
+          <div class="summary-row"><span>Frete</span><strong class="free-shipping-value">GRÁTIS</strong></div>
+          <div class="summary-row"><span>Pagamento</span><strong id="summaryBilling">1 cobrança mensal</strong></div>
+
+          <div class="subscription-price" id="standardPricePanel">
+            <span id="standardPriceLabel">Valor mensal</span>
+            <strong id="standardPriceMain">R$ 88,90</strong>
+            <small id="standardPriceTotal">Renovação mensal</small>
+          </div>
+
+          <div class="pix-price-panel" id="pixPricePanel" hidden>
+            <div class="pix-price-heading"><span>Pagamento via PIX</span><strong>5% OFF</strong></div>
+            <div class="price-detail"><span>Valor original</span><del id="pixOriginalPrice">R$ 88,90</del></div>
+            <div class="price-detail"><span>Desconto PIX</span><strong id="pixDiscountValue">− R$ 4,44</strong></div>
+            <div class="pix-total"><span>Total no PIX</span><strong id="pixFinalPrice">R$ 84,46</strong></div>
+            <p class="pix-savings" id="pixSavings">Economize R$ 4,44 pagando pelo PIX</p>
+          </div>
+
+          <p class="subscription-note" id="subscriptionNote">Você receberá 1 café por ciclo, sempre com frete grátis. Pagamento com renovação mensal.</p>
+          <button class="subscription-cta" id="subscriptionCta" type="submit">ASSINAR PLANO MENSAL</button>
+          <p class="checkout-status" id="subscriptionStatus" role="status">A contratação online será ativada nesta página.</p>
+          <a class="subscription-cta secondary" href="produtos.html">Prefiro uma compra avulsa</a>
         </aside>
+      </form>
+    </section>
+
+    <section class="subscription-benefits" aria-labelledby="benefitsTitle">
+      <div class="page-shell">
+        <div class="benefits-intro"><div><span class="eyebrow">Fazer parte tem sabor</span><h2 id="benefitsTitle">Mais que café.<br>Um clube pensado para você.</h2></div><p>Da torra priorizada às surpresas ao longo do ano, cada detalhe aproxima você da Fazenda Itajaó.</p></div>
+        <div class="benefits-grid">
+          <article class="benefit-card"><span class="benefit-icon" aria-hidden="true">☕</span><h3>Café sempre fresco</h3><p>Torra priorizada para assinantes, para o Itajaó chegar fresco à sua xícara.</p></article>
+          <article class="benefit-card"><span class="benefit-icon" aria-hidden="true">🔒</span><h3>Preço protegido</h3><p>O valor contratado fica protegido conforme o ciclo escolhido; no anual, durante os 12 meses do plano.</p></article>
+          <article class="benefit-card"><span class="benefit-icon" aria-hidden="true">🎁</span><h3>Mimos exclusivos</h3><p>Surpresas e benefícios especiais acompanham diferentes momentos da sua assinatura.</p></article>
+          <article class="benefit-card"><span class="benefit-icon" aria-hidden="true">🛒</span><h3>10% OFF em compras extras</h3><p>Enquanto a assinatura estiver ativa, você recebe 10% de desconto em compras adicionais no site.</p></article>
+          <article class="benefit-card"><span class="benefit-icon" aria-hidden="true">⏸</span><h3>Flexibilidade</h3><p>Pause temporariamente um envio ou alterne entre grãos e moído antes do próximo. O café é adiado, nunca perdido.</p></article>
+          <article class="benefit-card"><span class="benefit-icon" aria-hidden="true">✦</span><h3>Acesso antecipado</h3><p>Conheça antes novos cafés, microlotes, lançamentos e produtos especiais da Itajaó.</p></article>
+        </div>
       </div>
+    </section>
+
+    <section class="rewards-section" aria-labelledby="rewardsTitle">
+      <div class="page-shell">
+        <div class="rewards-heading"><span class="eyebrow">Sua jornada no Clube Itajaó</span><h2 id="rewardsTitle">Quanto mais tempo com a gente,<br>mais especial fica.</h2><p>As recompensas acompanham sua permanência no clube. O conteúdo de cada surpresa pode mudar para manter a experiência sempre especial.</p></div>
+        <ol class="reward-timeline">
+          <li class="reward-step"><span class="reward-marker">3º</span><div><small>Terceiro envio</small><h3>🎁 Mimo Itajaó</h3><p>Uma pequena surpresa exclusiva acompanhando o seu café.</p></div></li>
+          <li class="reward-step"><span class="reward-marker">6º</span><div><small>Sexto envio</small><h3>☕ Café ou amostra exclusiva</h3><p>Uma experiência diferente, como microlote, lançamento ou café especial.</p></div></li>
+          <li class="reward-step"><span class="reward-marker">12º</span><div><small>Décimo segundo envio</small><h3>🏆 Presente especial + cupom</h3><p>Ao completar o primeiro ano, uma surpresa especial e um cupom exclusivo.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="club-closing">
+      <div class="page-shell club-closing-inner"><div><span class="eyebrow">Da fazenda para a sua rotina</span><h2>Seu café favorito, com algo novo para esperar.</h2><p>Frescor, praticidade e proximidade com quem produz — todos os meses.</p></div><a href="#montar">QUERO MEU ITAJAÓ</a></div>
     </section>
   </main>
 
@@ -82,7 +182,8 @@
   </footer>
   <script src="assets/js/store-config.js"></script>
   <script src="assets/js/store.js"></script>
-  <script src="assets/js/subscription.js?v=20260819-1"></script>
+  <script src="assets/js/subscription-config.js?v=20260821-1"></script>
+  <script src="assets/js/subscription.js?v=20260821-1"></script>
   <script src="assets/js/site-ui.js?v=20260814-1"></script>
 </body>
 </html>
