@@ -99,6 +99,18 @@ function orderUrl(payload: Record<string, unknown>) {
   return url.toString();
 }
 
+function subscriptionUrl(payload: Record<string, unknown>) {
+  const direct = text(payload.subscription_url);
+  if (direct) return direct;
+  const subscriptionId = text(payload.subscription_id);
+  const token = text(payload.public_token);
+  if (!subscriptionId || !token) return '';
+  const url = new URL(siteUrl('assinatura-status.html'));
+  url.searchParams.set('subscription', subscriptionId);
+  url.searchParams.set('token', token);
+  return url.toString();
+}
+
 function button(label: string, href: string) {
   if (!href) return '';
   return `<p style="margin:26px 0 8px"><a href="${escapeHtml(href)}" style="display:inline-block;padding:13px 22px;border-radius:999px;background:#6f4e37;color:#fff;text-decoration:none;font-size:13px;font-weight:700">${escapeHtml(label)}</a></p>`;
@@ -153,6 +165,26 @@ export function renderEmail(row: Pick<EmailOutboxRow, 'template_key' | 'payload'
         body: `<p style="margin:0 0 14px">Olá, ${escapeHtml(name)}!</p><p style="margin:0 0 14px">O pedido <strong>${escapeHtml(orderNumber)}</strong> foi criado e está aguardando a confirmação do pagamento.</p><p style="margin:0">Produtos: <strong>${money(payload.subtotal)}</strong><br>Frete: <strong>${money(payload.shipping_amount)}</strong><br>Total: <strong>${money(payload.total_amount)}</strong></p>`,
         action: viewOrder,
         actionLabel: 'Acompanhar pedido',
+      });
+
+    case 'subscription_checkout_created':
+      return layout({
+        preview: `Sua assinatura ${text(payload.subscription_number)} foi iniciada.`,
+        eyebrow: 'CLUBE ITAJAÓ',
+        title: 'Sua assinatura foi iniciada',
+        body: `<p style="margin:0 0 14px">Olá, ${escapeHtml(name)}!</p><p style="margin:0 0 14px">Recebemos a escolha do <strong>${escapeHtml(payload.plan_label)}</strong> com <strong>${escapeHtml(payload.coffee_label)}</strong>.</p><p style="margin:0">Pagamento: <strong>${escapeHtml(payload.billing_label)}</strong><br>Total desta contratação: <strong>${money(payload.total_amount)}</strong><br>Frete: <strong>grátis em todos os envios</strong>.</p>`,
+        action: subscriptionUrl(payload),
+        actionLabel: 'Acompanhar assinatura',
+      });
+
+    case 'subscription_payment_approved':
+      return layout({
+        preview: `Pagamento da assinatura ${text(payload.subscription_number)} aprovado.`,
+        eyebrow: 'CLUBE ITAJAÓ',
+        title: 'Pagamento confirmado',
+        body: `<p style="margin:0 0 14px">Olá, ${escapeHtml(name)}!</p><p style="margin:0 0 14px">Confirmamos o pagamento de <strong>${money(payload.payment_amount)}</strong> da assinatura <strong>${escapeHtml(payload.subscription_number)}</strong>.</p><p style="margin:0">Seu próximo café será preparado com todo cuidado e seguirá com <strong>frete grátis</strong>.</p>${text(payload.benefit_code) ? `<div style="margin-top:18px;padding:14px;border-radius:10px;background:#f6eee5;text-align:center"><span style="display:block;color:#806b5c;font-size:11px">10% OFF EM COMPRAS EXTRAS</span><strong style="display:block;margin-top:5px;color:#6f4e37;letter-spacing:.12em">${escapeHtml(payload.benefit_code)}</strong></div>` : ''}`,
+        action: subscriptionUrl(payload),
+        actionLabel: 'Ver minha assinatura',
       });
 
     case 'payment_approved':
