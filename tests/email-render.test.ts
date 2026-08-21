@@ -33,7 +33,7 @@ Deno.test('newsletter inclui descadastro e cabeçalhos visuais', () => {
   assert(html.includes('https://example.supabase.co/functions/v1/newsletter-unsubscribe?token=abc'), 'URL de descadastro ausente.');
 });
 
-Deno.test('convite de avaliação aceita chave alfanumérica', () => {
+Deno.test('convite de avaliação abre pelo link individual sem exibir chave', () => {
   const html = renderEmail({
     template_key: 'review_invite',
     recipient_name: 'Cliente',
@@ -44,8 +44,9 @@ Deno.test('convite de avaliação aceita chave alfanumérica', () => {
       code: 'A2B3C4',
     },
   });
-  assert(html.includes('Chave de acesso'), 'Rótulo da chave não encontrado.');
-  assert(html.includes('A2B3C4'), 'Chave alfanumérica não foi renderizada.');
+  assert(html.includes('Seu link já reconhece o pedido'), 'Orientação de acesso direto ausente.');
+  assert(!html.includes('Chave de acesso'), 'O e-mail ainda exibe o rótulo da chave.');
+  assert(!html.includes('A2B3C4'), 'A chave interna não deve aparecer no e-mail.');
 });
 
 Deno.test('notificação administrativa escapa dados da newsletter', () => {

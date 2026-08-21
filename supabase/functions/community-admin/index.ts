@@ -63,7 +63,7 @@ async function getReviewInvite(body: Record<string, unknown>, userId: string) {
     .maybeSingle();
   if (error) throw error;
   if (!invite?.link_token || !invite?.access_code) {
-    throw new PublicError('Não foi possível recuperar a chave desta venda.', 500);
+    throw new PublicError('Não foi possível recuperar o acesso desta venda.', 500);
   }
 
   const token = String(invite.link_token);
@@ -72,7 +72,7 @@ async function getReviewInvite(body: Record<string, unknown>, userId: string) {
   const reviewUrl = new URL(siteUrl('avaliar.html'));
   reviewUrl.searchParams.set('token', token);
   const firstName = String(context.customer.full_name || 'Olá').split(/\s+/)[0];
-  const message = `Olá, ${firstName}! ☕ Queremos saber como foi sua experiência com o Café Itajaó.\n\nAvalie por aqui: ${reviewUrl.toString()}\nChave de acesso: ${code}\n\nO link é válido por 30 dias.`;
+  const message = `Olá, ${firstName}! ☕ Seu Café Itajaó já rendeu boas xícaras? Sua experiência pode ajudar outras pessoas a escolherem um café especial e também nos ajuda a melhorar sempre.\n\nConte para a gente por aqui: ${reviewUrl.toString()}\n\nO acesso é individual, já reconhece o seu pedido e fica válido por 30 dias.`;
   const phone = whatsappNumber(context.customer.phone);
 
   if (body.send_email === true && context.customer.email) {

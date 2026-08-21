@@ -153,10 +153,9 @@ export async function requireAdmin(req: Request) {
   return { userId: userData.user.id, email: userData.user.email || '' };
 }
 
-export async function verifyInvite(tokenValue: unknown, codeValue: unknown) {
+async function pendingInviteForToken(tokenValue: unknown) {
   const token = normalizeLinkToken(tokenValue);
-  const code = normalizeReviewCode(codeValue);
-  const { tokenHash, codeHash } = await hashesForInvite(token, code);
+  const tokenHash = await sha256Hex(token);
   const admin = adminClient();
 
   const { data: invite, error } = await admin
@@ -179,8 +178,27 @@ export async function verifyInvite(tokenValue: unknown, codeValue: unknown) {
   }
   if (Number(invite.attempts) >= Number(invite.max_attempts)) {
     await admin.from('review_invites').update({ status: 'locked' }).eq('id', invite.id);
-    throw new PublicError('O limite de tentativas foi atingido. Peça uma nova chave.', 429);
+    throw new PublicError('Este acesso foi bloqueado. Peça um novo link à Itajaó.', 429);
   }
+
+  return { token, invite, admin };
+}
+
+export async function verifyInviteByToken(tokenValue: unknown) {
+  const { token, invite, admin } = await pendingInviteForToken(tokenValue);
+
+  await admin.from('review_invites').update({
+    verified_at: new Date().toISOString(),
+    last_attempt_at: new Date().toISOString(),
+  }).eq('id', invite.id);
+
+  return { token, code: '', invite };
+}
+
+export async function verifyInvite(tokenValue: unknown, codeValue: unknown) {
+  const { token, invite, admin } = await pendingInviteForToken(tokenValue);
+  const code = normalizeReviewCode(codeValue);
+  const codeHash = await sha256Hex(`${token}:${code}`);
 
   if (!safeEqual(String(invite.code_hash), codeHash)) {
     const attempts = Number(invite.attempts) + 1;

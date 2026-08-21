@@ -239,6 +239,23 @@ section{padding:7.5rem 3.5rem}
 .ddots span{width:7px;height:7px;border-radius:50%;background:var(--dourado);display:block}
 .dtxt{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;line-height:1.85;color:var(--marrom);margin-bottom:1.7rem;font-weight:600}
 .dname{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.home-recipes{max-width:1180px;margin:5rem auto 0;padding-top:4rem;border-top:1px solid rgba(111,78,55,.13)}
+.home-recipes-head{max-width:660px;margin:0 auto 2.2rem;text-align:center}
+.home-recipes-head h3{margin:.8rem 0 0;font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);line-height:1.08;color:var(--marrom)}
+.home-recipes-head p{margin:1rem auto 0;max-width:560px;color:var(--muted);font-size:.82rem;line-height:1.75}
+.home-recipe-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.35rem}
+.home-recipe-card{overflow:hidden;border:1px solid rgba(111,78,55,.09);border-radius:var(--r);background:white;box-shadow:0 12px 34px rgba(59,36,22,.055);transition:transform .3s ease,box-shadow .3s ease}
+.home-recipe-card:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(59,36,22,.1)}
+.home-recipe-card>a{height:100%;display:flex;flex-direction:column;color:inherit;text-decoration:none}
+.home-recipe-image,.home-recipe-placeholder{width:100%;aspect-ratio:16/10;display:block;object-fit:cover;background:var(--marrom)}
+.home-recipe-placeholder{display:grid;place-items:center;background:linear-gradient(145deg,#3B2317,#6B4330);color:var(--bege);font-size:.68rem;font-weight:800;letter-spacing:.2em}
+.home-recipe-body{padding:1.45rem;display:flex;flex:1;flex-direction:column}
+.home-recipe-author{color:var(--dourado);font-size:.57rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+.home-recipe-card h4{margin:.6rem 0 0;font-family:'Playfair Display',serif;font-size:1.38rem;line-height:1.2;color:var(--marrom)}
+.home-recipe-card p{margin:.7rem 0 0;color:var(--muted);font-size:.76rem;line-height:1.65}
+.home-recipe-facts{margin-top:auto;padding-top:1rem;display:flex;gap:.45rem;flex-wrap:wrap}
+.home-recipe-facts span{padding:.35rem .6rem;border-radius:999px;background:var(--creme);color:var(--marrom);font-size:.58rem;font-weight:700}
+.home-recipes-actions{margin-top:2rem;display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap}
 
 /* ── FAQ ── */
 .faq{background:var(--creme)}
@@ -371,6 +388,7 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   .steps{grid-template-columns:repeat(2,1fr);gap:2.5rem}.steps::before{display:none}
   .clayout{grid-template-columns:1fr;gap:3rem}
   .dgrid{grid-template-columns:1fr}
+  .home-recipe-grid{grid-template-columns:1fr}
   .contato-layout{grid-template-columns:1fr;gap:3rem}
   .cinfo-grid{grid-template-columns:1fr}
   .ftop{grid-template-columns:1fr 1fr;gap:2rem}
@@ -603,7 +621,7 @@ body,body *,body *::before,body *::after{
         </div>
         <p class="pmet">100% Arábica · Catuaí Amarelo · Natural</p>
         <div class="pfooter">
-          <span class="ppreco"><span class="pold">R$ 62,90</span>R$&nbsp;56,90</span>
+          <span class="ppreco"><span class="pold">R$ 62,90</span>R$&nbsp;59,90</span>
           <span class="btn-buy">Ver produto</span>
         </div>
       </div>
@@ -629,7 +647,7 @@ body,body *,body *::before,body *::after{
         </div>
         <p class="pmet">100% Arábica · Catuaí Amarelo · Natural</p>
         <div class="pfooter">
-          <span class="ppreco"><span class="pold">R$ 60,90</span>R$&nbsp;54,90</span>
+          <span class="ppreco"><span class="pold">R$ 60,90</span>R$&nbsp;59,90</span>
           <span class="btn-buy">Ver produto</span>
         </div>
       </div>
@@ -745,6 +763,15 @@ body,body *,body *::before,body *::after{
   </div>
   <div class="dgrid" id="homeCommunityReviews" aria-live="polite"><div class="dcard"><p class="dtxt">Carregando avaliações verificadas…</p></div></div>
   <div style="text-align:center;margin-top:2.2rem"><a class="btn-d" href="comunidade.html" style="text-decoration:none">Ver avaliações e receitas da Comunidade →</a></div>
+  <div class="home-recipes rv" id="receitas-da-comunidade">
+    <div class="home-recipes-head">
+      <div class="stag" style="justify-content:center">Receitas da Comunidade</div>
+      <h3>Novas ideias para o seu Café Itajaó</h3>
+      <p>Receitas enviadas por quem prepara o Itajaó em casa e aprovadas pela nossa equipe.</p>
+    </div>
+    <div class="home-recipe-grid" id="homeCommunityRecipes" aria-live="polite"><article class="home-recipe-card"><div class="home-recipe-body"><p>Carregando receitas da comunidade…</p></div></article></div>
+    <div class="home-recipes-actions"><a class="btn-d" href="comunidade.html#receitas" style="text-decoration:none">Ver todas as receitas</a><a class="clean-link" href="enviar-receita.html">Enviar minha receita</a></div>
+  </div>
 </section>
 
 
@@ -950,7 +977,7 @@ window.addEventListener('scroll',function(){
 <script src="assets/js/store-config.js"></script>
 <script src="assets/js/store.js"></script>
 <script src="assets/js/home-store.js"></script>
-<script src="assets/js/home-community.js"></script>
+<script src="assets/js/home-community.js?v=20260821-1"></script>
 <script src="assets/js/site-ui.js?v=20260814-1"></script>
 
 <script>
