@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sua assinatura | Clube Itajaó</title>
+  <meta name="description" content="Acompanhe a confirmação e os envios da sua assinatura do Clube Itajaó.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/brand-refresh.css?v=20260819-1">
+  <link rel="stylesheet" href="assets/css/palette-colorhunt.css?v=20260814-1">
+  <link rel="stylesheet" href="assets/css/subscription-checkout.css?v=20260821-1">
+</head>
+<body class="subscription-status-page">
+  <div class="club-checkout-top">Clube Itajaó · café fresco · frete grátis · benefícios exclusivos</div>
+  <nav class="club-checkout-nav" aria-label="Navegação da assinatura">
+    <a href="index.html" aria-label="Itajaó, página inicial"><img src="assets/images/brand/logo-itajao-hq.png" alt="Itajaó Cafés Especiais"></a>
+    <a href="assinatura.html">Conhecer o clube</a>
+  </nav>
+
+  <main class="club-status-shell">
+    <section class="club-status-card">
+      <div class="club-status-icon" id="statusIcon">···</div>
+      <span class="club-eyebrow" id="statusEyebrow">Consultando o Mercado Pago</span>
+      <h1 id="statusTitle">Confirmando sua assinatura…</h1>
+      <p class="club-status-copy" id="statusCopy">Só um instante. Esta página será atualizada automaticamente assim que recebermos a confirmação.</p>
+
+      <div class="club-status-grid" id="statusDetails" hidden>
+        <div><span>Assinatura</span><strong id="statusNumber">—</strong></div>
+        <div><span>Situação</span><strong id="statusLabel">—</strong></div>
+        <div><span>Plano</span><strong id="statusPlan">—</strong></div>
+        <div><span>Café</span><strong id="statusCoffee">—</strong></div>
+        <div><span>Pagamento</span><strong id="statusPayment">—</strong></div>
+        <div><span>Frete</span><strong>Grátis em todos os envios</strong></div>
+        <div id="statusBenefitCard" hidden><span>10% OFF em compras extras</span><button class="club-benefit-code" id="statusBenefit" type="button" title="Copiar cupom do assinante">—</button></div>
+      </div>
+
+      <ul class="club-status-timeline" id="shipmentTimeline" hidden aria-label="Próximos envios"></ul>
+      <p class="club-message" id="statusMessage" role="status" aria-live="polite"></p>
+      <div class="club-status-links"><a href="index.html">Voltar para a Itajaó</a><a href="https://wa.me/5535998087168" target="_blank" rel="noopener">Preciso de ajuda</a></div>
+    </section>
+  </main>
+
+  <script src="assets/js/store-config.js"></script>
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/subscription-status.js?v=20260821-1"></script>
+</body>
+</html>

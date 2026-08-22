@@ -1,0 +1,93 @@
+/* Checkout e acompanhamento do Clube Itajaó. */
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--palette-espresso)}
+body.subscription-checkout-page,body.subscription-status-page{margin:0;min-height:100vh;background:var(--palette-cream-soft)!important;color:var(--palette-espresso)!important;font-family:'Montserrat',Arial,sans-serif;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+.club-checkout-top{min-height:34px;padding:.55rem 1rem;display:flex;align-items:center;justify-content:center;background:var(--palette-espresso);color:var(--palette-cream);font-size:.58rem;font-weight:750;letter-spacing:.11em;line-height:1.4;text-align:center;text-transform:uppercase}
+.club-checkout-nav{height:76px;padding:0 clamp(1rem,4vw,3.5rem);display:flex;align-items:center;justify-content:space-between;gap:1rem;background:rgba(250,244,236,.98);border-bottom:1px solid rgba(43,27,20,.13)}
+.club-checkout-nav img{width:60px;height:60px;object-fit:contain;display:block}
+.club-checkout-nav a:last-child{color:var(--palette-espresso);font-size:.59rem;font-weight:800;letter-spacing:.1em;text-decoration:none;text-transform:uppercase}
+.club-checkout-shell{width:min(1160px,calc(100% - 2rem));margin:0 auto;padding:clamp(2.5rem,6vw,5rem) 0 5rem}
+.club-checkout-heading{max-width:780px;margin-bottom:2rem}
+.club-eyebrow{display:block;margin-bottom:.7rem;color:var(--palette-wine);font-size:.57rem;font-weight:850;letter-spacing:.2em;text-transform:uppercase}
+.club-checkout-heading h1,.club-status-card h1{margin:0;color:var(--palette-espresso);font-family:Georgia,'Times New Roman',serif;font-size:clamp(2.1rem,5vw,4rem);line-height:1.02;letter-spacing:-.035em}
+.club-checkout-heading p,.club-status-card>.club-status-copy{max-width:680px;margin:.85rem 0 0;color:var(--palette-muted);font-size:.78rem;line-height:1.75}
+.club-checkout-layout{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(330px,.72fr);gap:1.35rem;align-items:start}
+.club-panel{min-width:0;padding:clamp(1.2rem,3vw,2rem);border:1px solid rgba(43,27,20,.14);border-radius:20px;background:var(--palette-paper);box-shadow:0 18px 52px rgba(43,27,20,.085)}
+.club-panel+.club-panel{margin-top:1rem}
+.club-panel h2{margin:0 0 1.2rem;color:var(--palette-espresso);font-size:.95rem;line-height:1.4}
+.club-step{width:28px;height:28px;margin-right:.55rem;border-radius:50%;display:inline-grid;place-items:center;background:var(--palette-wine);color:#fff;font-size:.58rem}
+.club-plan-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin-bottom:1.1rem}
+.club-plan-chip{padding:.8rem;border:1px solid rgba(43,27,20,.12);border-radius:12px;background:var(--palette-cream-soft)}
+.club-plan-chip span{display:block;color:var(--palette-muted);font-size:.53rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.club-plan-chip strong{display:block;margin-top:.28rem;color:var(--palette-espresso);font-size:.71rem;line-height:1.4}
+.club-perks{display:flex;flex-wrap:wrap;gap:.45rem}
+.club-perks span{padding:.47rem .62rem;border-radius:999px;background:#f7eadf;color:var(--palette-wine);font-size:.51rem;font-weight:800;letter-spacing:.055em;text-transform:uppercase}
+.club-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem}
+.club-field{min-width:0}
+.club-field.full{grid-column:1/-1}
+.club-field label{display:block;margin:0 0 .38rem .1rem;color:var(--palette-muted);font-size:.53rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.club-field input{width:100%;height:46px;padding:0 .8rem;border:1px solid rgba(43,27,20,.2);border-radius:10px;background:#fff;color:var(--palette-espresso);font:500 .75rem 'Montserrat',Arial,sans-serif;outline:none}
+.club-field input:focus{border-color:var(--palette-wine);box-shadow:0 0 0 3px rgba(122,31,43,.1)}
+.club-field input[readonly]{background:#f5efe8;color:var(--palette-muted)}
+.club-consent.full{grid-column:1/-1}
+.club-consent label{padding:.8rem;border:1px solid rgba(43,27,20,.13);border-radius:10px;display:flex;align-items:flex-start;gap:.65rem;background:var(--palette-cream-soft);color:var(--palette-muted);font-size:.57rem;line-height:1.6;cursor:pointer}
+.club-consent input{width:18px;height:18px;margin:.05rem 0 0;flex:0 0 auto;accent-color:var(--palette-wine)}
+.club-consent a{color:var(--palette-wine);font-weight:750}
+.club-summary{position:sticky;top:1rem;overflow:hidden}
+.club-summary::before{content:"";position:absolute;inset:0 0 auto;height:5px;background:var(--palette-wine)}
+.club-summary h2{margin:.15rem 0 1rem;font-family:Georgia,'Times New Roman',serif;font-size:1.65rem}
+.club-summary-row{padding:.62rem 0;border-bottom:1px solid rgba(43,27,20,.1);display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;color:var(--palette-muted);font-size:.63rem;line-height:1.45}
+.club-summary-row strong{max-width:60%;color:var(--palette-espresso);text-align:right;overflow-wrap:anywhere}
+.club-summary-row .club-free{color:var(--palette-wine);letter-spacing:.08em}
+.club-price-box{margin:1rem 0;padding:1rem;border-radius:13px;background:#f8eee4}
+.club-price-box>span{display:block;color:var(--palette-muted);font-size:.54rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+.club-price-box>strong{display:block;margin:.25rem 0;color:var(--palette-wine);font-size:clamp(1.7rem,3vw,2.2rem);line-height:1.1}
+.club-price-box>small{display:block;color:var(--palette-muted);font-size:.57rem;line-height:1.5}
+.club-price-detail{display:flex;justify-content:space-between;gap:1rem;margin-top:.45rem;color:var(--palette-muted);font-size:.58rem}
+.club-price-detail strong{color:var(--palette-espresso)}
+.club-no-coupon{margin:.8rem 0;padding:.75rem;border:1px solid rgba(122,31,43,.14);border-radius:10px;color:var(--palette-muted);font-size:.57rem;line-height:1.55}
+.club-pay-button,.club-status-button{width:100%;min-height:50px;padding:.7rem 1rem;border:0;border-radius:999px;background:var(--palette-wine);color:#fff;font:850 .62rem 'Montserrat',Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.club-pay-button:hover,.club-status-button:hover{background:var(--palette-coffee);transform:translateY(-1px)}
+.club-pay-button:disabled{opacity:.48;cursor:not-allowed;transform:none}
+.club-secure{margin:.75rem 0 0;color:var(--palette-muted);font-size:.54rem;line-height:1.55;text-align:center}
+.club-message{min-height:1.2rem;margin:.75rem 0 0;color:var(--palette-muted);font-size:.61rem;line-height:1.55}
+.club-message.error{color:#9c2f39}.club-message.success{color:#426447}.club-message.info{color:#765321}
+.club-disabled-note{margin-top:.8rem;padding:.75rem;border:1px solid #dfc28d;border-radius:10px;background:#fff7e7;color:#765321;font-size:.58rem;line-height:1.6}
+.club-blocker{text-align:center;padding:clamp(2rem,6vw,4rem)}
+.club-blocker h2{font-family:Georgia,'Times New Roman',serif;font-size:1.7rem}.club-blocker p{color:var(--palette-muted);font-size:.72rem;line-height:1.7}.club-blocker a{display:inline-flex;margin-top:.5rem;padding:.75rem 1rem;border-radius:999px;background:var(--palette-wine);color:#fff;text-decoration:none;font-size:.58rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+.club-pix-result{text-align:center}
+.club-pix-result[hidden]{display:none}
+.club-pix-result h2{font-family:Georgia,'Times New Roman',serif;font-size:1.75rem;margin-bottom:.5rem}
+.club-pix-result>p{margin:.45rem auto 1rem;max-width:530px;color:var(--palette-muted);font-size:.7rem;line-height:1.65}
+.club-pix-qr{width:min(230px,70vw);margin:1rem auto;padding:.7rem;border:1px solid rgba(43,27,20,.12);border-radius:14px;background:#fff;display:block}
+.club-pix-code{width:100%;min-height:92px;padding:.75rem;border:1px solid rgba(43,27,20,.17);border-radius:10px;background:#f5efe8;color:var(--palette-espresso);font:500 .61rem/1.5 'Montserrat',Arial,sans-serif;overflow-wrap:anywhere;resize:none}
+.club-pix-actions{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-top:.75rem}
+.club-pix-actions button,.club-pix-actions a{min-height:44px;padding:.65rem;border:1px solid var(--palette-wine);border-radius:999px;display:flex;align-items:center;justify-content:center;background:var(--palette-wine);color:#fff;font:800 .57rem 'Montserrat',Arial,sans-serif;letter-spacing:.07em;text-decoration:none;text-transform:uppercase;cursor:pointer}
+.club-pix-actions a{background:transparent;color:var(--palette-wine)}
+.club-status-shell{width:min(700px,calc(100% - 2rem));margin:0 auto;padding:clamp(2rem,7vw,5rem) 0}
+.club-status-card{padding:clamp(1.4rem,5vw,3rem);border:1px solid rgba(43,27,20,.14);border-radius:22px;background:var(--palette-paper);box-shadow:0 24px 70px rgba(43,27,20,.11)}
+.club-status-icon{width:64px;height:64px;margin-bottom:1.2rem;border-radius:50%;display:grid;place-items:center;background:#f4e7da;color:var(--palette-wine);font-size:1.2rem;font-weight:850}
+.club-status-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin:1.5rem 0}
+.club-status-grid>div{padding:.85rem;border-radius:12px;background:var(--palette-cream-soft)}
+.club-status-grid span{display:block;color:var(--palette-muted);font-size:.5rem;font-weight:750;letter-spacing:.08em;text-transform:uppercase}
+.club-status-grid strong{display:block;margin-top:.3rem;color:var(--palette-espresso);font-size:.7rem;line-height:1.45}
+.club-benefit-code{margin-top:.3rem;padding:0;border:0;background:transparent;color:var(--palette-wine);font:850 .7rem 'Montserrat',Arial,sans-serif;letter-spacing:.08em;cursor:pointer;text-align:left}
+.club-status-timeline{margin:1rem 0 0;padding:0;list-style:none}
+.club-status-timeline li{position:relative;padding:.75rem .85rem .75rem 2.1rem;border-bottom:1px solid rgba(43,27,20,.1);color:var(--palette-muted);font-size:.62rem;line-height:1.5}
+.club-status-timeline li::before{content:"";position:absolute;left:.7rem;top:1rem;width:8px;height:8px;border-radius:50%;background:var(--palette-gold-deep)}
+.club-status-timeline strong{display:block;color:var(--palette-espresso)}
+.club-status-links{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+.club-status-links a{min-height:42px;padding:.65rem 1rem;border:1px solid var(--palette-wine);border-radius:999px;display:inline-flex;align-items:center;justify-content:center;color:var(--palette-wine);font-size:.56rem;font-weight:800;letter-spacing:.08em;text-decoration:none;text-transform:uppercase}
+.club-status-links a:first-child{background:var(--palette-wine);color:#fff}
+
+@media(max-width:820px){
+  .club-checkout-layout{grid-template-columns:1fr}.club-summary{position:static}.club-checkout-shell{padding-top:2rem}
+}
+@media(max-width:560px){
+  .club-checkout-nav{height:68px}.club-checkout-nav img{width:52px;height:52px}.club-checkout-nav a:last-child{font-size:.52rem}
+  .club-checkout-shell,.club-status-shell{width:min(100% - 1.1rem,1160px)}
+  .club-checkout-heading h1,.club-status-card h1{font-size:2.15rem}.club-checkout-heading p{font-size:.7rem}
+  .club-panel{padding:1rem;border-radius:16px}.club-plan-strip,.club-form-grid,.club-status-grid,.club-pix-actions{grid-template-columns:1fr}
+  .club-field.full{grid-column:auto}.club-consent.full{grid-column:auto}.club-summary h2{font-size:1.45rem}.club-price-box>strong{font-size:1.8rem}
+}
+@media(prefers-reduced-motion:reduce){button,a{transition:none!important}}

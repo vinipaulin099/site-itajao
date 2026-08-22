@@ -8,14 +8,14 @@
   }
 
   root.ITAJAO_SUBSCRIPTION_CONFIG=deepFreeze({
-    version:1,
+    version:2,
     currency:'BRL',
     pixDiscountRate:0.05,
     freeShipping:true,
     couponEligible:false,
     checkout:{
       enabled:false,
-      url:''
+      url:'assinatura-checkout.html'
     },
     plans:{
       monthly:{
