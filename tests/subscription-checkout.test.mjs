@@ -26,7 +26,7 @@ const [
   readFile(new URL('../supabase/functions/subscription-status/index.ts', import.meta.url), 'utf8'),
   readFile(new URL('../supabase/functions/_shared/promotions.ts', import.meta.url), 'utf8'),
   readFile(new URL('../supabase/functions/_shared/email.ts', import.meta.url), 'utf8'),
-  readFile(new URL('../supabase/migrations/20260821232000_subscription_checkout_core.sql', import.meta.url), 'utf8'),
+  readFile(new URL('../supabase/migrations/20260822013120_subscription_checkout_core.sql', import.meta.url), 'utf8'),
   readFile(new URL('../supabase/config.toml', import.meta.url), 'utf8'),
 ]);
 
