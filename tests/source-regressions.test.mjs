@@ -14,7 +14,7 @@ const [home, store, homeStore, catalogPage, brandStyles, reviewPage, reviewScrip
   readFile(new URL('../supabase/functions/community-feed/index.ts', import.meta.url), 'utf8'),
   readFile(new URL('../supabase/functions/community-admin/index.ts', import.meta.url), 'utf8'),
   readFile(new URL('../supabase/functions/crm-notification-dispatch/index.ts', import.meta.url), 'utf8'),
-  readFile(new URL('../supabase/migrations/20260821035059_canonicalize_legacy_500g_review_links.sql', import.meta.url), 'utf8'),
+  readFile(new URL('../supabase/migrations/20260821035259_canonicalize_legacy_500g_review_links.sql', import.meta.url), 'utf8'),
 ]);
 
 test('mantém os dois cafés de 500 g em R$ 59,90', () => {

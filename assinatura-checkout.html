@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Finalizar assinatura | Clube Itajaó</title>
+  <meta name="description" content="Informe seus dados e conclua com segurança sua assinatura do Clube Itajaó.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/brand-refresh.css?v=20260819-1">
+  <link rel="stylesheet" href="assets/css/palette-colorhunt.css?v=20260814-1">
+  <link rel="stylesheet" href="assets/css/subscription-checkout.css?v=20260821-1">
+</head>
+<body class="subscription-checkout-page">
+  <div class="club-checkout-top">Clube Itajaó · pagamento seguro · frete grátis em todos os envios · cupons não aplicáveis</div>
+  <nav class="club-checkout-nav" aria-label="Navegação do checkout">
+    <a href="index.html" aria-label="Itajaó, página inicial"><img src="assets/images/brand/logo-itajao-hq.png" alt="Itajaó Cafés Especiais"></a>
+    <a href="assinatura.html">← Alterar meu plano</a>
+  </nav>
+
+  <main class="club-checkout-shell">
+    <header class="club-checkout-heading">
+      <span class="club-eyebrow">Última etapa</span>
+      <h1>Seu café fresco está quase a caminho.</h1>
+      <p>Confira o plano escolhido e informe os dados de entrega. O preço, o desconto PIX e o frete serão validados novamente pelo servidor antes do pagamento.</p>
+    </header>
+
+    <section class="club-panel club-blocker" id="subscriptionCheckoutBlocker" hidden>
+      <h2>Escolha seu plano primeiro.</h2>
+      <p>Não encontramos uma seleção válida neste navegador. Volte à página do Clube Itajaó e monte sua assinatura.</p>
+      <a href="assinatura.html#montar">Montar minha assinatura</a>
+    </section>
+
+    <div class="club-checkout-layout" id="subscriptionCheckoutLayout">
+      <div>
+        <section class="club-panel">
+          <h2><span class="club-step">1</span>Plano escolhido</h2>
+          <div class="club-plan-strip">
+            <div class="club-plan-chip"><span>Assinatura</span><strong id="checkoutPlan">Plano mensal</strong></div>
+            <div class="club-plan-chip"><span>Café por envio</span><strong id="checkoutCoffee">500g · Em grãos</strong></div>
+            <div class="club-plan-chip"><span>Pagamento</span><strong id="checkoutBilling">Renovação mensal</strong></div>
+            <div class="club-plan-chip"><span>Entrega</span><strong id="checkoutShipping">Frete grátis</strong></div>
+          </div>
+          <div class="club-perks" aria-label="Benefícios incluídos">
+            <span>Café fresco</span><span>Preço protegido</span><span>Recompensas</span><span>10% OFF em extras</span>
+          </div>
+        </section>
+
+        <section class="club-panel" id="customerPanel">
+          <h2><span class="club-step">2</span>Dados do assinante e da entrega</h2>
+          <form id="subscriptionCheckoutForm">
+            <div class="club-form-grid">
+              <div class="club-field full"><label for="fullName">Nome completo</label><input id="fullName" name="fullName" type="text" autocomplete="name" maxlength="120" required></div>
+              <div class="club-field"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" maxlength="180" required></div>
+              <div class="club-field"><label for="phone">Celular</label><input id="phone" name="phone" type="text" inputmode="tel" autocomplete="tel" placeholder="(35) 99999-9999" maxlength="20" required></div>
+              <div class="club-field full"><label for="document">CPF ou CNPJ</label><input id="document" name="document" type="text" inputmode="numeric" autocomplete="off" maxlength="18" required></div>
+              <div class="club-field"><label for="postalCode">CEP</label><input id="postalCode" name="postalCode" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="9" required></div>
+              <div class="club-field"><label for="number">Número</label><input id="number" name="number" type="text" autocomplete="address-line2" maxlength="20" required></div>
+              <div class="club-field full"><label for="street">Endereço</label><input id="street" name="street" type="text" autocomplete="address-line1" maxlength="160" required></div>
+              <div class="club-field"><label for="complement">Complemento</label><input id="complement" name="complement" type="text" maxlength="80"></div>
+              <div class="club-field"><label for="district">Bairro</label><input id="district" name="district" type="text" maxlength="100" required></div>
+              <div class="club-field"><label for="city">Cidade</label><input id="city" name="city" type="text" autocomplete="address-level2" maxlength="100" required></div>
+              <div class="club-field"><label for="state">UF</label><input id="state" name="state" type="text" autocomplete="address-level1" maxlength="2" minlength="2" placeholder="MG" required></div>
+              <div class="club-consent full"><label for="subscriptionConsent"><input id="subscriptionConsent" name="subscriptionConsent" type="checkbox" required><span>Confirmo os dados, o plano e a forma de pagamento escolhidos. Autorizo o uso dos dados necessário à cobrança e à entrega e li a <a href="https://cafeitajao.com.br/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</span></label></div>
+            </div>
+          </form>
+        </section>
+
+        <section class="club-panel club-pix-result" id="pixResult" hidden aria-live="polite">
+          <span class="club-eyebrow">PIX gerado com segurança</span>
+          <h2>Agora é só pagar no seu banco.</h2>
+          <p>Escaneie o QR Code ou copie o código abaixo. Esta página acompanha a confirmação sem criar uma nova cobrança.</p>
+          <img class="club-pix-qr" id="pixQrImage" alt="QR Code PIX da assinatura" hidden>
+          <textarea class="club-pix-code" id="pixCopyPaste" readonly aria-label="Código PIX copia e cola"></textarea>
+          <div class="club-pix-actions"><button id="copyPixButton" type="button">Copiar código PIX</button><a id="pixStatusLink" href="assinatura-status.html">Acompanhar assinatura</a></div>
+          <p class="club-message" id="pixMessage" role="status"></p>
+        </section>
+      </div>
+
+      <aside class="club-panel club-summary" id="subscriptionCheckoutSummary">
+        <span class="club-eyebrow">Seu plano</span>
+        <h2>Resumo da assinatura</h2>
+        <div class="club-summary-row"><span>Plano</span><strong id="summaryPlan">Plano mensal</strong></div>
+        <div class="club-summary-row"><span>Peso</span><strong id="summaryWeight">500g por envio</strong></div>
+        <div class="club-summary-row"><span>Formato</span><strong id="summaryFormat">Em grãos</strong></div>
+        <div class="club-summary-row"><span>Envios</span><strong id="summaryShipments">1 por ciclo</strong></div>
+        <div class="club-summary-row"><span>Frete</span><strong class="club-free">GRÁTIS</strong></div>
+        <div class="club-summary-row"><span>Pagamento</span><strong id="summaryPayment">1 cobrança mensal</strong></div>
+        <div class="club-price-box">
+          <span id="priceLabel">Valor mensal</span>
+          <strong id="priceMain">R$ 88,90</strong>
+          <small id="priceSupport">Renovação mensal</small>
+          <div class="club-price-detail" id="priceOriginalRow" hidden><span>Valor original</span><strong id="priceOriginal">R$ 0,00</strong></div>
+          <div class="club-price-detail" id="priceDiscountRow" hidden><span>Economia no PIX</span><strong id="priceDiscount">− R$ 0,00</strong></div>
+        </div>
+        <p class="club-no-coupon"><strong>Frete por nossa conta.</strong> Nenhum cupom pode ser aplicado à assinatura. O servidor usa os preços oficiais do Clube Itajaó.</p>
+        <button class="club-pay-button" id="subscriptionPayButton" type="submit" form="subscriptionCheckoutForm" disabled>Ir para o pagamento seguro</button>
+        <p class="club-secure">No cartão, os dados são informados diretamente no Mercado Pago. No PIX, o código é gerado com o valor exato do plano.</p>
+        <p class="club-message" id="checkoutMessage" role="status" aria-live="polite"></p>
+        <div class="club-disabled-note" id="subscriptionSetupNote" hidden>O novo checkout está pronto para homologação, mas continua fechado ao público até a validação final de pagamento.</div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="assets/js/store-config.js"></script>
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/subscription-config.js?v=20260821-2"></script>
+  <script src="assets/js/subscription.js?v=20260821-2"></script>
+  <script src="assets/js/subscription-checkout.js?v=20260821-1"></script>
+</body>
+</html>

@@ -48,6 +48,20 @@ export async function quoteCoupon(
   const coupon = rows?.[0];
   if (!coupon) throw new PublicError('Cupom inválido ou inativo.');
 
+  const benefitRows = await dbRequest(
+    `subscription_benefit_coupons?coupon_id=eq.${encodeURIComponent(coupon.id)}&select=customer_id,subscriptions(status,ends_at)&limit=1`,
+  );
+  const benefit = benefitRows?.[0] || null;
+  if (benefit) {
+    const subscription = benefit.subscriptions || {};
+    if (subscription.status !== 'active') {
+      throw new PublicError('Este benefício exige uma assinatura ativa.');
+    }
+    if (subscription.ends_at && Date.now() >= new Date(subscription.ends_at).getTime()) {
+      throw new PublicError('Este benefício do clube expirou.');
+    }
+  }
+
   const now = Date.now();
   if (coupon.starts_at && now < new Date(coupon.starts_at).getTime()) {
     throw new PublicError('Este cupom ainda não está disponível.');
@@ -74,9 +88,12 @@ export async function quoteCoupon(
     throw new PublicError('Este cupom atingiu o limite de utilizações.');
   }
 
-  let requiresCheckoutValidation = Boolean(coupon.first_purchase_only || coupon.per_customer_limit);
+  let requiresCheckoutValidation = Boolean(coupon.first_purchase_only || coupon.per_customer_limit || benefit);
   if (customer) {
     const ids = await customerIds(customer);
+    if (benefit && !ids.includes(String(benefit.customer_id))) {
+      throw new PublicError('Este cupom é exclusivo do titular da assinatura.');
+    }
     if (ids.length) {
       const customerRedemptions = activeRedemptions.filter((row: any) => ids.includes(String(row.customer_id)));
       if (coupon.per_customer_limit && customerRedemptions.length >= Number(coupon.per_customer_limit)) {

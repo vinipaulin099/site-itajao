@@ -126,3 +126,55 @@ supabase functions deploy sync-order
 ```
 
 Antes de ativar vendas reais, execute pelo menos: cotação de CEP MG/SP/outro estado, frete grátis nos dois limites, pagamento aprovado, pendente e recusado, webhook com assinatura inválida, criação de contato/pedido no Bling e repetição do mesmo webhook.
+
+## Checkout do Clube Itajaó
+
+O checkout da assinatura é separado da compra avulsa e possui sua própria trava: `SUBSCRIPTION_CHECKOUT_ENABLED=false` no servidor e `checkout.enabled: false` em `assets/js/subscription-config.js`. Assim, a loja comum e o clube podem ser homologados e ativados em momentos diferentes.
+
+Regras comerciais gravadas no servidor pela migration `20260821232000_subscription_checkout_core.sql`:
+
+- mensal 500g: R$ 88,90 por ciclo;
+- mensal 1kg: R$ 149,90 por ciclo;
+- anual 500g: 12 cobranças de R$ 74,90 ou pagamento antecipado;
+- anual 1kg: 12 cobranças de R$ 136,90 ou pagamento antecipado;
+- PIX aplica 5% sobre um mês no plano mensal e sobre os 12 meses no plano anual;
+- café moído e em grãos têm o mesmo preço;
+- frete da assinatura é sempre zero e cupons são recusados;
+- o plano anual recorrente é encerrado no Mercado Pago depois da 12ª cobrança aprovada.
+- após o primeiro pagamento aprovado, o assinante recebe um código pessoal de 10% OFF para compras extras; o titular e o estado ativo da assinatura são revalidados no checkout comum.
+
+O navegador envia apenas plano, peso, formato, forma de pagamento e dados do assinante. `create_subscription_checkout` busca a oferta ativa e calcula novamente preço, desconto e total dentro do banco. Cada tentativa possui um UUID idempotente, reutilizado no Mercado Pago para impedir cobranças duplicadas em reenvios.
+
+Fluxos de pagamento:
+
+- **recorrente:** `POST /preapproval`, com cobrança mensal. No anual, há limite contratual de 12 ciclos;
+- **PIX mensal:** pagamento de um ciclo com 5% OFF;
+- **PIX anual:** pagamento antecipado dos 12 ciclos com 5% OFF e criação dos 12 envios planejados;
+- **confirmação:** o webhook consulta novamente o recurso no Mercado Pago, confere moeda e valor e só então ativa a assinatura e cria os envios;
+- **acompanhamento:** `assinatura-status.html` consulta apenas os campos públicos autorizados por `id + public_token`.
+- **comunicação:** o assinante recebe e-mail ao iniciar o checkout e a cada pagamento aprovado, com link privado de acompanhamento e o benefício de compras extras quando ativo.
+
+Funções do clube:
+
+```bash
+supabase functions deploy create-subscription-checkout
+supabase functions deploy mercadopago-subscription-webhook
+supabase functions deploy subscription-status
+```
+
+Webhook do clube:
+
+`https://eumgdopgiffzpahzcdsq.supabase.co/functions/v1/mercadopago-subscription-webhook`
+
+Configure os tópicos **Pagamentos**, **Planos e assinaturas** e **Pagamentos de planos e assinaturas**. A função aceita `payment`, `subscription_preapproval` e `subscription_authorized_payment` e valida a assinatura HMAC antes de consultar a API.
+
+Ordem segura de homologação:
+
+1. aplicar a migration e publicar as três funções com `SUBSCRIPTION_CHECKOUT_ENABLED=false`;
+2. manter `MP_USE_SANDBOX=true` e executar uma tentativa protegida com `x-admin-token`;
+3. simular aprovação, recusa, repetição do mesmo webhook e conferir pagamentos/envios sem duplicidade;
+4. testar 500g/1kg, mensal/anual, grãos/moído, recorrente/PIX e layouts desktop/celular;
+5. trocar para as credenciais de produção e fazer uma compra controlada de baixo risco;
+6. ativar primeiro `SUBSCRIPTION_CHECKOUT_ENABLED=true` e, após a confirmação, `checkout.enabled: true` no frontend.
+
+O checkout comum continua desligado e não deve ser ativado junto automaticamente. Ele precisa do próprio teste completo de frete, pagamento e sincronização com o Bling.
