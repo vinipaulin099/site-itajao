@@ -1,4 +1,3 @@
-import { catalogIdFromSku } from './catalog.ts';
 import { env, PublicError } from './core.ts';
 
 function adminApiKey() {
@@ -56,7 +55,7 @@ export async function insertOrder(payload: {
   shippingCarrier: string;
   shippingQuote: unknown;
 }) {
-  const order = await dbRequest('rpc/create_site_checkout_order', {
+  return await dbRequest('rpc/create_site_checkout_order', {
     method: 'POST',
     body: JSON.stringify({
       p_customer: payload.customer,
@@ -73,20 +72,17 @@ export async function insertOrder(payload: {
       p_shipping_quote: payload.shippingQuote ?? null,
     }),
   });
-  return order;
 }
 
 export async function releaseCouponRedemption(orderId: string) {
-  await dbRequest(`store_coupon_redemptions?order_id=eq.${encodeURIComponent(orderId)}`, {
-    method: 'DELETE',
-  });
+  await dbRequest(`store_coupon_redemptions?order_id=eq.${encodeURIComponent(orderId)}`, { method: 'DELETE' });
 }
 
-async function productSkus(items: any[]) {
+async function productMetadata(items: any[]) {
   const ids = Array.from(new Set(items.map((item) => String(item.product_id || '')).filter(Boolean)));
-  if (!ids.length) return new Map<string, string>();
-  const rows = await dbRequest(`products?id=in.(${ids.join(',')})&select=id,sku`);
-  return new Map<string, string>((rows || []).map((row: any) => [String(row.id), String(row.sku || '')]));
+  if (!ids.length) return new Map<string, any>();
+  const rows = await dbRequest(`products?id=in.(${ids.join(',')})&select=id,sku,store_key,bling_product_id,bling_env_key`);
+  return new Map<string, any>((rows || []).map((row: any) => [String(row.id), row]));
 }
 
 function customerFromRow(row: any) {
@@ -128,7 +124,7 @@ export async function getOrder(id: string) {
     dbRequest(`order_items?order_id=eq.${encodeURIComponent(id)}&select=*`),
   ]);
   const customerRow = customers?.[0] || null;
-  const skuByProductId = await productSkus(items || []);
+  const metadataByProductId = await productMetadata(items || []);
 
   return {
     ...order,
@@ -146,11 +142,13 @@ export async function getOrder(id: string) {
       ? integration.delivery_address
       : addressFromRow(customerRow),
     items: (items || []).map((item: any) => {
-      const sku = skuByProductId.get(String(item.product_id || '')) || '';
+      const metadata = metadataByProductId.get(String(item.product_id || '')) || {};
       return {
-        id: catalogIdFromSku(sku),
-        sku,
+        id: String(metadata.store_key || metadata.sku || item.product_id || ''),
+        sku: String(metadata.sku || ''),
         productId: item.product_id || null,
+        blingProductId: metadata.bling_product_id || null,
+        blingEnvKey: String(metadata.bling_env_key || ''),
         name: item.product_name,
         quantity: Number(item.quantity),
         unitPrice: Number(item.unit_price),
@@ -177,7 +175,6 @@ export async function getPublicOrder(id: string, token: string) {
   };
 }
 
-// Metadados técnicos do checkout/integrações. O pedido comercial permanece em public.orders.
 export async function updateOrder(id: string, payload: Record<string, unknown>) {
   const rows = await dbRequest(`site_order_integrations?order_id=eq.${encodeURIComponent(id)}`, {
     method: 'PATCH',
@@ -217,15 +214,9 @@ export async function recordPayment(orderId: string, payment: {
     updated_at: new Date().toISOString(),
   };
   if (existing?.[0]?.id) {
-    await dbRequest(`payments?id=eq.${encodeURIComponent(existing[0].id)}`, {
-      method: 'PATCH',
-      body: JSON.stringify(payload),
-    });
+    await dbRequest(`payments?id=eq.${encodeURIComponent(existing[0].id)}`, { method: 'PATCH', body: JSON.stringify(payload) });
   } else {
-    await dbRequest('payments', {
-      method: 'POST',
-      body: JSON.stringify(payload),
-    });
+    await dbRequest('payments', { method: 'POST', body: JSON.stringify(payload) });
   }
 }
 
