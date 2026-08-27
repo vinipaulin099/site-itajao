@@ -8,14 +8,14 @@
   var products = [
     { id: 'graos500', sku: 'ITAJAO-GRAOS-500', weight: '500g', format: 'graos', label: 'Em grãos', name: 'Itajaó Especial 500g em Grãos', copy: 'Para moer na hora e ajustar a moagem ao seu método.', image: 'assets/images/products/real/graos-500-estudio.jpg', live: true },
     { id: 'moido500', sku: 'ITAJAO-MOIDO-500', weight: '500g', format: 'moido', label: 'Moído', name: 'Itajaó Especial 500g Moído', copy: 'Pronto para o coador, com praticidade e frescor.', image: 'assets/images/products/real/moido-500-estudio.jpg', live: true },
-    { sku: 'ITAJAO-1000-GRAOS', weight: '1kg', format: 'graos', label: 'Em grãos', name: 'Itajaó Especial 1kg em Grãos', copy: 'Dois pacotes de 500g para preservar melhor o frescor.', image: 'assets/images/products/real/graos-1kg-kit.jpg', price: 119.90 },
-    { sku: 'ITAJAO-1000-MOIDO', weight: '1kg', format: 'moido', label: 'Moído', name: 'Itajaó Especial 1kg Moído', copy: 'Dois pacotes de 500g já moídos para o dia a dia.', image: 'assets/images/products/real/moido-1kg-kit.jpg', price: 119.90 },
-    { sku: 'ITAJAO-3000-GRAOS', weight: '3kg', format: 'graos volume', label: 'Em grãos', name: 'Kit Itajaó 3kg em Grãos', copy: 'Volume para escritórios, cafeterias e rotinas de maior consumo.', image: 'assets/images/products/real/graos-3kg-kit.jpg', price: 319.90 },
-    { sku: 'ITAJAO-3000-MOIDO', weight: '3kg', format: 'moido volume', label: 'Moído', name: 'Kit Itajaó 3kg Moído', copy: 'Seis pacotes de 500g com moagem prática para coador.', image: 'assets/images/products/real/moido-3kg-kit.jpg', price: 319.90 },
-    { sku: 'ITAJAO-5000-GRAOS', weight: '5kg', format: 'graos volume', label: 'Em grãos', name: 'Kit Itajaó 5kg em Grãos', copy: 'Composição em pacotes para manter a abertura por etapas.', image: 'assets/images/products/real/graos-3kg-kit.jpg', linePhoto: true },
-    { sku: 'ITAJAO-5000-MOIDO', weight: '5kg', format: 'moido volume', label: 'Moído', name: 'Kit Itajaó 5kg Moído', copy: 'Volume sob consulta, com composição adequada ao seu consumo.', image: 'assets/images/products/real/moido-3kg-kit.jpg', linePhoto: true },
-    { sku: 'ITAJAO-10000-GRAOS', weight: '10kg', format: 'graos volume', label: 'Em grãos', name: 'Kit Itajaó 10kg em Grãos', copy: 'Atendimento comercial para consumo recorrente e revenda.', image: 'assets/images/products/real/graos-3kg-kit.jpg', linePhoto: true },
-    { sku: 'ITAJAO-10000-MOIDO', weight: '10kg', format: 'moido volume', label: 'Moído', name: 'Kit Itajaó 10kg Moído', copy: 'Atendimento comercial para consumo recorrente e revenda.', image: 'assets/images/products/real/moido-3kg-kit.jpg', linePhoto: true }
+    { id: 'graos1kg', sku: 'ITAJAO-1000-GRAOS', weight: '1kg', format: 'graos', label: 'Em grãos', name: 'Itajaó Especial 1kg em Grãos', copy: 'Dois pacotes de 500g para preservar melhor o frescor.', image: 'assets/images/products/real/graos-1kg-kit.jpg', live: true, price: 119.90 },
+    { id: 'moido1kg', sku: 'ITAJAO-1000-MOIDO', weight: '1kg', format: 'moido', label: 'Moído', name: 'Itajaó Especial 1kg Moído', copy: 'Dois pacotes de 500g já moídos para o dia a dia.', image: 'assets/images/products/real/moido-1kg-kit.jpg', live: true, price: 119.90 },
+    { id: 'graos3kg', sku: 'ITAJAO-3000-GRAOS', weight: '3kg', format: 'graos volume', label: 'Em grãos', name: 'Kit Itajaó 3kg em Grãos', copy: 'Volume para escritórios, cafeterias e rotinas de maior consumo.', image: 'assets/images/products/real/graos-3kg-kit.jpg', live: true, price: 319.90 },
+    { id: 'moido3kg', sku: 'ITAJAO-3000-MOIDO', weight: '3kg', format: 'moido volume', label: 'Moído', name: 'Kit Itajaó 3kg Moído', copy: 'Seis pacotes de 500g com moagem prática para coador.', image: 'assets/images/products/real/moido-3kg-kit.jpg', live: true, price: 319.90 },
+    { id: 'graos5kg', sku: 'ITAJAO-5000-GRAOS', weight: '5kg', format: 'graos volume', label: 'Em grãos', name: 'Kit Itajaó 5kg em Grãos', copy: 'Composição em pacotes para manter a abertura por etapas.', image: 'assets/images/products/real/graos-3kg-kit.jpg', live: true, linePhoto: true },
+    { id: 'moido5kg', sku: 'ITAJAO-5000-MOIDO', weight: '5kg', format: 'moido volume', label: 'Moído', name: 'Kit Itajaó 5kg Moído', copy: 'Volume sob consulta, com composição adequada ao seu consumo.', image: 'assets/images/products/real/moido-3kg-kit.jpg', live: true, linePhoto: true },
+    { id: 'graos10kg', sku: 'ITAJAO-10000-GRAOS', weight: '10kg', format: 'graos volume', label: 'Em grãos', name: 'Kit Itajaó 10kg em Grãos', copy: 'Atendimento comercial para consumo recorrente e revenda.', image: 'assets/images/products/real/graos-3kg-kit.jpg', live: true, linePhoto: true },
+    { id: 'moido10kg', sku: 'ITAJAO-10000-MOIDO', weight: '10kg', format: 'moido volume', label: 'Moído', name: 'Kit Itajaó 10kg Moído', copy: 'Atendimento comercial para consumo recorrente e revenda.', image: 'assets/images/products/real/moido-3kg-kit.jpg', live: true, linePhoto: true }
   ];
 
   function contactUrl(product) {
@@ -28,7 +28,7 @@
     var listedPrice = Number(product.price);
     var hasListedPrice = Number.isFinite(listedPrice) && listedPrice > 0;
     var price = available ? store.money(liveProduct.price) : (hasListedPrice ? store.money(listedPrice) : 'Sob consulta');
-    var priceNote = available ? 'Preço atualizado no catálogo' : (hasListedPrice ? 'Mesmo valor praticado na Shopee' : 'Confirmamos preço, estoque e entrega no atendimento');
+    var priceNote = available ? 'Preço atualizado no catálogo' : (hasListedPrice ? 'Valor de referência' : 'Defina o preço no CRM para habilitar a compra online');
     var actions = available
       ? '<a class="catalog-action" href="produto.html?id=' + store.escapeHtml(product.id) + '">Ver detalhes</a><button class="catalog-action primary" type="button" data-buy="' + store.escapeHtml(product.id) + '">Comprar</button>'
       : '<a class="catalog-action" href="assinatura.html">Ver assinatura</a><a class="catalog-action primary" href="' + store.escapeHtml(contactUrl(product)) + '" target="_blank" rel="noopener">Consultar</a>';
