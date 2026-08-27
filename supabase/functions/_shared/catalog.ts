@@ -25,57 +25,66 @@ export type CatalogProduct = {
 export type Catalog = Record<string, CatalogProduct>;
 export type CartItem = { id: string; quantity: number };
 
+// Fallback seguro: somente produtos que fazem parte do catálogo atual e possuem preço definido.
+// 5kg e 10kg entram automaticamente pelo banco assim que receberem sale_price.
 export const FALLBACK_CATALOG: Catalog = {
   graos500: {
-    id: 'graos500', sku: 'ITAJAO-GRAOS-500', name: 'Itajaó Especial 500g em Grãos',
-    price: 56.90, compareAtPrice: 62.90, weightKg: 0.5, weightLabel: '500g', format: 'Em Grãos',
+    id: 'graos500', sku: 'ITAJAO-GRAOS-500', name: 'Café Itajaó 500 g - em grãos',
+    price: 55.90, compareAtPrice: null, weightKg: 0.5, weightLabel: '500g', format: 'Em Grãos',
     shortDescription: 'Café especial em grãos para moer na hora e aproveitar o máximo de aroma e frescor.',
     description: 'Produzido na Fazenda Itajaó, este lote de 500g em grãos preserva o café inteiro até o preparo e permite ajustar a moagem ao método preferido.',
-    images: ['assets/images/products/500graos.png'], legacyUrl: 'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-500g-graos-torra-media-100-arabica-sul-de-minas-itajao/',
+    images: ['assets/images/products/real/graos-500-estudio.jpg'], legacyUrl: 'https://cafeitajao.com.br/',
     available: true, sortOrder: 10, widthCm: 20, heightCm: 20, lengthCm: 20,
     packageEnv: 'GRAOS500', blingEnv: 'BLING_PRODUCT_GRAOS500_ID',
   },
   moido500: {
-    id: 'moido500', sku: 'ITAJAO-MOIDO-500', name: 'Itajaó Especial 500g Moído',
-    price: 54.90, compareAtPrice: 60.90, weightKg: 0.5, weightLabel: '500g', format: 'Moído',
+    id: 'moido500', sku: 'ITAJAO-MOIDO-500', name: 'Café Itajaó 500 g - moído',
+    price: 55.90, compareAtPrice: null, weightKg: 0.5, weightLabel: '500g', format: 'Moído',
     shortDescription: 'A praticidade do café já moído sem abrir mão do perfil especial do Itajaó.',
     description: 'A versão de 500g moída foi pensada para o preparo prático do dia a dia, mantendo notas de chocolate, caramelo e castanha.',
-    images: ['assets/images/products/500moido.png'], legacyUrl: 'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-500g-moido-torra-media-100-arabica-sul-de-minas-itajao/',
+    images: ['assets/images/products/real/moido-500-estudio.jpg'], legacyUrl: 'https://cafeitajao.com.br/',
     available: true, sortOrder: 20, widthCm: 20, heightCm: 20, lengthCm: 20,
     packageEnv: 'MOIDO500', blingEnv: 'BLING_PRODUCT_MOIDO500_ID',
   },
-  graos250: {
-    id: 'graos250', sku: 'ITAJAO-GRAOS-250', name: 'Itajaó Especial 250g em Grãos',
-    price: 31.90, compareAtPrice: 38.90, weightKg: 0.25, weightLabel: '250g', format: 'Em Grãos',
-    shortDescription: 'Formato compacto em grãos, ideal para experimentar o lote e moer cada dose na hora.',
-    description: 'O pacote de 250g em grãos traz o mesmo lote especial Itajaó em uma quantidade menor e mantém a flexibilidade de moagem.',
-    images: ['assets/images/products/250graos.png'], legacyUrl: 'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-250g-graos-torra-media-100-arabica-sul-de-minas-itajao/',
-    available: false, sortOrder: 30, widthCm: 20, heightCm: 20, lengthCm: 20,
-    packageEnv: 'GRAOS250', blingEnv: 'BLING_PRODUCT_GRAOS250_ID',
+  graos1kg: {
+    id: 'graos1kg', sku: 'ITAJAO-1000-GRAOS', name: 'Café Itajaó 1 kg - em grãos',
+    price: 119.90, compareAtPrice: null, weightKg: 1, weightLabel: '1kg', format: 'Em Grãos',
+    shortDescription: 'Dois pacotes de 500g para preservar melhor o frescor e moer na hora.',
+    description: 'Kit de 1kg composto por dois pacotes de 500g do Café Especial Itajaó em grãos.',
+    images: ['assets/images/products/real/graos-1kg-kit.jpg'], legacyUrl: 'https://cafeitajao.com.br/',
+    available: true, sortOrder: 30, widthCm: 20, heightCm: 20, lengthCm: 20,
+    packageEnv: 'GRAOS1KG', blingEnv: 'BLING_PRODUCT_1000_GRAOS_ID',
   },
-  moido250: {
-    id: 'moido250', sku: 'ITAJAO-MOIDO-250', name: 'Itajaó Especial 250g Moído',
-    price: 29.90, compareAtPrice: 36.90, weightKg: 0.25, weightLabel: '250g', format: 'Moído',
-    shortDescription: 'Uma porta de entrada prática para conhecer o Itajaó já moído.',
-    description: 'O pacote de 250g moído reúne praticidade, torra média e notas naturais de chocolate, caramelo e castanha.',
-    images: ['assets/images/products/250moido.png'], legacyUrl: 'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-250g-moido-torra-media-100-arabica-sul-de-minas-itajao/',
+  moido1kg: {
+    id: 'moido1kg', sku: 'ITAJAO-1000-MOIDO', name: 'Café Itajaó 1 kg - moído',
+    price: 119.90, compareAtPrice: null, weightKg: 1, weightLabel: '1kg', format: 'Moído',
+    shortDescription: 'Dois pacotes de 500g já moídos para o dia a dia.',
+    description: 'Kit de 1kg composto por dois pacotes de 500g do Café Especial Itajaó moído.',
+    images: ['assets/images/products/real/moido-1kg-kit.jpg'], legacyUrl: 'https://cafeitajao.com.br/',
     available: true, sortOrder: 40, widthCm: 20, heightCm: 20, lengthCm: 20,
-    packageEnv: 'MOIDO250', blingEnv: 'BLING_PRODUCT_MOIDO250_ID',
+    packageEnv: 'MOIDO1KG', blingEnv: 'BLING_PRODUCT_1000_MOIDO_ID',
   },
-  kit1kg: {
-    id: 'kit1kg', sku: 'ITAJAO-KIT-1KG', name: 'Kit Itajaó Especial 1kg',
-    price: 103.90, compareAtPrice: 104.90, weightKg: 1, weightLabel: '1kg', format: 'Kit · 2×500g',
-    shortDescription: 'Dois pacotes de 500g para completar 1kg de Café Especial Itajaó.',
-    description: 'O kit de 1kg reúne dois pacotes de 500g do Café Especial Itajaó para quem quer manter o café fresco por mais tempo.',
-    images: ['assets/images/products/500graos.png', 'assets/images/products/500moido.png'], legacyUrl: 'https://cafeitajao.com.br/produtos/kit-1kg-cafe-especial-84-pontos-sca-torra-media-100-arabica-sul-de-minas-itajao/',
+  graos3kg: {
+    id: 'graos3kg', sku: 'ITAJAO-3000-GRAOS', name: 'Kit Itajaó 3 kg - em grãos',
+    price: 319.90, compareAtPrice: null, weightKg: 3, weightLabel: '3kg', format: 'Em Grãos',
+    shortDescription: 'Seis pacotes de 500g para maior consumo sem abrir mão do frescor.',
+    description: 'Kit de 3kg do Café Especial Itajaó em grãos, composto por seis pacotes de 500g.',
+    images: ['assets/images/products/real/graos-3kg-kit.jpg'], legacyUrl: 'https://cafeitajao.com.br/',
     available: true, sortOrder: 50, widthCm: 20, heightCm: 20, lengthCm: 20,
-    packageEnv: 'KIT1KG', blingEnv: 'BLING_PRODUCT_KIT1KG_ID',
+    packageEnv: 'GRAOS3KG', blingEnv: 'BLING_PRODUCT_3000_GRAOS_ID',
+  },
+  moido3kg: {
+    id: 'moido3kg', sku: 'ITAJAO-3000-MOIDO', name: 'Kit Itajaó 3 kg - moído',
+    price: 319.90, compareAtPrice: null, weightKg: 3, weightLabel: '3kg', format: 'Moído',
+    shortDescription: 'Seis pacotes de 500g moídos para maior consumo e praticidade.',
+    description: 'Kit de 3kg do Café Especial Itajaó moído, composto por seis pacotes de 500g.',
+    images: ['assets/images/products/real/moido-3kg-kit.jpg'], legacyUrl: 'https://cafeitajao.com.br/',
+    available: true, sortOrder: 60, widthCm: 20, heightCm: 20, lengthCm: 20,
+    packageEnv: 'MOIDO3KG', blingEnv: 'BLING_PRODUCT_3000_MOIDO_ID',
   },
 };
 
-// Compatibilidade com integrações que ainda usam a constante síncrona.
 export const CATALOG = FALLBACK_CATALOG;
-
 let catalogCache: { value: Catalog; expiresAt: number } | null = null;
 
 function adminKey() {
@@ -102,7 +111,7 @@ function productFromRow(row: any): CatalogProduct | null {
   const sku = String(row?.sku || '').trim();
   const name = String(row?.name || '').trim();
   const price = Number(row?.sale_price);
-  if (!id || !sku || !name || !Number.isFinite(price) || price < 0) return null;
+  if (!id || !sku || !name || row?.sale_price === null || row?.sale_price === undefined || !Number.isFinite(price) || price < 0) return null;
   const images = Array.isArray(row?.store_images)
     ? row.store_images.map((value: unknown) => String(value || '').trim()).filter(Boolean)
     : [];
@@ -118,7 +127,7 @@ function productFromRow(row: any): CatalogProduct | null {
     format: String(row?.store_format || ''),
     shortDescription: String(row?.store_short_description || ''),
     description: String(row?.store_description || ''),
-    images: images.length ? images : ['assets/images/products/500graos.png'],
+    images: images.length ? images : ['assets/images/products/real/graos-500-estudio.jpg'],
     legacyUrl: String(row?.store_legacy_url || 'https://cafeitajao.com.br/'),
     available: Boolean(row?.active),
     sortOrder: Number(row?.store_sort_order) || 0,
@@ -142,7 +151,7 @@ export async function loadCatalog(): Promise<Catalog> {
       'shipping_length_cm', 'package_env_key', 'bling_env_key',
     ].join(',');
     const response = await fetch(
-      `${env('SUPABASE_URL')}/rest/v1/products?store_key=not.is.null&store_visible=eq.true&select=${select}&order=store_sort_order.asc`,
+      `${env('SUPABASE_URL')}/rest/v1/products?store_key=not.is.null&store_visible=eq.true&active=eq.true&select=${select}&order=store_sort_order.asc`,
       {
         headers: {
           apikey: auth.key,
@@ -231,6 +240,7 @@ export function melhorEnvioProducts(items: CartItem[], catalog: Catalog = FALLBA
   });
 }
 
+// Mantidos por compatibilidade com código legado; novas integrações devem preferir o metadata do banco.
 export function blingProductId(productId: string) {
   const product = FALLBACK_CATALOG[productId];
   if (!product) throw new PublicError('Mapeamento de produto inválido.', 500);
