@@ -2,8 +2,12 @@
   'use strict';
 
   const FALLBACK_PRODUCTS=[
-    {id:'graos500',sku:'ITAJAO-GRAOS-500',name:'ITAJAÓ 500G EM GRÃOS',price:59.90,compareAtPrice:62.90,weightLabel:'500g',format:'Em Grãos',shortDescription:'Café especial em grãos para moer na hora e aproveitar o máximo de aroma e frescor.',description:'Produzido na Fazenda Itajaó, este lote de 500g em grãos preserva o café inteiro até o preparo e permite ajustar a moagem ao método preferido.',images:['assets/images/products/real/graos-500-estudio.jpg','assets/images/products/real/graos-500-cafeteria.jpg'],legacyUrl:'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-500g-graos-torra-media-100-arabica-sul-de-minas-itajao/',available:true},
-    {id:'moido500',sku:'ITAJAO-MOIDO-500',name:'ITAJAÓ 500G MOÍDO',price:59.90,compareAtPrice:60.90,weightLabel:'500g',format:'Moído',shortDescription:'A praticidade do café já moído sem abrir mão do perfil especial do Itajaó.',description:'A versão de 500g moída foi pensada para o preparo prático do dia a dia, mantendo notas de chocolate, caramelo e castanha.',images:['assets/images/products/real/moido-500-estudio.jpg'],legacyUrl:'https://cafeitajao.com.br/produtos/cafe-especial-84-pontos-sca-500g-moido-torra-media-100-arabica-sul-de-minas-itajao/',available:true}
+    {id:'graos500',sku:'ITAJAO-GRAOS-500',name:'ITAJAÓ 500G EM GRÃOS',price:55.90,compareAtPrice:null,weightLabel:'500g',format:'Em Grãos',shortDescription:'Café especial em grãos para moer na hora e aproveitar o máximo de aroma e frescor.',description:'Produzido na Fazenda Itajaó, este lote de 500g em grãos preserva o café inteiro até o preparo e permite ajustar a moagem ao método preferido.',images:['assets/images/products/real/graos-500-estudio.jpg','assets/images/products/real/graos-500-cafeteria.jpg'],legacyUrl:'https://cafeitajao.com.br/',available:true},
+    {id:'moido500',sku:'ITAJAO-MOIDO-500',name:'ITAJAÓ 500G MOÍDO',price:55.90,compareAtPrice:null,weightLabel:'500g',format:'Moído',shortDescription:'A praticidade do café já moído sem abrir mão do perfil especial do Itajaó.',description:'A versão de 500g moída foi pensada para o preparo prático do dia a dia, mantendo notas de chocolate, caramelo e castanha.',images:['assets/images/products/real/moido-500-estudio.jpg'],legacyUrl:'https://cafeitajao.com.br/',available:true},
+    {id:'graos1kg',sku:'ITAJAO-1000-GRAOS',name:'ITAJAÓ 1KG EM GRÃOS',price:119.90,compareAtPrice:null,weightLabel:'1kg',format:'Em Grãos',shortDescription:'Dois pacotes de 500g para preservar melhor o frescor.',description:'Kit de 1kg composto por dois pacotes de 500g do Café Especial Itajaó em grãos.',images:['assets/images/products/real/graos-1kg-kit.jpg'],legacyUrl:'https://cafeitajao.com.br/',available:true},
+    {id:'moido1kg',sku:'ITAJAO-1000-MOIDO',name:'ITAJAÓ 1KG MOÍDO',price:119.90,compareAtPrice:null,weightLabel:'1kg',format:'Moído',shortDescription:'Dois pacotes de 500g já moídos para o dia a dia.',description:'Kit de 1kg composto por dois pacotes de 500g do Café Especial Itajaó moído.',images:['assets/images/products/real/moido-1kg-kit.jpg'],legacyUrl:'https://cafeitajao.com.br/',available:true},
+    {id:'graos3kg',sku:'ITAJAO-3000-GRAOS',name:'KIT ITAJAÓ 3KG EM GRÃOS',price:319.90,compareAtPrice:null,weightLabel:'3kg',format:'Em Grãos',shortDescription:'Seis pacotes de 500g para maior consumo sem abrir mão do frescor.',description:'Kit de 3kg do Café Especial Itajaó em grãos, composto por seis pacotes de 500g.',images:['assets/images/products/real/graos-3kg-kit.jpg'],legacyUrl:'https://cafeitajao.com.br/',available:true},
+    {id:'moido3kg',sku:'ITAJAO-3000-MOIDO',name:'KIT ITAJAÓ 3KG MOÍDO',price:319.90,compareAtPrice:null,weightLabel:'3kg',format:'Moído',shortDescription:'Seis pacotes de 500g moídos para maior consumo e praticidade.',description:'Kit de 3kg do Café Especial Itajaó moído, composto por seis pacotes de 500g.',images:['assets/images/products/real/moido-3kg-kit.jpg'],legacyUrl:'https://cafeitajao.com.br/',available:true}
   ];
 
   const CART_KEY='itajaoCartV1';
@@ -93,8 +97,8 @@
         const response=await fetch(cfg.functionsBaseUrl+'/store-catalog',{headers:headers()});
         const data=await response.json().catch(()=>({}));
         if(!response.ok||!Array.isArray(data.products)||!data.products.length)throw new Error(data.error||'Catálogo indisponível.');
-        const activeIds=new Set(FALLBACK_PRODUCTS.map(product=>String(product.id)));
-        catalog=toCatalog(data.products.filter(product=>activeIds.has(String(product.id))));sanitizeCart();writeJson(CART_KEY,cart);updateCounters();return catalog;
+        // O backend é a fonte de verdade do catálogo. Isso permite novos tamanhos sem alterar este arquivo novamente.
+        catalog=toCatalog(data.products);sanitizeCart();writeJson(CART_KEY,cart);updateCounters();return catalog;
       }catch(error){console.warn('Catálogo remoto indisponível; usando catálogo local.',error);return catalog}
     })();
     return catalogPromise;
